@@ -16,7 +16,7 @@ Documenti	richiesti:	(2.1)	modello	dell’architettura	software	(o	più	modelli	
 dettaglio),	(2.2)	descrizione	dell’architettura,	(2.3)	descrizione	delle	scelte	e	strategie	adottate	
 (compresi	design	patterns)	
 	
-* **Software/Object	design*	
+* **Software/Object	design**	
 Definire	gli	oggetti	del	dominio,	definire	in	modo	dettagliato	componenti,	classi,	interfacce	e	
 membri.		
 Documenti	richiesti:	(3.1)	modelli	rappresentanti	l’object	design	con	classi,	interfacce	e	membri,	
