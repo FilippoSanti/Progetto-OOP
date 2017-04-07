@@ -1,6 +1,6 @@
 # Documentazione Progetto OOP
 
-Il	progetto	si	propone	di	realizzare	una	piattaforma	di	gaming	che	coinvolga	gli	utenti	a	giocare	al	fine	
+Il	progetto si	propone	di	realizzare	una	piattaforma	di	gaming	che	coinvolga	gli	utenti	a	giocare	al	fine	
 di	guadagnare	punti	esperienza	e	nuovi	livelli	di	gioco.
 
 I File comprendono:
@@ -20,4 +20,4 @@ dettaglio),	(2.2)	descrizione	dell’architettura,	(2.3)	descrizione	delle	scelt
 Definire	gli	oggetti	del	dominio,	definire	in	modo	dettagliato	componenti,	classi,	interfacce	e	
 membri.		
 Documenti	richiesti:	(3.1)	modelli	rappresentanti	l’object	design	con	classi,	interfacce	e	membri,	
-(3.2)	descrizione	dei	dettagli	di	design	scelti.			
+(3.2)	descrizione	dei	dettagli di	design	scelti.			
