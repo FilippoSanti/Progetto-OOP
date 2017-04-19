@@ -1,4 +1,4 @@
-public class Moderator {
+public class Moderator extends User{
 
     // Variabili
 
@@ -22,8 +22,12 @@ public class Moderator {
     }
 
     // Recensioni approvate dal moderatore
-    public boolean approveReview(Review r) {
-    
+    public boolean approvedReview(Review r) {
+        boolean state = false;
+
+        // Codice per l'approvazione
+
+        return state;
     }
 
 }

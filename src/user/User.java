@@ -6,8 +6,23 @@ public class User {
        // Costruttore dell'utente
     }
 
-    // Visualizza tutti i dati del profilo utente
-    public void getProfile () {
+    // Nome dell'utente
+    public void getName () {
+
+    }
+
+    // Cognome dell'utente
+    public void getSurname () {
+
+    }
+
+    // Email utente
+    public void getEmail () {
+
+    }
+
+    // Password
+    public void getPassword () {
 
     }
 
@@ -45,6 +60,5 @@ public class User {
     public void setReview (String r) {
 
     }
-
 
 }
