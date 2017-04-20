@@ -21,5 +21,3 @@ Definire	gli	oggetti	del	dominio,	definire	in	modo	dettagliato	componenti,	class
 membri.
 Documenti	richiesti:	(3.1)	modelli	rappresentanti	l’object	design	con	classi,	interfacce	e	membri,
 (3.2)	descrizione	dei	dettagli di	design	scelti.
-
-#TODO: Codice
