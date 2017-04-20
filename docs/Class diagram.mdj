@@ -87,7 +87,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Package1",
+											"text": "Package",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -302,7 +302,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Package1)",
+											"text": "(from Package)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -624,7 +624,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Package1)",
+											"text": "(from Package)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1439,7 +1439,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Package1)",
+											"text": "(from Package)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1848,7 +1848,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Package1)",
+											"text": "(from Package)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2196,7 +2196,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Package1)",
+											"text": "(from Package)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3726,7 +3726,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Package1",
+					"name": "Package",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",
