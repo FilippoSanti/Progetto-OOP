@@ -1,4 +1,4 @@
-# Documentazione
+# "Untitled Gaming" - Documentazione
 
 Il	progetto si	propone	di	realizzare	una	piattaforma	di	gaming	che	coinvolga	gli	utenti	a	giocare	al	fine
 di	guadagnare	punti	esperienza	e	nuovi	livelli	di	gioco.
