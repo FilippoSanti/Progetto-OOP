@@ -1,8 +1,8 @@
-package DB;
+package business.implementation;
 
 import java.sql.*;
 
-public class Manager {
+public class DBManager {
 
     /* DB Connection */
     public static Connection Connect() {
@@ -31,28 +31,6 @@ public class Manager {
             return dbConnection;
         }
         return dbConnection;
-    }
-
-    /* User authentication */
-    public static boolean userAuth(Connection conn, String username, String password) {
-        try {
-            PreparedStatement pst = conn.prepareStatement("Select * from utente where username=?");
-            pst.setString(1, username);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-                String hashedPass = rs.getString("password");
-
-                //Check if the provided password and the hashed one are equals
-                if (checkPassword(password, hashedPass))
-                    return true;
-                else return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return false;
     }
 
     /**
@@ -94,54 +72,4 @@ public class Manager {
 
         return (password_verified);
     }
-
-    /* Insert the user data into the DB */
-    public static boolean insertUser(Connection dbConnection, String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
-
-        PreparedStatement preparedStatement = null;
-
-        // Password hashing
-        String hashedPass = hashPassword(password);
-
-
-        String insertTableSQL = "INSERT INTO utente"
-                + "(username, password, nome, cognome, email, tipo) VALUES"
-                + "(?,?,?,?,?,?)";
-
-        // Insert the values into the DB
-        try {
-            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
-
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, hashedPass);
-            preparedStatement.setString(3, nome);
-            preparedStatement.setString(4, cognome);
-            preparedStatement.setString(5, email);
-            preparedStatement.setString(6, tipo);
-
-            // Insert SQL statement
-            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
-               0 for SQL statements that return nothing
-             */
-            if (preparedStatement.executeUpdate() != 0) {
-                return true;
-            }
-
-        } catch (SQLException ex) {
-
-            System.out.println(ex.getMessage());
-
-        } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-
-            if (dbConnection != null) {
-                dbConnection.close();
-            }
-        }
-        return false;
-    }
-
-
 }
