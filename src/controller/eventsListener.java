@@ -1,17 +1,21 @@
 package controller;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class eventsListener {
 
     /* Insert the user data into the DB */
-    public static boolean insertUser(Connection dbConnection, String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
+    public static boolean insertUser(String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
 
         PreparedStatement preparedStatement = null;
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Password hashing
         String hashedPass = business.implementation.DBManager.hashPassword(password);
@@ -55,7 +59,11 @@ public class eventsListener {
     }
 
     /* User authentication */
-    public static boolean userAuth(Connection conn, String username, String password) {
+    public static boolean userAuth(String username, String password) {
+
+        // DB Connection
+        Connection conn = business.implementation.DBManager.Connect();
+
         try {
             PreparedStatement pst = conn.prepareStatement("Select * from utente where username=?");
             pst.setString(1, username);
@@ -64,7 +72,7 @@ public class eventsListener {
             if (rs.next()) {
                 String hashedPass = rs.getString("password");
 
-                //Check if the provided password and the hashed one are equals
+                //Check if the provided password and the hashed one are equal
                 if (business.implementation.DBManager.checkPassword(password, hashedPass))
                     return true;
                 else return false;
@@ -74,6 +82,32 @@ public class eventsListener {
             return false;
         }
         return false;
+    }
+
+    /* Get the user information */
+    public static ArrayList<String> getUserInfo (String username) throws SQLException {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // List of strings that will be returned later
+        ArrayList userInfo = new ArrayList<String>();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT `username`, `nome`, `cognome`, `email` FROM `utente` WHERE `username` = ?");
+        stmt.setString(1, username);
+        ResultSet rs = stmt.executeQuery();
+
+        // Fetch data from the result set
+        int columnCount = rs.getMetaData().getColumnCount();
+        rs.next();
+        for (int i = 0; i <columnCount ; i++)
+        {
+            userInfo.add( rs.getString(i + 1) );
+        }
+
+        return userInfo;
     }
 
 }
