@@ -110,4 +110,37 @@ public class eventsListener {
         return userInfo;
     }
 
+    /* Get the user stats */
+    public static ArrayList<String> getUserStats (String username) throws SQLException {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // List of strings that will be returned later
+        ArrayList userStats = new ArrayList<String>();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT game_profile.livello,\n" +
+                        "       game_profile.punti_esperienza,\n" +
+                        "       achievement.nome,\n" +
+                        "       achievement.descrizione,\n" +
+                        "       achievement.username\n" +
+                        "FROM achievement\n" +
+                        "INNER JOIN game_profile ON game_profile.username = game_profile.username\n" +
+                        "WHERE achievement.username = ?");
+
+        stmt.setString(1, username);
+        ResultSet rs = stmt.executeQuery();
+
+        // Fetch data from the result set
+        int columnCount = rs.getMetaData().getColumnCount();
+        rs.next();
+        for (int i = 0; i <columnCount ; i++)
+        {
+            userStats.add( rs.getString(i + 1) );
+        }
+
+        return userStats;
+    }
 }
