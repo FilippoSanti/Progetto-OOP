@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import java.awt.SystemColor;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.JSlider;
 import javax.swing.JLayeredPane;
 import java.awt.Font;

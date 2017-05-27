@@ -1,3 +1,5 @@
+package presentation;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -55,7 +57,7 @@ public class Giochi {
 		frmUntitedGaming.setTitle("   Untited Gaming  -  I Tuoi Giochi");
 		frmUntitedGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitedGaming.setResizable(false);
-		frame = frmUntitedGaming;
+		JFrame frame = frmUntitedGaming;
 		frmUntitedGaming.getContentPane().setLayout(null);
 		
 		Panel panel = new Panel();
