@@ -143,4 +143,116 @@ public class eventsListener {
 
         return userStats;
     }
+    
+     /* Adds a review */
+    public static boolean addReview(String user, String review, double vote) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        String insertTableSQL = "INSERT INTO recensioni"+"(username, testo_recensione, voto, approvata) VALUES" +
+                "(?, ?, ?, false)";
+
+        PreparedStatement preparedStatement = null;
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, review);
+            preparedStatement.setDouble(3, vote);
+
+
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+    /* Get the first pending review */
+    public static ArrayList<String> getPendingReview() throws SQLException
+    {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // List of strings that will be returned later
+        ArrayList pendingReview = new ArrayList<String>();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT * FROM `recensioni` where recensioni.approvata = 0");
+
+        ResultSet rs = stmt.executeQuery();
+
+        // Fetch data from the result set
+        int columnCount = rs.getMetaData().getColumnCount();
+
+        rs.next();
+        for (int i = 0; i < columnCount; i++) {
+            pendingReview.add(rs.getString(i + 1));
+        }
+
+        return pendingReview;
+    }
+
+    /* Approve a review */
+    public static boolean approveReview (String user) throws SQLException {
+
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        String approveReview = "UPDATE `recensioni` SET `approvata` = '1' WHERE `recensioni`.`username` = ?";
+
+        PreparedStatement preparedStatement = null;
+
+        // Update the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(approveReview);
+
+            preparedStatement.setString(1, user);
+
+
+
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+
+    }
 }
