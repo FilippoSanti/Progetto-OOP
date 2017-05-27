@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 26, 2017 alle 14:51
--- Versione del server: 10.1.21-MariaDB
--- Versione PHP: 5.6.30
+-- Creato il: Mag 27, 2017 alle 18:26
+-- Versione del server: 10.1.22-MariaDB
+-- Versione PHP: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -76,15 +78,35 @@ CREATE TABLE `gioco` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `profilo di gioco`
+--
+
+CREATE TABLE `profilo di gioco` (
+  `username` varchar(20) NOT NULL,
+  `livello` int(3) NOT NULL,
+  `punti esperienza` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `recensioni`
 --
 
 CREATE TABLE `recensioni` (
   `username` varchar(20) NOT NULL,
   `testo_recensione` varchar(250) NOT NULL,
-  `voto` float DEFAULT NULL,
+  `voto` double DEFAULT NULL,
   `approvata` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `recensioni`
+--
+
+INSERT INTO `recensioni` (`username`, `testo_recensione`, `voto`, `approvata`) VALUES
+('davideu', 'Bene ma non benissimo', 3.5, 1),
+('mikesh', 'Tutto molto bello', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -94,8 +116,10 @@ CREATE TABLE `recensioni` (
 
 CREATE TABLE `timeline` (
   `username` varchar(10) NOT NULL,
-  `livello` int(11) NOT NULL,
-  `data_acquisizione` date NOT NULL
+  `gioco` varchar(30) NOT NULL,
+  `ore_di_gioco` float NOT NULL,
+  `data_ultima_sessione` date NOT NULL,
+  `esperienza_guadagnata` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -106,7 +130,7 @@ CREATE TABLE `timeline` (
 
 CREATE TABLE `utente` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(60) NOT NULL,
+  `password` longblob NOT NULL,
   `nome` varchar(20) NOT NULL,
   `cognome` varchar(20) NOT NULL,
   `email` varchar(25) NOT NULL,
@@ -118,31 +142,22 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`username`, `password`, `nome`, `cognome`, `email`, `tipo`) VALUES
-('mikesh', '$2a$12$WUAK8FD5NTYaKRP1fL1GF.a/B.8RvPQmQDHiZeQZwHKNra1j/G952', 'stefano', 'de ciantis', 'm@a.il', 'user'),
-('test_userx', '$2a$12$TPhemUZBhnUT1DhFhSccbuEdQpibhaCWQzU0V2RSE5Qxv9nxuyBqy', 'stefano', 'de ciantis', 'm@a.il', 'user');
+('davideu', 0x243261243132244a5743425669477a65694e372f6b524b6262644b324f532e7843663464556d7867704d7773676350675758452e56374f684864724b, 'davide', 'ubaldi', 'ca@a.il', 'user'),
+('mikesh', 0x617364, 'ss', 'ss', 'ss', 'ss'),
+('prova', '', '', '', '', ''),
+('test1000', 0x7465737432, 'test3', 'test4', 'test5', 'test6'),
+('u', 0x70, 'n', 'c', 'e', 't'),
+('utente1', 0x6464, 'dd', 'dd', 'dd', 'd');
 
 --
 -- Indici per le tabelle scaricate
 --
 
 --
--- Indici per le tabelle `achievement`
+-- Indici per le tabelle `profilo di gioco`
 --
-ALTER TABLE `achievement`
-  ADD PRIMARY KEY (`id_achievement`),
-  ADD KEY `username` (`username`);
-
---
--- Indici per le tabelle `game_profile`
---
-ALTER TABLE `game_profile`
+ALTER TABLE `profilo di gioco`
   ADD PRIMARY KEY (`username`);
-
---
--- Indici per le tabelle `gioco`
---
-ALTER TABLE `gioco`
-  ADD PRIMARY KEY (`id_gioco`);
 
 --
 -- Indici per le tabelle `recensioni`
@@ -163,28 +178,14 @@ ALTER TABLE `utente`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
---
-
---
--- AUTO_INCREMENT per la tabella `achievement`
---
-ALTER TABLE `achievement`
-  MODIFY `id_achievement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT per la tabella `gioco`
---
-ALTER TABLE `gioco`
-  MODIFY `id_gioco` int(11) NOT NULL AUTO_INCREMENT;
---
 -- Limiti per le tabelle scaricate
 --
 
 --
--- Limiti per la tabella `gioco`
+-- Limiti per la tabella `profilo di gioco`
 --
-ALTER TABLE `gioco`
-  ADD CONSTRAINT `gioco_ibfk_1` FOREIGN KEY (`id_gioco`) REFERENCES `achievement` (`id_achievement`);
+ALTER TABLE `profilo di gioco`
+  ADD CONSTRAINT `profilo di gioco_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`);
 
 --
 -- Limiti per la tabella `recensioni`
@@ -197,6 +198,7 @@ ALTER TABLE `recensioni`
 --
 ALTER TABLE `timeline`
   ADD CONSTRAINT `timeline_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
