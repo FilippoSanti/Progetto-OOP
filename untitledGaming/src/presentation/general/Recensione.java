@@ -1,3 +1,5 @@
+package presentation.general;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

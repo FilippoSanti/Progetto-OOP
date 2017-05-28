@@ -144,7 +144,7 @@ public class eventsListener {
         return userStats;
     }
     
-     /* Adds a review */
+    /* Adds a review */
     public static boolean addReview(String user, String review, double vote) throws SQLException {
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -161,8 +161,6 @@ public class eventsListener {
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, review);
             preparedStatement.setDouble(3, vote);
-
-
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -190,7 +188,6 @@ public class eventsListener {
     /* Returns pending reviews */
     public static ArrayList<String> getPendingReview() throws SQLException
     {
-
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -206,10 +203,6 @@ public class eventsListener {
         // Fetch data from the result set
         int columnCount = rs.getMetaData().getColumnCount();
 
-
-
-
-
         while (rs.next()) {
             for (int i = 0; i < columnCount; i++) {
 
@@ -223,7 +216,6 @@ public class eventsListener {
     /* Returns approved reviews */
     public static ArrayList<String> getApprovedReview() throws SQLException
     {
-
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -238,10 +230,6 @@ public class eventsListener {
 
         // Fetch data from the result set
         int columnCount = rs.getMetaData().getColumnCount();
-
-
-
-
 
         while (rs.next()) {
             for (int i = 0; i < columnCount; i++) {
@@ -267,9 +255,6 @@ public class eventsListener {
             preparedStatement = dbConnection.prepareStatement(approveReview);
 
             preparedStatement.setString(1, user);
-
-
-
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or

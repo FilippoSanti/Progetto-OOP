@@ -1,26 +1,18 @@
-import java.awt.EventQueue;
+package presentation.general;
 
-import javax.swing.JFrame;
-import java.awt.SystemColor;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import javax.swing.JSlider;
-import javax.swing.JLayeredPane;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.Color;
-import javax.swing.JCheckBox;
-import javax.swing.JEditorPane;
-import javax.swing.DropMode;
-import java.awt.Button;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JTextPane;
+import javax.swing.*;
+import java.awt.*;
 
-public class La_Tua_Recensione {
+public class writeReview {
 
 	private JFrame frmUntitledGaming;
+
+	/**
+	 * Create the application.
+	 */
+	public writeReview() {
+		initialize();
+	}
 
 	/**
 	 * Launch the application.
@@ -29,20 +21,13 @@ public class La_Tua_Recensione {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					La_Tua_Recensione window = new La_Tua_Recensione();
+					writeReview window = new writeReview();
 					window.frmUntitledGaming.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public La_Tua_Recensione() {
-		initialize();
 	}
 
 	/**

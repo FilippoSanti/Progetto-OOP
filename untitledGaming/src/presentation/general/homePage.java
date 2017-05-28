@@ -1,20 +1,20 @@
-import java.awt.EventQueue;
+package presentation.general;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.JPasswordField;
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 
-public class HomePage {
+public class homePage {
 	
 	private JFrame frmUntitledGaming;
 	private JTextField txtIndirizzoEmil;
 	private JPasswordField passwordField;
+
+	/**
+	 * Create the application.
+	 */
+	public homePage() {
+		initialize();
+	}
 
 	/**
 	 * Launch the application.
@@ -23,20 +23,13 @@ public class HomePage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomePage window = new HomePage();
+					homePage window = new homePage();
 					window.frmUntitledGaming.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public HomePage() {
-		initialize();
 	}
 
 	/**

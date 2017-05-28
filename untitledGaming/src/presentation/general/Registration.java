@@ -1,3 +1,5 @@
+package presentation.general;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,11 +13,10 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Dimension;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 
-public class Registrazione {
+public class Registration {
 
 	private JFrame frmUntitledGaming;
 	private JTextField txtNome;
@@ -36,7 +37,7 @@ public class Registrazione {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registrazione window = new Registrazione();
+					Registration window = new Registration();
 					window.frmUntitledGaming.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +49,7 @@ public class Registrazione {
 	/**
 	 * Create the application.
 	 */
-	public Registrazione() {
+	public Registration() {
 		initialize();
 	}
 

@@ -17,7 +17,8 @@ public class testClass {
         // User info
         System.out.println(controller.eventsListener.getUserInfo("davideu"));
 
-
+        // User stats
+        System.out.println(controller.eventsListener.getUserStats("davideu"));
 
         // Add review
         System.out.println ("Review aggiunta = "+ controller.eventsListener.addReview("davideu", "Bene ma non benissimo", 3.5 ));
