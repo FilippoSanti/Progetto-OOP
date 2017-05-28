@@ -187,7 +187,7 @@ public class eventsListener {
         return false;
     }
 
-    /* Get the first pending review */
+    /* Returns pending reviews */
     public static ArrayList<String> getPendingReview() throws SQLException
     {
 
@@ -195,7 +195,7 @@ public class eventsListener {
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // List of strings that will be returned later
-        ArrayList pendingReview = new ArrayList<String>();
+        ArrayList<String> pendingReview = new ArrayList<String>();
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement(
@@ -206,12 +206,51 @@ public class eventsListener {
         // Fetch data from the result set
         int columnCount = rs.getMetaData().getColumnCount();
 
-        rs.next();
-        for (int i = 0; i < columnCount; i++) {
-            pendingReview.add(rs.getString(i + 1));
-        }
 
+
+
+
+        while (rs.next()) {
+            for (int i = 0; i < columnCount; i++) {
+
+                pendingReview.add(rs.getString(i + 1));
+
+            }
+        }
         return pendingReview;
+    }
+
+    /* Returns approved reviews */
+    public static ArrayList<String> getApprovedReview() throws SQLException
+    {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // List of strings that will be returned later
+        ArrayList<String> approvedReviews = new ArrayList<String>();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT * FROM `recensioni` where recensioni.approvata = 1");
+
+        ResultSet rs = stmt.executeQuery();
+
+        // Fetch data from the result set
+        int columnCount = rs.getMetaData().getColumnCount();
+
+
+
+
+
+        while (rs.next()) {
+            for (int i = 0; i < columnCount; i++) {
+
+               approvedReviews.add(rs.getString(i + 1));
+
+            }
+        }
+        return approvedReviews;
     }
 
     /* Approve a review */
@@ -223,7 +262,7 @@ public class eventsListener {
 
         PreparedStatement preparedStatement = null;
 
-        // Update the values into the DB
+        // Insert the values into the DB
         try {
             preparedStatement = dbConnection.prepareStatement(approveReview);
 
