@@ -143,7 +143,7 @@ public class eventsListener {
 
         return userStats;
     }
-    
+
     /* Adds a review */
     public static boolean addReview(String user, String review, double vote) throws SQLException {
         // DB Connection
@@ -234,7 +234,7 @@ public class eventsListener {
         while (rs.next()) {
             for (int i = 0; i < columnCount; i++) {
 
-               approvedReviews.add(rs.getString(i + 1));
+                approvedReviews.add(rs.getString(i + 1));
 
             }
         }
@@ -245,9 +245,7 @@ public class eventsListener {
     public static boolean approveReview (String user) throws SQLException {
 
         Connection dbConnection = business.implementation.DBManager.Connect();
-
         String approveReview = "UPDATE `recensioni` SET `approvata` = '1' WHERE `recensioni`.`username` = ?";
-
         PreparedStatement preparedStatement = null;
 
         // Insert the values into the DB
@@ -279,4 +277,58 @@ public class eventsListener {
         return false;
 
     }
+
+    /* Edit login info */
+    public static boolean editLogin (String username, String nome, String cognome, String password, String email) throws SQLException {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Query
+        String approveReview = "UPDATE utente \n" +
+                "SET nome = ?, \n" +
+                " cognome = ?, \n" +
+                " password = ?, \n" +
+                " email = ? \n" +
+                "WHERE username = ?;";
+
+        PreparedStatement preparedStatement = null;
+
+        String hashedPass = business.implementation.DBManager.hashPassword(password);
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(approveReview);
+
+            preparedStatement.setString(1, nome);
+            preparedStatement.setString(2, cognome);
+            preparedStatement.setString(3, hashedPass);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, username);
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+            0 for SQL statements that return nothing
+            */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+
+    }
 }
+
+

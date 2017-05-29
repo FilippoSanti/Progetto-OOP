@@ -3,7 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class User {
+class User {
 
     private int tipo;
     private String nome;
@@ -12,7 +12,7 @@ public class User {
     private String username;
 
 
-    public Utente(ResultSet rs) throws SQLException {
+    public User(ResultSet rs) throws SQLException {
 
         // TODO Get the user value from a list (not a ResultSet)
         this.tipo     = rs.getInt("tipo");
@@ -22,7 +22,7 @@ public class User {
         this.username = rs.getString ("username");
     }
 
-    public Utente(String email) {
+    public User(String email) {
         this.email = email;
     }
 

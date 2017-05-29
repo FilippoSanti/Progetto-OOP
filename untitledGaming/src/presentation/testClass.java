@@ -32,6 +32,10 @@ public class testClass {
         //check approved reviews
         System.out.println(controller.eventsListener.getApprovedReview());
 
+        //edit login info
+        System.out.println(controller.eventsListener.editLogin("u", "Genoveffo", "Pantalone",
+                "Tiffany", "gubi@hotmail.it"));
+
     }
 
 }
