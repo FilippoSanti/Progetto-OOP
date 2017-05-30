@@ -9,16 +9,39 @@ import java.util.List;
 
 public class eventsListener {
 
+    /* Get a user id given a username */
+    public static int getUserID (String user) throws SQLException {
+
+        // User id that will be returned
+        int userID = 0;
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT user_id FROM utente WHERE username = ?");
+        stmt.setString(1, user);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            userID = rs.getInt(1);
+        }
+
+        return userID;
+    }
+
     /* Insert the user data into the DB */
     public static boolean insertUser(String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
 
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement  = null;
+        PreparedStatement preparedStatement1 = null;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Password hashing
-        String hashedPass = business.implementation.DBManager.hashPassword(password);
+        password = business.implementation.DBManager.hashPassword(password);
 
         String insertTableSQL = "INSERT INTO utente"
                 + "(username, password, nome, cognome, email, tipo) VALUES"
@@ -26,14 +49,16 @@ public class eventsListener {
 
         // Insert the values into the DB
         try {
-            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+            preparedStatement  = dbConnection.prepareStatement(insertTableSQL);
+           // preparedStatement1 = dbConnection.prepareStatement(insertGameProfileSQL);
 
             preparedStatement.setString(1, user);
-            preparedStatement.setString(2, hashedPass);
+            preparedStatement.setString(2, password);
             preparedStatement.setString(3, nome);
             preparedStatement.setString(4, cognome);
             preparedStatement.setString(5, email);
             preparedStatement.setString(6, tipo);
+
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -102,7 +127,7 @@ public class eventsListener {
         // Fetch data from the result set
         int columnCount = rs.getMetaData().getColumnCount();
         rs.next();
-        for (int i = 0; i <columnCount ; i++)
+        for (int i = 0; i < columnCount ; i++)
         {
             userInfo.add( rs.getString(i + 1) );
         }
@@ -121,14 +146,16 @@ public class eventsListener {
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT game_profile.livello,\n" +
-                        "       game_profile.punti_esperienza,\n" +
-                        "       achievement.nome,\n" +
-                        "       achievement.descrizione,\n" +
-                        "       achievement.username\n" +
-                        "FROM achievement\n" +
-                        "INNER JOIN game_profile ON game_profile.username = game_profile.username\n" +
-                        "WHERE achievement.username = ?");
+                "SELECT game_profile.livello, \n" +
+                        "       game_profile.punti_esperienza, \n" +
+                        "       achievement.nome, \n" +
+                        "       achievement.descrizione \n" +
+                        "FROM   achievement \n" +
+                        "       INNER JOIN game_profile \n" +
+                        "               ON game_profile.user_id = achievement.user_id \n" +
+                        "       INNER JOIN utente \n" +
+                        "               ON game_profile.user_id = utente.user_id \n" +
+                        "WHERE  utente.username = ? ");
 
         stmt.setString(1, username);
         ResultSet rs = stmt.executeQuery();
@@ -149,7 +176,9 @@ public class eventsListener {
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        String insertTableSQL = "INSERT INTO recensioni"+"(username, testo_recensione, voto, approvata) VALUES" +
+        int userID = getUserID(user);
+
+        String insertTableSQL = "INSERT INTO recensioni"+"(user_id, testo_recensione, voto, approvata) VALUES" +
                 "(?, ?, ?, false)";
 
         PreparedStatement preparedStatement = null;
@@ -158,7 +187,7 @@ public class eventsListener {
         try {
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
-            preparedStatement.setString(1, user);
+            preparedStatement.setInt(1, userID);
             preparedStatement.setString(2, review);
             preparedStatement.setDouble(3, vote);
 
@@ -279,18 +308,20 @@ public class eventsListener {
     }
 
     /* Edit login info */
-    public static boolean editLogin (String username, String nome, String cognome, String password, String email) throws SQLException {
+    public static boolean editLogin (String oldUsername, String newUsername, String nome, String cognome, String password, String email) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
+        int userID = getUserID(oldUsername);
         // Query
         String approveReview = "UPDATE utente \n" +
                 "SET nome = ?, \n" +
                 " cognome = ?, \n" +
                 " password = ?, \n" +
-                " email = ? \n" +
-                "WHERE username = ?;";
+                " email = ?, \n" +
+                " username = ?\n" +
+                "WHERE user_id = ?";
 
         PreparedStatement preparedStatement = null;
 
@@ -304,7 +335,8 @@ public class eventsListener {
             preparedStatement.setString(2, cognome);
             preparedStatement.setString(3, hashedPass);
             preparedStatement.setString(4, email);
-            preparedStatement.setString(5, username);
+            preparedStatement.setString(5, newUsername);
+            preparedStatement.setInt(6, userID);
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -329,6 +361,8 @@ public class eventsListener {
         return false;
 
     }
+
+    public static boolean addXP() {return false;}
 }
 
 
