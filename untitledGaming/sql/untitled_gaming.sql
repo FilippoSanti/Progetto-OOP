@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Mag 27, 2017 alle 18:26
--- Versione del server: 10.1.22-MariaDB
--- Versione PHP: 7.1.4
+-- Host: localhost
+-- Creato il: Mag 30, 2017 alle 15:22
+-- Versione del server: 5.7.18
+-- Versione PHP: 7.0.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,20 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `achievement` (
+  `user_id` int(11) NOT NULL,
   `id_achievement` int(11) NOT NULL,
   `nome` varchar(20) NOT NULL,
   `descrizione` varchar(300) NOT NULL,
-  `username` varchar(30) NOT NULL,
   `id_gioco` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `achievement`
---
-
-INSERT INTO `achievement` (`id_achievement`, `nome`, `descrizione`, `username`, `id_gioco`) VALUES
-(1, 'asd', 'asd', 'asd', '12'),
-(2, 'sdasd', 'asda', 'mikesh', '13');
 
 -- --------------------------------------------------------
 
@@ -51,18 +41,10 @@ INSERT INTO `achievement` (`id_achievement`, `nome`, `descrizione`, `username`, 
 --
 
 CREATE TABLE `game_profile` (
-  `username` varchar(20) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `livello` int(3) NOT NULL,
   `punti_esperienza` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dump dei dati per la tabella `game_profile`
---
-
-INSERT INTO `game_profile` (`username`, `livello`, `punti_esperienza`) VALUES
-('asd', 13, 344),
-('mikesh', 34, 564644);
 
 -- --------------------------------------------------------
 
@@ -78,23 +60,11 @@ CREATE TABLE `gioco` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `profilo di gioco`
---
-
-CREATE TABLE `profilo di gioco` (
-  `username` varchar(20) NOT NULL,
-  `livello` int(3) NOT NULL,
-  `punti esperienza` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `recensioni`
 --
 
 CREATE TABLE `recensioni` (
-  `username` varchar(20) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `testo_recensione` varchar(250) NOT NULL,
   `voto` double DEFAULT NULL,
   `approvata` tinyint(1) NOT NULL
@@ -104,9 +74,11 @@ CREATE TABLE `recensioni` (
 -- Dump dei dati per la tabella `recensioni`
 --
 
-INSERT INTO `recensioni` (`username`, `testo_recensione`, `voto`, `approvata`) VALUES
-('davideu', 'Bene ma non benissimo', 3.5, 1),
-('mikesh', 'Tutto molto bello', 3, 0);
+INSERT INTO `recensioni` (`user_id`, `testo_recensione`, `voto`, `approvata`) VALUES
+(5, 'bene', 4, 0),
+(8, 'bene', 4, 0),
+(9, 'bene', 4, 0),
+(10, 'bene', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -115,7 +87,7 @@ INSERT INTO `recensioni` (`username`, `testo_recensione`, `voto`, `approvata`) V
 --
 
 CREATE TABLE `timeline` (
-  `username` varchar(10) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `gioco` varchar(30) NOT NULL,
   `ore_di_gioco` float NOT NULL,
   `data_ultima_sessione` date NOT NULL,
@@ -129,8 +101,9 @@ CREATE TABLE `timeline` (
 --
 
 CREATE TABLE `utente` (
-  `username` varchar(20) NOT NULL,
-  `password` longblob NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `username` varchar(60) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `nome` varchar(20) NOT NULL,
   `cognome` varchar(20) NOT NULL,
   `email` varchar(25) NOT NULL,
@@ -141,65 +114,73 @@ CREATE TABLE `utente` (
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`username`, `password`, `nome`, `cognome`, `email`, `tipo`) VALUES
-('davideu', 0x243261243132244a5743425669477a65694e372f6b524b6262644b324f532e7843663464556d7867704d7773676350675758452e56374f684864724b, 'davide', 'ubaldi', 'ca@a.il', 'user'),
-('mikesh', 0x617364, 'ss', 'ss', 'ss', 'ss'),
-('prova', '', '', '', '', ''),
-('test1000', 0x7465737432, 'test3', 'test4', 'test5', 'test6'),
-('u', 0x70, 'n', 'c', 'e', 't'),
-('utente1', 0x6464, 'dd', 'dd', 'dd', 'd');
+INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `email`, `tipo`) VALUES
+(10, 'mikesh', '$2a$12$1DkfGziV51k1Ng7O5Q3bXegOYcVeVqT6/gMAB1xh4zX300B7yZ3ru', 'mike', 'sh', 'e@mail', 'user');
 
 --
 -- Indici per le tabelle scaricate
 --
 
 --
--- Indici per le tabelle `profilo di gioco`
+-- Indici per le tabelle `achievement`
 --
-ALTER TABLE `profilo di gioco`
-  ADD PRIMARY KEY (`username`);
+ALTER TABLE `achievement`
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `id_achievement` (`id_achievement`);
+
+--
+-- Indici per le tabelle `game_profile`
+--
+ALTER TABLE `game_profile`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indici per le tabelle `recensioni`
 --
 ALTER TABLE `recensioni`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indici per le tabelle `timeline`
 --
 ALTER TABLE `timeline`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indici per le tabelle `utente`
 --
 ALTER TABLE `utente`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
--- Limiti per le tabelle scaricate
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- Limiti per la tabella `profilo di gioco`
+-- AUTO_INCREMENT per la tabella `achievement`
 --
-ALTER TABLE `profilo di gioco`
-  ADD CONSTRAINT `profilo di gioco_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`);
-
+ALTER TABLE `achievement`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Limiti per la tabella `recensioni`
+-- AUTO_INCREMENT per la tabella `game_profile`
+--
+ALTER TABLE `game_profile`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `recensioni`
 --
 ALTER TABLE `recensioni`
-  ADD CONSTRAINT `recensioni_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`);
-
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- Limiti per la tabella `timeline`
+-- AUTO_INCREMENT per la tabella `timeline`
 --
 ALTER TABLE `timeline`
-  ADD CONSTRAINT `timeline_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`);
-COMMIT;
-
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `utente`
+--
+ALTER TABLE `utente`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
