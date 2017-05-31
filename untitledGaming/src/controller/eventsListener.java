@@ -49,7 +49,6 @@ public class eventsListener {
         // Insert the values into the DB
         try {
             preparedStatement  = dbConnection.prepareStatement(insertTableSQL);
-           // preparedStatement1 = dbConnection.prepareStatement(insertGameProfileSQL);
 
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, password);
@@ -57,7 +56,6 @@ public class eventsListener {
             preparedStatement.setString(4, cognome);
             preparedStatement.setString(5, email);
             preparedStatement.setString(6, tipo);
-
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -85,13 +83,14 @@ public class eventsListener {
     /* User authentication */
     public static boolean userAuth(String username, String password) throws SQLException{
 
+        // Get the user_id given the username
         int userID = getUserID(username);
 
         // DB Connection
         Connection conn = business.implementation.DBManager.Connect();
 
         try {
-            PreparedStatement pst = conn.prepareStatement("Select * from utente where user_id=?");
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM utente WHERE user_id = ?");
             pst.setInt(1, userID);
             ResultSet rs = pst.executeQuery();
 
