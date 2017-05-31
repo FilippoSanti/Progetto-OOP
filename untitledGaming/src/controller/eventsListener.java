@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class eventsListener {
 
@@ -84,14 +83,16 @@ public class eventsListener {
     }
 
     /* User authentication */
-    public static boolean userAuth(String username, String password) {
+    public static boolean userAuth(String username, String password) throws SQLException{
+
+        int userID = getUserID(username);
 
         // DB Connection
         Connection conn = business.implementation.DBManager.Connect();
 
         try {
-            PreparedStatement pst = conn.prepareStatement("Select * from utente where username=?");
-            pst.setString(1, username);
+            PreparedStatement pst = conn.prepareStatement("Select * from utente where user_id=?");
+            pst.setInt(1, userID);
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {

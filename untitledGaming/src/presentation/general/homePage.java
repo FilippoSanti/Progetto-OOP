@@ -2,6 +2,9 @@ package presentation.general;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class homePage {
 	
@@ -64,6 +67,20 @@ public class homePage {
 		btnNewButton.setToolTipText("Log In");
 		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 14));
 		btnNewButton.setBounds(116, 338, 110, 35);
+		btnNewButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				// GetText should not be used to store password
+				try {
+					if (controller.eventsListener.userAuth(txtIndirizzoEmil.getText(), passwordField.getText())){
+                        System.out.println("logged");
+                    } else System.out.println("failed");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrati");
