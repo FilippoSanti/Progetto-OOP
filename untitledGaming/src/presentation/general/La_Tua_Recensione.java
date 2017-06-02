@@ -1,18 +1,26 @@
-package presentation.general;
+import java.awt.EventQueue;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.SystemColor;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import javax.swing.JSlider;
+import javax.swing.JLayeredPane;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JCheckBox;
+import javax.swing.JEditorPane;
+import javax.swing.DropMode;
+import java.awt.Button;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.JTextPane;
 
-public class writeReview {
+public class La_Tua_Recensione {
 
 	private JFrame frmUntitledGaming;
-
-	/**
-	 * Create the application.
-	 */
-	public writeReview() {
-		initialize();
-	}
 
 	/**
 	 * Launch the application.
@@ -21,7 +29,7 @@ public class writeReview {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					writeReview window = new writeReview();
+					La_Tua_Recensione window = new La_Tua_Recensione();
 					window.frmUntitledGaming.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,11 +39,18 @@ public class writeReview {
 	}
 
 	/**
+	 * Create the application.
+	 */
+	public La_Tua_Recensione() {
+		initialize();
+	}
+
+	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frmUntitledGaming = new JFrame();
-		frmUntitledGaming.setTitle("   Untitled Gaming  -  Scrivi Recensione");
+		frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Recensione");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 750, 500);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,12 +104,6 @@ public class writeReview {
 		lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblScriviUnCommento.setBounds(41, 185, 188, 25);
 		frmUntitledGaming.getContentPane().add(lblScriviUnCommento);
-		
-		JButton btnInviaRecensione = new JButton("Invia Recensione");
-		btnInviaRecensione.setToolTipText("Invia Recensione");
-		btnInviaRecensione.setFont(new Font("MV Boli", Font.ITALIC, 14));
-		btnInviaRecensione.setBounds(302, 401, 141, 37);
-		frmUntitledGaming.getContentPane().add(btnInviaRecensione);
 		
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back_icon.png"));
