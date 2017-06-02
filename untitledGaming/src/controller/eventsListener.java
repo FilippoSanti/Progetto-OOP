@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class eventsListener {
 
-    /* Get a user id given a username */
+    /* Get a user id from a username */
     public static int getUserID (String user) throws SQLException {
 
         // User id that will be returned
@@ -146,16 +146,25 @@ public class eventsListener {
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT game_profile.livello, \n" +
-                        "       game_profile.punti_esperienza, \n" +
-                        "       achievement.nome, \n" +
-                        "       achievement.descrizione \n" +
-                        "FROM   achievement \n" +
-                        "       INNER JOIN game_profile \n" +
-                        "               ON game_profile.user_id = achievement.user_id \n" +
-                        "       INNER JOIN utente \n" +
-                        "               ON game_profile.user_id = utente.user_id \n" +
-                        "WHERE  utente.username = ? ");
+                "SELECT game_profile.livello, "
+                        + "                              game_profile.punti_esperienza, "
+                        + "                              achievement.nome, "
+                        + "                              achievement.descrizione, "
+                        + "                              gioco.nome,"
+                        + "                              timeline.data_ultima_sessione,"
+                        + "                              timeline.esperienza_guadagnata"
+                        + "                        FROM   achievement_ottenuti "
+                        + "                              INNER JOIN game_profile "
+                        + "                                      ON game_profile.user_id = achievement_ottenuti.achievement_id "
+                        + "                              INNER JOIN achievement "
+                        + "                                     ON achievement.achievement_id = achievement_ottenuti.achievement_id "
+                        + "                             INNER JOIN utente "
+                        + "                                      ON game_profile.user_id = utente.user_id "
+                        + "                              INNER JOIN timeline "
+                        + "                                     ON utente.user_id = timeline.user_id"
+                        + "                              INNER JOIN gioco "
+                        + "                                     ON gioco.gioco_id = timeline.gioco_id"
+                        + "                        WHERE  utente.username = ?");
 
         stmt.setString(1, username);
         ResultSet rs = stmt.executeQuery();
@@ -271,17 +280,18 @@ public class eventsListener {
     }
 
     /* Approve a review */
-    public static boolean approveReview (String user) throws SQLException {
+    public static boolean approveReview (String username) throws SQLException {
 
+        int userID = getUserID(username);
         Connection dbConnection = business.implementation.DBManager.Connect();
-        String approveReview = "UPDATE `recensioni` SET `approvata` = '1' WHERE `recensioni`.`username` = ?";
+        String approveReview = "UPDATE `recensioni` SET `approvata` = '1' WHERE `recensioni`.`user_id` = ?";
         PreparedStatement preparedStatement = null;
 
         // Insert the values into the DB
         try {
             preparedStatement = dbConnection.prepareStatement(approveReview);
 
-            preparedStatement.setString(1, user);
+            preparedStatement.setInt(1, userID);
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -362,7 +372,77 @@ public class eventsListener {
 
     }
 
-    public static boolean addXP() {return false;}
+    /* Add XP to a username */
+    public static boolean addXP(String username, int xp) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        int userID = getUserID(username);
+        // Query
+        String addXP = "UPDATE game_profile SET `punti_esperienza` = game_profile.punti_esperienza + ? "
+                + "WHERE `user_id` = ?";
+
+        PreparedStatement preparedStatement = null;
+
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(addXP);
+
+            preparedStatement.setInt(1, xp);
+            preparedStatement.setInt(2, userID);
+
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+            0 for SQL statements that return nothing
+            */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+
+    }
+
+    public static ArrayList<String> getGame () throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // List of strings that will be returned later
+        ArrayList gameList = new ArrayList<String>();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT `nome` FROM `gioco`");
+                ResultSet rs = stmt.executeQuery();
+
+        // Fetch data from the result set
+        int columnCount = rs.getMetaData().getColumnCount();
+
+        while (rs.next()) {
+            for (int i = 0; i < columnCount; i++) {
+
+                gameList.add(rs.getString(i + 1));
+
+            }
+        }
+        return gameList;
+
+    }
+
 }
 
 

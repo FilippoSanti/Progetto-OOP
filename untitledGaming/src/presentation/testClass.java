@@ -7,8 +7,10 @@ public class testClass {
 
     public static void main(String[] args) throws SQLException {
 
+        //FUNZIONI TESTATE E FUNZIONANTI:
+        /*
         // Registration
-        System.out.println("Registration = " + controller.eventsListener.insertUser("davideu", "abcd", "davide",
+         System.out.println("Registration = " + controller.eventsListener.insertUser("davideu", "abcd", "davide",
                 "ubaldi", "ca@a.il","user"));
 
         // Login
@@ -33,9 +35,17 @@ public class testClass {
         System.out.println(controller.eventsListener.getApprovedReview());
 
         //edit login info
-        System.out.println(controller.eventsListener.editLogin("u", "Genoveffo", "Pantalone",
-                "Tiffany", "gubi@hotmail.it"));
+        System.out.println(controller.eventsListener.editLogin("mikesh", "Genoveffo", "Pantalone",
+                "Tiffany", "gubi@hotmail.it", "non"));
 
+                */
+
+        // Ora getUserStats restituisce anche la timeline
+        System.out.println(controller.eventsListener.getUserStats("davideu"));
+
+        System.out.println(controller.eventsListener.addXP("davideu", 20000));
+
+        System.out.println(controller.eventsListener.getGame());
     }
 
 }
