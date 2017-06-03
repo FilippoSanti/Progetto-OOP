@@ -1,5 +1,7 @@
 package presentation.user;
 
+import presentation.general.logged;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,36 +11,18 @@ public class profile {
 
 	private JFrame frmUntitledGaming;
 
-	/**
-	 * Create the application.
-	 */
+	/* Create the application */
 	public profile() {
 		initialize();
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					profile window = new profile();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	/* Initialize the contents of the frame */
 	private void initialize() {
 		frmUntitledGaming = new JFrame();
-		frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\ug_logo_by_dnn2-d4mcv8e.png"));
-		frmUntitledGaming.setTitle("   Untitled Gaming  -  Il Tuo Profilo");
+		frmUntitledGaming.setVisible(true);
+
+		frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo_untitled_gaming.png"));
+		frmUntitledGaming.setTitle("Untitled Gaming - Your Profile");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 750, 500);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -197,9 +181,19 @@ public class profile {
 		frmUntitledGaming.getContentPane().add(label);
 
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setToolTipText("torna indietro");
-		btnNewButton_1.setIcon(new ImageIcon("back_icon.png"));
+		btnNewButton_1.setToolTipText("Go back");
+		btnNewButton_1.setIcon(new ImageIcon("img/back_icon.png"));
 		btnNewButton_1.setBounds(10, 10, 37, 31);
+
+        // Go to the presentation page
+        btnNewButton_1.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.dispose();
+                new logged();
+            }
+        });
+
 		frmUntitledGaming.getContentPane().add(btnNewButton_1);
 
 		JButton btnVisualizzaAchievements = new JButton("Visualizza Achievements");

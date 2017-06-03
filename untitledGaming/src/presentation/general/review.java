@@ -16,22 +16,6 @@ public class review extends starRating {
     private JFrame frmUntitledGaming;
 
     /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    review window = new review();
-                    window.frmUntitledGaming.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
      * Create the application.
      */
     public review() {
@@ -43,7 +27,7 @@ public class review extends starRating {
      */
     private void initialize() {
         frmUntitledGaming = new JFrame();
-        frmUntitledGaming.setTitle("   Untitled Gaming  -  Scrivi Recensione");
+        frmUntitledGaming.setTitle("Untitled Gaming - Write a review");
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setBounds(100, 100, 750, 500);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +40,7 @@ public class review extends starRating {
         lblValutaQuestoGioco.setBounds(10, 60, 724, 25);
         frmUntitledGaming.getContentPane().add(lblValutaQuestoGioco);
 
-        JLabel lblScriviUnCommento = new JLabel("Scrivi un commento:");
+        JLabel lblScriviUnCommento = new JLabel("Write a comment:");
         lblScriviUnCommento.setHorizontalAlignment(SwingConstants.CENTER);
         lblScriviUnCommento.setForeground(SystemColor.textInactiveText);
         lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 20));

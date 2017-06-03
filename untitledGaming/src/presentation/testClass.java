@@ -29,7 +29,7 @@ public class testClass {
         */
 
         // Registration (added username check)
-        System.out.println("Registration = " + controller.eventsListener.insertUser("davideux", "abcd", "davide",
+        System.out.println("Registration = " + controller.eventsListener.insertUser("mikesh", "testprova123", "davide",
                 "ubaldi", "ca@a.il","user"));
 
         // Get user stats

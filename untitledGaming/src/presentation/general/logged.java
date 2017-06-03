@@ -1,42 +1,26 @@
-package presentation.moderator;
+package presentation.general;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class logged {
 
 	private JFrame frmUntitledGaming;
 
-	/**
-	 * Create the application.
-	 */
+	/* Create the application */
 	public logged() {
 		initialize();
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					logged window = new logged();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	/* Initialize the contents of the frame*/
 	private void initialize() {
 		frmUntitledGaming = new JFrame();
+		frmUntitledGaming.setVisible(true);
+
 		frmUntitledGaming.setResizable(false);
-		frmUntitledGaming.setTitle("   Untitled Gaming  -  (Username Here!)");
+		frmUntitledGaming.setTitle("Untitled Gaming - Username!");
 		frmUntitledGaming.setBounds(100, 100, 750, 500);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
@@ -67,6 +51,16 @@ public class logged {
 		btnNewButton.setToolTipText("Il Tuo Profilo");
 		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 17));
 		btnNewButton.setBounds(82, 191, 174, 64);
+
+        // Go to the user profile
+        btnNewButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.dispose();
+                new presentation.user.profile();
+            }
+        });
+
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Visualizza Commenti");
@@ -86,6 +80,7 @@ public class logged {
 		btnListaUtenti.setToolTipText("Il Tuo Profilo");
 		btnListaUtenti.setFont(new Font("MV Boli", Font.ITALIC, 17));
 		btnListaUtenti.setBounds(82, 320, 174, 64);
+
 		frmUntitledGaming.getContentPane().add(btnListaUtenti);
 
 		JButton btnGiocaOra = new JButton("Gioca Ora");

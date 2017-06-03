@@ -2,52 +2,34 @@ package presentation.general;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class registration {
 
-    private JFrame frmUntitledGaming;
-    private JTextField txtNome;
-    private JTextField txtNickname;
-    private JTextField txtCognome;
-    private JTextField txtEmil;
-    private JTextField txtEt;
+    private JFrame         frmUntitledGaming;
     private JPasswordField passwordField;
-    private JButton button;
+    private JTextField     txtNome;
+    private JTextField     txtNickname;
+    private JTextField     txtCognome;
+    private JTextField     txtEmil;
+    private JTextField     txtEta;
+    private JButton        button;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-
-
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    registration window = new registration();
-                    window.frmUntitledGaming.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the application.
-     */
+    /* Create the application */
     public registration() {
         initialize();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
+    /* Initialize the contents of the frame */
     private void initialize() {
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setVisible(true);
+
         frmUntitledGaming.setResizable(false);
-        frmUntitledGaming.setTitle("   Untitled Gaming  -  Registrati");
+        frmUntitledGaming.setTitle("Untitled Gaming - Register");
         frmUntitledGaming.setBounds(100, 100, 750, 500);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
@@ -109,20 +91,20 @@ public class registration {
         txtEmil.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtEmil.setForeground(Color.GRAY);
         txtEmil.setHorizontalAlignment(SwingConstants.CENTER);
-        txtEmil.setText("E-m@il");
+        txtEmil.setText("e-mail");
         txtEmil.setBounds(481, 191, 190, 40);
         frmUntitledGaming.getContentPane().add(txtEmil);
         txtEmil.setColumns(10);
 
-        txtEt = new JTextField();
-        txtEt.setToolTipText("Et\u00E0");
-        txtEt.setFont(new Font("Georgia", Font.ITALIC, 15));
-        txtEt.setForeground(Color.GRAY);
-        txtEt.setText("Et\u00E0");
-        txtEt.setHorizontalAlignment(SwingConstants.CENTER);
-        txtEt.setBounds(91, 285, 190, 40);
-        frmUntitledGaming.getContentPane().add(txtEt);
-        txtEt.setColumns(10);
+        txtEta = new JTextField();
+        txtEta.setToolTipText("Et\u00E0");
+        txtEta.setFont(new Font("Georgia", Font.ITALIC, 15));
+        txtEta.setForeground(Color.GRAY);
+        txtEta.setText("Et\u00E0");
+        txtEta.setHorizontalAlignment(SwingConstants.CENTER);
+        txtEta.setBounds(91, 285, 190, 40);
+        frmUntitledGaming.getContentPane().add(txtEta);
+        txtEta.setColumns(10);
 
         passwordField = new JPasswordField();
         passwordField.setBackground(new Color(255, 255, 255));
@@ -134,29 +116,18 @@ public class registration {
         frmUntitledGaming.getContentPane().add(passwordField);
 
         button = new JButton("");
-        button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back_icon.png"));
-        button.setToolTipText("torna indietro");
+        button.setIcon(new ImageIcon("/img/back_icon.png"));
+        button.setToolTipText("Go back");
         button.setBounds(10, 10, 37, 31);
-        frmUntitledGaming.getContentPane().add(button);
-    }
 
-    private static void addPopup(Component component, final JPopupMenu popup) {
-        component.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    showMenu(e);
-                }
-            }
-
-            public void mouseReleased(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    showMenu(e);
-                }
-            }
-
-            private void showMenu(MouseEvent e) {
-                popup.show(e.getComponent(), e.getX(), e.getY());
+        button.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.dispose();
+                new startPage();
             }
         });
+
+        frmUntitledGaming.getContentPane().add(button);
     }
 }
