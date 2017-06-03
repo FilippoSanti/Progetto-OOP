@@ -1,3 +1,5 @@
+package presentation.general;
+
 import java.awt.EventQueue;
 
 import javax.swing.*;
@@ -9,7 +11,7 @@ import java.awt.image.ImageProducer;
 import java.util.Arrays;
 import java.util.List;
 
-public class Recensione extends MainPanel {
+public class review extends starRating {
 
     private JFrame frmUntitledGaming;
 
@@ -20,7 +22,7 @@ public class Recensione extends MainPanel {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Recensione window = new Recensione();
+                    review window = new review();
                     window.frmUntitledGaming.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -32,7 +34,7 @@ public class Recensione extends MainPanel {
     /**
      * Create the application.
      */
-    public Recensione() {
+    public review() {
         initialize();
     }
 
@@ -77,7 +79,7 @@ public class Recensione extends MainPanel {
 
         JPanel panel = new JPanel();
         panel.setBounds(89, 96, 567, 91);
-        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("31g.png"));
+        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("img/31g.png"));
         ImageProducer ip = defaultIcon.getImage().getSource();
         List<ImageIcon>
                 list = Arrays.asList(

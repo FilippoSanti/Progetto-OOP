@@ -1,19 +1,26 @@
+package presentation.general;
 
-//-*- mode:java; encoding:utf-8 -*-
-// vim:set fileencoding=utf-8:
-//http://ateraimemo.com/Swing/RatingLabel.html
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageProducer;
+import java.awt.image.RGBImageFilter;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.*;
 
-public class MainPanel extends JPanel {
-    public MainPanel() {
+public class starRating extends JPanel {
+    public starRating() {
         super(new GridLayout(2, 2, 4, 4));
-
     }
+
+    public static ImageIcon makeStarImageIcon(ImageProducer ip, float rf, float gf, float bf) {
+        return new ImageIcon(Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(ip, new SelectedImageFilter(rf, gf, bf))));
+    }
+
     public JPanel makeStarRatingPanel(String title, final LevelBar label) {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
         p.setBorder(BorderFactory.createTitledBorder(title));
@@ -25,20 +32,15 @@ public class MainPanel extends JPanel {
         p.add(label);
         return p;
     }
-    public static ImageIcon makeStarImageIcon(ImageProducer ip, float rf, float gf, float bf) {
-        return new ImageIcon(Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(ip, new SelectedImageFilter(rf, gf, bf))));
-    }
-
-
 }
 
 class LevelBar extends JPanel implements MouseListener, MouseMotionListener {
-    private final int gap;
     protected final List<ImageIcon> iconList;
     protected final List<JLabel> labelList = Arrays.asList(
             new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel()
     );
     protected final ImageIcon defaultIcon;
+    private final int gap;
     private int clicked = -1;
     protected LevelBar(ImageIcon defaultIcon, List<ImageIcon> list, int gap) {
         super(new GridLayout(1, 5, gap * 2, gap * 2));
@@ -55,14 +57,17 @@ class LevelBar extends JPanel implements MouseListener, MouseMotionListener {
     public int getLevel() {
         return clicked;
     }
-    public void clear() {
-        clicked = -1;
-        repaintIcon(clicked);
-    }
+
     public void setLevel(int l) {
         clicked = l;
         repaintIcon(clicked);
     }
+
+    public void clear() {
+        clicked = -1;
+        repaintIcon(clicked);
+    }
+
     private int getSelectedIconIndex(Point p) {
         for (int i = 0; i < labelList.size(); i++) {
             Rectangle r = labelList.get(i).getBounds();
@@ -100,6 +105,7 @@ class SelectedImageFilter extends RGBImageFilter {
     private final float rf;
     private final float gf;
     private final float bf;
+
     protected SelectedImageFilter(float rf, float gf, float bf) {
         super();
         this.rf = Math.min(1f, rf);

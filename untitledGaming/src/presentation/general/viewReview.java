@@ -1,27 +1,23 @@
-import java.awt.EventQueue;
+package presentation.general;
 
-import javax.swing.JFrame;
-import java.awt.SystemColor;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import javax.swing.JSlider;
-import javax.swing.JLayeredPane;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.Color;
-import javax.swing.JCheckBox;
-import javax.swing.JEditorPane;
-import javax.swing.DropMode;
-import java.awt.Button;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JTextPane;
+import javax.swing.*;
+import java.awt.*;
 
-public class La_Tua_Recensione {
+// import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+
+// TODO: Add start rating
+public class viewReview {
 
 	private JFrame frmUntitledGaming;
 
+	/**
+	 * Create the application.
+	 */
+
+	public viewReview() {
+		initialize();
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -29,20 +25,13 @@ public class La_Tua_Recensione {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					La_Tua_Recensione window = new La_Tua_Recensione();
+					viewReview window = new viewReview();
 					window.frmUntitledGaming.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public La_Tua_Recensione() {
-		initialize();
 	}
 
 	/**
@@ -55,69 +44,69 @@ public class La_Tua_Recensione {
 		frmUntitledGaming.setBounds(100, 100, 750, 500);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
-		
+
 		JLabel lblValutaQuestoGioco = new JLabel("La Tua Recensione:");
 		lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);
 		lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.CENTER);
 		lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 20));
 		lblValutaQuestoGioco.setBounds(10, 50, 724, 25);
 		frmUntitledGaming.getContentPane().add(lblValutaQuestoGioco);
-		
+
 		JCheckBox chckbxNewCheckBox = new JCheckBox("1");
 		chckbxNewCheckBox.setSelected(true);
 		chckbxNewCheckBox.setEnabled(false);
 		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxNewCheckBox.setBounds(196, 120, 97, 25);
 		frmUntitledGaming.getContentPane().add(chckbxNewCheckBox);
-		
+
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("2");
 		chckbxNewCheckBox_1.setSelected(true);
 		chckbxNewCheckBox_1.setEnabled(false);
 		chckbxNewCheckBox_1.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxNewCheckBox_1.setBounds(295, 120, 97, 25);
 		frmUntitledGaming.getContentPane().add(chckbxNewCheckBox_1);
-		
+
 		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("3");
 		chckbxNewCheckBox_2.setSelected(true);
 		chckbxNewCheckBox_2.setEnabled(false);
 		chckbxNewCheckBox_2.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxNewCheckBox_2.setBounds(394, 120, 97, 25);
 		frmUntitledGaming.getContentPane().add(chckbxNewCheckBox_2);
-		
+
 		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("4");
 		chckbxNewCheckBox_3.setSelected(true);
 		chckbxNewCheckBox_3.setEnabled(false);
 		chckbxNewCheckBox_3.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxNewCheckBox_3.setBounds(493, 120, 97, 25);
 		frmUntitledGaming.getContentPane().add(chckbxNewCheckBox_3);
-		
+
 		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("5");
 		chckbxNewCheckBox_4.setSelected(true);
 		chckbxNewCheckBox_4.setEnabled(false);
 		chckbxNewCheckBox_4.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxNewCheckBox_4.setBounds(592, 120, 97, 25);
 		frmUntitledGaming.getContentPane().add(chckbxNewCheckBox_4);
-		
+
 		JLabel lblScriviUnCommento = new JLabel("Il Tuo Commento:");
 		lblScriviUnCommento.setHorizontalAlignment(SwingConstants.LEFT);
 		lblScriviUnCommento.setForeground(SystemColor.textInactiveText);
 		lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblScriviUnCommento.setBounds(41, 185, 188, 25);
 		frmUntitledGaming.getContentPane().add(lblScriviUnCommento);
-		
+
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back_icon.png"));
+		button.setIcon(new ImageIcon("black_icon.png"));
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 37, 31);
 		frmUntitledGaming.getContentPane().add(button);
-		
+
 		JLabel lblValutazione = new JLabel("Valutazione:");
 		lblValutazione.setHorizontalAlignment(SwingConstants.LEFT);
 		lblValutazione.setForeground(SystemColor.textInactiveText);
 		lblValutazione.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblValutazione.setBounds(41, 120, 188, 25);
 		frmUntitledGaming.getContentPane().add(lblValutazione);
-		
+
 		JTextPane txtpncommentoPrecedentementeInserito = new JTextPane();
 		txtpncommentoPrecedentementeInserito.setText("-Commento precedentemente inserito dallo stesso utente-");
 		txtpncommentoPrecedentementeInserito.setFont(new Font("Oregano", Font.ITALIC, 17));
