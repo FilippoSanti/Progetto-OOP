@@ -72,4 +72,22 @@ public class DBManager {
 
         return (password_verified);
     }
+
+    public static boolean checkUsername(String username) throws SQLException {
+
+        boolean usernameExists = false;
+
+        // DB Connection
+        Connection connection = Connect();
+
+        // Prepare and execute the query
+        PreparedStatement st = connection.prepareStatement("select * from utente where username = ?");
+        st.setString(1, username);
+        ResultSet rs = st.executeQuery();
+
+        if(rs.next()) {
+            usernameExists = true;
+        }
+        return usernameExists;
+    }
 }

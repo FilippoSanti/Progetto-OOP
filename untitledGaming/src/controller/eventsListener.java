@@ -33,8 +33,11 @@ public class eventsListener {
     /* Insert the user data into the DB */
     public static boolean insertUser(String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
 
+        // Check if the username id already registered
+        if (business.implementation.DBManager.checkUsername(user))
+            return false;
+
         PreparedStatement preparedStatement  = null;
-        PreparedStatement preparedStatement1 = null;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -271,9 +274,7 @@ public class eventsListener {
 
         while (rs.next()) {
             for (int i = 0; i < columnCount; i++) {
-
                 approvedReviews.add(rs.getString(i + 1));
-
             }
         }
         return approvedReviews;
@@ -374,6 +375,7 @@ public class eventsListener {
 
     /* Add XP to a username */
     public static boolean addXP(String username, int xp) throws SQLException {
+
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -383,7 +385,6 @@ public class eventsListener {
                 + "WHERE `user_id` = ?";
 
         PreparedStatement preparedStatement = null;
-
 
         // Insert the values into the DB
         try {
