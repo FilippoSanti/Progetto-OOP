@@ -57,7 +57,7 @@ public class logged {
         {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                new presentation.user.profile();
+                controller.eventsListener.changePage("profile");
             }
         });
 
@@ -69,11 +69,27 @@ public class logged {
 		btnNewButton_1.setBounds(452, 191, 193, 64);
 		frmUntitledGaming.getContentPane().add(btnNewButton_1);
 
+		btnNewButton_1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				controller.eventsListener.changePage("viewReview");
+			}
+		});
+
 		JButton btnLogOut = new JButton("Log Out");
 		btnLogOut.setToolTipText("Log Out");
 		btnLogOut.setFont(new Font("MV Boli", Font.PLAIN, 12));
 		btnLogOut.setBounds(587, 58, 85, 23);
 		frmUntitledGaming.getContentPane().add(btnLogOut);
+
+		btnLogOut.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				controller.eventsListener.changePage("startPage");
+			}
+		});
 
 		JButton btnListaUtenti = new JButton("Lista Utenti");
 		btnListaUtenti.setEnabled(false);

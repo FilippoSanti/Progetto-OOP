@@ -19,26 +19,12 @@ public class startPage {
         initialize();
     }
 
-    /* Launch the application */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    startPage window = new startPage();
-                    window.frmUntitledGaming.setVisible(true);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /* Initialize the contents of the frame */
     private void initialize() {
 
         frmUntitledGaming = new JFrame();
-        frmUntitledGaming.setVisible(true);
+
 
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
         frmUntitledGaming.setTitle("Untitled Gaming");
@@ -62,6 +48,7 @@ public class startPage {
         txtIndirizzoEmail.setBounds(71, 157, 200, 38);
         txtIndirizzoEmail.setColumns(10);
         frmUntitledGaming.getContentPane().add(txtIndirizzoEmail);
+
 
         // Listen for focus
         txtIndirizzoEmail.addFocusListener(new FocusListener() {
@@ -94,7 +81,7 @@ public class startPage {
                     // Check if the login was successful
                     if (controller.eventsListener.userAuth(txtIndirizzoEmail.getText(), passText)) {
                         frmUntitledGaming.dispose();
-                        new logged();
+                        controller.eventsListener.changePage("logged");
 
                     } else JOptionPane.showMessageDialog(frmUntitledGaming, "Login failed");
                 } catch (SQLException e1) {
@@ -117,7 +104,7 @@ public class startPage {
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                new registration();
+                controller.eventsListener.changePage("registration");
             }
         });
 
@@ -149,6 +136,15 @@ public class startPage {
         passwordField.setForeground(Color.GRAY);
         passwordField.setBounds(71, 242, 200, 38);
         frmUntitledGaming.getContentPane().add(passwordField);
+
+        frmUntitledGaming.setVisible(true);
+
         // frmUntitledGaming.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{frmUntitledGaming.getContentPane(), lblNewLabel, txtIndirizzoEmil, btnNewButton, btnNewButton_1, lblNewLabel_1, lblRegistratoPuoiFarlo, lblQui, passwordField}));
     }
+
 }
+
+
+
+
+

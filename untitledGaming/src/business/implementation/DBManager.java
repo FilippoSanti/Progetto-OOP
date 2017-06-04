@@ -75,7 +75,6 @@ public class DBManager {
 
     public static boolean checkUsername(String username) throws SQLException {
 
-        boolean usernameExists = false;
 
         // DB Connection
         Connection connection = Connect();
@@ -85,9 +84,21 @@ public class DBManager {
         st.setString(1, username);
         ResultSet rs = st.executeQuery();
 
+        if (rs.next()) return true;
+        return false;
+
+    }
+
+    public static boolean checkEmail ( String email) throws SQLException  {
+
+        Connection connection = Connect();
+
+        PreparedStatement st = connection.prepareStatement("select * from utente where email = ?");
+        st.setString(1, email);
+        ResultSet rs = st.executeQuery();
+
         if(rs.next()) {
-            usernameExists = true;
-        }
-        return usernameExists;
+            return true;
+        }  return false;
     }
 }

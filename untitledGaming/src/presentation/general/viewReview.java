@@ -2,6 +2,8 @@ package presentation.general;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 // import com.jgoodies.forms.factories.DefaultComponentFactory;
 
@@ -18,21 +20,7 @@ public class viewReview {
 	public viewReview() {
 		initialize();
 	}
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					viewReview window = new viewReview();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -100,6 +88,14 @@ public class viewReview {
 		button.setBounds(10, 11, 37, 31);
 		frmUntitledGaming.getContentPane().add(button);
 
+		button.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				controller.eventsListener.changePage("logged");
+			}
+		});
+
 		JLabel lblValutazione = new JLabel("Valutazione:");
 		lblValutazione.setHorizontalAlignment(SwingConstants.LEFT);
 		lblValutazione.setForeground(SystemColor.textInactiveText);
@@ -114,5 +110,10 @@ public class viewReview {
 		txtpncommentoPrecedentementeInserito.setBackground(new Color(220, 220, 220));
 		txtpncommentoPrecedentementeInserito.setBounds(81, 230, 577, 137);
 		frmUntitledGaming.getContentPane().add(txtpncommentoPrecedentementeInserito);
+
+		frmUntitledGaming.setVisible(true);
+
+
+
 	}
 }

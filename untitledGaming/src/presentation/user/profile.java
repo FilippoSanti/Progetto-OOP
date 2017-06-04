@@ -190,7 +190,7 @@ public class profile {
         {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                new logged();
+                controller.eventsListener.changePage("logged");
             }
         });
 
