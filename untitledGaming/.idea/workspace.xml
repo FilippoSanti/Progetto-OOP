@@ -16,65 +16,32 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="eventsListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controller/eventsListener.java">
+      <file leaf-file-name="editData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/presentation/general/editData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getUserID#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#addUtente#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#getUtente#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#setUtente#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#addReview#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#getReview#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#getPendingReviews#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#getApprovedReviews#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#approveReview#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#addXP#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#getGames#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#userAuth#0;class#eventsListener#0" expanded="false" />
-                <element signature="method#changePage#0;class#eventsListener#0" expanded="false" />
-                <marker date="1496583170690" expanded="true" signature="985:1030" ph="SELECT user_... utente" />
-                <marker date="1496583170690" expanded="true" signature="3587:3625" ph="SELECT * FRO... utente" />
-                <marker date="1496583170690" expanded="true" signature="4603:4629" ph="SELECT `nome... gioco" />
-              </folding>
+            <state relative-caret-position="400">
+              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TableExample.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/presentation/general/TableExample.java">
+      <file leaf-file-name="UntitledGaming.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/presentation/general/UntitledGaming.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="225">
+              <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReviewManagement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/business/implementation/ReviewManagement.java">
+      <file leaf-file-name="viewReview.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/presentation/general/viewReview.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="110" column="9" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="110" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#newReview#0;class#ReviewManagement#0" expanded="false" />
-                <element signature="method#getReview#0;class#ReviewManagement#0" expanded="false" />
-                <element signature="method#getApprovedReviews#0;class#ReviewManagement#0" expanded="false" />
-                <element signature="method#approveReview#0;class#ReviewManagement#0" expanded="false" />
-                <marker date="1496582505995" expanded="true" signature="464:577" ph="INSERT INTO recensioni... " />
-                <marker date="1496582505995" expanded="true" signature="2010:2119" ph="SELECT * \nF... recensione" />
-                <marker date="1496582505995" expanded="true" signature="2818:2833" ph="SELECT user_... Commenti" />
-                <marker date="1496582505995" expanded="true" signature="2818:3035" ph="SELECT user_... recensione" />
-                <marker date="1496582505995" expanded="true" signature="2818:3037" ph="SELECT user_... Commenti" />
-                <marker date="1496582505995" expanded="true" signature="3481:3698" ph="SELECT user_... recensione" />
-                <marker date="1496582505995" expanded="true" signature="4018:4098" ph="UPDATE `rece... " />
-              </folding>
+            <state relative-caret-position="400">
+              <caret line="66" column="35" lean-forward="false" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,67 +49,9 @@
       <file leaf-file-name="startPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/presentation/general/startPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="500">
+              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Review.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/business/model/Review.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="35" />
-              <folding>
-                <element signature="e#424#425#0" expanded="true" />
-                <element signature="e#451#452#0" expanded="true" />
-                <element signature="e#483#484#0" expanded="true" />
-                <element signature="e#514#515#0" expanded="true" />
-                <element signature="e#545#546#0" expanded="true" />
-                <element signature="e#575#576#0" expanded="true" />
-                <element signature="e#606#607#0" expanded="true" />
-                <element signature="e#633#634#0" expanded="true" />
-                <element signature="e#678#679#0" expanded="true" />
-                <element signature="e#718#719#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-                <element signature="e#790#791#0" expanded="true" />
-                <element signature="e#833#834#0" expanded="true" />
-                <element signature="e#871#872#0" expanded="true" />
-                <element signature="e#911#912#0" expanded="true" />
-                <element signature="e#943#944#0" expanded="true" />
-                <element signature="e#979#980#0" expanded="true" />
-                <element signature="e#1011#1012#0" expanded="true" />
-                <element signature="e#1062#1063#0" expanded="true" />
-                <element signature="e#1104#1105#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gameProfile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/business/model/gameProfile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="29" />
-              <folding>
-                <element signature="e#447#448#0" expanded="true" />
-                <element signature="e#480#481#0" expanded="true" />
-                <element signature="e#517#518#0" expanded="true" />
-                <element signature="e#555#556#0" expanded="true" />
-                <element signature="e#586#587#0" expanded="true" />
-                <element signature="e#616#617#0" expanded="true" />
-                <element signature="e#646#647#0" expanded="true" />
-                <element signature="e#675#676#0" expanded="true" />
-                <element signature="e#724#725#0" expanded="true" />
-                <element signature="e#768#769#0" expanded="true" />
-                <element signature="e#823#824#0" expanded="true" />
-                <element signature="e#873#874#0" expanded="true" />
-                <element signature="e#916#917#0" expanded="true" />
-                <element signature="e#954#955#0" expanded="true" />
-                <element signature="e#995#996#0" expanded="true" />
-                <element signature="e#1031#1032#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -150,8 +59,18 @@
       <file leaf-file-name="logged.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/presentation/general/logged.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="89" column="51" lean-forward="true" selection-start-line="89" selection-start-column="51" selection-end-line="89" selection-end-column="51" />
+            <state relative-caret-position="585">
+              <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="review.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/presentation/general/review.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-490">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -160,46 +79,38 @@
       <file leaf-file-name="testClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/presentation/testClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="13" column="78" lean-forward="true" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="325">
+              <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserManagement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/business/implementation/UserManagement.java">
+      <file leaf-file-name="approveComment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/presentation/moderator/approveComment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="994">
-              <caret line="258" column="0" lean-forward="false" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#newUser#0;class#UserManagement#0" expanded="false" />
-                <element signature="method#getUtente#0;class#UserManagement#0" expanded="false" />
-                <element signature="method#getGameProfile#0;class#UserManagement#0" expanded="false" />
-                <element signature="method#setUtente#0;class#UserManagement#0" expanded="false" />
-                <element signature="method#addXp#0;class#UserManagement#0" expanded="false" />
-                <marker date="1496583181986" expanded="true" signature="1128:1256" ph="INSERT INTO utente... " />
-                <marker date="1496583181986" expanded="true" signature="2819:2917" ph="SELECT * \nF... utente" />
-                <marker date="1496583181986" expanded="true" signature="2819:2918" ph="SELECT `user... utente" />
-                <marker date="1496583181986" expanded="true" signature="3754:3869" ph="SELECT * \nF... profilo_di_gioco" />
-                <marker date="1496583181986" expanded="true" signature="4738:4975" ph="UPDATE utent... " />
-                <marker date="1496583181986" expanded="true" signature="6461:6580" ph="UPDATE game_... " />
-                <marker date="1496583181986" expanded="true" signature="7825:7930" ph="SELECT gioco... gioco" />
-                <marker date="1496583181986" expanded="true" signature="7825:7934" ph="SELECT gioco... gioco" />
-                <marker date="1496583181986" expanded="true" signature="7825:7938" ph="SELECT , \n " />
-              </folding>
+            <state relative-caret-position="-1250">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registration.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="profile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/presentation/user/profile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2217">
+              <caret line="202" column="36" lean-forward="false" selection-start-line="202" selection-start-column="36" selection-end-line="202" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/presentation/general/registration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="76" column="28" lean-forward="false" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="49" />
+            <state relative-caret-position="935">
+              <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -217,6 +128,11 @@
     </option>
   </component>
   <component name="FindInProjectRecents">
+    <findStrings>
+      <find>btnNewButton</find>
+      <find>og in</find>
+      <find>eta</find>
+    </findStrings>
     <dirStrings>
       <dir>C:\Users\Davide\Documents\GitHub\Progetto-OOP\untitledGaming\libs</dir>
     </dirStrings>
@@ -254,25 +170,27 @@
         <option value="$PROJECT_DIR$/src/presentation/user/userProfile.java" />
         <option value="$PROJECT_DIR$/src/presentation/general/writeReview.java" />
         <option value="$PROJECT_DIR$/src/presentation/general/Recensione.java" />
-        <option value="$PROJECT_DIR$/src/business/implementation/DBManager.java" />
-        <option value="$PROJECT_DIR$/src/presentation/general/UntitledGaming.java" />
         <option value="$PROJECT_DIR$/src/presentation/user/profile.java" />
         <option value="$PROJECT_DIR$/src/presentation/general/viewReview.java" />
         <option value="$PROJECT_DIR$/src/business/implementation/UserManagment.java" />
-        <option value="$PROJECT_DIR$/src/presentation/general/registration.java" />
         <option value="$PROJECT_DIR$/src/business/model/game_profile.java" />
         <option value="$PROJECT_DIR$/src/business/model/Utente.java" />
         <option value="$PROJECT_DIR$/src/business/model/gameProfile.java" />
         <option value="$PROJECT_DIR$/src/business/model/Review.java" />
         <option value="$PROJECT_DIR$/src/business/implementation/ReviewManagment.java" />
-        <option value="$PROJECT_DIR$/src/presentation/general/startPage.java" />
         <option value="$PROJECT_DIR$/src/presentation/general/logged.java" />
         <option value="$PROJECT_DIR$/src/presentation/general/img/MyFrame.java" />
         <option value="$PROJECT_DIR$/src/presentation/general/TableExample.java" />
-        <option value="$PROJECT_DIR$/src/presentation/testClass.java" />
-        <option value="$PROJECT_DIR$/src/business/implementation/ReviewManagement.java" />
+        <option value="$PROJECT_DIR$/src/business/BusinessException.java" />
+        <option value="$PROJECT_DIR$/src/business/implementation/DBManager.java" />
         <option value="$PROJECT_DIR$/src/controller/eventsListener.java" />
         <option value="$PROJECT_DIR$/src/business/implementation/UserManagement.java" />
+        <option value="$PROJECT_DIR$/src/business/implementation/ReviewManagement.java" />
+        <option value="$PROJECT_DIR$/src/presentation/general/UntitledGaming.java" />
+        <option value="$PROJECT_DIR$/src/presentation/general/editData.java" />
+        <option value="$PROJECT_DIR$/src/presentation/testClass.java" />
+        <option value="$PROJECT_DIR$/src/presentation/general/startPage.java" />
+        <option value="$PROJECT_DIR$/src/presentation/general/registration.java" />
       </list>
     </option>
   </component>
@@ -283,10 +201,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
+    <option name="x" value="-8" />
     <option name="width" value="1932" />
-    <option name="height" value="1048" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -303,6 +220,76 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IDE Scripting" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="untitledGaming">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="untitledGaming">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="libs">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -351,6 +338,50 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="presentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moderator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitledGaming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="presentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="general" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -366,6 +397,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,83 +446,13 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="untitledGaming">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="untitledGaming">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="libs">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IDE Scripting" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitledGaming" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitledGaming" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitledGaming" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitledGaming" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/rs2xml.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/rs2xml.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -891,13 +856,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
       <config-file value="" />
       <node-interpreter value="project" />
@@ -1048,45 +1006,46 @@
       <workItem from="1495976250073" duration="956000" />
       <workItem from="1496426853513" duration="607000" />
       <workItem from="1496560541909" duration="22542000" />
+      <workItem from="1496584935591" duration="3936000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26180000" />
+    <option name="totallyTimeSpent" value="30116000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1932" height="1048" extended-state="0" />
+    <frame x="-8" y="0" width="1932" height="1055" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11627907" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15750529" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15806806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17554858" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17536534" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1448203" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39956093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1448203" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1097,7 +1056,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1106,66 +1065,22 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/gameList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/userProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/editUserData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/gameList.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/userProfile.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/editUserData.java" />
     <entry file="file://$PROJECT_DIR$/src/presentation/general/registration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2332#3094#0" expanded="true" />
-            <element signature="e#3093#3094#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/Recensione.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/homePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/writeReview.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/Recensione.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/homePage.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/writeReview.java" />
     <entry file="file://$PROJECT_DIR$/src/presentation/testClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1174,46 +1089,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/moderatorLogged.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/userLogged.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/gameList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/editUserData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/userProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/moderatorLogged.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/userLogged.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/gameList.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/editUserData.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/userProfile.java" />
     <entry file="file://$PROJECT_DIR$/src/presentation/Recensione.java" />
     <entry file="file://$PROJECT_DIR$/src/presentation/general/registration.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1221,8 +1101,6 @@
           <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2332#3094#0" expanded="true" />
-            <element signature="e#3093#3094#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1234,21 +1112,17 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getUserID#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#addUtente#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getUtente#0;class#eventsListener#0" expanded="false" />
             <element signature="method#setUtente#0;class#eventsListener#0" expanded="false" />
             <element signature="method#addReview#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getReview#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getPendingReviews#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getApprovedReviews#0;class#eventsListener#0" expanded="false" />
             <element signature="method#approveReview#0;class#eventsListener#0" expanded="false" />
             <element signature="method#addXP#0;class#eventsListener#0" expanded="false" />
             <element signature="method#getGames#0;class#eventsListener#0" expanded="false" />
             <element signature="method#userAuth#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#getGame#0;class#eventsListener#0" expanded="false" />
             <element signature="method#changePage#0;class#eventsListener#0" expanded="false" />
-            <marker date="1496583170690" expanded="true" signature="985:1030" ph="SELECT user_... utente" />
-            <marker date="1496583170690" expanded="true" signature="3587:3625" ph="SELECT * FRO... utente" />
-            <marker date="1496583170690" expanded="true" signature="4603:4629" ph="SELECT `nome... gioco" />
+            <marker date="1496586670366" expanded="true" signature="1020:1065" ph="SELECT user_... utente" />
+            <marker date="1496586670366" expanded="true" signature="3606:3644" ph="SELECT * FRO... utente" />
+            <marker date="1496586670366" expanded="true" signature="4649:4675" ph="SELECT `nome... gioco" />
           </folding>
         </state>
       </provider>
@@ -1261,14 +1135,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/homePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/homePage.java" />
     <entry file="file://$PROJECT_DIR$/src/presentation/testClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1277,164 +1144,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/approveReview.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/gameList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/homePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/moderatorLogged.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/editUserData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/approveReview.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/gameList.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/homePage.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/moderatorLogged.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/editUserData.java" />
     <entry file="file://$PROJECT_DIR$/src/presentation/Recensione.java" />
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/userLogged.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/userProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/writeReview.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/Recensione.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/user/profile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="202" column="36" lean-forward="true" selection-start-line="202" selection-start-column="36" selection-end-line="202" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/viewReview.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="94" column="60" lean-forward="false" selection-start-line="94" selection-start-column="60" selection-end-line="94" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/business/implementation/DBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="93" column="42" lean-forward="false" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
-          <folding>
-            <marker date="1496562080215" expanded="true" signature="3111:3150" ph="select * fro... utente" />
-            <marker date="1496562080215" expanded="true" signature="3479:3515" ph="select * fro... utente" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/editData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2510">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/approveComment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/business/BusinessException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/review.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-767">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/userModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="66" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/UntitledGaming.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#374#375#0" expanded="false" />
-            <element signature="e#405#406#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/business/implementation/BCrypt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/userLogged.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/userProfile.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/writeReview.java" />
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/Recensione.java" />
+    <entry file="file://$PROJECT_DIR$/src/model/userModel.java" />
     <entry file="file://$PROJECT_DIR$/src/business/model/Utente.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -1445,7 +1165,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/business/model/Review.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
+        <state relative-caret-position="950">
           <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="35" />
           <folding>
             <element signature="e#424#425#0" expanded="true" />
@@ -1472,110 +1192,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/registration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="76" column="28" lean-forward="false" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/startPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/business/model/gameProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
+        <state relative-caret-position="875">
           <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="29" />
           <folding>
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#480#481#0" expanded="true" />
-            <element signature="e#517#518#0" expanded="true" />
-            <element signature="e#555#556#0" expanded="true" />
-            <element signature="e#586#587#0" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
-            <element signature="e#646#647#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#724#725#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
-            <element signature="e#873#874#0" expanded="true" />
-            <element signature="e#916#917#0" expanded="true" />
-            <element signature="e#954#955#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
-            <element signature="e#1031#1032#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="false" />
+            <element signature="e#480#481#0" expanded="false" />
+            <element signature="e#517#518#0" expanded="false" />
+            <element signature="e#555#556#0" expanded="false" />
+            <element signature="e#586#587#0" expanded="false" />
+            <element signature="e#616#617#0" expanded="false" />
+            <element signature="e#646#647#0" expanded="false" />
+            <element signature="e#675#676#0" expanded="false" />
+            <element signature="e#724#725#0" expanded="false" />
+            <element signature="e#768#769#0" expanded="false" />
+            <element signature="e#823#824#0" expanded="false" />
+            <element signature="e#873#874#0" expanded="false" />
+            <element signature="e#916#917#0" expanded="false" />
+            <element signature="e#954#955#0" expanded="false" />
+            <element signature="e#995#996#0" expanded="false" />
+            <element signature="e#1031#1032#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/img/MyFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/img/MyFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/presentation/general/TableExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/testClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="78" lean-forward="true" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/presentation/general/logged.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="89" column="51" lean-forward="true" selection-start-line="89" selection-start-column="51" selection-end-line="89" selection-end-column="51" />
+        <state relative-caret-position="625">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/business/implementation/ReviewManagement.java">
+    <entry file="file://$PROJECT_DIR$/src/business/BusinessException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="110" column="9" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="110" selection-end-column="9" />
+        <state relative-caret-position="125">
+          <caret line="5" column="5" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/business/implementation/DBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2475">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding>
+            <marker date="1496586352947" expanded="true" signature="3110:3149" ph="select * fro... utente" />
+            <marker date="1496586352947" expanded="true" signature="3544:3580" ph="select * fro... utente" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/business/implementation/BCrypt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1225">
+          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/eventsListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-43">
+          <caret line="56" column="151" lean-forward="false" selection-start-line="56" selection-start-column="151" selection-end-line="56" selection-end-column="151" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#newReview#0;class#ReviewManagement#0" expanded="false" />
-            <element signature="method#getReview#0;class#ReviewManagement#0" expanded="false" />
-            <element signature="method#getApprovedReviews#0;class#ReviewManagement#0" expanded="false" />
-            <element signature="method#approveReview#0;class#ReviewManagement#0" expanded="false" />
-            <marker date="1496582505995" expanded="true" signature="464:577" ph="INSERT INTO recensioni... " />
-            <marker date="1496582505995" expanded="true" signature="2010:2119" ph="SELECT * \nF... recensione" />
-            <marker date="1496582505995" expanded="true" signature="2818:2833" ph="SELECT user_... Commenti" />
-            <marker date="1496582505995" expanded="true" signature="2818:3035" ph="SELECT user_... recensione" />
-            <marker date="1496582505995" expanded="true" signature="2818:3037" ph="SELECT user_... Commenti" />
-            <marker date="1496582505995" expanded="true" signature="3481:3698" ph="SELECT user_... recensione" />
-            <marker date="1496582505995" expanded="true" signature="4018:4098" ph="UPDATE `rece... " />
+            <element signature="method#getUserID#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#setUtente#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#addReview#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#approveReview#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#addXP#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#getGames#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#userAuth#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#getGame#0;class#eventsListener#0" expanded="false" />
+            <element signature="method#changePage#0;class#eventsListener#0" expanded="false" />
+            <marker date="1496586670366" expanded="true" signature="1020:1065" ph="SELECT user_... utente" />
+            <marker date="1496586670366" expanded="true" signature="3606:3644" ph="SELECT * FRO... utente" />
+            <marker date="1496586670366" expanded="true" signature="4649:4675" ph="SELECT `nome... gioco" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/business/implementation/UserManagement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="994">
-          <caret line="258" column="0" lean-forward="false" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+        <state relative-caret-position="275">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#newUser#0;class#UserManagement#0" expanded="false" />
@@ -1583,41 +1286,113 @@
             <element signature="method#getGameProfile#0;class#UserManagement#0" expanded="false" />
             <element signature="method#setUtente#0;class#UserManagement#0" expanded="false" />
             <element signature="method#addXp#0;class#UserManagement#0" expanded="false" />
-            <marker date="1496583181986" expanded="true" signature="1128:1256" ph="INSERT INTO utente... " />
-            <marker date="1496583181986" expanded="true" signature="2819:2917" ph="SELECT * \nF... utente" />
-            <marker date="1496583181986" expanded="true" signature="2819:2918" ph="SELECT `user... utente" />
-            <marker date="1496583181986" expanded="true" signature="3754:3869" ph="SELECT * \nF... profilo_di_gioco" />
-            <marker date="1496583181986" expanded="true" signature="4738:4975" ph="UPDATE utent... " />
-            <marker date="1496583181986" expanded="true" signature="6461:6580" ph="UPDATE game_... " />
-            <marker date="1496583181986" expanded="true" signature="7825:7930" ph="SELECT gioco... gioco" />
-            <marker date="1496583181986" expanded="true" signature="7825:7934" ph="SELECT gioco... gioco" />
-            <marker date="1496583181986" expanded="true" signature="7825:7938" ph="SELECT , \n " />
+            <marker date="1496586876881" expanded="true" signature="1092:1220" ph="INSERT INTO utente... " />
+            <marker date="1496586876881" expanded="true" signature="2789:2879" ph="SELECT * \nF... utente" />
+            <marker date="1496586876881" expanded="true" signature="3814:3913" ph="SELECT * \nF... profilo_di_gioco" />
+            <marker date="1496586876881" expanded="true" signature="4781:5018" ph="UPDATE utent... " />
+            <marker date="1496586876881" expanded="true" signature="6529:6648" ph="UPDATE game_... " />
+            <marker date="1496586876881" expanded="true" signature="7922:8027" ph="SELECT gioco... gioco" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/eventsListener.java">
+    <entry file="file://$PROJECT_DIR$/src/business/implementation/ReviewManagement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+        <state relative-caret-position="825">
+          <caret line="72" column="43" lean-forward="true" selection-start-line="72" selection-start-column="43" selection-end-line="72" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getUserID#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#addUtente#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getUtente#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#setUtente#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#addReview#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getReview#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getPendingReviews#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getApprovedReviews#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#approveReview#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#addXP#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#getGames#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#userAuth#0;class#eventsListener#0" expanded="false" />
-            <element signature="method#changePage#0;class#eventsListener#0" expanded="false" />
-            <marker date="1496583170690" expanded="true" signature="985:1030" ph="SELECT user_... utente" />
-            <marker date="1496583170690" expanded="true" signature="3587:3625" ph="SELECT * FRO... utente" />
-            <marker date="1496583170690" expanded="true" signature="4603:4629" ph="SELECT `nome... gioco" />
+            <element signature="method#newReview#0;class#ReviewManagement#0" expanded="false" />
+            <element signature="method#getPendingReviews#0;class#ReviewManagement#0" expanded="false" />
+            <element signature="method#getApprovedReviews#0;class#ReviewManagement#0" expanded="false" />
+            <element signature="method#approveReview#0;class#ReviewManagement#0" expanded="false" />
+            <marker date="1496586876801" expanded="true" signature="579:692" ph="INSERT INTO recensioni... " />
+            <marker date="1496586876801" expanded="true" signature="2147:2256" ph="SELECT * \nF... recensione" />
+            <marker date="1496586876801" expanded="true" signature="2980:3197" ph="SELECT user_... recensione" />
+            <marker date="1496586876801" expanded="true" signature="3667:3884" ph="SELECT user_... recensione" />
+            <marker date="1496586876801" expanded="true" signature="4230:4310" ph="UPDATE `rece... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/editData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/UntitledGaming.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/viewReview.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="66" column="35" lean-forward="false" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/moderator/approveComment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1250">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/testClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/review.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-490">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/logged.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/startPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/user/profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2217">
+          <caret line="202" column="36" lean-forward="false" selection-start-line="202" selection-start-column="36" selection-end-line="202" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/presentation/general/registration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1679,6 +1454,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -1686,7 +1462,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>mysql-connector-java-5.1.42-bin</last-edited>
+          <last-edited>rs2xml</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

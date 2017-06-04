@@ -2,26 +2,22 @@ package presentation.general;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.sql.SQLException;
-import java.util.jar.JarException;
 
 import static controller.eventsListener.addUtente;
 import static controller.eventsListener.changePage;
 
 public class registration {
 
-    private JFrame         frmUntitledGaming;
+    private JFrame frmUntitledGaming;
     private JPasswordField passwordField;
-    private JTextField     txtNome;
-    private JTextField     txtNickname;
-    private JTextField     txtCognome;
-    private JTextField     txtEmil;
-    private JTextField     txtEta;
-    private JButton        button;
+    private JTextField txtNome;
+    private JTextField txtNickname;
+    private JTextField txtCognome;
+    private JTextField txtEmil;
+    private JTextField txtEta;
+    private JButton button;
 
     /* Create the application */
     public registration() {
@@ -60,15 +56,29 @@ public class registration {
         frmUntitledGaming.getContentPane().add(txtNome);
         txtNome.setColumns(10);
 
-        JButton btnNewButton = new JButton("Registarti");
+        // Listen for focus
+        txtNome.addFocusListener(new FocusListener() {
+
+            @Override
+            // Empty the text field when it receives focus
+            public void focusGained(FocusEvent e) {
+                txtNome.setText(null);
+            }
+
+            @Override
+            // Do something when the focus id lost
+            public void focusLost(FocusEvent e) {
+            }
+        });
+
+        JButton btnNewButton = new JButton("Registrati");
         btnNewButton.setToolTipText("Registrati");
         btnNewButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent arg0) {
-                btnNewButton.addActionListener(new ActionListener()
-                {
+                btnNewButton.addActionListener(new ActionListener() {
                     String passText = new String(passwordField.getPassword());
 
-                    public void actionPerformed(ActionEvent e)  {
+                    public void actionPerformed(ActionEvent e) {
                         frmUntitledGaming.dispose();
                         try {
                             addUtente(txtNickname.getText(), txtNome.getText(), txtCognome.getText(), passText,
@@ -77,7 +87,7 @@ public class registration {
                             e1.printStackTrace();
                         }
                     }
-                });;
+                });
             }
         });
         btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 14));
@@ -88,11 +98,26 @@ public class registration {
         txtNickname.setToolTipText("Username");
         txtNickname.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtNickname.setForeground(Color.GRAY);
+        txtNickname.setText("username");
         txtNickname.setHorizontalAlignment(SwingConstants.CENTER);
-        txtNickname.setText("Username");
         txtNickname.setBounds(481, 102, 190, 40);
         frmUntitledGaming.getContentPane().add(txtNickname);
         txtNickname.setColumns(10);
+
+        // Listen for focus
+        txtNickname.addFocusListener(new FocusListener() {
+
+            @Override
+            // Empty the text field when it receives focus
+            public void focusGained(FocusEvent e) {
+                txtNickname.setText(null);
+            }
+
+            @Override
+            // Do something when the focus id lost
+            public void focusLost(FocusEvent e) {
+            }
+        });
 
         txtCognome = new JTextField();
         txtCognome.setToolTipText("Cognome");
@@ -104,8 +129,23 @@ public class registration {
         frmUntitledGaming.getContentPane().add(txtCognome);
         txtCognome.setColumns(10);
 
+        // Listen for focus
+        txtCognome.addFocusListener(new FocusListener() {
+
+            @Override
+            // Empty the text field when it receives focus
+            public void focusGained(FocusEvent e) {
+                txtCognome.setText(null);
+            }
+
+            @Override
+            // Do something when the focus id lost
+            public void focusLost(FocusEvent e) {
+            }
+        });
+
         txtEmil = new JTextField();
-        txtEmil.setToolTipText("E-m@il");
+        txtEmil.setToolTipText("E-mail");
         txtEmil.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtEmil.setForeground(Color.GRAY);
         txtEmil.setHorizontalAlignment(SwingConstants.CENTER);
@@ -113,6 +153,21 @@ public class registration {
         txtEmil.setBounds(481, 191, 190, 40);
         frmUntitledGaming.getContentPane().add(txtEmil);
         txtEmil.setColumns(10);
+
+        // Listen for focus
+        txtEmil.addFocusListener(new FocusListener() {
+
+            @Override
+            // Empty the text field when it receives focus
+            public void focusGained(FocusEvent e) {
+                txtEmil.setText(null);
+            }
+
+            @Override
+            // Do something when the focus id lost
+            public void focusLost(FocusEvent e) {
+            }
+        });
 
         txtEta = new JTextField();
         txtEta.setToolTipText("Et\u00E0");
@@ -124,6 +179,21 @@ public class registration {
         frmUntitledGaming.getContentPane().add(txtEta);
         txtEta.setColumns(10);
 
+        // Listen for focus
+        txtEta.addFocusListener(new FocusListener() {
+
+            @Override
+            // Empty the text field when it receives focus
+            public void focusGained(FocusEvent e) {
+                txtEta.setText(null);
+            }
+
+            @Override
+            // Do something when the focus id lost
+            public void focusLost(FocusEvent e) {
+            }
+        });
+
         passwordField = new JPasswordField();
         passwordField.setBackground(new Color(255, 255, 255));
         passwordField.setToolTipText("Password");
@@ -133,13 +203,13 @@ public class registration {
         passwordField.setBounds(481, 285, 190, 40);
         frmUntitledGaming.getContentPane().add(passwordField);
 
+
         button = new JButton("");
         button.setIcon(new ImageIcon("/img/back_icon.png"));
         button.setToolTipText("Go back");
         button.setBounds(10, 10, 37, 31);
 
-        button.addActionListener(new ActionListener()
-        {
+        button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
                 changePage("startPage");

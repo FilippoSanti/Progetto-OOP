@@ -1,6 +1,7 @@
 package business.implementation;
 
-import business.model.*;
+import business.model.Utente;
+import business.model.gameProfile;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.table.TableModel;
@@ -8,27 +9,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import static controller.eventsListener.getUserID;
-
-
-/**
- * Created by Davide on 04/06/2017.
- */
 public class UserManagement {
 
     /* Insert the user data into the DB */
-    public  boolean newUser (String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
+    public boolean newUser(String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
 
-        // Check if the username id already registered
+        // Check if the username is already registered
         if (business.implementation.DBManager.checkUsername(user))
             return false;
 
+        // Check if the email is already registered
         if (business.implementation.DBManager.checkEmail(email))
             return false;
 
-        PreparedStatement preparedStatement  = null;
+        PreparedStatement preparedStatement = null;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -42,7 +37,7 @@ public class UserManagement {
 
         // Insert the values into the DB
         try {
-            preparedStatement  = dbConnection.prepareStatement(insertTableSQL);
+            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, password);
@@ -74,53 +69,51 @@ public class UserManagement {
         return false;
     }
 
-    public  Utente getUtente(String username) throws SQLException {
+    /* Get the user informations */
+    public Utente getUtente(String username) throws SQLException {
 
-        String nome= "";
-        String password = "";
-        String cognome= "";
-       String email = "";
-       String tipo = "";
-        int userId=0;
-        // DB Connection
-        Connection dbConnection = business.implementation.DBManager.Connect();
+        String nome, password, cognome, email, tipo;
+        nome = password = cognome = email = tipo = "";
 
-
-    // Execute the query and get the ResultSet
-    PreparedStatement stmt = dbConnection.prepareStatement(
-            "SELECT * \n" +
-                    "FROM   `utente` \n" +
-                    "WHERE  username = ? ");
-    stmt.setString(1, username);
-    ResultSet rs = stmt.executeQuery();
-    if (rs.next()) {
-        nome = rs.getString("nome");
-        email = rs.getString("email");
-        cognome = rs.getString("cognome");
-        tipo = rs.getString("tipo");
-        userId = rs.getInt("user_id");
-        password = rs.getString("password");
-    }
-    //c.close();
-    return new Utente(userId, username, nome, cognome, password, email, tipo);
-
-
-    }
-
-    public  gameProfile getGameProfile(int userId) throws SQLException {
-        int gameProfileId=0;
-        int livello=0;
-        int puntiXp=0;
+        int userId = 0;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
-
 
         // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT * \n" +
-                        "FROM   `profilo_di_gioco` \n" +
-                        "WHERE  user_id = ? ");
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * \n" +
+                "FROM   `utente` \n" +
+                "WHERE  username = ? ");
+
+        stmt.setString(1, username);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            nome     = rs.getString("nome");
+            email    = rs.getString("email");
+            cognome  = rs.getString("cognome");
+            tipo     = rs.getString("tipo");
+            userId   = rs.getInt("user_id");
+            password = rs.getString("password");
+        }
+        //c.close();
+        return new Utente(userId, username, nome, cognome, password, email, tipo);
+    }
+
+    /* Get the user profile stats */
+    public gameProfile getGameProfile(int userId) throws SQLException {
+
+        int gameProfileId, livello, puntiXp;
+        gameProfileId = livello = puntiXp = 0;
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * \n" +
+                "FROM   `profilo_di_gioco` \n" +
+                "WHERE  user_id = ? ");
+
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
@@ -131,17 +124,15 @@ public class UserManagement {
         }
         //c.close();
         return new gameProfile(gameProfileId, userId, livello, puntiXp);
-
-
     }
 
     /* Edit login info */
-    public boolean setUtente (Utente utente, String newUsername, String nome, String cognome, String password, String email) throws SQLException {
+    public boolean setUtente(Utente utente, String newUsername, String nome, String cognome, String password, String email) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        if (business.implementation.DBManager.checkUsername(newUsername))return false;
+        if (business.implementation.DBManager.checkUsername(newUsername)) return false;
         if (business.implementation.DBManager.checkEmail(email)) return false;
         // Query
         String approveReview = "UPDATE utente \n" +
@@ -191,9 +182,9 @@ public class UserManagement {
 
     }
 
-    public boolean addXp (Utente utente, int xP) throws SQLException
-    {
-     // DB Connection
+    /* Add xp to a user */
+    public boolean addXp(Utente utente, int xP) throws SQLException {
+        // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
 
@@ -235,10 +226,10 @@ public class UserManagement {
 
     }
 
-    public TableModel getGames () throws SQLException {
+    /*Get the list of games */
+    public TableModel getGames() throws SQLException {
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
-
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement(
@@ -247,14 +238,9 @@ public class UserManagement {
 
                         "FROM   gioco \n ");
 
-
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
 
         return tm;
-
-
     }
-
 }
-

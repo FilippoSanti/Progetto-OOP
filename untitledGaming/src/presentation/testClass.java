@@ -13,14 +13,5 @@ public class testClass {
 
         controller.eventsListener.approveReview(eventsListener.getReview(17));
 
-
-
-
-
-        // Get game list
-
-
-
     }
-
 }

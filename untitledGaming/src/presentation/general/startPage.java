@@ -8,8 +8,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.SQLException;
 
-public class startPage {
+// TODO: Fix the focus
 
+public class startPage {
     private JFrame frmUntitledGaming;
     private JTextField txtIndirizzoEmail;
     private JPasswordField passwordField;
@@ -19,13 +20,10 @@ public class startPage {
         initialize();
     }
 
-
     /* Initialize the contents of the frame */
     private void initialize() {
 
         frmUntitledGaming = new JFrame();
-
-
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
         frmUntitledGaming.setTitle("Untitled Gaming");
         frmUntitledGaming.setResizable(false);
@@ -44,11 +42,9 @@ public class startPage {
         txtIndirizzoEmail.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtIndirizzoEmail.setForeground(Color.GRAY);
         txtIndirizzoEmail.setHorizontalAlignment(SwingConstants.CENTER);
-        txtIndirizzoEmail.setText("e-mail");
         txtIndirizzoEmail.setBounds(71, 157, 200, 38);
         txtIndirizzoEmail.setColumns(10);
         frmUntitledGaming.getContentPane().add(txtIndirizzoEmail);
-
 
         // Listen for focus
         txtIndirizzoEmail.addFocusListener(new FocusListener() {
@@ -62,15 +58,17 @@ public class startPage {
             @Override
             // Do something when the focus id lost
             public void focusLost(FocusEvent e) {
-            }
 
+            }
         });
 
         JButton btnNewButton = new JButton("Log In");
-
         btnNewButton.setToolTipText("Log In");
         btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 14));
         btnNewButton.setBounds(116, 338, 110, 35);
+
+        // Rquest the focus to unfocus the text
+        btnNewButton.requestFocusInWindow();
 
         // Login
         btnNewButton.addActionListener(new ActionListener() {
@@ -96,9 +94,6 @@ public class startPage {
         btnNewButton_1.setToolTipText("Registrati");
         btnNewButton_1.setFont(new Font("MV Boli", Font.ITALIC, 14));
         btnNewButton_1.setBounds(503, 223, 110, 35);
-
-        // Rquest the focus to unfocus the textbutton lol
-        btnNewButton.requestFocusInWindow();
 
         // Go to the registration page
         btnNewButton_1.addActionListener(new ActionListener() {

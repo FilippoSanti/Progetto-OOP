@@ -75,7 +75,6 @@ public class DBManager {
 
     public static boolean checkUsername(String username) throws SQLException {
 
-
         // DB Connection
         Connection connection = Connect();
 
@@ -91,8 +90,10 @@ public class DBManager {
 
     public static boolean checkEmail ( String email) throws SQLException  {
 
+        // DB Connection
         Connection connection = Connect();
 
+        // Prepare and execute the query
         PreparedStatement st = connection.prepareStatement("select * from utente where email = ?");
         st.setString(1, email);
         ResultSet rs = st.executeQuery();

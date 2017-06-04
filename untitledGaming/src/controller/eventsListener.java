@@ -2,12 +2,13 @@ package controller;
 
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
+import business.model.Review;
+import business.model.Utente;
 import presentation.general.logged;
 import presentation.general.registration;
 import presentation.general.startPage;
 import presentation.general.viewReview;
 import presentation.user.profile;
-import business.model.*;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -41,7 +42,7 @@ public class eventsListener {
         return userID;
     }
 
-    public static void addUtente  (String username, String nome, String cognome, String password, String email, String tipo)throws SQLException{
+    public static void addUtente (String username, String nome, String cognome, String password, String email, String tipo)throws SQLException{
 
         if (new UserManagement().newUser(username, nome, cognome, password, email, tipo)) {
             JOptionPane.showMessageDialog(null, "Utente aggiunto correttamente.");
@@ -50,11 +51,11 @@ public class eventsListener {
     }
 
     public static Utente getUtente (String username) throws SQLException {
-           return new UserManagement().getUtente(username);
+        return new UserManagement().getUtente(username);
     }
 
     public static boolean setUtente(Utente utente, String newUsername, String nome, String cognome, String password, String email) throws SQLException {
-        if(newUsername.equals("") || password.equals(""))
+        if(newUsername.isEmpty() || password.isEmpty())
             return false;
 
         return new UserManagement().setUtente(utente, newUsername, nome, cognome, password, email);
@@ -72,7 +73,7 @@ public class eventsListener {
     }
 
     public static TableModel getPendingReviews() throws SQLException {
-       return new ReviewManagement().getPendingReviews();
+        return new ReviewManagement().getPendingReviews();
     }
 
     public static TableModel getApprovedReviews () throws SQLException {
@@ -90,17 +91,6 @@ public class eventsListener {
     public static TableModel getGames () throws SQLException {
         return new business.implementation.UserManagement().getGames();
     }
-
-
-
-
-
-
-
-
-
-
-
 
     /* User authentication */
     public static boolean userAuth(String username, String password) throws SQLException{
@@ -131,9 +121,9 @@ public class eventsListener {
         return false;
     }
 
-
-
+    /* Get the game list */
     public static ArrayList<String> getGame () throws SQLException {
+
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -143,29 +133,25 @@ public class eventsListener {
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement(
                 "SELECT `nome` FROM `gioco`");
-                ResultSet rs = stmt.executeQuery();
+        ResultSet rs = stmt.executeQuery();
 
         // Fetch data from the result set
         int columnCount = rs.getMetaData().getColumnCount();
 
         while (rs.next()) {
             for (int i = 0; i < columnCount; i++) {
-
                 gameList.add(rs.getString(i + 1));
-
             }
         }
         return gameList;
-
     }
 
+    /* Change the current JFrame */
     public static void changePage (String page) {
-
-        switch(page){
-
+        switch (page){
             case "startPage":
                 new startPage();
-                        break;
+                break;
 
             case "registration":
                 new registration();
@@ -183,10 +169,7 @@ public class eventsListener {
                 new viewReview();
                 break;
         }
-
     }
-
-
 }
 
 
