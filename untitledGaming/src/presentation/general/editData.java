@@ -1,9 +1,15 @@
 package presentation.general;
 
+import business.model.Utente;
+import controller.eventsListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 public class editData {
 
@@ -16,29 +22,11 @@ public class editData {
     private JTextField     textField_3;
     private JTextField     textField_4;
 
-    /**
-     * Create the application.
-     */
-    public editData() {
+    Utente utente = null;
+    public editData(Utente c) {
+
+        this.utente = c;
         initialize();
-    }
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-
-
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    editData window = new editData();
-                    window.frmUntitledGaming.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     private static void addPopup(Component component, final JPopupMenu popup) {
@@ -78,22 +66,23 @@ public class editData {
         lblNewLabel.setBounds(0, 27, 734, 37);
         frmUntitledGaming.getContentPane().add(lblNewLabel);
 
-        JButton btnNewButton = new JButton("Applica Modifiche");
-        btnNewButton.setToolTipText("Applica Modifiche");
-        btnNewButton.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent arg0) {
-                System.out.println("Sei Registrato!");
-            }
-        });
-        btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 14));
-        btnNewButton.setBounds(74, 385, 190, 46);
-        frmUntitledGaming.getContentPane().add(btnNewButton);
+
 
         button = new JButton("");
         button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back_icon.png"));
         button.setToolTipText("torna indietro");
         button.setBounds(10, 10, 37, 31);
         frmUntitledGaming.getContentPane().add(button);
+
+        button.addActionListener(new ActionListener() {
+
+
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.dispose();
+                eventsListener.changePage("profile", utente);
+
+            }
+        });
 
         textField = new JTextField();
         textField.setToolTipText("Nome");
@@ -159,5 +148,26 @@ public class editData {
         button_1.setFont(new Font("MV Boli", Font.ITALIC, 14));
         button_1.setBounds(464, 385, 190, 46);
         frmUntitledGaming.getContentPane().add(button_1);
+
+        button_1.addActionListener(new ActionListener() {
+
+
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.dispose();
+                try {
+
+                    String passText = new String(passwordField.getPassword());
+                    eventsListener.setUtente(eventsListener.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), textField_2.getText(),
+                            textField_3.getText(), passText, textField_4.getText());
+
+                    eventsListener.changePage("profile", utente);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+
+        frmUntitledGaming.setVisible(true);
     }
 }

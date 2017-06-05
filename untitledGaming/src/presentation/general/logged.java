@@ -1,5 +1,7 @@
 package presentation.general;
 
+import business.model.Utente;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,9 +10,10 @@ import java.awt.event.ActionListener;
 public class logged {
 
 	private JFrame frmUntitledGaming;
-
+    Utente utente = null;
 	/* Create the application */
-	public logged() {
+	public logged(Utente c) {
+		this.utente = c;
 		initialize();
 	}
 
@@ -35,7 +38,7 @@ public class logged {
 		lblNewLabel.setBounds(559, 22, 52, 25);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 
-		JLabel lblusernameHere = new JLabel("-Username Here!-");
+		JLabel lblusernameHere = new JLabel(utente.getUsername());
 		lblusernameHere.setForeground(Color.DARK_GRAY);
 		lblusernameHere.setFont(new Font("Oregano", Font.PLAIN, 15));
 		lblusernameHere.setBounds(598, 25, 126, 19);
@@ -57,7 +60,7 @@ public class logged {
         {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("profile");
+                controller.eventsListener.changePage("profile", utente);
             }
         });
 
@@ -73,7 +76,7 @@ public class logged {
 		{
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
-				controller.eventsListener.changePage("viewReview");
+				controller.eventsListener.changePage("viewReview", utente);
 			}
 		});
 
@@ -87,7 +90,7 @@ public class logged {
 		{
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
-				controller.eventsListener.changePage("startPage");
+				controller.eventsListener.changePage("startPage", utente);
 			}
 		});
 

@@ -21,6 +21,8 @@ public class registration {
 
     /* Create the application */
     public registration() {
+
+
         initialize();
     }
 
@@ -212,7 +214,7 @@ public class registration {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                changePage("startPage");
+                changePage("startPage", null);
             }
         });
 

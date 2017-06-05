@@ -1,5 +1,7 @@
 package presentation.general;
 
+import business.model.Utente;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,11 +15,10 @@ public class viewReview {
 
 	private JFrame frmUntitledGaming;
 
-	/**
-	 * Create the application.
-	 */
+	Utente utente = null;
 
-	public viewReview() {
+	public viewReview(Utente c) {
+		this.utente = c;
 		initialize();
 	}
 
@@ -92,7 +93,7 @@ public class viewReview {
 		{
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
-				controller.eventsListener.changePage("logged");
+				controller.eventsListener.changePage("logged", utente);
 			}
 		});
 

@@ -4,11 +4,7 @@ import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Review;
 import business.model.Utente;
-import presentation.general.logged;
-import presentation.general.registration;
-import presentation.general.startPage;
-import presentation.general.viewReview;
-import presentation.user.profile;
+import presentation.general.*;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -54,11 +50,11 @@ public class eventsListener {
         return new UserManagement().getUtente(username);
     }
 
-    public static boolean setUtente(Utente utente, String newUsername, String nome, String cognome, String password, String email) throws SQLException {
-        if(newUsername.isEmpty() || password.isEmpty())
-            return false;
+    public static boolean setUtente(Utente utente, String nome, String cognome, String date, String email, String password, String newUsername)
+             throws SQLException {
 
-        return new UserManagement().setUtente(utente, newUsername, nome, cognome, password, email);
+
+        return new UserManagement().setUtente(utente, nome, cognome, date, email, password, newUsername);
     }
 
     public static void addReview (Utente utente, String review, double vote) throws SQLException {
@@ -147,7 +143,7 @@ public class eventsListener {
     }
 
     /* Change the current JFrame */
-    public static void changePage (String page) {
+    public static void changePage (String page, Utente utente) {
         switch (page){
             case "startPage":
                 new startPage();
@@ -158,15 +154,19 @@ public class eventsListener {
                 break;
 
             case "logged":
-                new logged();
+                new logged(utente);
                 break;
 
             case "profile":
-                new profile();
+                new profile(utente);
                 break;
 
             case "viewReview":
-                new viewReview();
+                new viewReview(utente);
+                break;
+
+            case "editData":
+                new editData(utente);
                 break;
         }
     }

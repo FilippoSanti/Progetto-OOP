@@ -3,12 +3,16 @@ package business.implementation;
 import business.model.Utente;
 import business.model.gameProfile;
 import net.proteanit.sql.DbUtils;
+import sun.util.calendar.LocalGregorianCalendar;
 
 import javax.swing.table.TableModel;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
+import java.util.zip.DataFormatException;
 
 public class UserManagement {
 
@@ -72,8 +76,9 @@ public class UserManagement {
     /* Get the user informations */
     public Utente getUtente(String username) throws SQLException {
 
-        String nome, password, cognome, email, tipo;
+        String nome, password, cognome, email, tipo; java.sql.Date data = null;
         nome = password = cognome = email = tipo = "";
+        
 
         int userId = 0;
 
@@ -95,9 +100,11 @@ public class UserManagement {
             tipo     = rs.getString("tipo");
             userId   = rs.getInt("user_id");
             password = rs.getString("password");
+            data = rs.getDate("data_di_nascita");
+
         }
-        //c.close();
-        return new Utente(userId, username, nome, cognome, password, email, tipo);
+
+        return new Utente(userId, username, nome, cognome, password, email, tipo, data);
     }
 
     /* Get the user profile stats */
@@ -126,26 +133,52 @@ public class UserManagement {
         return new gameProfile(gameProfileId, userId, livello, puntiXp);
     }
 
+
+
     /* Edit login info */
-    public boolean setUtente(Utente utente, String newUsername, String nome, String cognome, String password, String email) throws SQLException {
+    public boolean setUtente(Utente utente, String nome, String cognome, String data, String email, String password, String newUsername) throws SQLException {
+
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        java.sql.Date AAA = utente.getData();
+        String text = formatter.format(AAA);
+        System.out.println(text);
+
+        if (nome.isEmpty()) nome = utente.getNome();
+        if (cognome.isEmpty()) cognome = utente.getCognome();
+        if (data.isEmpty()) data = text;
+        if (email.isEmpty()) email = utente.getEmail();
+        if (password.isEmpty()) password = utente.getPassword();
+        if (newUsername.isEmpty()) newUsername = utente.getUsername();
+
+        if (nome.isEmpty() && cognome.isEmpty() && data.isEmpty() && email.isEmpty() && password.isEmpty() && newUsername.isEmpty())
+            return false;
+
+
+        Date myDate = null;
+        try {
+            myDate = formatter.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        if (business.implementation.DBManager.checkUsername(newUsername)) return false;
-        if (business.implementation.DBManager.checkEmail(email)) return false;
-        // Query
+               // Query
         String approveReview = "UPDATE utente \n" +
                 "SET nome = ?, \n" +
                 " cognome = ?, \n" +
-                " password = ?, \n" +
-                " email = ?, \n" +
-                " username = ?\n" +
+                " data_di_nascita = ?,\n" +
+                "email = ?, \n " +
+                "password = ?, \n " +
+                "username = ? " +
+
                 "WHERE user_id = ?";
 
         PreparedStatement preparedStatement = null;
 
-        String hashedPass = business.implementation.DBManager.hashPassword(password);
+
 
         // Insert the values into the DB
         try {
@@ -153,11 +186,11 @@ public class UserManagement {
 
             preparedStatement.setString(1, nome);
             preparedStatement.setString(2, cognome);
-            preparedStatement.setString(3, hashedPass);
+            preparedStatement.setDate(3, sqlDate);
             preparedStatement.setString(4, email);
-            preparedStatement.setString(5, newUsername);
-            preparedStatement.setInt(6, utente.getUserId());
-
+            preparedStatement.setString(5, password);
+            preparedStatement.setString(6, newUsername);
+            preparedStatement.setInt(7, utente.getUserId());
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
             0 for SQL statements that return nothing

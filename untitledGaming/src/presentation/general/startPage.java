@@ -1,5 +1,8 @@
 package presentation.general;
 
+import business.model.Utente;
+import controller.eventsListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,15 +11,19 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.SQLException;
 
+import static java.sql.Types.NULL;
+
 // TODO: Fix the focus
 
 public class startPage {
     private JFrame frmUntitledGaming;
-    private JTextField txtIndirizzoEmail;
+    private JTextField txtUsername;
     private JPasswordField passwordField;
-
+    Utente utente = null;
     /* Create the application */
     public startPage() {
+
+
         initialize();
     }
 
@@ -37,22 +44,22 @@ public class startPage {
         lblNewLabel.setBounds(0, 27, 734, 38);
         frmUntitledGaming.getContentPane().add(lblNewLabel);
 
-        txtIndirizzoEmail = new JTextField();
-        txtIndirizzoEmail.setToolTipText("e-mail");
-        txtIndirizzoEmail.setFont(new Font("Georgia", Font.ITALIC, 15));
-        txtIndirizzoEmail.setForeground(Color.GRAY);
-        txtIndirizzoEmail.setHorizontalAlignment(SwingConstants.CENTER);
-        txtIndirizzoEmail.setBounds(71, 157, 200, 38);
-        txtIndirizzoEmail.setColumns(10);
-        frmUntitledGaming.getContentPane().add(txtIndirizzoEmail);
+        txtUsername = new JTextField();
+        txtUsername.setToolTipText("e-mail");
+        txtUsername.setFont(new Font("Georgia", Font.ITALIC, 15));
+        txtUsername.setForeground(Color.GRAY);
+        txtUsername.setHorizontalAlignment(SwingConstants.CENTER);
+        txtUsername.setBounds(71, 157, 200, 38);
+        txtUsername.setColumns(10);
+        frmUntitledGaming.getContentPane().add(txtUsername);
 
         // Listen for focus
-        txtIndirizzoEmail.addFocusListener(new FocusListener() {
+        txtUsername.addFocusListener(new FocusListener() {
 
             @Override
             // Empty the text field when it receives focus
             public void focusGained(FocusEvent e) {
-                txtIndirizzoEmail.setText(null);
+                txtUsername.setText(null);
             }
 
             @Override
@@ -77,10 +84,12 @@ public class startPage {
                     String passText = new String(passwordField.getPassword());
 
                     // Check if the login was successful
-                    if (controller.eventsListener.userAuth(txtIndirizzoEmail.getText(), passText)) {
-                        frmUntitledGaming.dispose();
-                        controller.eventsListener.changePage("logged");
+                    if (eventsListener.userAuth(txtUsername.getText(), passText)) {
 
+
+                        Utente utente = eventsListener.getUtente(txtUsername.getText());
+                        eventsListener.changePage("logged", utente);
+                        frmUntitledGaming.dispose();
                     } else JOptionPane.showMessageDialog(frmUntitledGaming, "Login failed");
                 } catch (SQLException e1) {
                     e1.printStackTrace();
@@ -99,7 +108,7 @@ public class startPage {
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("registration");
+                eventsListener.changePage("registration", null);
             }
         });
 

@@ -1,18 +1,27 @@
-package presentation.user;
+package presentation.general;
 
+import business.model.Utente;
+import controller.eventsListener;
 import presentation.general.logged;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import static controller.eventsListener.addUtente;
 
 public class profile {
 
 	private JFrame frmUntitledGaming;
 
+	Utente utente = null;
+
 	/* Create the application */
-	public profile() {
+	public profile(Utente c) {
+
+		this.utente = c;
 		initialize();
 	}
 
@@ -51,37 +60,37 @@ public class profile {
 		lblNewLabel_1.setBounds(387, 125, 84, 19);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_1);
 
-		JLabel lblNewLabel_2 = new JLabel("Et\u00E0 :");
+		JLabel lblNewLabel_2 = new JLabel("Data di nascita :");
 		lblNewLabel_2.setFont(new Font("Georgia", Font.ITALIC, 15));
 		lblNewLabel_2.setForeground(Color.GRAY);
 		lblNewLabel_2.setBounds(387, 150, 84, 24);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("E-m@il :");
+		JLabel lblNewLabel_3 = new JLabel("E-mail :");
 		lblNewLabel_3.setFont(new Font("Georgia", Font.ITALIC, 15));
 		lblNewLabel_3.setForeground(Color.GRAY);
 		lblNewLabel_3.setBounds(387, 180, 84, 19);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_3);
 
-		JLabel lblNewLabel_4 = new JLabel("Abcdefghijklmno");
+		JLabel lblNewLabel_4 = new JLabel(utente.getNome());
 		lblNewLabel_4.setForeground(Color.DARK_GRAY);
 		lblNewLabel_4.setFont(new Font("Georgia", Font.ITALIC, 15));
 		lblNewLabel_4.setBounds(493, 95, 133, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_4);
 
-		JLabel lblNewLabel_5 = new JLabel("Abcdefghijklmno");
+		JLabel lblNewLabel_5 = new JLabel(utente.getCognome());
 		lblNewLabel_5.setForeground(Color.DARK_GRAY);
 		lblNewLabel_5.setFont(new Font("Georgia", Font.ITALIC, 15));
 		lblNewLabel_5.setBounds(493, 126, 133, 16);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_5);
 
-		JLabel lblNewLabel_6 = new JLabel("Abcdefghijklmno");
+		JLabel lblNewLabel_6 = new JLabel(utente.getData().toString());
 		lblNewLabel_6.setForeground(Color.DARK_GRAY);
 		lblNewLabel_6.setFont(new Font("Georgia", Font.ITALIC, 15));
 		lblNewLabel_6.setBounds(493, 150, 133, 24);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_6);
 
-		JLabel lblNewLabel_7 = new JLabel("Abcdefghijklmno");
+		JLabel lblNewLabel_7 = new JLabel(utente.getEmail());
 		lblNewLabel_7.setForeground(Color.DARK_GRAY);
 		lblNewLabel_7.setFont(new Font("Georgia", Font.ITALIC, 15));
 		lblNewLabel_7.setBounds(493, 180, 133, 19);
@@ -172,6 +181,16 @@ public class profile {
 		btnModifica.setBounds(451, 216, 89, 23);
 		frmUntitledGaming.getContentPane().add(btnModifica);
 
+		btnModifica.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				eventsListener.changePage("editData", utente);
+
+			}
+		});
+
 		JLabel label = new JLabel("999999");
 		label.setToolTipText("XP point");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -190,7 +209,7 @@ public class profile {
         {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("logged");
+                controller.eventsListener.changePage("logged", utente);
             }
         });
 
