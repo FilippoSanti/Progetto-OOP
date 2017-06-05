@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 02, 2017 alle 15:28
+-- Creato il: Giu 05, 2017 alle 18:37
 -- Versione del server: 10.1.22-MariaDB
 -- Versione PHP: 7.1.4
 
@@ -84,7 +84,7 @@ CREATE TABLE `game_profile` (
 --
 
 INSERT INTO `game_profile` (`game_profile_id`, `user_id`, `livello`, `punti_esperienza`) VALUES
-(1, 1, 3, 61600),
+(1, 1, 3, 761600),
 (2, 2, 2, 150);
 
 -- --------------------------------------------------------
@@ -125,7 +125,9 @@ CREATE TABLE `recensione` (
 --
 
 INSERT INTO `recensione` (`recensione_id`, `user_id`, `testo_recensione`, `voto`, `approvata`) VALUES
-(1, 1, 'Bene ma non benissimo', 3.5, 1);
+(1, 1, 'Bene ma non benissimo', 3.5, 1),
+(2, 17, 'ooooooooooo', 4, 1),
+(3, 18, 'ASDASDASDASDASD', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -161,6 +163,7 @@ CREATE TABLE `utente` (
   `password` varchar(60) NOT NULL,
   `nome` varchar(20) NOT NULL,
   `cognome` varchar(20) NOT NULL,
+  `data_di_nascita` date NOT NULL,
   `email` varchar(25) NOT NULL,
   `tipo` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -169,9 +172,14 @@ CREATE TABLE `utente` (
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `email`, `tipo`) VALUES
-(1, 'davideu', '$2a$12$HRSKsJGgLf8LF2WTM5CAvO5Qs0jd0t2VCo4PUh.8XcYkCoQkYS70S', 'davide', 'ubaldi', 'ca@a.il', 'user'),
-(2, 'Genoveffo', '$2a$12$ioRamRV3YQp9eFC7B5i6TOW/foCI7lzQLyc/8Z5lWuSuFlZcVj/C.', 'Pantalone', 'Tiffany', 'non', 'user');
+INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `data_di_nascita`, `email`, `tipo`) VALUES
+(1, 'dAAA', '$2a$12$RRhu5SpSICLZAlMuSZIDPO5vcLgGYpek8hVoJ0L7cgBqjuMtxG7OO', 'gasdonsse', 'giasdnone', '0000-00-00', 'gasde', 'user'),
+(2, 'KAHGDKJA', '', 'Pantalone', '', '1124-10-31', '', 'user'),
+(17, 'BBBB', '$2a$12$xO.588xu1U8W9Tf5efrEaur.ozGS/K5GSuFzQT8Aom7G3qMmBKLEG', 'giovannone', 'giovannone', '1124-10-31', 'giovannone', 'user'),
+(18, 'gianni', '$2a$12$2WpaNTZWIS8GihEZ2JUm6uKR41MRaw03HoVdGNo5WXcywwN5UFpR2', 'ANTONIO', 'gianni', '2017-06-06', 'gianni', 'user'),
+(19, 'ACCCA', '$2a$12$badGIUHXryauUj4M8cv2ROqcMM/6u77ttNswIpzLH1kCNVwHrre1y', 'giovannonsse', 'giovasssnnone', '0000-00-00', 'giovasssnnone', 'user'),
+(20, '', '', 'dAAA', '', '1124-10-31', '', 'user'),
+(21, 'fgdfgd', '$2a$12$Rer9mQf5mpi4puJG2Nk2yeQ6PKbpdcIHpM1L7LL7iVut3Rk/4CRMK', 'fsgd', '4444', '0000-00-00', 'dfgdfg', 'user');
 
 --
 -- Indici per le tabelle scaricate
@@ -254,7 +262,7 @@ ALTER TABLE `gioco`
 -- AUTO_INCREMENT per la tabella `recensione`
 --
 ALTER TABLE `recensione`
-  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT per la tabella `timeline`
 --
@@ -264,7 +272,7 @@ ALTER TABLE `timeline`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Limiti per le tabelle scaricate
 --
