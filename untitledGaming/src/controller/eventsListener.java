@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class eventsListener {
 
@@ -38,10 +39,12 @@ public class eventsListener {
         return userID;
     }
 
-    public static void addUtente (String username, String nome, String cognome, String password, String email, String tipo)throws SQLException{
+    public static void addUtente (String username, String nome, String cognome, String password, String email, String date, String tipo)throws SQLException{
 
-        if (new UserManagement().newUser(username, nome, cognome, password, email, tipo)) {
+        if (business.implementation.UserManagement.newUser(username, nome, cognome, password, email, date, tipo)) {
             JOptionPane.showMessageDialog(null, "Utente aggiunto correttamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error, try again");
         }
 
     }
