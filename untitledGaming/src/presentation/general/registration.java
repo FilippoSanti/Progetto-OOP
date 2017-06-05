@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 
+
 import static controller.eventsListener.addUtente;
 import static controller.eventsListener.changePage;
 
@@ -45,11 +46,18 @@ public class registration {
 
         txtNome = new JTextField();
         txtNome.setToolTipText("Nome");
-        txtNome.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent arg0) {
-                System.out.println("Enter Name");
-            }
-        });
+
+        // Listen for focus
+		txtNome.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				txtNome.setText("");
+			}
+			public void focusLost (FocusEvent e){
+				if (txtNome.getText().isEmpty())
+					txtNome.setText("Nome");
+			}
+		});
+
         txtNome.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtNome.setForeground(Color.GRAY);
         txtNome.setText("Nome");
@@ -98,6 +106,18 @@ public class registration {
 
         txtNickname = new JTextField();
         txtNickname.setToolTipText("Username");
+
+        //listen for focus
+        txtNickname.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				txtNickname.setText("");
+			}
+			public void focusLost (FocusEvent e){
+				if (txtNickname.getText().isEmpty())
+					txtNickname.setText("Username");
+			}
+		});
+		
         txtNickname.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtNickname.setForeground(Color.GRAY);
         txtNickname.setText("username");
@@ -123,6 +143,18 @@ public class registration {
 
         txtCognome = new JTextField();
         txtCognome.setToolTipText("Cognome");
+
+        //listen for focus
+        txtCognome.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				txtCognome.setText("");
+			}
+			public void focusLost (FocusEvent e){
+				if (txtCognome.getText().isEmpty())
+					txtCognome.setText("Cognome");
+			}
+		});
+		
         txtCognome.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtCognome.setForeground(Color.GRAY);
         txtCognome.setHorizontalAlignment(SwingConstants.CENTER);
@@ -148,6 +180,18 @@ public class registration {
 
         txtEmil = new JTextField();
         txtEmil.setToolTipText("E-mail");
+
+        //listen for focus
+        txtEmil.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				txtEmil.setText("");
+			}
+			public void focusLost (FocusEvent e){
+				if (txtEmil.getText().isEmpty())
+					txtEmil.setText("E-m@il");
+			}
+		});
+		
         txtEmil.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtEmil.setForeground(Color.GRAY);
         txtEmil.setHorizontalAlignment(SwingConstants.CENTER);
@@ -173,6 +217,18 @@ public class registration {
 
         txtEta = new JTextField();
         txtEta.setToolTipText("Et\u00E0");
+
+        //listen for focus
+        txtEta.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				txtEta.setText("");
+			}
+			public void focusLost (FocusEvent e){
+				if (txtEta.getText().isEmpty())
+					txtEta.setText("Et\u00E0");
+			}
+		});
+		
         txtEta.setFont(new Font("Georgia", Font.ITALIC, 15));
         txtEta.setForeground(Color.GRAY);
         txtEta.setText("Et\u00E0");
@@ -196,15 +252,43 @@ public class registration {
             }
         });
 
-        passwordField = new JPasswordField();
-        passwordField.setBackground(new Color(255, 255, 255));
-        passwordField.setToolTipText("Password");
-        passwordField.setFont(new Font("Georgia", Font.ITALIC, 15));
-        passwordField.setHorizontalAlignment(SwingConstants.CENTER);
-        passwordField.setForeground(Color.GRAY);
-        passwordField.setBounds(481, 285, 190, 40);
-        frmUntitledGaming.getContentPane().add(passwordField);
+   		passwordField = new JPasswordField();
+		char c = 0;
+		
+		
+		passwordField.setText("Password");
+		passwordField.setEchoChar(c);
 
+        passwordField.addFocusListener(new FocusListener() {
+
+       
+            public void focusGained(FocusEvent e) {
+            	
+            char c = '\u25CF';
+                passwordField.setEchoChar(c);
+                passwordField.setText("");
+            }
+            
+            public void focusLost(FocusEvent e) {
+            	if (passwordField.getPassword().length == 0){
+            		  char c = 0;
+                      passwordField.setEchoChar(c);
+                      passwordField.setText("Password");
+            		}
+                }
+
+
+        });
+		
+		passwordField.setBackground(new Color(255, 255, 255));
+		passwordField.setToolTipText("Password");
+		
+		passwordField.setFont(new Font("Georgia", Font.ITALIC, 15));
+		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordField.setForeground(Color.GRAY);
+		passwordField.setBounds(481, 285, 190, 40);
+		frmUntitledGaming.getContentPane().add(passwordField);
+		
 
         button = new JButton("");
         button.setIcon(new ImageIcon("/img/back_icon.png"));
