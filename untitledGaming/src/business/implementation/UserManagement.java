@@ -10,6 +10,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.Date;
 import java.util.zip.DataFormatException;
@@ -17,7 +18,19 @@ import java.util.zip.DataFormatException;
 public class UserManagement {
 
     /* Insert the user data into the DB */
-    public boolean newUser(String user, String password, String nome, String cognome, String email, String tipo) throws SQLException {
+    public static boolean newUser(String user, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
+
+        // Convert the date string to a  java.sql.Date format
+        java.sql.Date date = null;
+        try {
+            date = DBManager.stringToDate(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // Check if one of the fields is empty
+        if (user.isEmpty() || password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || dateString.isEmpty())
+            return false;
 
         // Check if the username is already registered
         if (business.implementation.DBManager.checkUsername(user))
@@ -36,8 +49,8 @@ public class UserManagement {
         password = business.implementation.DBManager.hashPassword(password);
 
         String insertTableSQL = "INSERT INTO utente"
-                + "(username, password, nome, cognome, email, tipo) VALUES"
-                + "(?,?,?,?,?,?)";
+                + "(username, password, nome, cognome, email, data_di_nascita, tipo) VALUES"
+                + "(?,?,?,?,?,?,?)";
 
         // Insert the values into the DB
         try {
@@ -48,7 +61,8 @@ public class UserManagement {
             preparedStatement.setString(3, nome);
             preparedStatement.setString(4, cognome);
             preparedStatement.setString(5, email);
-            preparedStatement.setString(6, tipo);
+            preparedStatement.setDate  (6, date);
+            preparedStatement.setString(7, tipo);
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -134,27 +148,25 @@ public class UserManagement {
     }
 
 
-
     /* Edit login info */
     public boolean setUtente(Utente utente, String nome, String cognome, String data, String email, String password, String newUsername) throws SQLException {
 
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        java.sql.Date AAA = utente.getData();
-        String text = formatter.format(AAA);
-        System.out.println(text);
+        DateFormat    formatter = new SimpleDateFormat("yyyy-MM-dd");
+        java.sql.Date tempDate  = utente.getData();
+        String        text      = formatter.format(tempDate);
+        Date          myDate    = null;
 
-        if (nome.isEmpty()) nome = utente.getNome();
-        if (cognome.isEmpty()) cognome = utente.getCognome();
-        if (data.isEmpty()) data = text;
-        if (email.isEmpty()) email = utente.getEmail();
-        if (password.isEmpty()) password = utente.getPassword();
-        if (newUsername.isEmpty()) newUsername = utente.getUsername();
+        if (nome.isEmpty())          nome        = utente.getNome();
+        if (cognome.isEmpty())       cognome     = utente.getCognome();
+        if (data.isEmpty())          data        = text;
+        if (email.isEmpty())         email       = utente.getEmail();
+        if (password.isEmpty())      password    = utente.getPassword();
+        if (newUsername.isEmpty())   newUsername = utente.getUsername();
 
+        // Check if the fields are empty
         if (nome.isEmpty() && cognome.isEmpty() && data.isEmpty() && email.isEmpty() && password.isEmpty() && newUsername.isEmpty())
             return false;
 
-
-        Date myDate = null;
         try {
             myDate = formatter.parse(data);
         } catch (ParseException e) {
@@ -165,7 +177,7 @@ public class UserManagement {
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-               // Query
+        // Query
         String approveReview = "UPDATE utente \n" +
                 "SET nome = ?, \n" +
                 " cognome = ?, \n" +
@@ -173,12 +185,9 @@ public class UserManagement {
                 "email = ?, \n " +
                 "password = ?, \n " +
                 "username = ? " +
-
                 "WHERE user_id = ?";
 
         PreparedStatement preparedStatement = null;
-
-
 
         // Insert the values into the DB
         try {
@@ -191,6 +200,7 @@ public class UserManagement {
             preparedStatement.setString(5, password);
             preparedStatement.setString(6, newUsername);
             preparedStatement.setInt(7, utente.getUserId());
+
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
             0 for SQL statements that return nothing
@@ -217,9 +227,9 @@ public class UserManagement {
 
     /* Add xp to a user */
     public boolean addXp(Utente utente, int xP) throws SQLException {
+
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
-
 
         // Query
         String addXP = "UPDATE game_profile SET `punti_esperienza` = game_profile.punti_esperienza + ? "
@@ -233,7 +243,6 @@ public class UserManagement {
 
             preparedStatement.setInt(1, xP);
             preparedStatement.setInt(2, utente.getUserId());
-
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -261,6 +270,7 @@ public class UserManagement {
 
     /*Get the list of games */
     public TableModel getGames() throws SQLException {
+
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 

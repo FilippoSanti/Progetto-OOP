@@ -17,7 +17,7 @@ public class registration {
     private JTextField txtNickname;
     private JTextField txtCognome;
     private JTextField txtEmil;
-    private JTextField txtEta;
+    private JTextField txtDate;
     private JButton button;
 
     /* Create the application */
@@ -92,7 +92,7 @@ public class registration {
                         frmUntitledGaming.dispose();
                         try {
                             addUtente(txtNickname.getText(), txtNome.getText(), txtCognome.getText(), passText,
-                                    txtEmil.getText(), "user");
+                                    txtEmil.getText(), txtDate.getText(),"user");
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }
@@ -215,35 +215,35 @@ public class registration {
             }
         });
 
-        txtEta = new JTextField();
-        txtEta.setToolTipText("Et\u00E0");
+        txtDate = new JTextField();
+        txtDate.setToolTipText("Data di nascita");
 
         //listen for focus
-        txtEta.addFocusListener(new FocusListener() {
+        txtDate.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				txtEta.setText("");
+				txtDate.setText("");
 			}
 			public void focusLost (FocusEvent e){
-				if (txtEta.getText().isEmpty())
-					txtEta.setText("Et\u00E0");
+				if (txtDate.getText().isEmpty())
+					txtDate.setText("Data di nascita");
 			}
 		});
 		
-        txtEta.setFont(new Font("Georgia", Font.ITALIC, 15));
-        txtEta.setForeground(Color.GRAY);
-        txtEta.setText("Et\u00E0");
-        txtEta.setHorizontalAlignment(SwingConstants.CENTER);
-        txtEta.setBounds(91, 285, 190, 40);
-        frmUntitledGaming.getContentPane().add(txtEta);
-        txtEta.setColumns(10);
+        txtDate.setFont(new Font("Georgia", Font.ITALIC, 15));
+        txtDate.setForeground(Color.GRAY);
+        txtDate.setText("Data di nascita");
+        txtDate.setHorizontalAlignment(SwingConstants.CENTER);
+        txtDate.setBounds(91, 285, 190, 40);
+        frmUntitledGaming.getContentPane().add(txtDate);
+        txtDate.setColumns(10);
 
         // Listen for focus
-        txtEta.addFocusListener(new FocusListener() {
+        txtDate.addFocusListener(new FocusListener() {
 
             @Override
             // Empty the text field when it receives focus
             public void focusGained(FocusEvent e) {
-                txtEta.setText(null);
+                txtDate.setText(null);
             }
 
             @Override

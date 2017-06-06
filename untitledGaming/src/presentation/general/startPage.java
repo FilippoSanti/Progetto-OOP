@@ -86,7 +86,6 @@ public class startPage {
                     // Check if the login was successful
                     if (eventsListener.userAuth(txtUsername.getText(), passText)) {
 
-
                         Utente utente = eventsListener.getUtente(txtUsername.getText());
                         eventsListener.changePage("logged", utente);
                         frmUntitledGaming.dispose();

@@ -1,6 +1,12 @@
 package business.implementation;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class DBManager {
 
@@ -101,5 +107,16 @@ public class DBManager {
         if(rs.next()) {
             return true;
         }  return false;
+    }
+
+    /* Convert a string to a java.sql.date format */
+    public static java.sql.Date stringToDate (String dateString) throws ParseException {
+
+        // Date format
+        DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+        java.util.Date date  = formatter.parse(dateString);
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        return sqlDate;
     }
 }
