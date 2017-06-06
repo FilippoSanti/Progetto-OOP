@@ -16,6 +16,13 @@ public class approveComment {
 	private JFrame frmUntitledGaming;
 
 	/**
+	 * Create the application.
+	 */
+	public approveComment() {
+		initialize();
+	}
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -32,13 +39,6 @@ public class approveComment {
 	}
 
 	/**
-	 * Create the application.
-	 */
-	public approveComment() {
-		initialize();
-	}
-
-	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
@@ -48,6 +48,7 @@ public class approveComment {
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
+		frmUntitledGaming.setLocationRelativeTo(null);
 		
 		JButton btnApprovaCommento = new JButton("Approva Commento");
 		btnApprovaCommento.setToolTipText("Invia Recensione");

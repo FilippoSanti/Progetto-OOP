@@ -15,10 +15,10 @@ import static java.sql.Types.NULL;
 
 
 public class startPage {
+    Utente utente = null;
     private JFrame frmUntitledGaming;
     private JTextField txtUsername;
     private JPasswordField passwordField;
-    Utente utente = null;
     /* Create the application */
     public startPage() {
 
@@ -33,9 +33,11 @@ public class startPage {
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
         frmUntitledGaming.setTitle("Untitled Gaming");
         frmUntitledGaming.setResizable(false);
+
         frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
+        frmUntitledGaming.setLocationRelativeTo(null);
 
         JLabel lblNewLabel = new JLabel("Untitled Gaming");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -82,7 +84,6 @@ public class startPage {
 
                     // Check if the login was successful
                     if (eventsListener.userAuth(txtUsername.getText(), passText)) {
-
                         Utente utente = eventsListener.getUtente(txtUsername.getText());
                         eventsListener.changePage("logged", utente);
                         frmUntitledGaming.dispose();

@@ -14,7 +14,7 @@ public final class MainPanel extends JPanel {
         //PI Diagona Icons Pack 1.0 - Download Royalty Free Icons and Stock Images For Web & Graphics Design
         //http://www.freeiconsdownload.com/Free_Downloads.asp?id=60  [fatto, salvato sul desktop]
         ImageIcon defaultIcon = new ImageIcon(getClass().getResource(/*"31g.png"*/ "C:\\Users\\Filippo S\\Desktop\\src\\src\\java\\exmple\\31g.png"));  //C:\Users\Filippo S\Desktop\src\src\java\example\31g.png
-        ImageProducer ip = defaultIcon.getImage().getSource("C:\\Users\\Filippo S\\Desktop\\pi_diagona_pack\\01\\16\\31.png");                     //C:\Users\Filippo S\Desktop\pi_diagona_pack\01\16\31.png
+        ImageProducer ip = defaultIcon.getImage().getSource();                     //C:\Users\Filippo S\Desktop\pi_diagona_pack\01\16\31.png
 
         // 1
         List<ImageIcon> list = Arrays.asList(

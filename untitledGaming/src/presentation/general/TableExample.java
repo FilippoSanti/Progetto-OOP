@@ -4,16 +4,15 @@ package presentation.general;
  * Created by Davide on 04/06/2017.
  */
 
-        import controller.eventsListener;
+import controller.eventsListener;
 
-        import javax.swing.JFrame;
-        import javax.swing.JScrollPane;
-        import javax.swing.JTable;
-        import javax.swing.SwingUtilities;
-        import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import java.sql.SQLException;
 
-public class TableExample extends JFrame
-{
+public class TableExample extends JFrame {
     public TableExample() throws SQLException {
 
         //CLASSE DI ESEMPIO PER VISUALIZZARE I TABLEMODEL
@@ -30,8 +29,7 @@ public class TableExample extends JFrame
         this.setVisible(true);
     }
 
-    public static void main(String[] args)throws SQLException
-    {
+    public static void main(String[] args) throws SQLException {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

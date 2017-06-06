@@ -19,7 +19,7 @@ import java.util.Date;
 public class eventsListener {
 
     /* Get a user id from a username */
-    public static int getUserID (String user) throws SQLException {
+    public static int getUserID(String user) throws SQLException {
 
         // User id that will be returned
         int userID = 0;
@@ -40,7 +40,7 @@ public class eventsListener {
         return userID;
     }
 
-    public static void newUser (String username, String nome, String cognome, String password, String email, String date, String tipo)throws SQLException{
+    public static void newUser(String username, String nome, String cognome, String password, String email, String date, String tipo) throws SQLException {
 
         if (business.implementation.UserManagement.newUser(username, nome, cognome, password, email, date, tipo)) {
             JOptionPane.showMessageDialog(null, "Utente aggiunto correttamente.");
@@ -50,25 +50,25 @@ public class eventsListener {
 
     }
 
-    public static Utente getUtente (String username) throws SQLException {
+    public static Utente getUtente(String username) throws SQLException {
         return new UserManagement().getUtente(username);
     }
 
     public static boolean setUtente(Utente utente, String nome, String cognome, String date, String email, String password, String newUsername)
-             throws SQLException {
+            throws SQLException {
 
 
         return new UserManagement().setUtente(utente, nome, cognome, date, email, password, newUsername);
     }
 
-    public static void addReview (Utente utente, String review, double vote) throws SQLException {
+    public static void addReview(Utente utente, String review, double vote) throws SQLException {
         if (new ReviewManagement().newReview(utente, review, vote)) {
             JOptionPane.showMessageDialog(null, "Review aggiunta correttamente.");
         }
 
     }
 
-    public static Review getReview (int user_id) throws SQLException {
+    public static Review getReview(int user_id) throws SQLException {
         return new ReviewManagement().getReview(user_id);
     }
 
@@ -76,11 +76,11 @@ public class eventsListener {
         return new ReviewManagement().getPendingReviews();
     }
 
-    public static TableModel getApprovedReviews () throws SQLException {
+    public static TableModel getApprovedReviews() throws SQLException {
         return new ReviewManagement().getApprovedReviews();
     }
 
-    public static boolean approveReview (Review review) throws SQLException {
+    public static boolean approveReview(Review review) throws SQLException {
         return new business.implementation.ReviewManagement().approveReview(review);
     }
 
@@ -88,25 +88,24 @@ public class eventsListener {
         return new business.implementation.UserManagement().addXp(utente, xP);
     }
 
-    public static boolean addLivello (gameProfile gameProfile) throws SQLException {
+    public static boolean addLivello(gameProfile gameProfile) throws SQLException {
         return new business.implementation.UserManagement().addLivello(gameProfile);
     }
 
-    public static void checkLivello (gameProfile gameProfile) throws SQLException {
+    public static void checkLivello(gameProfile gameProfile) throws SQLException {
         new business.implementation.UserManagement().checkLivello(gameProfile);
     }
 
-    public static TableModel getGames () throws SQLException {
+    public static TableModel getGames() throws SQLException {
         return new business.implementation.UserManagement().getGames();
     }
 
-    public static gameProfile getGameProfile (int user_id) throws SQLException
-    {
+    public static gameProfile getGameProfile(int user_id) throws SQLException {
         return new business.implementation.UserManagement().getGameProfile(user_id);
     }
 
     /* User authentication */
-    public static boolean userAuth(String username, String password) throws SQLException{
+    public static boolean userAuth(String username, String password) throws SQLException {
 
         // Get the user_id given the username
         int userID = getUserID(username);
@@ -135,7 +134,7 @@ public class eventsListener {
     }
 
     /* Get the game list */
-    public static ArrayList<String> getGame () throws SQLException {
+    public static ArrayList<String> getGame() throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -159,13 +158,13 @@ public class eventsListener {
         return gameList;
     }
 
-    public static void tossTheCoin (Utente utente) throws SQLException {
-        new business.implementation.UserManagement().tossTheCoin (utente);
+    public static void tossTheCoin(Utente utente) throws SQLException {
+        new business.implementation.UserManagement().tossTheCoin(utente);
     }
 
     /* Change the current JFrame */
-    public static void changePage (String page, Utente utente) {
-        switch (page){
+    public static void changePage(String page, Utente utente) {
+        switch (page) {
             case "startPage":
                 new startPage();
                 break;

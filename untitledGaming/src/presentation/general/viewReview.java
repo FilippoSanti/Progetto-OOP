@@ -13,9 +13,8 @@ import java.awt.event.ActionListener;
 // TODO: Add start rating
 public class viewReview {
 
-	private JFrame frmUntitledGaming;
-
 	Utente utente = null;
+	private JFrame frmUntitledGaming;
 
 	public viewReview(Utente c) {
 		this.utente = c;
@@ -33,6 +32,7 @@ public class viewReview {
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
+		frmUntitledGaming.setLocationRelativeTo(null);
 
 		JLabel lblValutaQuestoGioco = new JLabel("La Tua Recensione:");
 		lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);

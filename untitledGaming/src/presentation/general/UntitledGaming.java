@@ -3,7 +3,7 @@ package presentation.general;
 public class UntitledGaming {
 
     /* Avvio.*/
-    private static void avvio(){
+    private static void avvio() {
         new startPage();
     }
 
@@ -12,5 +12,3 @@ public class UntitledGaming {
         avvio();
     }
 }
-
-

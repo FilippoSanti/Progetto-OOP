@@ -1,19 +1,26 @@
-import java.awt.EventQueue;
+package presentation.general;
+
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
 public class achievementsList {
 
 	private JFrame frmUntitledGaming;
+
+	/**
+	 * Create the application.
+	 */
+	public achievementsList() {
+		initialize();
+	}
 
 	/**
 	 * Launch the application.
@@ -32,22 +39,17 @@ public class achievementsList {
 	}
 
 	/**
-	 * Create the application.
-	 */
-	public achievementsList() {
-		initialize();
-	}
-
-	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frmUntitledGaming = new JFrame();
 		frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Achievements");
 		frmUntitledGaming.setResizable(false);
-		frmUntitledGaming.setBounds(100, 100, 950, 700);
+
+		frmUntitledGaming.setBounds(100, 100,950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
+        frmUntitledGaming.setLocationRelativeTo(null);
 		
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back-icon.png"));

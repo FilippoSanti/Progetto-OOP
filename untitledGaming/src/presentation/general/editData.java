@@ -15,6 +15,7 @@ import java.sql.SQLException;
 
 public class editData {
 
+    Utente utente = null;
     private JFrame         frmUntitledGaming;
     private JButton        button;
     private JTextField     textField;
@@ -24,8 +25,6 @@ public class editData {
     private JTextField     textField_3;
     private JTextField     textField_4;
     private JLabel         lblModificaITuoi;
-
-    Utente utente = null;
     public editData(Utente c) {
 
         this.utente = c;
@@ -62,6 +61,7 @@ public class editData {
         frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
+        frmUntitledGaming.setLocationRelativeTo(null);
 
         lblModificaITuoi = new JLabel("Modifica i Tuoi Dati:");
         lblModificaITuoi.setHorizontalAlignment(SwingConstants.CENTER);
