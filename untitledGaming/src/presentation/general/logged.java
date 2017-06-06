@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 
 public class logged {
 
-	private JFrame frmUntitledGaming;
     Utente utente = null;
+	private JFrame frmUntitledGaming;
 	/* Create the application */
 	public logged(Utente c) {
 		this.utente = c;
@@ -29,6 +29,7 @@ public class logged {
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
+		frmUntitledGaming.setLocationRelativeTo(null);
 
 		JLabel label = new JLabel("");
 		label.setBounds(0, 0, 46, 14);

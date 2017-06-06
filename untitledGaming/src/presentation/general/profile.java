@@ -15,9 +15,8 @@ import static javax.swing.text.html.HTML.Tag.HEAD;
 
 public class profile {
 
-	private JFrame frmUntitledGaming;
-
 	Utente utente = null;
+	private JFrame frmUntitledGaming;
 
 	/* Create the application */
 	public profile(Utente c) {
@@ -37,6 +36,7 @@ public class profile {
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
+		frmUntitledGaming.setLocationRelativeTo(null);
 
 		JLabel lblIlTuoProfilo = new JLabel("Il Tuo Profilo");
 		lblIlTuoProfilo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -143,6 +143,7 @@ public class profile {
 
 
 
+<<<<<<< HEAD
 		try {
 			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
             String stringalv = Integer.toString(livello);
@@ -151,6 +152,23 @@ public class profile {
 			lblNewLabel_12.setFont(new Font("Georgia", Font.ITALIC, 17));
 			lblNewLabel_12.setBounds(230, 367, 60, 30);
 			frmUntitledGaming.getContentPane().add(lblNewLabel_12);
+=======
+
+		JLabel lblNewLabel_11 = new JLabel("999");
+		lblNewLabel_11.setForeground(Color.DARK_GRAY);
+		lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 17));
+		lblNewLabel_11.setBounds(230, 367, 60, 30);
+		frmUntitledGaming.getContentPane().add(lblNewLabel_11);
+
+		try {
+			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
+            String stringalv = Integer.toString(livello);
+			lblNewLabel_11 = new JLabel(stringalv);
+			lblNewLabel_11.setForeground(Color.DARK_GRAY);
+			lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 17));
+			lblNewLabel_11.setBounds(230, 367, 60, 30);
+			frmUntitledGaming.getContentPane().add(lblNewLabel_11);
+>>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
 
 		} catch (SQLException e) {
 			e.printStackTrace();

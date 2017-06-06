@@ -1,19 +1,25 @@
 package presentation.general;
 
+<<<<<<< HEAD
 import business.model.Utente;
 
 import java.awt.EventQueue;
+=======
+import java.awt.*;
+>>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+=======
+>>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
@@ -21,6 +27,7 @@ public class achievementsList {
 
 	private JFrame frmUntitledGaming;
 
+<<<<<<< HEAD
 Utente utente;
 
 	/**
@@ -33,6 +40,32 @@ Utente utente;
 	}
 
 	/**
+=======
+	/**
+	 * Create the application.
+	 */
+	public achievementsList() {
+		initialize();
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					achievementsList window = new achievementsList();
+					window.frmUntitledGaming.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+>>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
@@ -40,9 +73,11 @@ Utente utente;
 		frmUntitledGaming.setVisible(true);
 		frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Achievements");
 		frmUntitledGaming.setResizable(false);
-		frmUntitledGaming.setBounds(100, 100, 950, 700);
+
+		frmUntitledGaming.setBounds(100, 100,950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
+        frmUntitledGaming.setLocationRelativeTo(null);
 		
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back-icon.png"));

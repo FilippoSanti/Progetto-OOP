@@ -14,6 +14,13 @@ public class gameList {
 	private JFrame frmUntitledGaming;
 
 	/**
+	 * Create the application.
+	 */
+	public gameList() {
+		initialize();
+	}
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -30,13 +37,6 @@ public class gameList {
 	}
 
 	/**
-	 * Create the application.
-	 */
-	public gameList() {
-		initialize();
-	}
-
-	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
@@ -46,6 +46,7 @@ public class gameList {
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
+		frmUntitledGaming.setLocationRelativeTo(null);
 		
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back-icon.png"));

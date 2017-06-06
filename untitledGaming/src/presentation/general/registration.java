@@ -40,6 +40,7 @@ public class registration {
         frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
+        frmUntitledGaming.setLocationRelativeTo(null);
 
         JLabel lblNewLabel = new JLabel("Registrati Qui!");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

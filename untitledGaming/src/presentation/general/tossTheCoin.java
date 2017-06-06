@@ -12,6 +12,7 @@ public class tossTheCoin {
 
     private JFrame frmUntitledGaming;
     Utente utente = null;
+
     /* Create the application */
     public tossTheCoin(Utente c) {
         this.utente = c;
@@ -28,6 +29,7 @@ public class tossTheCoin {
         frmUntitledGaming.setBounds(100, 100, 750, 500);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
+        frmUntitledGaming.setLocationRelativeTo(null);
 
         JLabel label = new JLabel("");
         label.setBounds(0, 0, 46, 14);
@@ -58,8 +60,7 @@ public class tossTheCoin {
         btnLogOut.setBounds(587, 58, 85, 23);
         frmUntitledGaming.getContentPane().add(btnLogOut);
 
-        btnLogOut.addActionListener(new ActionListener()
-        {
+        btnLogOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
                 controller.eventsListener.changePage("logged", utente);
@@ -73,8 +74,7 @@ public class tossTheCoin {
         btnGiocaOra.setBounds(452, 320, 193, 64);
         frmUntitledGaming.getContentPane().add(btnGiocaOra);
 
-        btnGiocaOra.addActionListener(new ActionListener()
-        {
+        btnGiocaOra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try {

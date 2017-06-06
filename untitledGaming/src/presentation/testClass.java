@@ -10,11 +10,7 @@ public class testClass {
 
     public static void main(String[] args) throws SQLException {
 
-
-
-
-
-        controller.eventsListener.approveReview(eventsListener.getReview(17));
+        // all done
 
     }
 }
