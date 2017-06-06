@@ -334,7 +334,7 @@ public class UserManagement {
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement(
                 "SELECT gioco_id, \n" +
-                        "       nome, \n" +
+                        "       nome \n" +
 
                         "FROM   gioco \n ");
 

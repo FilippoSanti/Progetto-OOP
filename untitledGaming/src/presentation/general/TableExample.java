@@ -18,8 +18,8 @@ public class TableExample extends JFrame {
         //CLASSE DI ESEMPIO PER VISUALIZZARE I TABLEMODEL
 
         //inserire tablemodel qui
-        JTable table = new JTable(eventsListener.getPendingReviews());
-
+        JTable table = new JTable(eventsListener.getGames());
+        System.out.println(table.getValueAt(0,1));
         //add the table to the frame
         this.add(new JScrollPane(table));
 

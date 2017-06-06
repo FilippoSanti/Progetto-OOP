@@ -111,11 +111,14 @@ public class logged {
 		btnGiocaOra.setBounds(564, 454, 250, 65);
 		frmUntitledGaming.getContentPane().add(btnGiocaOra);
 
-		btnGiocaOra.addActionListener(new ActionListener() {
+		btnGiocaOra.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
-				eventsListener.changePage("tossTheCoin", utente);
+				controller.eventsListener.changePage("allGames", utente);
+
 			}
 		});
+
 	}
 }

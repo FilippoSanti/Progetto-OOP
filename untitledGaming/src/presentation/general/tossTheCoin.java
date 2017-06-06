@@ -63,7 +63,7 @@ public class tossTheCoin {
         btnLogOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("logged", utente);
+                controller.eventsListener.changePage("allGames", utente);
             }
         });
 

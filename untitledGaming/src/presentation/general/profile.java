@@ -131,16 +131,6 @@ public class profile {
 
 		btnNewButton.setBounds(162, 576, 185, 37);
 		frmUntitledGaming.getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e) {
-				frmUntitledGaming.dispose();
-				controller.eventsListener.changePage("allGames", utente);
-
-			}
-		});
-
-
 
 
 		try {
