@@ -1,6 +1,7 @@
 package presentation.general;
 
 import business.model.Utente;
+import controller.eventsListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -107,5 +108,12 @@ public class logged {
 		btnGiocaOra.setFont(new Font("MV Boli", Font.ITALIC, 17));
 		btnGiocaOra.setBounds(452, 320, 193, 64);
 		frmUntitledGaming.getContentPane().add(btnGiocaOra);
+
+		btnGiocaOra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				eventsListener.changePage("tossTheCoin", utente);
+			}
+		});
 	}
 }

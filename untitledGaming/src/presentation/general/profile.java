@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import static controller.eventsListener.addUtente;
+
 
 public class profile {
 
@@ -134,11 +134,19 @@ public class profile {
 		btnNewButton.setBounds(144, 402, 145, 37);
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 
-		JLabel lblNewLabel_11 = new JLabel("999");
-		lblNewLabel_11.setForeground(Color.DARK_GRAY);
-		lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 11));
-		lblNewLabel_11.setBounds(194, 264, 46, 14);
-		frmUntitledGaming.getContentPane().add(lblNewLabel_11);
+		try {
+			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
+            String stringalv = Integer.toString(livello);
+			JLabel lblNewLabel_11 = new JLabel(stringalv);
+			lblNewLabel_11.setForeground(Color.DARK_GRAY);
+			lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 11));
+			lblNewLabel_11.setBounds(194, 264, 46, 14);
+			frmUntitledGaming.getContentPane().add(lblNewLabel_11);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.GREEN);
@@ -191,13 +199,24 @@ public class profile {
 			}
 		});
 
-		JLabel label = new JLabel("999999");
-		label.setToolTipText("XP point");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.DARK_GRAY);
-		label.setFont(new Font("Georgia", Font.ITALIC, 11));
-		label.setBounds(369, 297, 57, 16);
-		frmUntitledGaming.getContentPane().add(label);
+		int livello = 0;
+		try {
+			int xp = eventsListener.getGameProfile(utente.getUserId()).getEsperienza();
+			String stringaxp = Integer.toString(xp);
+
+			JLabel label = new JLabel(stringaxp);
+			label.setToolTipText("XP point");
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setForeground(Color.DARK_GRAY);
+			label.setFont(new Font("Georgia", Font.ITALIC, 11));
+			label.setBounds(369, 297, 57, 16);
+			frmUntitledGaming.getContentPane().add(label);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+
 
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setToolTipText("Go back");

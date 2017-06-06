@@ -2,9 +2,11 @@ package business.implementation;
 
 import business.model.Utente;
 import business.model.gameProfile;
+import controller.eventsListener;
 import net.proteanit.sql.DbUtils;
 import sun.util.calendar.LocalGregorianCalendar;
 
+import javax.swing.*;
 import javax.swing.table.TableModel;
 import java.sql.*;
 import java.text.DateFormat;
@@ -132,7 +134,7 @@ public class UserManagement {
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement("SELECT * \n" +
-                "FROM   `profilo_di_gioco` \n" +
+                "FROM   `game_profile` \n" +
                 "WHERE  user_id = ? ");
 
         stmt.setInt(1, userId);
@@ -268,6 +270,61 @@ public class UserManagement {
 
     }
 
+    public boolean addLivello (gameProfile gameProfile) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Query
+        String addLVL = "UPDATE game_profile SET `livello` = game_profile.livello + ? "
+                + "WHERE `user_id` = ?";
+
+        PreparedStatement preparedStatement = null;
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(addLVL);
+
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(2, gameProfile.getUserId());
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+            0 for SQL statements that return nothing
+            */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+
+    }
+
+    public void checkLivello (gameProfile gameProfile) throws SQLException {
+        if (gameProfile.getEsperienza() >= 100 && gameProfile.getLivello() == 1) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 2");}
+
+        else if (gameProfile.getEsperienza() >= 250 && gameProfile.getLivello() == 2) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 3");}
+
+        else if (gameProfile.getEsperienza() >= 450 && gameProfile.getLivello() == 3) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 4");}
+
+        else if (gameProfile.getEsperienza() >= 700 && gameProfile.getLivello() == 1) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 5");}
+    }
+
     /*Get the list of games */
     public TableModel getGames() throws SQLException {
 
@@ -285,5 +342,27 @@ public class UserManagement {
         TableModel tm = DbUtils.resultSetToTableModel(rs);
 
         return tm;
+    }
+
+    public void tossTheCoin (Utente utente) throws SQLException
+    {
+        Random randomNum = new Random();
+        int result = randomNum.nextInt(2);
+
+        if (result == 0) {
+            JOptionPane.showMessageDialog(null, "You flipped Head! Gain 30 xP");
+
+            eventsListener.addXP(utente, 30);
+            eventsListener.checkLivello(getGameProfile(utente.getUserId()));
+
+        }
+
+        if (result == 1) {
+            JOptionPane.showMessageDialog(null, "you flipped Tail! Lose 20 xP");
+            eventsListener.addXP(utente, -20);
+        }
+
+
+
     }
 }

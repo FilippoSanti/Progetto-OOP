@@ -4,6 +4,7 @@ import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Review;
 import business.model.Utente;
+import business.model.gameProfile;
 import presentation.general.*;
 
 import javax.swing.*;
@@ -39,7 +40,7 @@ public class eventsListener {
         return userID;
     }
 
-    public static void addUtente (String username, String nome, String cognome, String password, String email, String date, String tipo)throws SQLException{
+    public static void newUser (String username, String nome, String cognome, String password, String email, String date, String tipo)throws SQLException{
 
         if (business.implementation.UserManagement.newUser(username, nome, cognome, password, email, date, tipo)) {
             JOptionPane.showMessageDialog(null, "Utente aggiunto correttamente.");
@@ -87,8 +88,21 @@ public class eventsListener {
         return new business.implementation.UserManagement().addXp(utente, xP);
     }
 
+    public static boolean addLivello (gameProfile gameProfile) throws SQLException {
+        return new business.implementation.UserManagement().addLivello(gameProfile);
+    }
+
+    public static void checkLivello (gameProfile gameProfile) throws SQLException {
+        new business.implementation.UserManagement().checkLivello(gameProfile);
+    }
+
     public static TableModel getGames () throws SQLException {
         return new business.implementation.UserManagement().getGames();
+    }
+
+    public static gameProfile getGameProfile (int user_id) throws SQLException
+    {
+        return new business.implementation.UserManagement().getGameProfile(user_id);
     }
 
     /* User authentication */
@@ -145,6 +159,10 @@ public class eventsListener {
         return gameList;
     }
 
+    public static void tossTheCoin (Utente utente) throws SQLException {
+        new business.implementation.UserManagement().tossTheCoin (utente);
+    }
+
     /* Change the current JFrame */
     public static void changePage (String page, Utente utente) {
         switch (page){
@@ -170,6 +188,10 @@ public class eventsListener {
 
             case "editData":
                 new editData(utente);
+                break;
+
+            case "tossTheCoin":
+                new tossTheCoin(utente);
                 break;
         }
     }

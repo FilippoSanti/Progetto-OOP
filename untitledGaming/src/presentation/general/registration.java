@@ -1,13 +1,16 @@
 package presentation.general;
 
+import controller.eventsListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 
 
-import static controller.eventsListener.addUtente;
+import static controller.eventsListener.newUser;
 import static controller.eventsListener.changePage;
+
 
 public class registration {
 
@@ -83,26 +86,24 @@ public class registration {
 
         JButton btnNewButton = new JButton("Registrati");
         btnNewButton.setToolTipText("Registrati");
-        btnNewButton.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent arg0) {
-                btnNewButton.addActionListener(new ActionListener() {
-                    String passText = new String(passwordField.getPassword());
 
-                    public void actionPerformed(ActionEvent e) {
-                        frmUntitledGaming.dispose();
-                        try {
-                            addUtente(txtNickname.getText(), txtNome.getText(), txtCognome.getText(), passText,
-                                    txtEmil.getText(), txtDate.getText(),"user");
-                        } catch (SQLException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                });
-            }
-        });
         btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 14));
         btnNewButton.setBounds(299, 377, 133, 37);
         frmUntitledGaming.getContentPane().add(btnNewButton);
+
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.dispose();
+                try {
+                    String passText = new String(passwordField.getPassword());
+                    newUser(txtNickname.getText(), txtNome.getText(), txtCognome.getText(), passText,
+                            txtEmil.getText(), txtDate.getText(),"user");
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
 
         txtNickname = new JTextField();
         txtNickname.setToolTipText("Username");

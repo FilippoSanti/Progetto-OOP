@@ -90,7 +90,7 @@ INSERT INTO `game_profile` (`game_profile_id`, `user_id`, `livello`, `punti_espe
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `gioco`
+-- Struttura della tabella `tossTheCoin`
 --
 
 CREATE TABLE `gioco` (
@@ -99,7 +99,7 @@ CREATE TABLE `gioco` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `gioco`
+-- Dump dei dati per la tabella `tossTheCoin`
 --
 
 INSERT INTO `gioco` (`gioco_id`, `nome`) VALUES
@@ -208,7 +208,7 @@ ALTER TABLE `game_profile`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indici per le tabelle `gioco`
+-- Indici per le tabelle `tossTheCoin`
 --
 ALTER TABLE `gioco`
   ADD PRIMARY KEY (`gioco_id`);
@@ -254,7 +254,7 @@ ALTER TABLE `achievement_ottenuti`
 ALTER TABLE `game_profile`
   MODIFY `game_profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `gioco`
+-- AUTO_INCREMENT per la tabella `tossTheCoin`
 --
 ALTER TABLE `gioco`
   MODIFY `gioco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;

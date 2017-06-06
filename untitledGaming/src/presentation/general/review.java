@@ -33,7 +33,7 @@ public class review extends starRating {
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
 
-        JLabel lblValutaQuestoGioco = new JLabel("Valuta questo gioco:");
+        JLabel lblValutaQuestoGioco = new JLabel("Valuta questo tossTheCoin:");
         lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);
         lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.CENTER);
         lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 20));
