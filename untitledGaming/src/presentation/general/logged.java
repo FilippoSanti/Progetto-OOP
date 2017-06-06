@@ -18,6 +18,7 @@ public class logged {
 		initialize();
 	}
 
+
 	/* Initialize the contents of the frame*/
 	private void initialize() {
 		frmUntitledGaming = new JFrame();
@@ -25,7 +26,7 @@ public class logged {
 
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setTitle("Untitled Gaming - Username!");
-		frmUntitledGaming.setBounds(100, 100, 750, 500);
+		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
 
@@ -35,26 +36,26 @@ public class logged {
 
 		JLabel lblNewLabel = new JLabel("Hello,");
 		lblNewLabel.setForeground(Color.GRAY);
-		lblNewLabel.setFont(new Font("Oregano", Font.PLAIN, 15));
-		lblNewLabel.setBounds(559, 22, 52, 25);
+		lblNewLabel.setFont(new Font("Oregano", Font.PLAIN, 21));
+		lblNewLabel.setBounds(660, 31, 67, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 
 		JLabel lblusernameHere = new JLabel(utente.getUsername());
 		lblusernameHere.setForeground(Color.DARK_GRAY);
-		lblusernameHere.setFont(new Font("Oregano", Font.PLAIN, 15));
-		lblusernameHere.setBounds(598, 25, 126, 19);
+		lblusernameHere.setFont(new Font("Oregano", Font.PLAIN, 21));
+		lblusernameHere.setBounds(714, 32, 193, 30);
 		frmUntitledGaming.getContentPane().add(lblusernameHere);
 
 		JLabel lblNewLabel_1 = new JLabel("Untitled Gaming");
-		lblNewLabel_1.setFont(new Font("Vivaldi", Font.BOLD, 30));
+		lblNewLabel_1.setFont(new Font("Vivaldi", Font.BOLD, 40));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(0, 68, 734, 37);
+		lblNewLabel_1.setBounds(0, 84, 944, 61);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_1);
 
 		JButton btnNewButton = new JButton("Il Tuo Profilo");
 		btnNewButton.setToolTipText("Il Tuo Profilo");
-		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnNewButton.setBounds(82, 191, 174, 64);
+		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 21));
+		btnNewButton.setBounds(123, 261, 250, 65);
 
         // Go to the user profile
         btnNewButton.addActionListener(new ActionListener()
@@ -69,8 +70,8 @@ public class logged {
 
 		JButton btnNewButton_1 = new JButton("Visualizza Commenti");
 		btnNewButton_1.setToolTipText("Visualizza Commenti");
-		btnNewButton_1.setFont(new Font("MV Boli", Font.ITALIC, 16));
-		btnNewButton_1.setBounds(452, 191, 193, 64);
+		btnNewButton_1.setFont(new Font("MV Boli", Font.ITALIC, 21));
+		btnNewButton_1.setBounds(564, 261, 250, 65);
 		frmUntitledGaming.getContentPane().add(btnNewButton_1);
 
 		btnNewButton_1.addActionListener(new ActionListener()
@@ -83,8 +84,8 @@ public class logged {
 
 		JButton btnLogOut = new JButton("Log Out");
 		btnLogOut.setToolTipText("Log Out");
-		btnLogOut.setFont(new Font("MV Boli", Font.PLAIN, 12));
-		btnLogOut.setBounds(587, 58, 85, 23);
+		btnLogOut.setFont(new Font("MV Boli", Font.PLAIN, 17));
+		btnLogOut.setBounds(704, 75, 115, 30);
 		frmUntitledGaming.getContentPane().add(btnLogOut);
 
 		btnLogOut.addActionListener(new ActionListener()
@@ -97,16 +98,16 @@ public class logged {
 
 		JButton btnListaUtenti = new JButton("Lista Utenti");
 		btnListaUtenti.setEnabled(false);
-		btnListaUtenti.setToolTipText("Il Tuo Profilo");
-		btnListaUtenti.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnListaUtenti.setBounds(82, 320, 174, 64);
+		btnListaUtenti.setToolTipText("Lista Utenti");
+		btnListaUtenti.setFont(new Font("MV Boli", Font.ITALIC, 21));
+		btnListaUtenti.setBounds(123, 454, 250, 65);
 
 		frmUntitledGaming.getContentPane().add(btnListaUtenti);
 
 		JButton btnGiocaOra = new JButton("Gioca Ora");
 		btnGiocaOra.setToolTipText("Gioca Ora");
-		btnGiocaOra.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnGiocaOra.setBounds(452, 320, 193, 64);
+		btnGiocaOra.setFont(new Font("MV Boli", Font.ITALIC, 21));
+		btnGiocaOra.setBounds(564, 454, 250, 65);
 		frmUntitledGaming.getContentPane().add(btnGiocaOra);
 
 		btnGiocaOra.addActionListener(new ActionListener() {

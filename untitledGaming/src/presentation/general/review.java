@@ -29,28 +29,28 @@ public class review extends starRating {
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setTitle("Untitled Gaming - Write a review");
         frmUntitledGaming.setResizable(false);
-        frmUntitledGaming.setBounds(100, 100, 750, 500);
+        frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
 
         JLabel lblValutaQuestoGioco = new JLabel("Valuta questo tossTheCoin:");
         lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);
         lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.CENTER);
-        lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 20));
-        lblValutaQuestoGioco.setBounds(10, 60, 724, 25);
+        lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 30));
+        lblValutaQuestoGioco.setBounds(10, 48, 924, 52);
         frmUntitledGaming.getContentPane().add(lblValutaQuestoGioco);
 
         JLabel lblScriviUnCommento = new JLabel("Write a comment:");
         lblScriviUnCommento.setHorizontalAlignment(SwingConstants.CENTER);
         lblScriviUnCommento.setForeground(SystemColor.textInactiveText);
-        lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 20));
-        lblScriviUnCommento.setBounds(10, 198, 724, 25);
+        lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 30));
+        lblScriviUnCommento.setBounds(10, 229, 924, 52);
         frmUntitledGaming.getContentPane().add(lblScriviUnCommento);
 
         JEditorPane dtrpnLasciaQuIl = new JEditorPane();
         dtrpnLasciaQuIl.setToolTipText("Scrivi un commento...");
-        dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento...");
-        dtrpnLasciaQuIl.setFont(new Font("Oregano", Font.ITALIC, 17));
+        dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");
+        dtrpnLasciaQuIl.setFont(new Font("Oregano", Font.ITALIC, 25));
         dtrpnLasciaQuIl.setBackground(new Color(220, 220, 220));
         dtrpnLasciaQuIl.setBounds(89, 243, 567, 130);
         frmUntitledGaming.getContentPane().add(dtrpnLasciaQuIl);
@@ -58,11 +58,11 @@ public class review extends starRating {
         JButton btnInviaRecensione = new JButton("Invia Recensione");
         btnInviaRecensione.setToolTipText("Invia Recensione");
         btnInviaRecensione.setFont(new Font("MV Boli", Font.ITALIC, 14));
-        btnInviaRecensione.setBounds(302, 401, 141, 37);
+        btnInviaRecensione.setBounds(124, 313, 696, 223);
         frmUntitledGaming.getContentPane().add(btnInviaRecensione);
 
         JPanel panel = new JPanel();
-        panel.setBounds(89, 96, 567, 91);
+        panel.setBounds(124, 112, 696, 91);
         ImageIcon defaultIcon = new ImageIcon(getClass().getResource("img/31g.png"));
         ImageProducer ip = defaultIcon.getImage().getSource();
         List<ImageIcon>

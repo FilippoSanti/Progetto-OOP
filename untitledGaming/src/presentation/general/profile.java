@@ -33,160 +33,172 @@ public class profile {
 		frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo_untitled_gaming.png"));
 		frmUntitledGaming.setTitle("Untitled Gaming - Your Profile");
 		frmUntitledGaming.setResizable(false);
-		frmUntitledGaming.setBounds(100, 100, 750, 500);
+		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
 
 		JLabel lblIlTuoProfilo = new JLabel("Il Tuo Profilo");
 		lblIlTuoProfilo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIlTuoProfilo.setFont(new Font("Vivaldi", Font.BOLD, 30));
-		lblIlTuoProfilo.setBounds(0, 26, 734, 37);
+		lblIlTuoProfilo.setFont(new Font("Vivaldi", Font.BOLD, 40));
+		lblIlTuoProfilo.setBounds(0, 38, 944, 61);
 		frmUntitledGaming.getContentPane().add(lblIlTuoProfilo);
 
 		Panel panel = new Panel();
 		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(94, 73, 146, 143);
+		panel.setBounds(94, 116, 175, 175);
 		frmUntitledGaming.getContentPane().add(panel);
 
 		JLabel lblNewLabel = new JLabel("Nome :");
-		lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 15));
+		lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel.setForeground(Color.GRAY);
-		lblNewLabel.setBounds(387, 95, 84, 31);
+		lblNewLabel.setBounds(488, 141, 131, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Cognome :");
-		lblNewLabel_1.setFont(new Font("Georgia", Font.ITALIC, 15));
+		lblNewLabel_1.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_1.setForeground(Color.GRAY);
-		lblNewLabel_1.setBounds(387, 125, 84, 19);
+		lblNewLabel_1.setBounds(488, 171, 131, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Data di nascita :");
-		lblNewLabel_2.setFont(new Font("Georgia", Font.ITALIC, 15));
+		lblNewLabel_2.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_2.setForeground(Color.GRAY);
-		lblNewLabel_2.setBounds(387, 150, 84, 24);
+		lblNewLabel_2.setBounds(488, 202, 131, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("E-mail :");
-		lblNewLabel_3.setFont(new Font("Georgia", Font.ITALIC, 15));
+		lblNewLabel_3.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_3.setForeground(Color.GRAY);
-		lblNewLabel_3.setBounds(387, 180, 84, 19);
+		lblNewLabel_3.setBounds(488, 232, 131, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_3);
 
 		JLabel lblNewLabel_4 = new JLabel(utente.getNome());
 		lblNewLabel_4.setForeground(Color.DARK_GRAY);
-		lblNewLabel_4.setFont(new Font("Georgia", Font.ITALIC, 15));
-		lblNewLabel_4.setBounds(493, 95, 133, 31);
+		lblNewLabel_4.setFont(new Font("Georgia", Font.ITALIC, 18));
+		lblNewLabel_4.setBounds(636, 141, 183, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_4);
 
 		JLabel lblNewLabel_5 = new JLabel(utente.getCognome());
 		lblNewLabel_5.setForeground(Color.DARK_GRAY);
-		lblNewLabel_5.setFont(new Font("Georgia", Font.ITALIC, 15));
-		lblNewLabel_5.setBounds(493, 126, 133, 16);
+		lblNewLabel_5.setFont(new Font("Georgia", Font.ITALIC, 18));
+		lblNewLabel_5.setBounds(636, 172, 183, 30);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_5);
 
 		JLabel lblNewLabel_6 = new JLabel(utente.getData().toString());
 		lblNewLabel_6.setForeground(Color.DARK_GRAY);
-		lblNewLabel_6.setFont(new Font("Georgia", Font.ITALIC, 15));
-		lblNewLabel_6.setBounds(493, 150, 133, 24);
+		lblNewLabel_6.setFont(new Font("Georgia", Font.ITALIC, 18));
+		lblNewLabel_6.setBounds(636, 202, 183, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel(utente.getEmail());
 		lblNewLabel_7.setForeground(Color.DARK_GRAY);
-		lblNewLabel_7.setFont(new Font("Georgia", Font.ITALIC, 15));
-		lblNewLabel_7.setBounds(493, 180, 133, 19);
+		lblNewLabel_7.setFont(new Font("Georgia", Font.ITALIC, 18));
+		lblNewLabel_7.setBounds(636, 232, 183, 31);;
 		frmUntitledGaming.getContentPane().add(lblNewLabel_7);
 
 		JLabel lblNewLabel_8 = new JLabel("Il Tuo Livello :");
 		lblNewLabel_8.setForeground(Color.GRAY);
-		lblNewLabel_8.setFont(new Font("Georgia", Font.ITALIC, 11));
-		lblNewLabel_8.setBounds(60, 264, 124, 14);
+		lblNewLabel_8.setFont(new Font("Georgia", Font.ITALIC, 17));
+		lblNewLabel_8.setBounds(55, 367, 165, 30);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_8);
 
 		JLabel lblNewLabel_9 = new JLabel("I Tuoi Punti XP :");
 		lblNewLabel_9.setForeground(Color.GRAY);
-		lblNewLabel_9.setFont(new Font("Georgia", Font.ITALIC, 11));
-		lblNewLabel_9.setBounds(60, 299, 124, 14);
+		lblNewLabel_9.setFont(new Font("Georgia", Font.ITALIC, 17));
+		lblNewLabel_9.setBounds(55, 418, 165, 30);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_9);
 
 		JLabel lblNewLabel_10 = new JLabel("Achievements Sbloccati :");
 		lblNewLabel_10.setForeground(Color.GRAY);
-		lblNewLabel_10.setFont(new Font("Georgia", Font.ITALIC, 11));
-		lblNewLabel_10.setBounds(60, 335, 164, 14);
+		lblNewLabel_10.setFont(new Font("Georgia", Font.ITALIC, 17));
+		lblNewLabel_10.setBounds(55, 478, 210, 30);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_10);
 
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setFont(new Font("Georgia", Font.ITALIC, 11));
+		progressBar.setFont(new Font("Georgia", Font.ITALIC, 14));
 		progressBar.setStringPainted(true);
 		progressBar.setToolTipText("% XP");
 		progressBar.setForeground(Color.BLUE);
 		progressBar.setValue(75);
 		progressBar.setBackground(SystemColor.menu);
-		progressBar.setBounds(194, 299, 146, 14);
+		progressBar.setBounds(247, 427, 273, 18);
 		frmUntitledGaming.getContentPane().add(progressBar);
 
 		JButton btnNewButton = new JButton("I Tuoi Giochi");
 		btnNewButton.setToolTipText("I Tuoi Giochi");
-		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 14));
+		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 18));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(144, 402, 145, 37);
+		btnNewButton.setBounds(162, 576, 185, 37);
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 
+<<<<<<< HEAD
+		JLabel lblNewLabel_11 = new JLabel("999");
+		lblNewLabel_11.setForeground(Color.DARK_GRAY);
+		lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 17));
+		lblNewLabel_11.setBounds(230, 367, 60, 30);
+		frmUntitledGaming.getContentPane().add(lblNewLabel_11);
+=======
 		try {
 			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
             String stringalv = Integer.toString(livello);
 			JLabel lblNewLabel_11 = new JLabel(stringalv);
 			lblNewLabel_11.setForeground(Color.DARK_GRAY);
-			lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 11));
-			lblNewLabel_11.setBounds(194, 264, 46, 14);
+			lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 17));
+			lblNewLabel_11.setBounds(230, 367, 60, 30);
 			frmUntitledGaming.getContentPane().add(lblNewLabel_11);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.GREEN);
-		panel_2.setBounds(234, 330, 30, 30);
+		panel_2.setBounds(275, 468, 50, 50);
 		frmUntitledGaming.getContentPane().add(panel_2);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.CYAN);
-		panel_4.setBounds(294, 330, 30, 30);
+		panel_4.setBounds(365, 468, 50, 50);
 		frmUntitledGaming.getContentPane().add(panel_4);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(Color.PINK);
-		panel_5.setBounds(354, 330, 30, 30);
+		panel_5.setBounds(455, 468, 50, 50);
 		frmUntitledGaming.getContentPane().add(panel_5);
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(Color.ORANGE);
-		panel_6.setBounds(414, 330, 30, 30);
+		panel_6.setBounds(545, 468, 50, 50);
 		frmUntitledGaming.getContentPane().add(panel_6);
 
 		JPanel panel_7 = new JPanel();
 		panel_7.setBackground(Color.DARK_GRAY);
-		panel_7.setBounds(474, 330, 30, 30);
+		panel_7.setBounds(635, 468, 50, 50);
 		frmUntitledGaming.getContentPane().add(panel_7);
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(Color.BLUE);
-		panel_8.setBounds(534, 330, 30, 30);
+		panel_8.setBounds(725, 468, 50, 50);
 		frmUntitledGaming.getContentPane().add(panel_8);
 
 		JPanel panel_9 = new JPanel();
 		panel_9.setBackground(Color.MAGENTA);
-		panel_9.setBounds(594, 330, 30, 30);
+		panel_9.setBounds(815, 468, 50, 50);
 		frmUntitledGaming.getContentPane().add(panel_9);
+
+		JButton btnScegliImmagine = new JButton("Scegli Immagine");
+		btnScegliImmagine.setToolTipText("Scegli Immagine");
+		btnScegliImmagine.setFont(new Font("MV Boli", Font.PLAIN, 17));
+		btnScegliImmagine.setBounds(94, 309, 175, 34);
+		frmUntitledGaming.getContentPane().add(btnScegliImmagine);
 
 		JButton btnModifica = new JButton("Modifica");
 		btnModifica.setToolTipText("Modifica");
-		btnModifica.setFont(new Font("MV Boli", Font.PLAIN, 12));
-		btnModifica.setBounds(451, 216, 89, 23);
+		btnModifica.setFont(new Font("MV Boli", Font.PLAIN, 17));
+		btnModifica.setBounds(591, 294, 110, 34);
 		frmUntitledGaming.getContentPane().add(btnModifica);
 
 		btnModifica.addActionListener(new ActionListener() {
@@ -198,6 +210,7 @@ public class profile {
 
 			}
 		});
+		
 
 		int livello = 0;
 		try {
@@ -216,12 +229,10 @@ public class profile {
 		}
 
 
-
-
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setToolTipText("Go back");
 		btnNewButton_1.setIcon(new ImageIcon("img/back_icon.png"));
-		btnNewButton_1.setBounds(10, 10, 37, 31);
+		btnNewButton_1.setBounds(10, 11, 45, 45);
 
         // Go to the presentation page
         btnNewButton_1.addActionListener(new ActionListener()
@@ -236,8 +247,8 @@ public class profile {
 
 		JButton btnVisualizzaAchievements = new JButton("Visualizza Achievements");
 		btnVisualizzaAchievements.setToolTipText("Visualizza Achievements");
-		btnVisualizzaAchievements.setFont(new Font("MV Boli", Font.ITALIC, 14));
-		btnVisualizzaAchievements.setBounds(400, 402, 202, 37);
+		btnVisualizzaAchievements.setFont(new Font("MV Boli", Font.ITALIC, 18));
+		btnVisualizzaAchievements.setBounds(513, 576, 289, 37);
 		frmUntitledGaming.getContentPane().add(btnVisualizzaAchievements);
 	}
 }
