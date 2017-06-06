@@ -1,12 +1,12 @@
 package presentation.general;
 
-<<<<<<< HEAD
+
 import business.model.Utente;
 
 import java.awt.EventQueue;
-=======
+
 import java.awt.*;
->>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
+
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -14,12 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-<<<<<<< HEAD
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-=======
->>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
+
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
@@ -27,7 +26,6 @@ public class achievementsList {
 
 	private JFrame frmUntitledGaming;
 
-<<<<<<< HEAD
 Utente utente;
 
 	/**
@@ -40,7 +38,7 @@ Utente utente;
 	}
 
 	/**
-=======
+
 	/**
 	 * Create the application.
 	 */
@@ -65,7 +63,7 @@ Utente utente;
 	}
 
 	/**
->>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
+
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {

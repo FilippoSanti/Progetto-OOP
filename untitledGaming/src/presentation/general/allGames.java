@@ -19,7 +19,7 @@ public class allGames {
 
 	private JFrame frmUntitledGaming;
 
-<<<<<<< HEAD
+
 
 	Utente utente;
 
