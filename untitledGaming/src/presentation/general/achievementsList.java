@@ -1,3 +1,7 @@
+package presentation.general;
+
+import business.model.Utente;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,6 +12,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
@@ -15,27 +21,15 @@ public class achievementsList {
 
 	private JFrame frmUntitledGaming;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					achievementsList window = new achievementsList();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+Utente utente;
 
 	/**
 	 * Create the application.
 	 */
-	public achievementsList() {
+	public achievementsList(Utente c) {
+		this.utente = c;
 		initialize();
+
 	}
 
 	/**
@@ -43,6 +37,7 @@ public class achievementsList {
 	 */
 	private void initialize() {
 		frmUntitledGaming = new JFrame();
+		frmUntitledGaming.setVisible(true);
 		frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Achievements");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
@@ -54,6 +49,15 @@ public class achievementsList {
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
+
+		button.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				controller.eventsListener.changePage("profile", utente);
+
+			}
+		});
 		
 		JLabel lblListaGiochi = new JLabel("Visualizza Achievements");
 		lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);

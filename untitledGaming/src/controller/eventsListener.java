@@ -193,6 +193,14 @@ public class eventsListener {
             case "tossTheCoin":
                 new tossTheCoin(utente);
                 break;
+
+            case "achievementsList":
+                new achievementsList(utente);
+                break;
+
+            case "allGames" :
+                new allGames(utente);
+                break;
         }
     }
 }

@@ -1,4 +1,4 @@
-//-*- mode:java; encoding:utf-8 -*-
+package presentation.general;//-*- mode:java; encoding:utf-8 -*-
 //vim:set fileencoding=utf-8:
 //http://ateraimemo.com/Swing/RatingLabel.html
 import java.awt.*;
@@ -8,12 +8,14 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.*;
 
+
+/*
 public final class MainPanel extends JPanel {
     public MainPanel() {
         super(new GridLayout(2, 2, 4, 4));
         //PI Diagona Icons Pack 1.0 - Download Royalty Free Icons and Stock Images For Web & Graphics Design
         //http://www.freeiconsdownload.com/Free_Downloads.asp?id=60  [fatto, salvato sul desktop]
-        ImageIcon defaultIcon = new ImageIcon(getClass().getResource(/*"31g.png"*/ "C:\\Users\\Filippo S\\Desktop\\src\\src\\java\\exmple\\31g.png"));  //C:\Users\Filippo S\Desktop\src\src\java\example\31g.png
+        ImageIcon defaultIcon = new ImageIcon(getClass().getResource(/*"31g.png" "C:\\Users\\Filippo S\\Desktop\\src\\src\\java\\exmple\\31g.png"));  //C:\Users\Filippo S\Desktop\src\src\java\example\31g.png
         ImageProducer ip = defaultIcon.getImage().getSource("C:\\Users\\Filippo S\\Desktop\\pi_diagona_pack\\01\\16\\31.png");                     //C:\Users\Filippo S\Desktop\pi_diagona_pack\01\16\31.png
 
         // 1
@@ -153,9 +155,9 @@ class LevelBar extends JPanel implements MouseListener, MouseMotionListener {
     @Override public void mouseExited(MouseEvent e) {
         repaintIcon(clicked);
     }
-    @Override public void mouseDragged(MouseEvent e)  { /* not needed */ }
-    @Override public void mousePressed(MouseEvent e)  { /* not needed */ }
-    @Override public void mouseReleased(MouseEvent e) { /* not needed */ }
+    @Override public void mouseDragged(MouseEvent e)  { /* not needed  }
+    @Override public void mousePressed(MouseEvent e)  { /* not needed  }
+    @Override public void mouseReleased(MouseEvent e) { /* not needed  }
 }
 
 class SelectedImageFilter extends RGBImageFilter {
@@ -182,3 +184,5 @@ class SelectedImageFilter extends RGBImageFilter {
         return (argb & 0xFF000000) | (r << 16) | (g << 8) | (b);
     }
 }
+
+*/

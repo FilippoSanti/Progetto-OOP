@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import static javax.swing.text.html.HTML.Tag.HEAD;
 
 
 public class profile {
@@ -127,28 +128,29 @@ public class profile {
 		JButton btnNewButton = new JButton("I Tuoi Giochi");
 		btnNewButton.setToolTipText("I Tuoi Giochi");
 		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 18));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+
 		btnNewButton.setBounds(162, 576, 185, 37);
 		frmUntitledGaming.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				controller.eventsListener.changePage("allGames", utente);
 
-<<<<<<< HEAD
-		JLabel lblNewLabel_11 = new JLabel("999");
-		lblNewLabel_11.setForeground(Color.DARK_GRAY);
-		lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 17));
-		lblNewLabel_11.setBounds(230, 367, 60, 30);
-		frmUntitledGaming.getContentPane().add(lblNewLabel_11);
-=======
+			}
+		});
+
+
+
+
 		try {
 			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
             String stringalv = Integer.toString(livello);
-			JLabel lblNewLabel_11 = new JLabel(stringalv);
-			lblNewLabel_11.setForeground(Color.DARK_GRAY);
-			lblNewLabel_11.setFont(new Font("Georgia", Font.ITALIC, 17));
-			lblNewLabel_11.setBounds(230, 367, 60, 30);
-			frmUntitledGaming.getContentPane().add(lblNewLabel_11);
+			JLabel lblNewLabel_12 = new JLabel(stringalv);
+			lblNewLabel_12.setForeground(Color.DARK_GRAY);
+			lblNewLabel_12.setFont(new Font("Georgia", Font.ITALIC, 17));
+			lblNewLabel_12.setBounds(230, 367, 60, 30);
+			frmUntitledGaming.getContentPane().add(lblNewLabel_12);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -212,7 +214,7 @@ public class profile {
 		});
 		
 
-		int livello = 0;
+
 		try {
 			int xp = eventsListener.getGameProfile(utente.getUserId()).getEsperienza();
 			String stringaxp = Integer.toString(xp);
@@ -250,5 +252,14 @@ public class profile {
 		btnVisualizzaAchievements.setFont(new Font("MV Boli", Font.ITALIC, 18));
 		btnVisualizzaAchievements.setBounds(513, 576, 289, 37);
 		frmUntitledGaming.getContentPane().add(btnVisualizzaAchievements);
+
+		btnVisualizzaAchievements.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				controller.eventsListener.changePage("achievementsList", utente);
+
+			}
+		});
 	}
 }
