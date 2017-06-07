@@ -180,5 +180,11 @@ public class reviewList {
 		
 		JLabel lblCancellareLaLabel_3 = new JLabel("cancellare la label e inserire qu\u00EC le stelle");
 		panel_7.add(lblCancellareLaLabel_3);
+		
+		JButton btnLaTuaRecensione = new JButton("La Tua Recensione");
+		btnLaTuaRecensione.setToolTipText("La Tua Recensione");
+		btnLaTuaRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		btnLaTuaRecensione.setBounds(375, 570, 198, 45);
+		frmUntitledGaming.getContentPane().add(btnLaTuaRecensione);
 	}
 }
