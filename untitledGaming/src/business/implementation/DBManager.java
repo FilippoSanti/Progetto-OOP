@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class DBManager {
@@ -109,14 +110,56 @@ public class DBManager {
         }  return false;
     }
 
+    public static boolean checkTimeline (int user_id) throws SQLException {
+
+        // DB Connection
+        Connection connection = Connect();
+
+        // Prepare and execute the query
+        PreparedStatement st = connection.prepareStatement("select * from timeline where user_id = ?");
+        st.setInt(1, user_id);
+        ResultSet rs = st.executeQuery();
+
+        if(rs.next()) {
+            return true;
+        }  return false;
+    }
+
+
     /* Convert a string to a java.sql.date format */
     public static java.sql.Date stringToDate (String dateString) throws ParseException {
 
         // Date format
-        DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date date  = formatter.parse(dateString);
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
+
+
+        return sqlDate;
+    }
+
+    public static String formatSqlDateString (String dataSql)
+    {
+
+        String newData = "";
+        System.out.println(dataSql);
+        String yearDate  = dataSql.substring(0,4);
+
+        String monthDate = dataSql.substring(5,7);
+        String dayDate   = dataSql.substring(8,10);
+
+        newData = dayDate + "-" + monthDate + "-" +  yearDate;
+
+
+        return newData;
+    }
+
+    public static java.sql.Date getCurrentData () {
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar calobj = Calendar.getInstance();
+
+        java.sql.Date sqlDate = new java.sql.Date(calobj.getTime().getTime());
         return sqlDate;
     }
 }
