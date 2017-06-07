@@ -173,8 +173,12 @@ public class eventsListener {
         return gameList;
     }
 
-    public static void tossTheCoin(Utente utente) throws SQLException {
-        new business.implementation.UserManagement().tossTheCoin(utente);
+    public static boolean updateTimeline (int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
+    return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata);
+    }
+
+    public static int tossTheCoin(Utente utente) throws SQLException {
+       return new business.implementation.UserManagement().tossTheCoin(utente);
     }
 
     /* Change the current JFrame */

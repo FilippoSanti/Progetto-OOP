@@ -1,5 +1,6 @@
 package business.implementation;
 
+import business.model.Timeline;
 import business.model.Utente;
 import business.model.gameProfile;
 import controller.eventsListener;
@@ -20,7 +21,7 @@ import java.util.zip.DataFormatException;
 public class UserManagement {
 
     /* Insert the user data into the DB */
-    public static boolean newUser(String user, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
+    public boolean newUser(String user, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
 
         // Convert the date string to a  java.sql.Date format
         java.sql.Date date = null;
@@ -70,6 +71,49 @@ public class UserManagement {
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
                0 for SQL statements that return nothing
              */
+            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))) {
+
+
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+    public boolean setToNull (int userId) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Query
+        String addXP = "INSERT INTO game_profile"
+                + "(user_id, livello, punti_esperienza) VALUES"
+                + "(?,1,0)";
+
+        PreparedStatement preparedStatement = null;
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(addXP);
+
+            preparedStatement.setInt(1, userId);
+
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+            0 for SQL statements that return nothing
+            */
             if (preparedStatement.executeUpdate() != 0) {
                 return true;
             }
@@ -87,6 +131,7 @@ public class UserManagement {
             }
         }
         return false;
+
     }
 
     /* Get the user informations */
@@ -119,8 +164,124 @@ public class UserManagement {
             data = rs.getDate("data_di_nascita");
 
         }
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String textDate = df.format(data);
 
-        return new Utente(userId, username, nome, cognome, password, email, tipo, data);
+        java.sql.Date DataFinale = null;
+        try {
+
+            DataFinale = DBManager.stringToDate(textDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }return new Utente(userId, username, nome, cognome, password, email, tipo, DataFinale);
+
+    }
+
+    public boolean updateTimeline (int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Query
+        String addtimeline = "UPDATE timeline SET `data_ultima_sessione`= ?,`esperienza_guadagnata` = ? WHERE user_id = ?";
+
+
+
+
+        PreparedStatement preparedStatement = null;
+
+
+        try {
+
+
+            preparedStatement = dbConnection.prepareStatement(addtimeline);
+
+            preparedStatement.setDate(1, dataUltima);
+            preparedStatement.setInt(2, esperienzaGuadagnata);
+            preparedStatement.setInt(3, user_id);
+
+
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+
+
+    }
+
+    public boolean addTimeline (int user_id, int gioco_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Query
+        String addtimeline = "INSERT INTO timeline \n" +
+                "            ( `user_id` , \n" +
+                "             `gioco_id` , \n" +
+                "             `data_ultima_sessione` , \n" +
+                "             `esperienza_guadagnata` ) \n" +
+                "VALUES      (?, \n" +
+                "             ?, \n" +
+                "             ?, \n" +
+                "             ?) ";
+
+
+
+
+        PreparedStatement preparedStatement = null;
+
+
+        try {
+
+
+            preparedStatement = dbConnection.prepareStatement(addtimeline);
+
+            preparedStatement.setInt(1, user_id);
+            preparedStatement.setInt(2, gioco_id);
+            preparedStatement.setDate(3, dataUltima);
+            preparedStatement.setInt(4, esperienzaGuadagnata);
+
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+
+
     }
 
     /* Get the user profile stats */
@@ -153,7 +314,7 @@ public class UserManagement {
     /* Edit login info */
     public boolean setUtente(Utente utente, String nome, String cognome, String data, String email, String password, String newUsername) throws SQLException {
 
-        DateFormat    formatter = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat    formatter = new SimpleDateFormat("dd-MM-yyyy");
         java.sql.Date tempDate  = utente.getData();
         String        text      = formatter.format(tempDate);
         Date          myDate    = null;
@@ -230,7 +391,7 @@ public class UserManagement {
     /* Add xp to a user */
     public boolean addXp(Utente utente, int xP) throws SQLException {
 
-        // DB Connection
+
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Query
@@ -321,9 +482,63 @@ public class UserManagement {
         else if (gameProfile.getEsperienza() >= 450 && gameProfile.getLivello() == 3) {
             addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 4");}
 
-        else if (gameProfile.getEsperienza() >= 700 && gameProfile.getLivello() == 1) {
+        else if (gameProfile.getEsperienza() >= 700 && gameProfile.getLivello() == 4) {
             addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 5");}
+
+        else if (gameProfile.getEsperienza() >= 1100 && gameProfile.getLivello() == 5) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 6");}
+
+        else if (gameProfile.getEsperienza() >= 1500 && gameProfile.getLivello() == 6) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 7");}
+
+        else if (gameProfile.getEsperienza() >= 2000 && gameProfile.getLivello() == 7) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 8");}
+
+        else if (gameProfile.getEsperienza() >= 2800 && gameProfile.getLivello() == 8) {
+            addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 9");}
     }
+
+    public Timeline getTimeline(int userId) throws SQLException {
+
+        int gioco_id = 0;
+        int esperienza_guadagnata = 0;
+        int timeline_id = 0;
+        java.sql.Date data_ultima_sessione = null;
+
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * \n" +
+                "FROM   `timeline` \n" +
+                "WHERE  user_id = ? ");
+
+        stmt.setInt(1, userId);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            timeline_id = rs.getInt("timeline_id");
+            gioco_id     = rs.getInt("gioco_id");
+            esperienza_guadagnata    = rs.getInt("esperienza_guadagnata");
+            data_ultima_sessione  = rs.getDate(" data_ultima_sessione");
+
+
+        }
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String textDate = df.format(data_ultima_sessione);
+
+        java.sql.Date DataFinale = null;
+        try {
+
+            DataFinale = DBManager.stringToDate(textDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }return new Timeline(timeline_id, userId, gioco_id, DataFinale, esperienza_guadagnata);
+
+    }
+
 
     /*Get the list of games */
     public TableModel getGames() throws SQLException {
@@ -344,23 +559,30 @@ public class UserManagement {
         return tm;
     }
 
-    public void tossTheCoin (Utente utente) throws SQLException
+    public int tossTheCoin (Utente utente) throws SQLException
     {
         Random randomNum = new Random();
+        int esperienza_sessione = 0;
         int result = randomNum.nextInt(2);
 
         if (result == 0) {
             JOptionPane.showMessageDialog(null, "You flipped Head! Gain 30 xP");
 
             eventsListener.addXP(utente, 30);
+            esperienza_sessione =30;
             eventsListener.checkLivello(getGameProfile(utente.getUserId()));
 
         }
 
         if (result == 1) {
-            JOptionPane.showMessageDialog(null, "you flipped Tail! Lose 20 xP");
-            eventsListener.addXP(utente, -20);
+            JOptionPane.showMessageDialog(null, "you flipped Tail! Gain 15 xP");
+            esperienza_sessione = +15;
+            eventsListener.addXP(utente, +15);
         }
+
+
+
+      return esperienza_sessione;
 
 
 

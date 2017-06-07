@@ -1,5 +1,6 @@
 package presentation.general;
 
+import business.implementation.DBManager;
 import business.model.Utente;
 
 import javax.swing.*;
@@ -7,11 +8,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class tossTheCoin {
 
     private JFrame frmUntitledGaming;
     Utente utente = null;
+    int esp = 0;
 
     /* Create the application */
     public tossTheCoin(Utente c) {
@@ -63,6 +68,20 @@ public class tossTheCoin {
         btnLogOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
+
+                try {
+                    if (DBManager.checkTimeline(utente.getUserId())) {
+                        controller.eventsListener.updateTimeline(utente.getUserId(),
+                                DBManager.getCurrentData(), esp);
+                    }
+                    else {
+                        controller.eventsListener.addTimeline(utente.getUserId(), 1, DBManager.getCurrentData(), esp);
+                    }
+
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
                 controller.eventsListener.changePage("allGames", utente);
             }
         });
@@ -78,7 +97,7 @@ public class tossTheCoin {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    controller.eventsListener.tossTheCoin(utente);
+                    esp = esp + controller.eventsListener.tossTheCoin(utente);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
