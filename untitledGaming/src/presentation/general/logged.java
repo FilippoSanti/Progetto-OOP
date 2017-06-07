@@ -69,8 +69,8 @@ public class logged {
 
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("Visualizza Commenti");
-		btnNewButton_1.setToolTipText("Visualizza Commenti");
+		JButton btnNewButton_1 = new JButton("Valuta Commenti");
+		btnNewButton_1.setToolTipText("Valuta Commenti");
 		if (utente.getTipo().equals("user")) btnNewButton_1.setEnabled(false);
 		else btnNewButton_1.setEnabled(true);
 		btnNewButton_1.setFont(new Font("MV Boli", Font.ITALIC, 21));
