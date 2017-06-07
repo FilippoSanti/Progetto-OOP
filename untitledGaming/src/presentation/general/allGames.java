@@ -30,9 +30,8 @@ public class allGames {
 	}
 
 
-	/**
->>>>>>> dcfa929a1bc351b8480c6253cb56c3187c1883b0
-	 * Initialize the contents of the frame.
+	/* 
+	Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frmUntitledGaming = new JFrame();

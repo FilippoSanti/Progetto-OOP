@@ -48,7 +48,7 @@ public class profile {
 
 		Panel panel = new Panel();
 		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(94, 116, 175, 175);
+		panel.setBounds(94, 105, 175, 175);
 		frmUntitledGaming.getContentPane().add(panel);
 
 		JLabel lblNewLabel = new JLabel("Nome :");
@@ -132,11 +132,11 @@ public class profile {
 		progressBar.setBounds(247, 427, 273, 18);
 		frmUntitledGaming.getContentPane().add(progressBar);
 
-		JButton btnNewButton = new JButton("I Tuoi Giochi");
+		JButton btnNewButton = new JButton("Cronologia di Gioco");
 		btnNewButton.setToolTipText("I Tuoi Giochi");
 		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 18));
 
-		btnNewButton.setBounds(162, 576, 185, 37);
+		btnNewButton.setBounds(137, 576, 289, 37);
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 
 
@@ -146,7 +146,7 @@ public class profile {
 			JLabel lblNewLabel_12 = new JLabel(stringalv);
 			lblNewLabel_12.setForeground(Color.DARK_GRAY);
 			lblNewLabel_12.setFont(new Font("Georgia", Font.ITALIC, 17));
-			lblNewLabel_12.setBounds(230, 367, 60, 30);
+			lblNewLabel_12.setBounds(230, 367, 117, 30);
 			frmUntitledGaming.getContentPane().add(lblNewLabel_12);
 
 		} catch (SQLException e) {
@@ -191,7 +191,7 @@ public class profile {
 		JButton btnScegliImmagine = new JButton("Scegli Immagine");
 		btnScegliImmagine.setToolTipText("Scegli Immagine");
 		btnScegliImmagine.setFont(new Font("MV Boli", Font.PLAIN, 17));
-		btnScegliImmagine.setBounds(94, 309, 175, 34);
+		btnScegliImmagine.setBounds(94, 294, 175, 34);
 		frmUntitledGaming.getContentPane().add(btnScegliImmagine);
 
 		JButton btnModifica = new JButton("Modifica");
@@ -220,8 +220,8 @@ public class profile {
 			label.setToolTipText("XP point");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setForeground(Color.DARK_GRAY);
-			label.setFont(new Font("Georgia", Font.ITALIC, 11));
-			label.setBounds(369, 297, 57, 16);
+			label.setFont(new Font("Georgia", Font.ITALIC, 17));
+			label.setBounds(561, 418, 124, 30);
 			frmUntitledGaming.getContentPane().add(label);
 		} catch (SQLException e) {
 			e.printStackTrace();
