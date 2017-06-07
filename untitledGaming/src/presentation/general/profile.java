@@ -221,7 +221,11 @@ public class profile {
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setForeground(Color.DARK_GRAY);
 			label.setFont(new Font("Georgia", Font.ITALIC, 17));
+
 						label.setBounds(561, 418, 124, 30);
+
+			label.setBounds(561, 418, 124, 30);
+
 			frmUntitledGaming.getContentPane().add(label);
 		} catch (SQLException e) {
 			e.printStackTrace();

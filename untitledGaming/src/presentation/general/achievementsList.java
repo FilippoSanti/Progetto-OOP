@@ -38,8 +38,6 @@ Utente utente;
 	}
 
 	/**
-
-	/**
 	 * Create the application.
 	 */
 	public achievementsList() {
@@ -49,7 +47,6 @@ Utente utente;
 
 
 	/**
-
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
