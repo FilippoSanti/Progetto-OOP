@@ -79,11 +79,14 @@ public class registration {
 
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frmUntitledGaming.dispose();
+
                 try {
+                    frmUntitledGaming.dispose();
                     String passText = new String(passwordField.getPassword());
                     newUser(txtNickname.getText(), txtNome.getText(), txtCognome.getText(), passText,
                             txtEmil.getText(), txtDate.getText(),"user");
+                    changePage("startPage", null);
+
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

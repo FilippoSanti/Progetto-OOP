@@ -156,7 +156,7 @@ public class allGames {
 
 		btnRecensione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmUntitledGaming.dispose();
+				frmUntitledGaming.setVisible(false);
 				eventsListener.changePage("tossTheCoin", utente);
 			}
 		});

@@ -257,7 +257,7 @@ public class profile {
 		btnVisualizzaAchievements.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-				frmUntitledGaming.dispose();
+				frmUntitledGaming.setVisible(false);
 				controller.eventsListener.changePage("achievementsList", utente);
 
 			}

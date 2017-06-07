@@ -1,5 +1,6 @@
 package business.implementation;
 
+import business.model.Achievement;
 import business.model.Timeline;
 import business.model.Utente;
 import business.model.gameProfile;
@@ -498,6 +499,14 @@ public class UserManagement {
             addLivello(gameProfile); JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 9");}
     }
 
+    public void checkAchievement (gameProfile gameProfile) throws SQLException{
+        if (gameProfile.getLivello() == 2) {
+            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement, MERDA!");
+           eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 2);
+        }
+
+    }
+
     public Timeline getTimeline(int userId) throws SQLException {
 
         int gioco_id = 0;
@@ -539,6 +548,71 @@ public class UserManagement {
 
     }
 
+    public boolean insertAchievementToProfile (int user_id, int achievement_id) throws SQLException
+    {
+        PreparedStatement preparedStatement = null;
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+
+        String insertTableSQL = "INSERT INTO achievement_ottenuti"
+                + "(user_id, achievement_id) VALUES"
+                + "(?,?)";
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+
+            preparedStatement.setInt(1, user_id);
+            preparedStatement.setInt(2, achievement_id);
+
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0 ) {
+
+
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+    public TableModel getAchievement () throws SQLException
+    {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT achievement_id, \n" +
+                        "       nome, \n" +
+                        "descrizione, \n" +
+                        "gioco_id" +
+
+                        "FROM  achievement \n ");
+
+        ResultSet rs = stmt.executeQuery();
+        TableModel tm = DbUtils.resultSetToTableModel(rs);
+
+        return tm;
+    }
+
 
     /*Get the list of games */
     public TableModel getGames() throws SQLException {
@@ -571,6 +645,7 @@ public class UserManagement {
             eventsListener.addXP(utente, 30);
             esperienza_sessione =30;
             eventsListener.checkLivello(getGameProfile(utente.getUserId()));
+            eventsListener.checkAchievement(getGameProfile(utente.getUserId()));
 
         }
 

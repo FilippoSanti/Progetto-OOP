@@ -59,10 +59,10 @@ public class tossTheCoin {
         frmUntitledGaming.getContentPane().add(lblNewLabel_1);
 
 
-        JButton btnLogOut = new JButton("Back");
+        JButton btnLogOut = new JButton("Save and quit");
         btnLogOut.setToolTipText("Log Out");
         btnLogOut.setFont(new Font("MV Boli", Font.PLAIN, 12));
-        btnLogOut.setBounds(587, 58, 85, 23);
+        btnLogOut.setBounds(587, 58, 150, 23);
         frmUntitledGaming.getContentPane().add(btnLogOut);
 
         btnLogOut.addActionListener(new ActionListener() {

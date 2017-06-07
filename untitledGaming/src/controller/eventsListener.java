@@ -180,7 +180,9 @@ public class eventsListener {
     public static int tossTheCoin(Utente utente) throws SQLException {
        return new business.implementation.UserManagement().tossTheCoin(utente);
     }
-
+    public static void checkAchievement (gameProfile gameProfile) throws SQLException{
+        new business.implementation.UserManagement().checkAchievement(gameProfile);
+    }
     /* Change the current JFrame */
     public static void changePage(String page, Utente utente) {
         switch (page) {
@@ -220,6 +222,11 @@ public class eventsListener {
                 new allGames(utente);
                 break;
         }
+    }
+
+    public static boolean insertAchievementToProfile (int user_id, int achievement_id) throws SQLException
+    {
+        return new business.implementation.UserManagement().insertAchievementToProfile(user_id, achievement_id);
     }
 }
 
