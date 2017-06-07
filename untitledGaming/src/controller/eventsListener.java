@@ -3,6 +3,7 @@ package controller;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Review;
+import business.model.Timeline;
 import business.model.Utente;
 import business.model.gameProfile;
 import presentation.general.*;
@@ -42,12 +43,17 @@ public class eventsListener {
 
     public static void newUser(String username, String nome, String cognome, String password, String email, String date, String tipo) throws SQLException {
 
-        if (business.implementation.UserManagement.newUser(username, nome, cognome, password, email, date, tipo)) {
+        if (new UserManagement().newUser(username, nome, cognome, password, email, date, tipo)) {
             JOptionPane.showMessageDialog(null, "Utente aggiunto correttamente.");
         } else {
             JOptionPane.showMessageDialog(null, "Error, try again");
         }
 
+    }
+
+    public static boolean setToNull (int userId) throws SQLException
+    {
+        return new business.implementation.UserManagement().setToNull(userId);
     }
 
     public static Utente getUtente(String username) throws SQLException {
@@ -66,6 +72,15 @@ public class eventsListener {
             JOptionPane.showMessageDialog(null, "Review aggiunta correttamente.");
         }
 
+    }
+
+    public static Timeline getTimeline(int userId) throws SQLException {
+        return new business.implementation.UserManagement().getTimeline(userId);
+    }
+
+    public static boolean addTimeline (int user_id, int gioco_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException
+    {
+        return new UserManagement().addTimeline(user_id, gioco_id, dataUltima, esperienzaGuadagnata);
     }
 
     public static Review getReview(int user_id) throws SQLException {

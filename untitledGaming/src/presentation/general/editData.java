@@ -1,5 +1,6 @@
 package presentation.general;
 
+import business.implementation.DBManager;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -101,7 +102,7 @@ public class editData {
             }
         });
         
-       textField.setText("Nome");
+       textField.setText(utente.getNome());
        textField.setHorizontalAlignment(SwingConstants.CENTER);
        textField.setForeground(Color.GRAY);
        textField.setFont(new Font("Georgia", Font.ITALIC, 20));
@@ -123,7 +124,7 @@ public class editData {
             }
        });
         
-        textField_1.setText("Cognome");
+        textField_1.setText(utente.getCognome());
         textField_1.setHorizontalAlignment(SwingConstants.CENTER);
         textField_1.setForeground(Color.GRAY);
         textField_1.setFont(new Font("Georgia", Font.ITALIC, 20));
@@ -132,7 +133,7 @@ public class editData {
         frmUntitledGaming.getContentPane().add(textField_1);
 
         textField_2 = new JTextField();
-        textField_2.setToolTipText("Et\u00E0");
+        textField_2.setToolTipText("Data di Nascita");
         
         //listen for focus
         textField_2.addFocusListener(new FocusListener() {
@@ -141,11 +142,13 @@ public class editData {
             }
             public void focusLost (FocusEvent e){
                 if (textField_2.getText().isEmpty())
-                    textField_2.setText("Et\u00E0");
+                    textField_2.setText("Data di Nascita");
             }
         });
-        
-        textField_2.setText("Et\u00E0");
+
+        String dataFinale = DBManager.formatSqlDateString(utente.getData().toString());
+
+        textField_2.setText(dataFinale);
         textField_2.setHorizontalAlignment(SwingConstants.CENTER);
         textField_2.setForeground(Color.GRAY);
         textField_2.setFont(new Font("Georgia", Font.ITALIC, 20));
@@ -201,7 +204,7 @@ public class editData {
             }
         });
                 
-        textField_3.setText("E-m@il");
+        textField_3.setText(utente.getEmail());
         textField_3.setHorizontalAlignment(SwingConstants.CENTER);
         textField_3.setForeground(Color.GRAY);
         textField_3.setFont(new Font("Georgia", Font.ITALIC, 20));
@@ -223,7 +226,7 @@ public class editData {
             }
         });
         
-        textField_4.setText("Username");
+        textField_4.setText(utente.getUsername());
         textField_4.setHorizontalAlignment(SwingConstants.CENTER);
         textField_4.setForeground(Color.GRAY);
         textField_4.setFont(new Font("Georgia", Font.ITALIC, 20));

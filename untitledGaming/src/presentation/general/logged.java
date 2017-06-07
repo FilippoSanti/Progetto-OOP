@@ -71,6 +71,8 @@ public class logged {
 
 		JButton btnNewButton_1 = new JButton("Visualizza Commenti");
 		btnNewButton_1.setToolTipText("Visualizza Commenti");
+		if (utente.getTipo().equals("user")) btnNewButton_1.setEnabled(false);
+		else btnNewButton_1.setEnabled(true);
 		btnNewButton_1.setFont(new Font("MV Boli", Font.ITALIC, 21));
 		btnNewButton_1.setBounds(564, 261, 250, 65);
 		frmUntitledGaming.getContentPane().add(btnNewButton_1);
@@ -98,7 +100,8 @@ public class logged {
 		});
 
 		JButton btnListaUtenti = new JButton("Lista Utenti");
-		btnListaUtenti.setEnabled(false);
+		if (utente.getTipo().equals("user")) btnListaUtenti.setEnabled(false);
+		else btnListaUtenti.setEnabled(true);
 		btnListaUtenti.setToolTipText("Lista Utenti");
 		btnListaUtenti.setFont(new Font("MV Boli", Font.ITALIC, 21));
 		btnListaUtenti.setBounds(123, 454, 250, 65);

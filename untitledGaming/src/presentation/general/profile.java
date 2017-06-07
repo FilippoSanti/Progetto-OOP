@@ -1,5 +1,6 @@
 package presentation.general;
 
+import business.implementation.DBManager;
 import business.model.Utente;
 import controller.eventsListener;
 import presentation.general.logged;
@@ -8,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.sql.SQLException;
 
 import static javax.swing.text.html.HTML.Tag.HEAD;
@@ -85,7 +87,12 @@ public class profile {
 		lblNewLabel_5.setBounds(636, 172, 183, 30);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_5);
 
-		JLabel lblNewLabel_6 = new JLabel(utente.getData().toString());
+		String dateString = utente.getData().toString();
+		String reverse = new StringBuffer(dateString).reverse().toString();
+
+		String dataFinale = DBManager.formatSqlDateString(utente.getData().toString());
+
+		JLabel lblNewLabel_6 = new JLabel(dataFinale);
 		lblNewLabel_6.setForeground(Color.DARK_GRAY);
 		lblNewLabel_6.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_6.setBounds(636, 202, 183, 31);
