@@ -44,7 +44,7 @@ public class allGames {
 		frmUntitledGaming.setLocationRelativeTo(null);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back-icon.png"));
+		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back_icon.png"));
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
@@ -66,22 +66,22 @@ public class allGames {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.YELLOW);
-		panel.setBounds(98, 87, 90, 90);
+		panel.setBounds(65, 83, 90, 90);
 		frmUntitledGaming.getContentPane().add(panel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLUE);
-		panel_1.setBounds(98, 207, 90, 90);
+		panel_1.setBounds(65, 203, 90, 90);
 		frmUntitledGaming.getContentPane().add(panel_1);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.GREEN);
-		panel_2.setBounds(98, 325, 90, 90);
+		panel_2.setBounds(65, 321, 90, 90);
 		frmUntitledGaming.getContentPane().add(panel_2);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.RED);
-		panel_3.setBounds(98, 444, 90, 90);
+		panel_3.setBounds(65, 440, 90, 90);
 		frmUntitledGaming.getContentPane().add(panel_3);
 
 		try {
@@ -95,7 +95,7 @@ public class allGames {
 		JLabel lblInserireQuIl = new JLabel("");
 		panel.add(lblInserireQuIl);
 		lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
-		lblNewLabel.setBounds(235, 117, 406, 31);
+		lblNewLabel.setBounds(172, 112, 375, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -108,7 +108,7 @@ public class allGames {
 		lbltitolo.setLabelFor(panel_1);
 		lbltitolo.setFont(new Font("Georgia", Font.ITALIC, 21));
 		lbltitolo.setHorizontalAlignment(SwingConstants.CENTER);
-		lbltitolo.setBounds(235, 240, 406, 31);
+		lbltitolo.setBounds(172, 235, 375, 31);
 		frmUntitledGaming.getContentPane().add(lbltitolo);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -121,7 +121,7 @@ public class allGames {
 		lbltitolo_1.setLabelFor(panel_2);
 		lbltitolo_1.setFont(new Font("Georgia", Font.ITALIC, 21));
 		lbltitolo_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbltitolo_1.setBounds(235, 355, 406, 31);
+		lbltitolo_1.setBounds(172, 350, 375, 31);
 		frmUntitledGaming.getContentPane().add(lbltitolo_1);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -134,7 +134,7 @@ public class allGames {
 		lbltitolo_2.setLabelFor(panel_3);
 		lbltitolo_2.setFont(new Font("Georgia", Font.ITALIC, 21));
 		lbltitolo_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lbltitolo_2.setBounds(235, 473, 406, 31);
+		lbltitolo_2.setBounds(172, 469, 375, 31);
 		frmUntitledGaming.getContentPane().add(lbltitolo_2);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -150,7 +150,7 @@ public class allGames {
 		JButton btnRecensione = new JButton("Gioca!");
 		btnRecensione.setToolTipText("Gioca!");
 		btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnRecensione.setBounds(706, 118, 142, 30);
+		btnRecensione.setBounds(743, 113, 142, 30);
 		frmUntitledGaming.getContentPane().add(btnRecensione);
 
 
@@ -164,19 +164,19 @@ public class allGames {
 		JButton btnGioca = new JButton("Gioca!");
 		btnGioca.setToolTipText("Gioca!");
 		btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnGioca.setBounds(706, 241, 142, 30);
+		btnGioca.setBounds(743, 236, 142, 30);
 		frmUntitledGaming.getContentPane().add(btnGioca);
 		
 		JButton btnGioca_1 = new JButton("Gioca!");
 		btnGioca_1.setToolTipText("Gioca!");
 		btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnGioca_1.setBounds(706, 356, 142, 30);
+		btnGioca_1.setBounds(743, 351, 142, 30);
 		frmUntitledGaming.getContentPane().add(btnGioca_1);
 		
 		JButton btnGioca_2 = new JButton("Gioca!");
 		btnGioca_2.setToolTipText("Gioca!");
 		btnGioca_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnGioca_2.setBounds(706, 474, 142, 30);
+		btnGioca_2.setBounds(743, 470, 142, 30);
 		frmUntitledGaming.getContentPane().add(btnGioca_2);
 		
 		JButton button_4 = new JButton("");
@@ -186,6 +186,30 @@ public class allGames {
 		button_4.setFont(new Font("MV Boli", Font.ITALIC, 13));
 		button_4.setBounds(68, 581, 45, 45);
 		frmUntitledGaming.getContentPane().add(button_4);
+		
+		JButton btnRecensioni = new JButton("Recensioni");
+		btnRecensioni.setToolTipText("Recensioni");
+		btnRecensioni.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		btnRecensioni.setBounds(573, 471, 142, 31);
+		frmUntitledGaming.getContentPane().add(btnRecensioni);
+		
+		JButton button_1 = new JButton("Recensioni");
+		button_1.setToolTipText("Recensioni");
+		button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		button_1.setBounds(573, 352, 142, 30);
+		frmUntitledGaming.getContentPane().add(button_1);
+		
+		JButton button_2 = new JButton("Recensioni");
+		button_2.setToolTipText("Recensioni");
+		button_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		button_2.setBounds(573, 237, 142, 30);
+		frmUntitledGaming.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("Recensioni");
+		button_3.setToolTipText("Recensioni");
+		button_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		button_3.setBounds(573, 114, 142, 30);
+		frmUntitledGaming.getContentPane().add(button_3);
 
 	}
 }
