@@ -1,4 +1,5 @@
 package business.implementation;
+
 import business.model.Review;
 import business.model.Utente;
 import net.proteanit.sql.DbUtils;
@@ -12,12 +13,12 @@ import java.sql.SQLException;
 public class ReviewManagement {
 
     /* Adds a new review */
-    public boolean newReview (Utente utente, String text, double vote) throws SQLException {
+    public boolean newReview(Utente utente, String text, double vote) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        String insertTableSQL = "INSERT INTO recensioni"+"(user_id, testo_recensione, voto, approvata) VALUES" +
+        String insertTableSQL = "INSERT INTO recensioni" + "(user_id, testo_recensione, voto, approvata) VALUES" +
                 "(?, ?, ?, false)";
 
         PreparedStatement preparedStatement = null;
@@ -54,20 +55,20 @@ public class ReviewManagement {
     }
 
     /* Get a review */
-    public Review getReview (int user_id) throws SQLException {
+    public Review getReview(int user_id) throws SQLException {
 
-        int     reviewId  = 0;
-        double  vote      = 0;
+        int reviewId = 0;
+        double vote = 0;
         boolean approvata = false;
-        String  text      = "";
+        String text = "";
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement("SELECT * \n" +
-                        "FROM   `recensione` \n" +
-                        "WHERE  user_id = ? ");
+                "FROM   `recensione` \n" +
+                "WHERE  user_id = ? ");
 
         stmt.setInt(1, user_id);
         ResultSet rs = stmt.executeQuery();
@@ -102,7 +103,7 @@ public class ReviewManagement {
     }
 
     /* Get approved reviews */
-    public TableModel getApprovedReviews () throws SQLException {
+    public TableModel getApprovedReviews() throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -122,7 +123,7 @@ public class ReviewManagement {
     }
 
     /* Approve a review */
-    public boolean approveReview (Review review) throws SQLException {
+    public boolean approveReview(Review review) throws SQLException {
 
         Connection dbConnection = business.implementation.DBManager.Connect();
 

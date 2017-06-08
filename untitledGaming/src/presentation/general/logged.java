@@ -12,12 +12,12 @@ public class logged {
 
     Utente utente = null;
 	private JFrame frmUntitledGaming;
+
 	/* Create the application */
 	public logged(Utente c) {
 		this.utente = c;
 		initialize();
 	}
-
 
 	/* Initialize the contents of the frame*/
 	private void initialize() {
@@ -119,7 +119,6 @@ public class logged {
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
 				controller.eventsListener.changePage("allGames", utente);
-
 			}
 		});
 

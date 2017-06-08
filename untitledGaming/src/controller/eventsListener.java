@@ -2,10 +2,7 @@ package controller;
 
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
-import business.model.Review;
-import business.model.Timeline;
-import business.model.Utente;
-import business.model.gameProfile;
+import business.model.*;
 import presentation.general.*;
 
 import javax.swing.*;
@@ -15,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class eventsListener {
 
@@ -48,7 +44,6 @@ public class eventsListener {
         } else {
             JOptionPane.showMessageDialog(null, "Error, try again");
         }
-
     }
 
     public static boolean setToNull (int userId) throws SQLException
@@ -228,6 +223,9 @@ public class eventsListener {
     {
         return new business.implementation.UserManagement().insertAchievementToProfile(user_id, achievement_id);
     }
+
+    public static TableModel getUserAchievementsList(int userId) throws SQLException {
+        return new business.implementation.UserManagement().getUserAchievementsList(userId);
+    }
+
 }
-
-

@@ -53,8 +53,9 @@ public class review extends starRating {
 
         JEditorPane dtrpnLasciaQuIl = new JEditorPane();
         dtrpnLasciaQuIl.setToolTipText("Scrivi un commento...");
-        
-        //listen for focus
+
+        /*
+        //listen for focus (TODO: textField_1 non esiste)
         textField_1.addFocusListener(new FocusListener() {
         public void focusGained(FocusEvent e) {
             dtrpnLasciaQuIl.setText("  ");
@@ -63,7 +64,7 @@ public class review extends starRating {
             if (dtrpnLasciaQuIl.getText().isEmpty())
                 dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");
         }
-   });
+   }); */
     
         
         dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");

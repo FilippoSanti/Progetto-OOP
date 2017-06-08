@@ -15,20 +15,15 @@ import java.sql.SQLException;
 public class allGames {
 
 	private JFrame frmUntitledGaming;
-
-
-
 	Utente utente;
 
 	/**
 	 * Create the application.
 	 */
 	public allGames(Utente c) {
-
 		this.utente=c;
 		initialize();
 	}
-
 
 	/* 
 	Initialize the contents of the frame.

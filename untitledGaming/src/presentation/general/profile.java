@@ -37,6 +37,7 @@ public class profile {
 		frmUntitledGaming.setTitle("Untitled Gaming - Your Profile");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
+        frmUntitledGaming.setLocationRelativeTo(null);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
 

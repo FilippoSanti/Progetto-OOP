@@ -2,25 +2,19 @@ package presentation.general;
 
 
 import business.model.Utente;
+import controller.eventsListener;
 
 import java.awt.EventQueue;
 
 import java.awt.*;
 
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JTextArea;
-import javax.swing.UIManager;
+import java.sql.SQLException;
 
 public class achievementsList {
 
@@ -143,17 +137,29 @@ Utente utente;
 		label_2.setFont(new Font("Oregano", Font.PLAIN, 21));
 		label_2.setBounds(204, 459, 125, 30);
 		frmUntitledGaming.getContentPane().add(label_2);
-		
-		JTextArea txtrDescrizione = new JTextArea();
-		txtrDescrizione.setWrapStyleWord(true);
-		txtrDescrizione.setLineWrap(true);
-		txtrDescrizione.setBackground(UIManager.getColor("Button.background"));
-		txtrDescrizione.setFont(new Font("MV Boli", txtrDescrizione.getFont().getStyle(), 14));
-		txtrDescrizione.setText("Descrizione Achievements Da Inserire (abcdefg hijk lmnopqr stuvw x  yz /abc defgh ijklmnopqrst uvw xyz / abcdefgh ij klmonpq rstu vwxy z / abcdefghi)");
-		txtrDescrizione.setRows(2);
-		txtrDescrizione.setEditable(false);
-		txtrDescrizione.setBounds(354, 107, 537, 56);
-		frmUntitledGaming.getContentPane().add(txtrDescrizione);
+
+		try {
+
+			JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+			String achievementDesc = String.valueOf(table.getValueAt(0, 0));
+
+			JTextArea txtrDescrizione = new JTextArea();
+			txtrDescrizione.setWrapStyleWord(true);
+			txtrDescrizione.setLineWrap(true);
+			txtrDescrizione.setBackground(UIManager.getColor("Button.background"));
+			txtrDescrizione.setFont(new Font("MV Boli", txtrDescrizione.getFont().getStyle(), 14));
+
+			txtrDescrizione.setText(achievementDesc);
+
+			txtrDescrizione.setRows(2);
+			txtrDescrizione.setEditable(false);
+			txtrDescrizione.setBounds(354, 107, 537, 56);
+			frmUntitledGaming.getContentPane().add(txtrDescrizione);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
 		
 		JTextArea txtrDescrizione_1 = new JTextArea();
 		txtrDescrizione_1.setLineWrap(true);
