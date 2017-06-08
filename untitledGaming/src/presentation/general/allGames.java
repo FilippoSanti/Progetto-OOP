@@ -142,14 +142,14 @@ public class allGames {
 		btnSuccessiva.setBounds(830, 581, 45, 45);
 		frmUntitledGaming.getContentPane().add(btnSuccessiva);
 		
-		JButton btnRecensione = new JButton("Gioca!");
-		btnRecensione.setToolTipText("Gioca!");
-		btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnRecensione.setBounds(743, 113, 142, 30);
-		frmUntitledGaming.getContentPane().add(btnRecensione);
+		JButton btnGioca0 = new JButton("Gioca!");
+		btnGioca0.setToolTipText("Gioca!");
+		btnGioca0.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		btnGioca0.setBounds(743, 113, 142, 30);
+		frmUntitledGaming.getContentPane().add(btnGioca0);
 
 
-		btnRecensione.addActionListener(new ActionListener() {
+		btnGioca0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.setVisible(false);
 				eventsListener.changePage("tossTheCoin", utente);
