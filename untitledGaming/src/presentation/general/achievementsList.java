@@ -85,6 +85,14 @@ public class achievementsList {
             lblDescrizione.setBounds(204, 103, 125, 30);
             frmUntitledGaming.getContentPane().add(lblDescrizione);
 
+            // Game name
+			JLabel lbltitoloGioco = new JLabel("-Titolo Gioco-");
+			lbltitoloGioco.setHorizontalAlignment(SwingConstants.CENTER);
+			lbltitoloGioco.setForeground(Color.GRAY);
+			lbltitoloGioco.setFont(new Font("MV Boli", Font.ITALIC, 17));
+			lbltitoloGioco.setBounds(188, 132, 156, 30);
+			frmUntitledGaming.getContentPane().add(lbltitoloGioco);
+
             // Text description
             JTextArea txtrDescrizione = new JTextArea();
             txtrDescrizione.setWrapStyleWord(true);
@@ -121,6 +129,15 @@ public class achievementsList {
             label_1.setBounds(204, 340, 125, 30);
             frmUntitledGaming.getContentPane().add(label_1);
 
+            //Game name
+
+			JLabel label_3 = new JLabel("-Titolo Gioco-");
+			label_3.setHorizontalAlignment(SwingConstants.CENTER);
+			label_3.setForeground(Color.GRAY);
+			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
+			label_3.setBounds(188, 253, 156, 30);
+			frmUntitledGaming.getContentPane().add(label_3);
+		
             // Text description
             JTextArea txtrDescrizione_1 = new JTextArea();
             txtrDescrizione_1.setLineWrap(true);
@@ -157,6 +174,13 @@ public class achievementsList {
             label.setBounds(204, 223, 125, 30);
             frmUntitledGaming.getContentPane().add(label);
 
+            //Game name
+			JLabel label_3 = new JLabel("-Titolo Gioco-");
+			label_3.setHorizontalAlignment(SwingConstants.CENTER);
+			label_3.setForeground(Color.GRAY);
+			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
+			label_3.setBounds(188, 370, 156, 30);
+			frmUntitledGaming.getContentPane().add(label_3);
 
             // Text description
             JTextArea txtrDescrizioneAchievementsDa = new JTextArea();
@@ -194,6 +218,13 @@ public class achievementsList {
             label_2.setBounds(204, 459, 125, 30);
             frmUntitledGaming.getContentPane().add(label_2);
 
+            //Game name
+			JLabel label_3 = new JLabel("-Titolo Gioco-");
+			label_3.setHorizontalAlignment(SwingConstants.CENTER);
+			label_3.setForeground(Color.GRAY);
+			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
+			label_3.setBounds(188, 489, 156, 30);
+			frmUntitledGaming.getContentPane().add(label_3);
 
             // Text description
             JTextArea txtrDescrizioneAchievementsDa_1 = new JTextArea();
