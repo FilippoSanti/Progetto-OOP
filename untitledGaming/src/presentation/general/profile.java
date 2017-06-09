@@ -35,10 +35,10 @@ public class profile {
 		frmUntitledGaming.setVisible(true);
 
 		frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo_untitled_gaming.png"));
-		frmUntitledGaming.setTitle("Untitled Gaming - Il tuo Profilo");
+		frmUntitledGaming.setTitle("Untitled Gaming - Your Profile");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
-        frmUntitledGaming.setLocationRelativeTo(null);
+		frmUntitledGaming.setLocationRelativeTo(null);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
 
@@ -144,7 +144,7 @@ public class profile {
 
 		try {
 			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
-            String stringalv = Integer.toString(livello);
+			String stringalv = Integer.toString(livello);
 			JLabel lblNewLabel_12 = new JLabel(stringalv);
 			lblNewLabel_12.setForeground(Color.DARK_GRAY);
 			lblNewLabel_12.setFont(new Font("Georgia", Font.ITALIC, 17));
@@ -162,13 +162,13 @@ public class profile {
 		try {
 			if (!eventsListener.AchievementFoundOnProfile(1, utente.getUserId()))
 
-            { panel_2.setOpaque(false);}
-            else {
-                JLabel jlabel = new JLabel("1");
-                jlabel.setFont(new Font("Verdana", 1, 30));
-                panel_2.add(jlabel);
+			{ panel_2.setOpaque(false);}
+			else {
+				JLabel jlabel = new JLabel("1");
+				jlabel.setFont(new Font("Verdana", 1, 30));
+				panel_2.add(jlabel);
 
-            }
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -183,13 +183,13 @@ public class profile {
 		try {
 			if (!eventsListener.AchievementFoundOnProfile(2, utente.getUserId())){
 
-                panel_4.setOpaque(false);}
-                else {
+				panel_4.setOpaque(false);}
+			else {
 
-                JLabel jlabel1 = new JLabel("2");
-                jlabel1.setFont(new Font("Verdana",1,30));
-                panel_4.add(jlabel1);
-            }
+				JLabel jlabel1 = new JLabel("2");
+				jlabel1.setFont(new Font("Verdana",1,30));
+				panel_4.add(jlabel1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -203,12 +203,12 @@ public class profile {
 
 		try {
 			if (!eventsListener.AchievementFoundOnProfile(3, utente.getUserId())){
-                panel_5.setOpaque(false);}
-                else {
-                JLabel jlabel2 = new JLabel("3");
-                jlabel2.setFont(new Font("Verdana", 1, 30));
-                panel_5.add(jlabel2);
-            }
+				panel_5.setOpaque(false);}
+			else {
+				JLabel jlabel2 = new JLabel("3");
+				jlabel2.setFont(new Font("Verdana", 1, 30));
+				panel_5.add(jlabel2);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -222,14 +222,14 @@ public class profile {
 
 		try {
 			if (!eventsListener.AchievementFoundOnProfile(4, utente.getUserId())){
-                panel_6.setOpaque(false);
-            }
+				panel_6.setOpaque(false);
+			}
 
-            else {
-                JLabel jlabel3 = new JLabel("4");
-                jlabel3.setFont(new Font("Verdana", 1, 30));
-                panel_6.add(jlabel3);
-            }
+			else {
+				JLabel jlabel3 = new JLabel("4");
+				jlabel3.setFont(new Font("Verdana", 1, 30));
+				panel_6.add(jlabel3);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -243,14 +243,14 @@ public class profile {
 
 		try {
 			if (!eventsListener.AchievementFoundOnProfile(5, utente.getUserId()))
-            {
-                panel_7.setOpaque(false);
-            }
+			{
+				panel_7.setOpaque(false);
+			}
 
-            else {
-            JLabel jlabel4 = new JLabel("5");
-            jlabel4.setFont(new Font("Verdana",1,30));
-            panel_7.add(jlabel4);}
+			else {
+				JLabel jlabel4 = new JLabel("5");
+				jlabel4.setFont(new Font("Verdana",1,30));
+				panel_7.add(jlabel4);}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -263,14 +263,14 @@ public class profile {
 		panel_8.setBorder(new LineBorder(Color.BLACK));
 		try {
 			if (!eventsListener.AchievementFoundOnProfile(6, utente.getUserId())){
-                panel_8.setOpaque(false);
-            }
-            else {
-                JLabel jlabel5 = new JLabel("6");
-                jlabel5.setFont(new Font("Verdana", 1, 30));
-                panel_8.add(jlabel5);
+				panel_8.setOpaque(false);
+			}
+			else {
+				JLabel jlabel5 = new JLabel("6");
+				jlabel5.setFont(new Font("Verdana", 1, 30));
+				panel_8.add(jlabel5);
 
-            }
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -310,12 +310,16 @@ public class profile {
 
 		btnModifica.addActionListener(new ActionListener() {
 
+
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
 				eventsListener.changePage("editData", utente);
+
 			}
 		});
-		
+
+
+
 		try {
 			int xp = eventsListener.getGameProfile(utente.getUserId()).getEsperienza();
 			String stringaxp = Integer.toString(xp);
@@ -326,7 +330,7 @@ public class profile {
 			label.setForeground(Color.DARK_GRAY);
 			label.setFont(new Font("Georgia", Font.ITALIC, 17));
 
-						label.setBounds(561, 418, 124, 30);
+			label.setBounds(561, 418, 124, 30);
 
 			label.setBounds(561, 418, 124, 30);
 
@@ -335,19 +339,20 @@ public class profile {
 			e.printStackTrace();
 		}
 
+
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setToolTipText("Torna Indietro");
+		btnNewButton_1.setToolTipText("Go back");
 		btnNewButton_1.setIcon(new ImageIcon("imgs/back_icon.png"));
 		btnNewButton_1.setBounds(10, 11, 45, 45);
 
-        // Go to the presentation page
-        btnNewButton_1.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e) {
-                frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("logged", utente);
-            }
-        });
+		// Go to the presentation page
+		btnNewButton_1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.dispose();
+				controller.eventsListener.changePage("logged", utente);
+			}
+		});
 
 		frmUntitledGaming.getContentPane().add(btnNewButton_1);
 
