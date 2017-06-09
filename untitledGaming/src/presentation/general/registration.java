@@ -83,7 +83,10 @@ public class registration {
                 try {
                     frmUntitledGaming.dispose();
                     String passText = new String(passwordField.getPassword());
-                    newUser(txtNickname.getText(), txtNome.getText(), txtCognome.getText(), passText,
+
+                    System.out.println(passText.length());
+
+                    newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
                             txtEmil.getText(), txtDate.getText(),"user");
                     changePage("startPage", null);
 
@@ -120,7 +123,7 @@ public class registration {
         txtCognome = new JTextField();
         txtCognome.setToolTipText("Cognome");
 
-        //listen for focus
+        // Listen for focus
         txtCognome.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 

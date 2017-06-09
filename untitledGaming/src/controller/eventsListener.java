@@ -37,9 +37,9 @@ public class eventsListener {
         return userID;
     }
 
-    public static void newUser(String username, String nome, String cognome, String password, String email, String date, String tipo) throws SQLException {
+    public static void newUser(String username, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
 
-        if (new UserManagement().newUser(username, nome, cognome, password, email, date, tipo)) {
+        if (new UserManagement().newUser(username, password, nome, cognome, email, dateString, tipo)) {
             JOptionPane.showMessageDialog(null, "Utente aggiunto correttamente.");
         } else {
             JOptionPane.showMessageDialog(null, "Error, try again");

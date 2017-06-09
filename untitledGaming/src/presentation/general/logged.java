@@ -35,16 +35,16 @@ public class logged {
 		label.setBounds(0, 0, 46, 14);
 		frmUntitledGaming.getContentPane().add(label);
 
-		JLabel lblNewLabel = new JLabel("Hello,");
+		JLabel lblNewLabel = new JLabel("Hello, ");
 		lblNewLabel.setForeground(Color.GRAY);
 		lblNewLabel.setFont(new Font("Oregano", Font.PLAIN, 21));
-		lblNewLabel.setBounds(660, 31, 67, 31);
+		lblNewLabel.setBounds(650, 31, 70, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 
 		JLabel lblusernameHere = new JLabel(utente.getUsername());
 		lblusernameHere.setForeground(Color.DARK_GRAY);
 		lblusernameHere.setFont(new Font("Oregano", Font.PLAIN, 21));
-		lblusernameHere.setBounds(714, 32, 193, 30);
+		lblusernameHere.setBounds(720, 32, 193, 30);
 		frmUntitledGaming.getContentPane().add(lblusernameHere);
 
 		JLabel lblNewLabel_1 = new JLabel("Untitled Gaming");

@@ -37,7 +37,9 @@ public class UserManagement {
             return false;
 
         // Check if the password is at least 6 characters
-        if (password.length() < 6 ) {
+        if (password.length() < 5 ) {
+            System.out.println(password.length());
+            System.out.println("Error here");
             return false;
         }
 
@@ -666,13 +668,13 @@ public class UserManagement {
 
     /*  tossTheCoin Minigame */
     public int tossTheCoin(Utente utente) throws SQLException {
+
         Random randomNum = new Random();
         int esperienza_sessione = 0;
         int result = randomNum.nextInt(2);
 
         if (result == 0) {
             JOptionPane.showMessageDialog(null, "You flipped Head! Gain 30 xP");
-
             eventsListener.addXP(utente, 30);
             esperienza_sessione = 30;
             eventsListener.checkLivello(getGameProfile(utente.getUserId()));
@@ -686,9 +688,7 @@ public class UserManagement {
             eventsListener.addXP(utente, +15);
         }
 
-
         return esperienza_sessione;
-
 
     }
 }
