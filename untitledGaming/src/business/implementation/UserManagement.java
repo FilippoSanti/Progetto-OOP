@@ -301,6 +301,7 @@ public class UserManagement {
 
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
+
         if (rs.next()) {
             gameProfileId = rs.getInt("game_profile_id");
             livello = rs.getInt("livello");
@@ -632,7 +633,8 @@ public class UserManagement {
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement("SELECT\n" +
-                "    achievement.nome, achievement.descrizione, achievement.gioco_id, achievement.achievement_id\n" +
+                "    achievement.nome, achievement.descrizione, achievement.gioco_id, achievement.achievement_id," +
+                "achievement_ottenuti.user_id\n" +
                 "FROM\n" +
                 "    achievement_ottenuti INNER JOIN achievement\n" +
                 "    ON achievement_ottenuti.achievement_id = achievement.achievement_id\n" +
@@ -666,6 +668,25 @@ public class UserManagement {
         return tm;
     }
 
+    /* Get the name of a game from its ID */
+    public TableModel getGameNameByID(int gameId) throws SQLException {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT nome FROM `gioco` WHERE gioco_id = ?");
+
+        stmt.setInt(1, gameId);
+
+        ResultSet rs = stmt.executeQuery();
+        TableModel tm = DbUtils.resultSetToTableModel(rs);
+
+        return tm;
+
+    }
+
     /*  tossTheCoin Minigame */
     public int tossTheCoin(Utente utente) throws SQLException {
 
@@ -679,7 +700,6 @@ public class UserManagement {
             esperienza_sessione = 30;
             eventsListener.checkLivello(getGameProfile(utente.getUserId()));
             eventsListener.checkAchievement(getGameProfile(utente.getUserId()));
-
         }
 
         if (result == 1) {
@@ -689,6 +709,5 @@ public class UserManagement {
         }
 
         return esperienza_sessione;
-
     }
 }

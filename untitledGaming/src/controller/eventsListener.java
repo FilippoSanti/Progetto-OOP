@@ -228,4 +228,8 @@ public class eventsListener {
         return new business.implementation.UserManagement().getUserAchievementsList(userId);
     }
 
+    public static TableModel getGameNameByID (int gameId) throws SQLException {
+        return new business.implementation.UserManagement().getGameNameByID(gameId);
+    }
+
 }

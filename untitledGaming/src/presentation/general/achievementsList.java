@@ -1,6 +1,7 @@
 package presentation.general;
 
 
+import business.model.Achievement;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -35,6 +36,9 @@ public class achievementsList {
 
     /*Initialize the contents of the frame */
     private void initialize() {
+
+        Achievement ach = null;
+
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setVisible(true);
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Achievements");
@@ -69,7 +73,10 @@ public class achievementsList {
         try {
 
             JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
-            String achievementDesc = String.valueOf(table.getValueAt(0, 0));
+            String achievementDesc = String.valueOf(table.getValueAt(0, 1));
+
+            // Get the game id from th Table Model
+            String gameID = String.valueOf(table.getValueAt(0, 2));
 
             // Game logo
             JPanel panel = new JPanel();
@@ -85,8 +92,13 @@ public class achievementsList {
             lblDescrizione.setBounds(204, 103, 125, 30);
             frmUntitledGaming.getContentPane().add(lblDescrizione);
 
-            // Game name
-			JLabel lbltitoloGioco = new JLabel("-Titolo Gioco-");
+            //Game name
+            int    id_user        = Integer.parseInt(gameID);
+            JTable achTable       = new JTable(eventsListener.getGameNameByID(id_user));
+            String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
+
+            JLabel lbltitoloGioco = new JLabel(achNameString);
+
 			lbltitoloGioco.setHorizontalAlignment(SwingConstants.CENTER);
 			lbltitoloGioco.setForeground(Color.GRAY);
 			lbltitoloGioco.setFont(new Font("MV Boli", Font.ITALIC, 17));
@@ -115,6 +127,11 @@ public class achievementsList {
             JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
             String achievementDesc = String.valueOf(table.getValueAt(1, 1));
 
+            // Get the game id from the Table Model
+            String gameID = String.valueOf(table.getValueAt(1, 2));
+
+            System.out.println(gameID);
+
             // Game logo
             JPanel panel_1 = new JPanel();
             panel_1.setBackground(Color.BLUE);
@@ -130,8 +147,12 @@ public class achievementsList {
             frmUntitledGaming.getContentPane().add(label_1);
 
             //Game name
+            int    id_game       = Integer.parseInt(gameID);
+            JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
+            String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
 
-			JLabel label_3 = new JLabel("-Titolo Gioco-");
+            JLabel label_3 = new JLabel(achNameString);
+
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
 			label_3.setForeground(Color.GRAY);
 			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
@@ -160,6 +181,9 @@ public class achievementsList {
             JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
             String achievementDesc = String.valueOf(table.getValueAt(2, 1));
 
+            // Get the game id from the Table Model
+            String gameID = String.valueOf(table.getValueAt(2, 2));
+
             // Game logo
             JPanel panel_2 = new JPanel();
             panel_2.setBackground(Color.GREEN);
@@ -174,8 +198,11 @@ public class achievementsList {
             label.setBounds(204, 223, 125, 30);
             frmUntitledGaming.getContentPane().add(label);
 
-            //Game name
-			JLabel label_3 = new JLabel("-Titolo Gioco-");
+            int    id_game       = Integer.parseInt(gameID);
+            JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
+            String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
+            JLabel label_3       = new JLabel(achNameString);
+
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
 			label_3.setForeground(Color.GRAY);
 			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
@@ -204,6 +231,9 @@ public class achievementsList {
             JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
             String achievementDesc = String.valueOf(table.getValueAt(3, 1));
 
+            // Get the game id from the Table Model
+            String gameID = String.valueOf(table.getValueAt(3, 2));
+
             // Game logo
             JPanel panel_3 = new JPanel();
             panel_3.setBackground(Color.RED);
@@ -218,8 +248,12 @@ public class achievementsList {
             label_2.setBounds(204, 459, 125, 30);
             frmUntitledGaming.getContentPane().add(label_2);
 
-            //Game name
-			JLabel label_3 = new JLabel("-Titolo Gioco-");
+            // Game name
+            int    id_game        = Integer.parseInt(gameID);
+            JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
+            String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
+            JLabel label_3        = new JLabel(achNameString);
+
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
 			label_3.setForeground(Color.GRAY);
 			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
