@@ -37,7 +37,7 @@ public class UserManagement {
             return false;
 
         // Check if the password is at least 6 characters
-        if (password.length() < 5 ) {
+        if (password.length() < 5) {
             System.out.println(password.length());
             System.out.println("Error here");
             return false;
@@ -623,10 +623,10 @@ public class UserManagement {
     /* Get the achievements list of a user */
     public TableModel getUserAchievementsList(int userId) throws SQLException {
 
-        String  name    = "";
-        String  desc    = "";
-        int     gameId  = 0 ;
-        int     achId   = 0 ;
+        String name = "";
+        String desc = "";
+        int gameId = 0;
+        int achId = 0;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -687,7 +687,22 @@ public class UserManagement {
 
     }
 
+    public boolean AchievementFoundOnProfile(int achievement_id, int user_id) throws SQLException {
+          String achId = String.valueOf(achievement_id);
+        for (int i = 0; i < eventsListener.getUserAchievementsList(user_id).getRowCount(); i++) {
+            if (String.valueOf(eventsListener.getUserAchievementsList(user_id).getValueAt(i, 3)).equals(achId)) {
+
+                return true;
+            }
+        }
+
+            return false;
+
+    }
+
+
     /*  tossTheCoin Minigame */
+
     public int tossTheCoin(Utente utente) throws SQLException {
 
         Random randomNum = new Random();
@@ -710,4 +725,7 @@ public class UserManagement {
 
         return esperienza_sessione;
     }
+
 }
+
+
