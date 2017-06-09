@@ -1,4 +1,4 @@
-
+package presentation.general;
 //-*- mode:java; encoding:utf-8 -*-
 // vim:set fileencoding=utf-8:
 //http://ateraimemo.com/Swing/RatingLabel.html

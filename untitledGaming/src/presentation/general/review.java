@@ -1,3 +1,5 @@
+package presentation.general;
+
 import java.awt.EventQueue;
 
 import javax.swing.*;
@@ -99,7 +101,7 @@ public class review extends MainPanel {
 
         JPanel panel = new JPanel();
         panel.setBounds(115, 127, 696, 90);
-        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs\\31g_1.png"));
+        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
         ImageProducer ip = defaultIcon.getImage().getSource();
         List<ImageIcon>
                 list = Arrays.asList(
