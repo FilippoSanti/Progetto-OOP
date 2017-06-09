@@ -35,7 +35,7 @@ public class profile {
 		frmUntitledGaming.setVisible(true);
 
 		frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo_untitled_gaming.png"));
-		frmUntitledGaming.setTitle("Untitled Gaming - Your Profile");
+		frmUntitledGaming.setTitle("Untitled Gaming - Il Tuo Profilo");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setLocationRelativeTo(null);
@@ -65,7 +65,7 @@ public class profile {
 		lblNewLabel_1.setBounds(488, 171, 131, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_1);
 
-		JLabel lblNewLabel_2 = new JLabel("Data di nascita :");
+		JLabel lblNewLabel_2 = new JLabel("Data di Nascita :");
 		lblNewLabel_2.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_2.setForeground(Color.GRAY);
 		lblNewLabel_2.setBounds(488, 202, 131, 31);
@@ -141,7 +141,6 @@ public class profile {
 		btnNewButton.setBounds(137, 576, 289, 37);
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 
-
 		try {
 			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
 			String stringalv = Integer.toString(livello);
@@ -173,13 +172,13 @@ public class profile {
 			e.printStackTrace();
 		}
 
-
 		frmUntitledGaming.getContentPane().add(panel_2);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.CYAN);
 		panel_4.setBounds(365, 468, 50, 50);
 		panel_4.setBorder(new LineBorder(Color.BLACK));
+
 		try {
 			if (!eventsListener.AchievementFoundOnProfile(2, utente.getUserId())){
 
@@ -318,8 +317,6 @@ public class profile {
 			}
 		});
 
-
-
 		try {
 			int xp = eventsListener.getGameProfile(utente.getUserId()).getEsperienza();
 			String stringaxp = Integer.toString(xp);
@@ -338,7 +335,6 @@ public class profile {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setToolTipText("Go back");
