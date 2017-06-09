@@ -46,7 +46,7 @@ public class startPage {
         frmUntitledGaming.getContentPane().add(lblNewLabel);
 
         txtUsername = new JTextField();
-        txtUsername.setToolTipText("e-mail");
+        txtUsername.setToolTipText("E-mail");
 
         //listen for focus
         txtUsername.addFocusListener(new FocusListener() {
@@ -56,11 +56,11 @@ public class startPage {
 
             public void focusLost(FocusEvent e) {
                 if (txtUsername.getText().isEmpty())
-                    txtUsername.setText("e-mail");
+                    txtUsername.setText("E-mail");
             }
         });
 
-        txtUsername.setText("e-mail");
+        txtUsername.setText("E-mail");
         txtUsername.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtUsername.setForeground(Color.GRAY);
         txtUsername.setHorizontalAlignment(SwingConstants.CENTER);

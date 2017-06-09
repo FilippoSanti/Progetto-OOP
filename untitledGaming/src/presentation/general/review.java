@@ -68,7 +68,7 @@ public class review extends MainPanel {
         frmUntitledGaming.getContentPane().add(lblScriviUnCommento);
 
         JEditorPane dtrpnLasciaQuIl = new JEditorPane();
-        dtrpnLasciaQuIl.setToolTipText("Scrivi un commento...");
+        dtrpnLasciaQuIl.setToolTipText("Scrivi un Commento...");
 
         //listen for focus
         dtrpnLasciaQuIl.addFocusListener(new FocusListener() {
@@ -77,12 +77,12 @@ public class review extends MainPanel {
             }
             public void focusLost (FocusEvent e){
                 if (dtrpnLasciaQuIl.getText().isEmpty())
-                    dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");
+                    dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento......");
             }
         });
 
 
-        dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");
+        dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento......");
         dtrpnLasciaQuIl.setFont(new Font("Oregano", Font.PLAIN, 25));
         dtrpnLasciaQuIl.setBackground(new Color(220, 220, 220));
         dtrpnLasciaQuIl.setBounds(124, 313, 696, 223);
@@ -121,8 +121,8 @@ public class review extends MainPanel {
         frmUntitledGaming.getContentPane().add(lblnomeGioco);
 
         JButton button = new JButton("");
-        button.setIcon(new ImageIcon("imgs\\back_icon.png"));
-        button.setToolTipText("torna indietro");
+        button.setIcon(new ImageIcon("imgs/back_icon.png"));
+        button.setToolTipText("Torna Indietro");
         button.setBounds(10, 11, 45, 45);
         frmUntitledGaming.getContentPane().add(button);
 

@@ -50,7 +50,7 @@ public class achievementsList {
         frmUntitledGaming.setLocationRelativeTo(null);
 
         JButton button = new JButton("");
-        button.setIcon(new ImageIcon("back-icon.png"));
+        button.setIcon(new ImageIcon("imgs/back-icon.png"));
         button.setToolTipText("torna indietro");
         button.setBounds(10, 11, 45, 45);
         frmUntitledGaming.getContentPane().add(button);
@@ -143,7 +143,7 @@ public class achievementsList {
             label_1.setHorizontalAlignment(SwingConstants.CENTER);
             label_1.setForeground(Color.DARK_GRAY);
             label_1.setFont(new Font("Oregano", Font.PLAIN, 21));
-            label_1.setBounds(204, 340, 125, 30);
+            label_1.setBounds(204, 223, 125, 30);
             frmUntitledGaming.getContentPane().add(label_1);
 
             //Game name
@@ -195,7 +195,7 @@ public class achievementsList {
             label.setHorizontalAlignment(SwingConstants.CENTER);
             label.setForeground(Color.DARK_GRAY);
             label.setFont(new Font("Oregano", Font.PLAIN, 21));
-            label.setBounds(204, 223, 125, 30);
+            label.setBounds(204, 340, 125, 30);
             frmUntitledGaming.getContentPane().add(label);
 
             int    id_game       = Integer.parseInt(gameID);

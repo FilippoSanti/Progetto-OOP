@@ -167,7 +167,7 @@ public class registration {
         txtEmil.setColumns(10);
 
         txtDate = new JTextField();
-        txtDate.setToolTipText("Data di nascita");
+        txtDate.setToolTipText("Data di Nascita");
 
         //listen for focus
         txtDate.addFocusListener(new FocusListener() {
@@ -176,13 +176,13 @@ public class registration {
 			}
 			public void focusLost (FocusEvent e){
 				if (txtDate.getText().isEmpty())
-					txtDate.setText("Data di nascita");
+					txtDate.setText("Data di Nascita");
 			}
 		});
 		
         txtDate.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtDate.setForeground(Color.GRAY);
-        txtDate.setText("Data di nascita");
+        txtDate.setText("Data di Nascita");
         txtDate.setHorizontalAlignment(SwingConstants.CENTER);
         txtDate.setBounds(136, 433, 280, 60);
         frmUntitledGaming.getContentPane().add(txtDate);
@@ -226,7 +226,7 @@ public class registration {
 		
 
         button = new JButton("");
-        button.setIcon(new ImageIcon("/img/back_icon.png"));
+        button.setIcon(new ImageIcon("imgs/back_icon.png"));
         button.setToolTipText("Go back");
         button.setBounds(10, 11, 45, 45);
 

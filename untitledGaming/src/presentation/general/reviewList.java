@@ -51,7 +51,7 @@ public class reviewList {
 		frmUntitledGaming.setLocationRelativeTo(null);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back-icon.png"));
+		button.setIcon(new ImageIcon("imgs/back-icon.png"));
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
@@ -83,7 +83,7 @@ public class reviewList {
 		frmUntitledGaming.getContentPane().add(panel_3);
 		
 		JButton btnSuccessiva = new JButton("");
-		btnSuccessiva.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\Rounded_next.png"));
+		btnSuccessiva.setIcon(new ImageIcon("C:imgs/Rounded_next.png"));
 		btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
 		btnSuccessiva.setToolTipText("Pagina Successiva");
 		btnSuccessiva.setBounds(830, 581, 45, 45);
@@ -115,7 +115,7 @@ public class reviewList {
 		
 		JButton button_4 = new JButton("");
 		button_4.setEnabled(false);
-		button_4.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\Rounded_back_1.png"));
+		button_4.setIcon(new ImageIcon("imgs/Rounded_back_1.png"));
 		button_4.setToolTipText("Pagina Precedente");
 		button_4.setFont(new Font("MV Boli", Font.ITALIC, 13));
 		button_4.setBounds(68, 581, 45, 45);

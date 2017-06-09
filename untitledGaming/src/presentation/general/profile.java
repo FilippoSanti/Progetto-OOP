@@ -34,7 +34,7 @@ public class profile {
 		frmUntitledGaming.setVisible(true);
 
 		frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo_untitled_gaming.png"));
-		frmUntitledGaming.setTitle("Untitled Gaming - Your Profile");
+		frmUntitledGaming.setTitle("Untitled Gaming - Il tuo Profilo");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setLocationRelativeTo(null);
@@ -203,16 +203,12 @@ public class profile {
 
 		btnModifica.addActionListener(new ActionListener() {
 
-
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
 				eventsListener.changePage("editData", utente);
-
 			}
 		});
 		
-
-
 		try {
 			int xp = eventsListener.getGameProfile(utente.getUserId()).getEsperienza();
 			String stringaxp = Integer.toString(xp);
@@ -232,10 +228,9 @@ public class profile {
 			e.printStackTrace();
 		}
 
-
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setToolTipText("Go back");
-		btnNewButton_1.setIcon(new ImageIcon("img/back_icon.png"));
+		btnNewButton_1.setToolTipText("Torna Indietro");
+		btnNewButton_1.setIcon(new ImageIcon("imgs/back_icon.png"));
 		btnNewButton_1.setBounds(10, 11, 45, 45);
 
         // Go to the presentation page

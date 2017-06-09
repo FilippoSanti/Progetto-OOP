@@ -32,7 +32,7 @@ public class allGames {
         frmUntitledGaming.setLocationRelativeTo(null);
 
         JButton button = new JButton("");
-        button.setIcon(new ImageIcon("back_icon.png"));
+        button.setIcon(new ImageIcon("imgs/back_icon.png"));
         button.setToolTipText("torna indietro");
         button.setBounds(10, 11, 45, 45);
         frmUntitledGaming.getContentPane().add(button);
