@@ -1,24 +1,38 @@
-package presentation.general;
-
 import java.awt.EventQueue;
 
 import javax.swing.*;
 import java.awt.SystemColor;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.Button;
-import java.awt.image.ImageProducer;
-import java.util.Arrays;
-import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
+import java.awt.Button;
+import java.awt.image.ImageProducer;
+import java.util.Arrays;
+import java.util.List;
 
-public class review extends starRating {
+public class review extends MainPanel {
 
     private JFrame frmUntitledGaming;
-    
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    review window = new review();
+                    window.frmUntitledGaming.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     /**
      * Create the application.
      */
@@ -31,7 +45,7 @@ public class review extends starRating {
      */
     private void initialize() {
         frmUntitledGaming = new JFrame();
-        frmUntitledGaming.setTitle("Untitled Gaming - Scrivi Recensione");
+        frmUntitledGaming.setTitle("   Untitled Gaming  -  Scrivi Recensione");
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,24 +68,24 @@ public class review extends starRating {
         JEditorPane dtrpnLasciaQuIl = new JEditorPane();
         dtrpnLasciaQuIl.setToolTipText("Scrivi un commento...");
 
-        /*
-        //listen for focus (TODO: textField_1 non esiste)
-        textField_1.addFocusListener(new FocusListener() {
-        public void focusGained(FocusEvent e) {
-            dtrpnLasciaQuIl.setText("  ");
-        }
-        public void focusLost (FocusEvent e){
-            if (dtrpnLasciaQuIl.getText().isEmpty())
-                dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");
-        }
-   }); */
-    
-        
+        //listen for focus
+        dtrpnLasciaQuIl.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                dtrpnLasciaQuIl.setText("  ");
+            }
+            public void focusLost (FocusEvent e){
+                if (dtrpnLasciaQuIl.getText().isEmpty())
+                    dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");
+            }
+        });
+
+
         dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il tuo commento......");
         dtrpnLasciaQuIl.setFont(new Font("Oregano", Font.PLAIN, 25));
         dtrpnLasciaQuIl.setBackground(new Color(220, 220, 220));
         dtrpnLasciaQuIl.setBounds(124, 313, 696, 223);
         frmUntitledGaming.getContentPane().add(dtrpnLasciaQuIl);
+
 
         JButton btnInviaRecensione = new JButton("Invia Recensione");
         btnInviaRecensione.addActionListener(new ActionListener() {
@@ -84,8 +98,8 @@ public class review extends starRating {
         frmUntitledGaming.getContentPane().add(btnInviaRecensione);
 
         JPanel panel = new JPanel();
-        panel.setBounds(124, 127, 696, 68);
-        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("img/31g.png"));
+        panel.setBounds(115, 127, 696, 90);
+        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs\\31g_1.png"));
         ImageProducer ip = defaultIcon.getImage().getSource();
         List<ImageIcon>
                 list = Arrays.asList(
@@ -96,25 +110,24 @@ public class review extends starRating {
                 makeStarImageIcon(ip,  1f,  1f, 0f));
         panel.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
         frmUntitledGaming.getContentPane().add(panel);
-        
+
         JLabel lblnomeGioco = new JLabel("-Nome Gioco-");
         lblnomeGioco.setHorizontalAlignment(SwingConstants.LEFT);
         lblnomeGioco.setForeground(SystemColor.textInactiveText);
         lblnomeGioco.setFont(new Font("Georgia", Font.ITALIC, 30));
         lblnomeGioco.setBounds(421, 63, 489, 52);
         frmUntitledGaming.getContentPane().add(lblnomeGioco);
-        
+
         JButton button = new JButton("");
-        button.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\back_icon.png"));
+        button.setIcon(new ImageIcon("imgs\\back_icon.png"));
         button.setToolTipText("torna indietro");
         button.setBounds(10, 11, 45, 45);
         frmUntitledGaming.getContentPane().add(button);
-        
+
         JButton btnTornaAllaHome = new JButton("Torna alla Home");
         btnTornaAllaHome.setToolTipText("Torna alla Home");
         btnTornaAllaHome.setFont(new Font("MV Boli", Font.ITALIC, 15));
-        btnTornaAllaHome.setBounds(772, 26, 147, 26);
+        btnTornaAllaHome.setBounds(758, 26, 161, 35);
         frmUntitledGaming.getContentPane().add(btnTornaAllaHome);
-
     }
 }
