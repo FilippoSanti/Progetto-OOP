@@ -178,6 +178,11 @@ public class eventsListener {
     public static void checkAchievement (gameProfile gameProfile) throws SQLException{
         new business.implementation.UserManagement().checkAchievement(gameProfile);
     }
+
+    public static boolean AchievementFoundOnProfile(int achievement_id, int user_id) throws SQLException {
+          return new business.implementation.UserManagement().AchievementFoundOnProfile(achievement_id, user_id);
+    }
+
     /* Change the current JFrame */
     public static void changePage(String page, Utente utente) {
         switch (page) {
