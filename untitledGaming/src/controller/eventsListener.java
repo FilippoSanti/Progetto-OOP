@@ -37,6 +37,26 @@ public class eventsListener {
         return userID;
     }
 
+    public static String getUsername (int user_id) throws SQLException{
+       String username = "";
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT username FROM utente WHERE user_id = ?");
+        stmt.setInt(1, user_id);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            username = rs.getString(1);
+        }
+
+        return username;
+    }
+
+
     public static void newUser(String username, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
 
         if (new UserManagement().newUser(username, password, nome, cognome, email, dateString, tipo)) {
@@ -221,6 +241,9 @@ public class eventsListener {
             case "allGames" :
                 new allGames(utente);
                 break;
+
+            case "reviewList" :
+                new reviewList(utente, 0);
         }
     }
 

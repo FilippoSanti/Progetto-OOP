@@ -22,21 +22,7 @@ public class evalutateReview {
 		initialize();
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					evalutateReview window = new evalutateReview();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.

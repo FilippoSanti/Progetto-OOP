@@ -56,7 +56,7 @@ public class allGames {
         try {
 
             JTable table = new JTable(eventsListener.getGames());
-            String titolo1 = String.valueOf(table.getValueAt(0, 1));
+            String titolo = String.valueOf(table.getValueAt(0, 1));
 
             // Game logo
             JPanel panel = new JPanel();
@@ -64,7 +64,7 @@ public class allGames {
             panel.setBounds(65, 83, 90, 90);
             frmUntitledGaming.getContentPane().add(panel);
 
-            JLabel lblNewLabel = new JLabel(titolo1);
+            JLabel lblNewLabel = new JLabel(titolo);
             lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
             lblNewLabel.setLabelFor(panel);
 
@@ -95,6 +95,13 @@ public class allGames {
             btnRecensioni.setFont(new Font("MV Boli", Font.ITALIC, 17));
             btnRecensioni.setBounds(573, 114, 142, 30);
             frmUntitledGaming.getContentPane().add(btnRecensioni);
+
+            btnRecensioni.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    frmUntitledGaming.setVisible(false);
+                    eventsListener.changePage("reviewList", utente);
+                }
+            });
         } catch (SQLException e) {
             e.printStackTrace();
         }
