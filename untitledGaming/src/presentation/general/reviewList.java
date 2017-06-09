@@ -1,5 +1,8 @@
 package presentation.general;
 
+import business.model.Utente;
+import controller.eventsListener;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,37 +13,24 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class reviewList {
 
 	private JFrame frmUntitledGaming;
+Utente utente;
+int row;
 
-	/**
-	 * Create the application.
-	 */
-	public reviewList() {
+	public reviewList(Utente c, int a) {
 		initialize();
+		this.utente = c;
+		this.row = a;
+
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					reviewList window = new reviewList();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frmUntitledGaming = new JFrame();
 		frmUntitledGaming.setTitle("   Untitled Gaming  -  Lista Commenti");
@@ -88,6 +78,18 @@ public class reviewList {
 		btnSuccessiva.setToolTipText("Pagina Successiva");
 		btnSuccessiva.setBounds(830, 581, 45, 45);
 		frmUntitledGaming.getContentPane().add(btnSuccessiva);
+
+		btnSuccessiva.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				row = row+4;
+				frmUntitledGaming.setVisible(false);
+				new reviewList(utente, row);
+
+			}
+		});
+
 		
 		JButton btnRecensione = new JButton("Leggi Commento");
 		btnRecensione.setToolTipText("Leggi Commento");
@@ -120,15 +122,32 @@ public class reviewList {
 		button_4.setFont(new Font("MV Boli", Font.ITALIC, 13));
 		button_4.setBounds(68, 581, 45, 45);
 		frmUntitledGaming.getContentPane().add(button_4);
-		
-		JLabel label = new JLabel("-Username Here!-");
+
+		JLabel label = null;
+		try {
+
+			String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row, 0));
+			int b = Integer.parseInt(a);
+			label = new JLabel(eventsListener.getUsername(b));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.DARK_GRAY);
 		label.setFont(new Font("Oregano", Font.PLAIN, 21));
 		label.setBounds(166, 119, 211, 30);
 		frmUntitledGaming.getContentPane().add(label);
-		
-		JLabel label_1 = new JLabel("-Username Here!-");
+
+		JLabel label_1 = null;
+		try {
+
+			String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row+1, 0));
+			int b = Integer.parseInt(a);
+			label_1 = new JLabel(eventsListener.getUsername(b));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setForeground(Color.DARK_GRAY);
 		label_1.setFont(new Font("Oregano", Font.PLAIN, 21));
@@ -186,5 +205,6 @@ public class reviewList {
 		btnLaTuaRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
 		btnLaTuaRecensione.setBounds(375, 570, 198, 45);
 		frmUntitledGaming.getContentPane().add(btnLaTuaRecensione);
+		frmUntitledGaming.setVisible(true);
 	}
 }
