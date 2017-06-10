@@ -141,6 +141,17 @@ public class profile {
 		btnNewButton.setBounds(137, 576, 289, 37);
 		frmUntitledGaming.getContentPane().add(btnNewButton);
 
+
+		btnNewButton.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.setVisible(false);
+				eventsListener.changePage("timelineView", utente);
+
+			}
+		});
+
 		try {
 			int livello = eventsListener.getGameProfile(utente.getUserId()).getLivello();
 			String stringalv = Integer.toString(livello);

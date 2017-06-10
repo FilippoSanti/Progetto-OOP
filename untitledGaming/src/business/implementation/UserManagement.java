@@ -535,7 +535,7 @@ public class UserManagement {
             timeline_id = rs.getInt("timeline_id");
             gioco_id = rs.getInt("gioco_id");
             esperienza_guadagnata = rs.getInt("esperienza_guadagnata");
-            data_ultima_sessione = rs.getDate(" data_ultima_sessione");
+            data_ultima_sessione = rs.getDate("" + "data_ultima_sessione");
 
 
         }

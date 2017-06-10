@@ -1,3 +1,9 @@
+package presentation.general;
+
+import business.implementation.DBManager;
+import business.model.Utente;
+import controller.eventsListener;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +13,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.SQLException;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
@@ -16,27 +26,12 @@ import javax.swing.border.EtchedBorder;
 public class timelineView {
 
 	private JFrame frmUntitledGaming;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					timelineView window = new timelineView();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+Utente utente;
 	/**
 	 * Create the application.
 	 */
-	public timelineView() {
+	public timelineView(Utente c) {
+		this.utente = c;
 		initialize();
 	}
 
@@ -56,6 +51,15 @@ public class timelineView {
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
+		button.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.setVisible(false);
+				eventsListener.changePage("profile", utente);
+
+			}
+		});
+
 		
 		JLabel lblCronologiaDiGioco = new JLabel("Cronologia di Gioco");
 		lblCronologiaDiGioco.setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,23 +93,45 @@ public class timelineView {
 		
 		JLabel label = new JLabel("");
 		panel.add(label);
-		
-		JLabel lblNewLabel = new JLabel("- Inserire qui NOME GIOCO-");
+
+
+		JLabel lblNewLabel = null;
+		try {
+
+
+			lblNewLabel = new JLabel(eventsListener.getGameFromId(eventsListener.getTimeline(utente.getUserId()).getGioco_id()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		lblNewLabel.setForeground(Color.DARK_GRAY);
 		lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel.setBounds(450, 202, 306, 45);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
-		
-		JLabel lblInserireQui = new JLabel("- Inserire qui la DATA-");
+
+		JLabel lblInserireQui = null;
+		try {
+
+			lblInserireQui = new JLabel(eventsListener.getTimeline(utente.getUserId()).getData_ultima_sessione().toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		lblInserireQui.setForeground(Color.DARK_GRAY);
 		lblInserireQui.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblInserireQui.setBounds(311, 346, 306, 45);
 		frmUntitledGaming.getContentPane().add(lblInserireQui);
-		
-		JLabel lblInserireQui_1 = new JLabel("1234  -Inserire qui  XP ULTIMA SESSIONE-");
+
+		JLabel lblInserireQui_1 = null;
+		try {
+
+			lblInserireQui_1 = new JLabel( Integer.toString(eventsListener.getTimeline(utente.getUserId()).getEsperienza_guadagnata()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		lblInserireQui_1.setForeground(Color.DARK_GRAY);
 		lblInserireQui_1.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblInserireQui_1.setBounds(436, 500, 402, 45);
 		frmUntitledGaming.getContentPane().add(lblInserireQui_1);
+
+		frmUntitledGaming.setVisible(true);
 	}
 }
