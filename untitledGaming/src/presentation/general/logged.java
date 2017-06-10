@@ -62,7 +62,7 @@ public class logged {
         btnNewButton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                frmUntitledGaming.dispose();
+                frmUntitledGaming.setVisible(false);
                 controller.eventsListener.changePage("profile", utente);
             }
         });
@@ -117,7 +117,7 @@ public class logged {
 		btnGiocaOra.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-				frmUntitledGaming.dispose();
+				frmUntitledGaming.setVisible(false);
 				controller.eventsListener.changePage("allGames", utente);
 			}
 		});

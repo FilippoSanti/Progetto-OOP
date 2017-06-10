@@ -2,6 +2,7 @@ package business.implementation;
 
 import business.model.Review;
 import business.model.Utente;
+import controller.eventsListener;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.table.TableModel;
@@ -18,7 +19,7 @@ public class ReviewManagement {
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        String insertTableSQL = "INSERT INTO recensioni" + "(user_id, testo_recensione, voto, approvata) VALUES" +
+        String insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, approvata) VALUES" +
                 "(?, ?, ?, false)";
 
         PreparedStatement preparedStatement = null;
@@ -122,6 +123,25 @@ public class ReviewManagement {
         return tm;
     }
 
+    public TableModel getAllReviews () throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT user_id, \n" +
+                        "       testo_recensione, \n" +
+                        "       voto \n" +
+                        "FROM   recensione \n"
+                        );
+
+        ResultSet rs = stmt.executeQuery();
+        TableModel tm = DbUtils.resultSetToTableModel(rs);
+
+        return tm;
+    }
+
+
     /* Approve a review */
     public boolean approveReview(Review review) throws SQLException {
 
@@ -158,4 +178,19 @@ public class ReviewManagement {
         }
         return false;
     }
+
+    public boolean reviewFoundOnProfile(int user_id) throws SQLException {
+
+
+        for (int i = 0; i < eventsListener.getAllReviews().getRowCount(); i++) {
+            if (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 0)).equals(String.valueOf(user_id))) {
+
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
 }

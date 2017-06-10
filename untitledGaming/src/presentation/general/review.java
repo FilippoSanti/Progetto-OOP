@@ -1,5 +1,8 @@
 package presentation.general;
 
+import business.model.Utente;
+import controller.eventsListener;
+
 import java.awt.EventQueue;
 
 import javax.swing.*;
@@ -12,6 +15,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 import java.awt.Button;
 import java.awt.image.ImageProducer;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,26 +23,13 @@ public class review extends MainPanel {
 
     private JFrame frmUntitledGaming;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    review window = new review();
-                    window.frmUntitledGaming.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+Utente utente;
     /**
      * Create the application.
      */
-    public review() {
+    public review(Utente c) {
+
+        this.utente = c;
         initialize();
     }
 
@@ -99,6 +90,20 @@ public class review extends MainPanel {
         btnInviaRecensione.setBounds(355, 573, 234, 52);
         frmUntitledGaming.getContentPane().add(btnInviaRecensione);
 
+        btnInviaRecensione.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.setVisible(false);
+                eventsListener.changePage("reviewList", utente);
+                try {
+                    controller.eventsListener.addReview(utente, dtrpnLasciaQuIl.getText(), 4);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+
         JPanel panel = new JPanel();
         panel.setBounds(115, 127, 696, 90);
         ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
@@ -131,5 +136,8 @@ public class review extends MainPanel {
         btnTornaAllaHome.setFont(new Font("MV Boli", Font.ITALIC, 15));
         btnTornaAllaHome.setBounds(758, 26, 161, 35);
         frmUntitledGaming.getContentPane().add(btnTornaAllaHome);
+
+        frmUntitledGaming.setVisible(true
+        );
     }
 }

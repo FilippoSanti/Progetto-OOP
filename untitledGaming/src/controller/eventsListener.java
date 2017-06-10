@@ -3,6 +3,7 @@ package controller;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.*;
+import javafx.scene.control.Tab;
 import presentation.general.*;
 
 import javax.swing.*;
@@ -203,6 +204,14 @@ public class eventsListener {
           return new business.implementation.UserManagement().AchievementFoundOnProfile(achievement_id, user_id);
     }
 
+    public static TableModel getAllReviews () throws SQLException {
+        return new business.implementation.ReviewManagement().getAllReviews ();
+    }
+
+    public static boolean reviewFoundOnProfile(int user_id) throws SQLException {
+        return new business.implementation.ReviewManagement().reviewFoundOnProfile(user_id);
+    }
+
     /* Change the current JFrame */
     public static void changePage(String page, Utente utente) {
         switch (page) {
@@ -222,9 +231,7 @@ public class eventsListener {
                 new profile(utente);
                 break;
 
-            case "viewReview":
-                new viewReview(utente);
-                break;
+
 
             case "editData":
                 new editData(utente);
@@ -243,7 +250,16 @@ public class eventsListener {
                 break;
 
             case "reviewList" :
-                new reviewList(utente, 0);
+                new reviewList(utente,0);
+                break;
+
+            case "viewRievew" :
+                new viewReview(utente, 0, 0);
+                break;
+
+            case "review" :
+                new review(utente);
+                break;
         }
     }
 

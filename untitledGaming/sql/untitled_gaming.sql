@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Giu 09, 2017 alle 13:51
--- Versione del server: 5.7.18
--- Versione PHP: 7.0.19
+-- Host: 127.0.0.1
+-- Creato il: Giu 10, 2017 alle 08:41
+-- Versione del server: 10.1.22-MariaDB
+-- Versione PHP: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -38,10 +40,12 @@ CREATE TABLE `achievement` (
 --
 
 INSERT INTO `achievement` (`achievement_id`, `nome`, `descrizione`, `gioco_id`) VALUES
-(1, '100 esp!', 'bla', 1),
-(2, '200 esp!', 'blabla', 1),
-(3, '100 esp!', 'bla nn', 2),
-(4, 'evvia!', 'hai vinto', 4);
+(1, 'Scarso', 'Raggiungi il livello 5', 1),
+(2, 'Merda', 'livello 2', 1),
+(3, 'STRONZO', 'livello4', 1),
+(4, 'Evvai!', 'livello7', 1),
+(5, 'Cacatura', 'Hai fatto schifo', 1),
+(6, 'Vafammocc', 'Sei un pirla', 1);
 
 -- --------------------------------------------------------
 
@@ -60,13 +64,11 @@ CREATE TABLE `achievement_ottenuti` (
 --
 
 INSERT INTO `achievement_ottenuti` (`achievement_ottenuti_id`, `user_id`, `achievement_id`) VALUES
-(1, 1, 4),
-(2, 1, 2),
-(3, 2, 1),
-(4, 5, 2),
-(7, 5, 3),
-(8, 5, 4),
-(9, 5, 2);
+(1, 33, 2),
+(2, 33, 3),
+(3, 33, 4),
+(4, 33, 6),
+(5, 33, 1);
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,7 @@ CREATE TABLE `game_profile` (
   `game_profile_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `livello` int(3) NOT NULL,
-  `punti_esperienza` int(10) DEFAULT NULL
+  `punti_esperienza` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
@@ -86,13 +88,11 @@ CREATE TABLE `game_profile` (
 --
 
 INSERT INTO `game_profile` (`game_profile_id`, `user_id`, `livello`, `punti_esperienza`) VALUES
-(1, 1, 3, 61600),
-(2, 2, 2, 150),
-(3, 1, 1, 0),
-(4, 2, 1, 0),
-(5, 3, 1, 0),
-(6, 4, 1, 0),
-(7, 5, 4, 450);
+(1, 33, 2, 135),
+(2, 34, 1, 0),
+(3, 35, 1, 0),
+(4, 36, 1, 0),
+(5, 37, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -110,10 +110,10 @@ CREATE TABLE `gioco` (
 --
 
 INSERT INTO `gioco` (`gioco_id`, `nome`) VALUES
-(1, 'pac man'),
-(2, 'gioco1'),
-(3, 'Space Invaders'),
-(4, 'Snake 2017 ');
+(1, 'Toss The Coin'),
+(2, 'Gioco2'),
+(3, 'Gioco3'),
+(4, 'Gioco4');
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,16 @@ CREATE TABLE `recensione` (
 --
 
 INSERT INTO `recensione` (`recensione_id`, `user_id`, `testo_recensione`, `voto`, `approvata`) VALUES
-(1, 1, 'Bene ma non benissimo', 3.5, 1);
+(1, 33, 'tutto molto bello', 3, 1),
+(2, 34, 'molto interessante', 4, 1),
+(3, 35, 'na merda', 4, 1),
+(4, 36, 'belo bela', 1, 0),
+(5, 37, 'merda pe te', 2, 1),
+(6, 35, 'sasasasa', 1, 1),
+(7, 35, 'aaaqqqqwwww', 4, 0),
+(8, 36, '1112334', 4, 1),
+(9, 35, 'aaaaaa', 4, 1),
+(10, 37, '12313123', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -155,9 +164,8 @@ CREATE TABLE `timeline` (
 --
 
 INSERT INTO `timeline` (`timeline_id`, `user_id`, `gioco_id`, `data_ultima_sessione`, `esperienza_guadagnata`) VALUES
-(1, 1, 1, '2017-06-06', 200),
-(2, 2, 1, '2017-06-28', 777),
-(3, 5, 1, '2017-06-09', 0);
+(1, 33, 1, '2017-06-09', 0),
+(2, 34, 1, '2017-06-09', 0);
 
 -- --------------------------------------------------------
 
@@ -171,8 +179,8 @@ CREATE TABLE `utente` (
   `password` varchar(60) NOT NULL,
   `nome` varchar(20) NOT NULL,
   `cognome` varchar(20) NOT NULL,
-  `email` varchar(25) NOT NULL,
   `data_di_nascita` date NOT NULL,
+  `email` varchar(25) NOT NULL,
   `tipo` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -180,12 +188,12 @@ CREATE TABLE `utente` (
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `email`, `data_di_nascita`, `tipo`) VALUES
-(1, 'paoluccio545', '$2a$12$waMDxRWSmpRoSZbajEPM0.zMtUPJPEVOc1XOWLNJh2JO3bc0jE0wO', 'asdasd', 'paoluccio656', 'asdasd', '1111-11-11', 'user'),
-(2, 'kep', '$2a$12$m72XncBhpsS5vs0s1WPQNe.pUaE3SMdzZIGzXJnrStfqLw/XqSTae', 'a', 'kep12345', 'd', '1111-11-11', 'user'),
-(3, 'axx', '$2a$12$ZBkP7K9Fhs/eUD9DNqf2KO4t1SLUi6gx9CRdc2XR6sMdOOwz1yrc2', 'a', 'ax', 'ax', '1111-11-11', 'user'),
-(4, 'mikeshx', '$2a$12$PuaaDPncq9G6RlOO4MT6uO7M.wWpo5bBO8GWqA0eNpFTmnzDNIknq', 'Stefano', 'asd', 'ad', '1111-11-11', 'user'),
-(5, 'a', '$2a$12$o.CGIK80kucnV/qEtsJb0.n.IrSgmUozp/vIOc9T76gi5hGezyKdW', 'a', 'a', 'a', '1111-11-11', 'user');
+INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `data_di_nascita`, `email`, `tipo`) VALUES
+(33, 'a', '$2a$12$ZCCzckOE3E9JjNdFVZj9TOALo0kYq.kmtbv45SDamMQ784D1SDKly', 'a', 'a', '1995-10-11', 'a', 'user'),
+(34, 'b', '$2a$12$zIUDU95lSJCRYr6NH1VIdued0g7I5RenfyEqraIKsGf68CuRcbn8K', 'b', 'b', '1888-11-11', 'b', 'user'),
+(35, 'c', '$2a$12$mLDFI2zdjPTABeZyDoB1OefGmfCDskRbYnA2cHFWJ.eMiTZn2DDd.', 'c', 'c', '1111-11-11', 'c', 'user'),
+(36, 'd', '$2a$12$2RlHSOsRwNNtzLAdTKWi6.y2tG.Ja0gxLEucZxGOT.NFlAFoA2mJq', 'd', 'd', '1111-11-11', 'd', 'user'),
+(37, 'e', '$2a$12$ygcTvhJjWjSMOILjIkJRYeBbF85Y/tRTF0V88ooFOX65twEOa3f4m', 'e', 'e', '1111-11-11', 'e', 'user');
 
 --
 -- Indici per le tabelle scaricate
@@ -196,7 +204,7 @@ INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `ema
 --
 ALTER TABLE `achievement`
   ADD PRIMARY KEY (`achievement_id`),
-  ADD KEY `id_gioco` (`gioco_id`);
+  ADD KEY `gioco_id` (`gioco_id`);
 
 --
 -- Indici per le tabelle `achievement_ottenuti`
@@ -204,7 +212,7 @@ ALTER TABLE `achievement`
 ALTER TABLE `achievement_ottenuti`
   ADD PRIMARY KEY (`achievement_ottenuti_id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `id_achievement` (`achievement_id`);
+  ADD KEY `achievement_id` (`achievement_id`);
 
 --
 -- Indici per le tabelle `game_profile`
@@ -248,17 +256,17 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `achievement`
 --
 ALTER TABLE `achievement`
-  MODIFY `achievement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `achievement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT per la tabella `achievement_ottenuti`
 --
 ALTER TABLE `achievement_ottenuti`
-  MODIFY `achievement_ottenuti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `achievement_ottenuti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT per la tabella `game_profile`
 --
 ALTER TABLE `game_profile`
-  MODIFY `game_profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `game_profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT per la tabella `gioco`
 --
@@ -268,17 +276,17 @@ ALTER TABLE `gioco`
 -- AUTO_INCREMENT per la tabella `recensione`
 --
 ALTER TABLE `recensione`
-  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT per la tabella `timeline`
 --
 ALTER TABLE `timeline`
-  MODIFY `timeline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `timeline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- Limiti per le tabelle scaricate
 --
@@ -314,6 +322,7 @@ ALTER TABLE `recensione`
 ALTER TABLE `timeline`
   ADD CONSTRAINT `timeline_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `utente` (`user_id`),
   ADD CONSTRAINT `timeline_ibfk_2` FOREIGN KEY (`gioco_id`) REFERENCES `gioco` (`gioco_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,11 +1,13 @@
 package presentation.general;
 
 import business.model.Utente;
+import controller.eventsListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 // import com.jgoodies.forms.factories.DefaultComponentFactory;
 
@@ -15,9 +17,12 @@ public class viewReview {
 
 	Utente utente = null;
 	private JFrame frmUntitledGaming;
-
-	public viewReview(Utente c) {
+int userId;
+int riga;
+	public viewReview(Utente c, int row , int u) {
 		this.utente = c;
+		this.userId = u;
+		this.riga = row;
 		initialize();
 	}
 
@@ -34,14 +39,15 @@ public class viewReview {
 		frmUntitledGaming.getContentPane().setLayout(null);
 		frmUntitledGaming.setLocationRelativeTo(null);
 
-		JLabel lblValutaQuestoGioco = new JLabel("La Tua Recensione:");
+		JLabel lblValutaQuestoGioco = new JLabel("Voto");
 		lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);
 		lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.CENTER);
 		lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 30));
 		lblValutaQuestoGioco.setBounds(10, 77, 924, 40);
 		frmUntitledGaming.getContentPane().add(lblValutaQuestoGioco);
 
-		JLabel lblScriviUnCommento = new JLabel("Il Tuo Commento:");
+
+		JLabel lblScriviUnCommento = new JLabel("Testo Recensione");
 		lblScriviUnCommento.setHorizontalAlignment(SwingConstants.LEFT);
 		lblScriviUnCommento.setForeground(SystemColor.textInactiveText);
 		lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 25));
@@ -58,7 +64,7 @@ public class viewReview {
 		{
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
-				controller.eventsListener.changePage("logged", utente);
+				new reviewList(utente, riga);
 			}
 		});
 
@@ -76,8 +82,14 @@ public class viewReview {
 		JLabel lblCancellareLaLabel = new JLabel("cancellare la label e inserire qu\u00EC le stelle");
 		panel.add(lblCancellareLaLabel);
 
+
+
 		JTextPane txtpncommentoPrecedentementeInserito = new JTextPane();
-		txtpncommentoPrecedentementeInserito.setText("-Commento precedentemente inserito dallo stesso utente-");
+		try {
+			txtpncommentoPrecedentementeInserito.setText(eventsListener.getReview(userId).getText());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		txtpncommentoPrecedentementeInserito.setFont(new Font("Oregano", Font.ITALIC, 25));
 		txtpncommentoPrecedentementeInserito.setEditable(false);
 		txtpncommentoPrecedentementeInserito.setBackground(new Color(220, 220, 220));
