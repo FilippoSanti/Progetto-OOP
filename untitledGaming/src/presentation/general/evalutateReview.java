@@ -1,5 +1,8 @@
 package presentation.general;
 
+import business.model.Utente;
+import controller.eventsListener;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,26 +13,26 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.image.ImageProducer;
+import java.util.Arrays;
+import java.util.List;
 
-public class evalutateReview {
+public class evalutateReview extends MainPanel{
 
 	private JFrame frmUntitledGaming;
+	Utente utente;
 
-	/**
-	 * Create the application.
-	 */
-	public evalutateReview() {
+
+	private evalutateReview(Utente c) {
+
+		this.utente = c;
 		initialize();
 	}
 
-
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
+
 		frmUntitledGaming = new JFrame();
-		frmUntitledGaming.setTitle("   Untitled Gaming  -  Valuta Commenti");
+		frmUntitledGaming.setTitle("   Untitled Gaming  -  Valuta Recensioni");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,19 +40,19 @@ public class evalutateReview {
 		frmUntitledGaming.setLocationRelativeTo(null);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("imgs/back_icon.png"));
+		button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
 		
-		JLabel lblListaGiochi = new JLabel("Valuta Commenti");
+		JLabel lblListaGiochi = new JLabel("Valuta Recensioni");
 		lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
 		lblListaGiochi.setBounds(0, 23, 944, 61);
 		frmUntitledGaming.getContentPane().add(lblListaGiochi);
 		
 		JButton btnSuccessiva = new JButton("");
-		btnSuccessiva.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\Rounded_next.png"));
+		btnSuccessiva.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_next.png")));
 		btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
 		btnSuccessiva.setToolTipText("Pagina Successiva");
 		btnSuccessiva.setBounds(830, 581, 45, 45);
@@ -81,7 +84,7 @@ public class evalutateReview {
 		
 		JButton button_4 = new JButton("");
 		button_4.setEnabled(false);
-		button_4.setIcon(new ImageIcon("C:\\Users\\Filippo S\\Desktop\\logo_Untitled_Gaming\\Rounded_back_1.png"));
+		button_4.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_back_1.png")));
 		button_4.setToolTipText("Pagina Precedente");
 		button_4.setFont(new Font("MV Boli", Font.ITALIC, 13));
 		button_4.setBounds(68, 581, 45, 45);
@@ -118,35 +121,63 @@ public class evalutateReview {
 		JPanel panel_4 = new JPanel();
 		panel_4.setToolTipText("Valutazione");
 		panel_4.setBounds(464, 141, 259, 45);
+		ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		ImageProducer ip = defaultIcon.getImage().getSource();
+		List<ImageIcon>
+				list = Arrays.asList(
+				makeStarImageIcon(ip, .6f, .6f, 0f),
+				makeStarImageIcon(ip, .7f, .7f, 0f),
+				makeStarImageIcon(ip, .8f, .8f, 0f),
+				makeStarImageIcon(ip, .9f, .9f, 0f),
+				makeStarImageIcon(ip,  1f,  1f, 0f));
+		panel_4.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
 		frmUntitledGaming.getContentPane().add(panel_4);
-		
-		JLabel lblCancellareLaLabel = new JLabel("cancellare la label e inserire qu\u00EC le stelle");
-		panel_4.add(lblCancellareLaLabel);
-		
+
+		//attenzione a modificare che defaultIcon,ip, list ereditano la dichiarazione fatta nel primo star rating
 		JPanel panel_5 = new JPanel();
 		panel_5.setToolTipText("Valutazione");
 		panel_5.setBounds(464, 265, 259, 45);
+		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		ip = defaultIcon.getImage().getSource();
+		list = Arrays.asList(
+				makeStarImageIcon(ip, .6f, .6f, 0f),
+				makeStarImageIcon(ip, .7f, .7f, 0f),
+				makeStarImageIcon(ip, .8f, .8f, 0f),
+				makeStarImageIcon(ip, .9f, .9f, 0f),
+				makeStarImageIcon(ip, 1f, 1f, 0f));
+		panel_5.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
 		frmUntitledGaming.getContentPane().add(panel_5);
-		
-		JLabel lblCancellareLaLabel_1 = new JLabel("cancellare la label e inserire qu\u00EC le stelle");
-		panel_5.add(lblCancellareLaLabel_1);
-		
+
+		//attenzione a modificare che defaultIcon,ip, list ereditano la dichiarazione fatta nel primo star rating
 		JPanel panel_6 = new JPanel();
 		panel_6.setToolTipText("Valutazione");
 		panel_6.setBounds(464, 380, 259, 45);
+		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		ip = defaultIcon.getImage().getSource();
+		list = Arrays.asList(
+				makeStarImageIcon(ip, .6f, .6f, 0f),
+				makeStarImageIcon(ip, .7f, .7f, 0f),
+				makeStarImageIcon(ip, .8f, .8f, 0f),
+				makeStarImageIcon(ip, .9f, .9f, 0f),
+				makeStarImageIcon(ip, 1f, 1f, 0f));
+		panel_6.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
 		frmUntitledGaming.getContentPane().add(panel_6);
-		
-		JLabel lblCancellareLaLabel_2 = new JLabel("cancellare la label e inserire qu\u00EC le stelle");
-		panel_6.add(lblCancellareLaLabel_2);
-		
+
+		//attenzione a modificare che defaultIcon,ip, list ereditano la dichiarazione fatta nel primo star rating
 		JPanel panel_7 = new JPanel();
 		panel_7.setToolTipText("Valutazione");
 		panel_7.setBounds(464, 497, 259, 45);
+		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		ip = defaultIcon.getImage().getSource();
+		list = Arrays.asList(
+				makeStarImageIcon(ip, .6f, .6f, 0f),
+				makeStarImageIcon(ip, .7f, .7f, 0f),
+				makeStarImageIcon(ip, .8f, .8f, 0f),
+				makeStarImageIcon(ip, .9f, .9f, 0f),
+				makeStarImageIcon(ip, 1f, 1f, 0f));
+		panel_7.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
 		frmUntitledGaming.getContentPane().add(panel_7);
-		
-		JLabel lblCancellareLaLabel_3 = new JLabel("cancellare la label e inserire qu\u00EC le stelle");
-		panel_7.add(lblCancellareLaLabel_3);
-		
+
 		JLabel lblgamenameHere_2 = new JLabel("-Gamename Here!-");
 		lblgamenameHere_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblgamenameHere_2.setForeground(Color.DARK_GRAY);

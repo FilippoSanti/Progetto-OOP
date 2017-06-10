@@ -7,13 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageProducer;
 import java.sql.SQLException;
+import java.util.*;
 
 // import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 
-// TODO: Add start rating
-public class viewReview {
+public class viewReview extends MainPanel {
 
 	Utente utente = null;
 	private JFrame frmUntitledGaming;
@@ -39,23 +40,22 @@ int riga;
 		frmUntitledGaming.getContentPane().setLayout(null);
 		frmUntitledGaming.setLocationRelativeTo(null);
 
-		JLabel lblValutaQuestoGioco = new JLabel("Voto");
-		lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);
-		lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.CENTER);
-		lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 30));
-		lblValutaQuestoGioco.setBounds(10, 77, 924, 40);
-		frmUntitledGaming.getContentPane().add(lblValutaQuestoGioco);
+		JLabel lblLaTuaRecensione = new JLabel("La Tua Recensione :");
+		lblLaTuaRecensione.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLaTuaRecensione.setFont(new Font("Vivaldi", Font.BOLD, 40));
+		lblLaTuaRecensione.setBounds(0, 50, 944, 61);
+		frmUntitledGaming.getContentPane().add(lblLaTuaRecensione);
 
 
-		JLabel lblScriviUnCommento = new JLabel("Testo Recensione");
+		JLabel lblScriviUnCommento = new JLabel("Il Tuo Commento :");
 		lblScriviUnCommento.setHorizontalAlignment(SwingConstants.LEFT);
 		lblScriviUnCommento.setForeground(SystemColor.textInactiveText);
 		lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 25));
-		lblScriviUnCommento.setBounds(43, 307, 232, 34);
+		lblScriviUnCommento.setBounds(96, 315, 232, 34);
 		frmUntitledGaming.getContentPane().add(lblScriviUnCommento);
 
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("imgs/back_icon.png"));
+		button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
@@ -68,7 +68,7 @@ int riga;
 			}
 		});
 
-		JLabel lblValutazione = new JLabel("Valutazione:");
+		JLabel lblValutazione = new JLabel("Valutazione :");
 		lblValutazione.setHorizontalAlignment(SwingConstants.LEFT);
 		lblValutazione.setForeground(SystemColor.textInactiveText);
 		lblValutazione.setFont(new Font("Georgia", Font.ITALIC, 25));
@@ -76,11 +76,18 @@ int riga;
 		frmUntitledGaming.getContentPane().add(lblValutazione);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(279, 175, 564, 58);
+		panel.setBounds(279, 155, 490, 105);
+		ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		ImageProducer ip = defaultIcon.getImage().getSource();
+		java.util.List<ImageIcon>
+				list = Arrays.asList(
+				makeStarImageIcon(ip, .6f, .6f, 0f),
+				makeStarImageIcon(ip, .7f, .7f, 0f),
+				makeStarImageIcon(ip, .8f, .8f, 0f),
+				makeStarImageIcon(ip, .9f, .9f, 0f),
+				makeStarImageIcon(ip,  1f,  1f, 0f));
+		panel.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
 		frmUntitledGaming.getContentPane().add(panel);
-
-		JLabel lblCancellareLaLabel = new JLabel("cancellare la label e inserire qu\u00EC le stelle");
-		panel.add(lblCancellareLaLabel);
 
 
 

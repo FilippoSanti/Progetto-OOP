@@ -25,7 +25,7 @@ public class logged {
 		frmUntitledGaming.setVisible(true);
 
 		frmUntitledGaming.setResizable(false);
-		frmUntitledGaming.setTitle("Untitled Gaming - Username!");
+		frmUntitledGaming.setTitle("Untitled Gaming - " + utente.getUsername());
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
 		frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUntitledGaming.getContentPane().setLayout(null);
@@ -41,7 +41,7 @@ public class logged {
 		lblNewLabel.setBounds(650, 31, 70, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 
-		JLabel lblusernameHere = new JLabel(utente.getUsername());
+		JLabel lblusernameHere = new JLabel(" " + utente.getUsername());
 		lblusernameHere.setForeground(Color.DARK_GRAY);
 		lblusernameHere.setFont(new Font("Oregano", Font.PLAIN, 21));
 		lblusernameHere.setBounds(720, 32, 193, 30);
@@ -81,7 +81,7 @@ public class logged {
 		{
 			public void actionPerformed(ActionEvent e) {
 				frmUntitledGaming.dispose();
-				controller.eventsListener.changePage("viewReview", utente);
+				controller.eventsListener.changePage("evalutateReview", utente);
 			}
 		});
 
