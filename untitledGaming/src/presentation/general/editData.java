@@ -14,6 +14,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class editData {
 
@@ -295,12 +296,23 @@ public class editData {
                     frmUntitledGaming.dispose();
                     if (eventsListener.setUtente(eventsListener.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), textField_2.getText(),
                             textField_3.getText(), passText, textField_4.getText())) {
+Utente utenteModificato = new Utente();
+                        try {
+                             utenteModificato = new Utente (utente.getUserId(), textField_4.getText(), textField.getText(), textField_1.getText(), passText,
+                                    textField_3.getText(), utente.getTipo(),  DBManager.stringToDate(textField_2.getText()));
+                            eventsListener.changePage("profile", utenteModificato);
+
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+
+
                         JOptionPane.showMessageDialog(null, "Updated successfully");
                     } else {
                         throw new BusinessException("Internal error, try again");
                     }
 
-                    eventsListener.changePage("profile", utente);
+
 
 
                 } catch (SQLException e1) {

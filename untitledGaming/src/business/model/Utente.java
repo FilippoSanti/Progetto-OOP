@@ -18,6 +18,19 @@ public class Utente {
     Date data;
 
 
+    public Utente ()
+    {
+        this.username = "";
+        this.nome = "";
+        this.cognome = "";
+        this.userId = 0;
+        this.password = "";
+        this.email = "";
+        this.tipo = "";
+        this.data = null;
+    }
+
+
     public Utente (int userId, String username, String nome, String cognome, String password, String email, String tipo, Date data)
     {
 
