@@ -77,14 +77,12 @@ public class eventsListener {
     }
 
 
-
-
     public static void newUser(String username, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
 
         if (new UserManagement().newUser(username, password, nome, cognome, email, dateString, tipo)) {
-            JOptionPane.showMessageDialog(null, "Utente aggiunto correttamente.");
+            JOptionPane.showMessageDialog(null, "Successfully registered");
         } else {
-            JOptionPane.showMessageDialog(null, "Error, try again");
+            JOptionPane.showMessageDialog(null, "Internal error, try again");
         }
     }
 
@@ -99,7 +97,6 @@ public class eventsListener {
 
     public static boolean setUtente(Utente utente, String nome, String cognome, String date, String email, String password, String newUsername)
             throws SQLException {
-
 
         return new UserManagement().setUtente(utente, nome, cognome, date, email, password, newUsername);
     }

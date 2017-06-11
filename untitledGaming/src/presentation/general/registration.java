@@ -1,5 +1,6 @@
 package presentation.general;
 
+import business.BusinessException;
 import controller.eventsListener;
 
 import javax.swing.*;
@@ -26,7 +27,6 @@ public class registration {
     /* Create the application */
     public registration() {
 
-
         initialize();
     }
 
@@ -49,7 +49,7 @@ public class registration {
         frmUntitledGaming.getContentPane().add(lblNewLabel);
 
         txtNome = new JTextField();
-        txtNome.setToolTipText("Nome");
+        txtNome.setToolTipText("Nome ");
 
         // Listen for focus
 		txtNome.addFocusListener(new FocusListener() {
@@ -59,13 +59,13 @@ public class registration {
 			}
 			public void focusLost (FocusEvent e){
 				if (txtNome.getText().isEmpty())
-					txtNome.setText("Nome");
+					txtNome.setText("Nome ");
 			}
 		});
 
         txtNome.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtNome.setForeground(Color.GRAY);
-        txtNome.setText("Nome");
+        txtNome.setText("Nome ");
         txtNome.setHorizontalAlignment(SwingConstants.CENTER);
         txtNome.setBounds(136, 170, 280, 60);
         frmUntitledGaming.getContentPane().add(txtNome);
@@ -81,13 +81,39 @@ public class registration {
             public void actionPerformed(ActionEvent e) {
 
                 try {
+                    String dateText  = txtDate.getText();
+                    String passText  = new String(passwordField.getPassword());
+
+                    // Check if every field id empty
+                    if (txtNickname.getText().equals("Username ") || txtNome.getText().equals("Nome ") ||
+                            txtCognome.getText().equals("Cognome ") || txtEmil.getText().equals("e-mail ") ||
+                            txtDate.getText().equals("Data di Nascita ") || passText.equals("Password ")) {
+                        throw new BusinessException("The fields cannot be empty");
+                    }
+
+                    // Check for the dd/MM/yyyy format (with slashes) and replace the characters
+                    if (dateText.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                        dateText = dateText.replaceAll("/", "-");
+                    }
+
+                    // Check again if the date format is valid (dd-MM-yyyy)
+                    if (!dateText.matches("\\d{2}-\\d{2}-\\d{4}")) {
+                        throw new BusinessException("The date format is not valid");
+                    }
+
+                    // Check if the password is at least 6 characters
+                    if (passText.length() < 6) {
+                        throw new BusinessException("The password must be at least 6 characters long");
+                    }
+
+                    // Validate the email field
+                    if (!business.implementation.DBManager.isValidEmailAddress(txtEmil.getText())) {
+                        throw new BusinessException("Enter a valid email");
+                    }
+
                     frmUntitledGaming.dispose();
-                    String passText = new String(passwordField.getPassword());
-
-                    System.out.println(passText.length());
-
                     newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
-                            txtEmil.getText(), txtDate.getText(),"user");
+                            txtEmil.getText(), dateText,"user");
                     changePage("startPage", null);
 
                 } catch (SQLException e1) {
@@ -96,32 +122,31 @@ public class registration {
             }
         });
 
-
         txtNickname = new JTextField();
-        txtNickname.setToolTipText("Username");
+        txtNickname.setToolTipText("Username ");
 
         //listen for focus
         txtNickname.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-
 			    txtNickname.setText("");
 			}
+
 			public void focusLost (FocusEvent e){
 				if (txtNickname.getText().isEmpty())
-					txtNickname.setText("Username");
+					txtNickname.setText("Username ");
 			}
 		});
 		
         txtNickname.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtNickname.setForeground(Color.GRAY);
-        txtNickname.setText("Username");
+        txtNickname.setText("Username ");
         txtNickname.setHorizontalAlignment(SwingConstants.CENTER);
         txtNickname.setBounds(526, 170, 280, 60);
         frmUntitledGaming.getContentPane().add(txtNickname);
         txtNickname.setColumns(10);
 
         txtCognome = new JTextField();
-        txtCognome.setToolTipText("Cognome");
+        txtCognome.setToolTipText("Cognome ");
 
         // Listen for focus
         txtCognome.addFocusListener(new FocusListener() {
@@ -131,20 +156,20 @@ public class registration {
 			}
 			public void focusLost (FocusEvent e){
 				if (txtCognome.getText().isEmpty())
-					txtCognome.setText("Cognome");
+					txtCognome.setText("Cognome ");
 			}
 		});
 		
         txtCognome.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtCognome.setForeground(Color.GRAY);
         txtCognome.setHorizontalAlignment(SwingConstants.CENTER);
-        txtCognome.setText("Cognome");
+        txtCognome.setText("Cognome ");
         txtCognome.setBounds(136, 304, 280, 60);
         frmUntitledGaming.getContentPane().add(txtCognome);
         txtCognome.setColumns(10);
 
         txtEmil = new JTextField();
-        txtEmil.setToolTipText("E-mail");
+        txtEmil.setToolTipText("E-mail ");
 
         //listen for focus
         txtEmil.addFocusListener(new FocusListener() {
@@ -154,20 +179,20 @@ public class registration {
 			}
 			public void focusLost (FocusEvent e){
 				if (txtEmil.getText().isEmpty())
-					txtEmil.setText("E-mail");
+					txtEmil.setText("E-mail ");
 			}
 		});
 		
         txtEmil.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtEmil.setForeground(Color.GRAY);
         txtEmil.setHorizontalAlignment(SwingConstants.CENTER);
-        txtEmil.setText("e-mail");
+        txtEmil.setText("e-mail ");
         txtEmil.setBounds(526, 307, 280, 60);
         frmUntitledGaming.getContentPane().add(txtEmil);
         txtEmil.setColumns(10);
 
         txtDate = new JTextField();
-        txtDate.setToolTipText("Data di Nascita");
+        txtDate.setToolTipText("Date format dd/MM/yyyy");
 
         //listen for focus
         txtDate.addFocusListener(new FocusListener() {
@@ -176,13 +201,13 @@ public class registration {
 			}
 			public void focusLost (FocusEvent e){
 				if (txtDate.getText().isEmpty())
-					txtDate.setText("Data di Nascita");
+					txtDate.setText("Data di Nascita ");
 			}
 		});
 		
         txtDate.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtDate.setForeground(Color.GRAY);
-        txtDate.setText("Data di Nascita");
+        txtDate.setText("Data di Nascita ");
         txtDate.setHorizontalAlignment(SwingConstants.CENTER);
         txtDate.setBounds(136, 433, 280, 60);
         frmUntitledGaming.getContentPane().add(txtDate);
@@ -192,7 +217,7 @@ public class registration {
 		char c = 0;
 		
 		
-		passwordField.setText("Password");
+		passwordField.setText("Password ");
 		passwordField.setEchoChar(c);
 
         passwordField.addFocusListener(new FocusListener() {
@@ -208,7 +233,7 @@ public class registration {
             	if (passwordField.getPassword().length == 0){
             		  char c = 0;
                       passwordField.setEchoChar(c);
-                      passwordField.setText("Password");
+                      passwordField.setText("Password ");
             		}
                 }
 
@@ -216,7 +241,7 @@ public class registration {
         });
 		
 		passwordField.setBackground(new Color(255, 255, 255));
-		passwordField.setToolTipText("Password");
+		passwordField.setToolTipText("The password must be at least 6 characters long");
 		
 		passwordField.setFont(new Font("Georgia", Font.ITALIC, 20));
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);

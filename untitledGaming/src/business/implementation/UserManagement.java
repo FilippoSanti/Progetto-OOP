@@ -1,5 +1,6 @@
 package business.implementation;
 
+import business.BusinessException;
 import business.model.Achievement;
 import business.model.Timeline;
 import business.model.Utente;
@@ -23,25 +24,18 @@ public class UserManagement {
 
     /* Insert the user data into the DB */
     public boolean newUser(String user, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
-
+        System.out.println(user);
         // Convert the date string to a  java.sql.Date format
         java.sql.Date date = null;
         try {
             date = DBManager.stringToDate(dateString);
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new BusinessException("Date format not valid");
         }
 
         // Check if one of the fields is empty
         if (user.isEmpty() || password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || dateString.isEmpty())
             return false;
-
-        // Check if the password is at least 6 characters
-        if (password.length() < 5) {
-            System.out.println(password.length());
-            System.out.println("Error here");
-            return false;
-        }
 
         // Check if the username is already registered
         if (business.implementation.DBManager.checkUsername(user))
@@ -81,7 +75,6 @@ public class UserManagement {
              */
             if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))) {
 
-
                 return true;
             }
 
@@ -97,6 +90,7 @@ public class UserManagement {
                 dbConnection.close();
             }
         }
+
         return false;
     }
 
@@ -116,9 +110,7 @@ public class UserManagement {
         // Insert the values into the DB
         try {
             preparedStatement = dbConnection.prepareStatement(addXP);
-
             preparedStatement.setInt(1, userId);
-
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -176,15 +168,23 @@ public class UserManagement {
         }
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String textDate = df.format(data);
-
         java.sql.Date DataFinale = null;
-        try {
 
+        try {
             DataFinale = DBManager.stringToDate(textDate);
 
         } catch (ParseException e) {
             e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
         }
+
         return new Utente(userId, username, nome, cognome, password, email, tipo, DataFinale);
 
     }
@@ -251,7 +251,6 @@ public class UserManagement {
 
         try {
 
-
             preparedStatement = dbConnection.prepareStatement(addtimeline);
 
             preparedStatement.setInt(1, user_id);
@@ -282,7 +281,6 @@ public class UserManagement {
         }
         return false;
 
-
     }
 
     /* Get the user profile stats */
@@ -308,7 +306,7 @@ public class UserManagement {
             puntiXp = rs.getInt("punti_esperienza");
 
         }
-        //c.close();
+        dbConnection.close();
         return new gameProfile(gameProfileId, userId, livello, puntiXp);
     }
 
@@ -320,14 +318,33 @@ public class UserManagement {
         String text = formatter.format(tempDate);
         Date myDate = null;
 
-        if (nome.isEmpty()) nome = utente.getNome();
-        if (cognome.isEmpty()) cognome = utente.getCognome();
-        if (data.isEmpty()) data = text;
-        if (email.isEmpty()) email = utente.getEmail();
-        if (password.isEmpty()) password = utente.getPassword();
-        if (newUsername.isEmpty()) newUsername = utente.getUsername();
+        // If the password is not empty, we update it into the DB
+        if (!password.isEmpty()) {
+            business.implementation.DBManager.updatePassword(utente.getUserId(), password);
+        }
 
-        // Check if the fields are empty
+        // Check if the other fields are equal to the old ones or empty
+        if (nome.isEmpty() || nome.equals(utente.getNome())) {
+            nome = utente.getNome();
+        }
+
+        if (cognome.isEmpty() || cognome.equals(utente.getNome())) {
+            cognome = utente.getCognome();
+        }
+
+        if (data.isEmpty() || data.equals(utente.getData())) {
+            data = text;
+        }
+
+        if (email.isEmpty() || email.equals(utente.getEmail())) {
+            email = utente.getEmail();
+        }
+
+        if (newUsername.isEmpty() || newUsername.equals(utente.getUsername())) {
+            newUsername = utente.getUsername();
+        }
+
+        // Return false if every field is empty
         if (nome.isEmpty() && cognome.isEmpty() && data.isEmpty() && email.isEmpty() && password.isEmpty() && newUsername.isEmpty())
             return false;
 
@@ -347,7 +364,6 @@ public class UserManagement {
                 " cognome = ?, \n" +
                 " data_di_nascita = ?,\n" +
                 "email = ?, \n " +
-                "password = ?, \n " +
                 "username = ? " +
                 "WHERE user_id = ?";
 
@@ -361,9 +377,8 @@ public class UserManagement {
             preparedStatement.setString(2, cognome);
             preparedStatement.setDate(3, sqlDate);
             preparedStatement.setString(4, email);
-            preparedStatement.setString(5, password);
-            preparedStatement.setString(6, newUsername);
-            preparedStatement.setInt(7, utente.getUserId());
+            preparedStatement.setString(5, newUsername);
+            preparedStatement.setInt(6, utente.getUserId());
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -391,7 +406,6 @@ public class UserManagement {
 
     /* Add xp to a user */
     public boolean addXp(Utente utente, int xP) throws SQLException {
-
 
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -549,7 +563,15 @@ public class UserManagement {
 
         } catch (ParseException e) {
             e.printStackTrace();
+        } finally {
+        if (stmt != null) {
+            stmt.close();
         }
+
+        if (dbConnection != null) {
+            dbConnection.close();
+        }
+    }
         return new Timeline(timeline_id, userId, gioco_id, DataFinale, esperienza_guadagnata);
 
     }
@@ -560,7 +582,6 @@ public class UserManagement {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
-
 
         String insertTableSQL = "INSERT INTO achievement_ottenuti"
                 + "(user_id, achievement_id) VALUES"
@@ -579,7 +600,6 @@ public class UserManagement {
                0 for SQL statements that return nothing
              */
             if (preparedStatement.executeUpdate() != 0) {
-
 
                 return true;
             }
@@ -616,17 +636,12 @@ public class UserManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
-
+        dbConnection.close();
         return tm;
     }
 
     /* Get the achievements list of a user */
     public TableModel getUserAchievementsList(int userId) throws SQLException {
-
-        String name = "";
-        String desc = "";
-        int gameId = 0;
-        int achId = 0;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -645,7 +660,7 @@ public class UserManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
-
+        dbConnection.close();
         return tm;
     }
 
@@ -664,7 +679,7 @@ public class UserManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
-
+        dbConnection.close();
         return tm;
     }
 
@@ -682,7 +697,7 @@ public class UserManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
-
+        dbConnection.close();
         return tm;
 
     }
@@ -700,9 +715,7 @@ public class UserManagement {
 
     }
 
-
     /*  tossTheCoin Minigame */
-
     public int tossTheCoin(Utente utente) throws SQLException {
 
         Random randomNum = new Random();

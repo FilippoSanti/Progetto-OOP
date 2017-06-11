@@ -1,5 +1,6 @@
 package presentation.general;
 
+import business.BusinessException;
 import business.implementation.DBManager;
 import business.model.Utente;
 import controller.eventsListener;
@@ -159,7 +160,7 @@ public class editData {
         passwordField = new JPasswordField();
         char c = 0;
         
-        passwordField.setText("Password");
+        passwordField.setText("Password ");
         passwordField.setEchoChar(c);
         
         //listen for focus
@@ -175,14 +176,14 @@ public class editData {
                 if(passwordField.getPassword().length == 0){
                     char c= 0;
                     passwordField.setEchoChar(c);
-                    passwordField.setText("Password");
+                    passwordField.setText("Password ");
                 }
                 
             }
             
         });
         
-        passwordField.setToolTipText("Password");
+        passwordField.setToolTipText("The password must be at least 6 characters long");
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         passwordField.setForeground(Color.GRAY);
         passwordField.setFont(new Font("Georgia", Font.ITALIC, 20));
@@ -243,16 +244,65 @@ public class editData {
 
         button_1.addActionListener(new ActionListener() {
 
-
             public void actionPerformed(ActionEvent e) {
-                frmUntitledGaming.dispose();
                 try {
-
                     String passText = new String(passwordField.getPassword());
-                    eventsListener.setUtente(eventsListener.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), textField_2.getText(),
-                            textField_3.getText(), passText, textField_4.getText());
+                    String emailText = utente.getEmail();
+                    String userText = utente.getUsername();
+                    String nameText = utente.getNome();
+                    String cognome = utente.getCognome();
+                    String dateText = business.implementation.DBManager.dateToString(utente.getData());
+
+                    // Don't update the DB if the fields are the same
+                    if (textField.getText().equals(nameText) && textField_1.getText().equals(cognome)
+                            && textField_2.getText().equals(dateText) && textField_3.getText().equals(emailText) &&
+                            textField_4.getText().equals(userText) && passText.equals("Password ")) {
+                        throw new BusinessException("Nothing has changed");
+                    }
+
+                    // If the user doesn't want to update his password, we pass an empty string to setUtente()
+                    if (passText.equals("Password ")) {
+                        passText = "";
+                    } else {
+
+                        if (passText.length() < 6) {
+                            throw new BusinessException("The password must be at least 6 characters long");
+                        }
+                    }
+
+                    // Check for the dd/MM/yyyy format (with slashes) and replace the characters
+                    if (textField_2.getText().matches("\\d{2}/\\d{2}/\\d{4}")) {
+                        dateText = dateText.replaceAll("/", "-");
+                    }
+
+                    // Check again if the date format is valid (dd-MM-yyyy)
+                    if (!textField_2.getText().matches("\\d{2}-\\d{2}-\\d{4}")) {
+                        throw new BusinessException("The date format is not valid");
+                    }
+
+                    // Validate the email field
+                    if (!business.implementation.DBManager.isValidEmailAddress(textField_3.getText())) {
+                        throw new BusinessException("Enter a valid email");
+                    }
+
+                    // If the username is different, we update it
+                    if (!textField_4.getText().equals(utente.getUsername())) {
+                        if (business.implementation.DBManager.checkUsername(textField_4.getText())) {
+                            throw new BusinessException("The username is not available, try again");
+                        }
+                    }
+
+                    frmUntitledGaming.dispose();
+                    if (eventsListener.setUtente(eventsListener.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), textField_2.getText(),
+                            textField_3.getText(), passText, textField_4.getText())) {
+                        JOptionPane.showMessageDialog(null, "Updated successfully");
+                    } else {
+                        throw new BusinessException("Internal error, try again");
+                    }
 
                     eventsListener.changePage("profile", utente);
+
+
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

@@ -127,6 +127,49 @@ public class DBManager {
         return false;
     }
 
+    public static boolean updatePassword(int userID, String password) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Password hashing
+        password = hashPassword(password);
+
+        // Declare the statement
+        PreparedStatement preparedStatement = null;
+
+        String insertTableSQL = "UPDATE utente SET utente.password = ? WHERE user_id = ?";
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, userID);
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+
+        return false;
+    }
+
     /* Convert a string to a java.sql.date format */
     public static java.sql.Date stringToDate(String dateString) throws ParseException {
 
@@ -134,7 +177,6 @@ public class DBManager {
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date date = formatter.parse(dateString);
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
 
         return sqlDate;
     }
@@ -152,6 +194,14 @@ public class DBManager {
         return newData;
     }
 
+    /* Check if the email id valid using a regex */
+    public static boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
     /* Get the current date */
     public static java.sql.Date getCurrentData() {
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
@@ -160,4 +210,14 @@ public class DBManager {
         java.sql.Date sqlDate = new java.sql.Date(calobj.getTime().getTime());
         return sqlDate;
     }
+
+    /* Convert a date into a string */
+    public static String dateToString(java.sql.Date date ) {
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String text = df.format(date);
+
+        return text;
+    }
+
+
 }
