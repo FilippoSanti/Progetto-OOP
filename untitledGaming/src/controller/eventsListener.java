@@ -260,7 +260,8 @@ public class eventsListener {
                 break;
 
             case "achievementsList":
-                new achievementsList(utente);
+                new achievementsList(utente
+                );
                 break;
 
             case "allGames" :

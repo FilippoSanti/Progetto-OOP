@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 10, 2017 alle 08:41
+-- Creato il: Giu 12, 2017 alle 18:38
 -- Versione del server: 10.1.22-MariaDB
 -- Versione PHP: 7.1.4
 
@@ -40,12 +40,12 @@ CREATE TABLE `achievement` (
 --
 
 INSERT INTO `achievement` (`achievement_id`, `nome`, `descrizione`, `gioco_id`) VALUES
-(1, 'Scarso', 'Raggiungi il livello 5', 1),
-(2, 'Merda', 'livello 2', 1),
-(3, 'STRONZO', 'livello4', 1),
-(4, 'Evvai!', 'livello7', 1),
-(5, 'Cacatura', 'Hai fatto schifo', 1),
-(6, 'Vafammocc', 'Sei un pirla', 1);
+(1, 'Novizio', 'Raggiunto il livello 2', 1),
+(2, 'Principiante', 'Hai raggiunto il livello 4', 1),
+(3, 'Esperto', 'Hai raggiunto il livello 6', 1),
+(4, 'Maestro', 'Hai raggiunto il livello 8', 1),
+(5, 'Professionista', 'Hai guadagnato 1000 esperienza in una sola sessione', 1),
+(6, 'Flipper', 'Hai guadagnato 500 esperienza nell ultima sessione', 1);
 
 -- --------------------------------------------------------
 
@@ -64,11 +64,11 @@ CREATE TABLE `achievement_ottenuti` (
 --
 
 INSERT INTO `achievement_ottenuti` (`achievement_ottenuti_id`, `user_id`, `achievement_id`) VALUES
-(1, 33, 2),
-(2, 33, 3),
-(3, 33, 4),
-(4, 33, 6),
-(5, 33, 1);
+(1, 5, 1),
+(2, 5, 2),
+(3, 5, 3),
+(4, 5, 6),
+(5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -88,11 +88,12 @@ CREATE TABLE `game_profile` (
 --
 
 INSERT INTO `game_profile` (`game_profile_id`, `user_id`, `livello`, `punti_esperienza`) VALUES
-(1, 33, 2, 135),
-(2, 34, 1, 0),
-(3, 35, 1, 0),
-(4, 36, 1, 0),
-(5, 37, 1, 0);
+(1, 1, 1, 0),
+(2, 1, 1, 0),
+(3, 2, 1, 0),
+(4, 3, 1, 0),
+(5, 4, 1, 0),
+(6, 5, 7, 1530);
 
 -- --------------------------------------------------------
 
@@ -134,16 +135,11 @@ CREATE TABLE `recensione` (
 --
 
 INSERT INTO `recensione` (`recensione_id`, `user_id`, `testo_recensione`, `voto`, `approvata`) VALUES
-(1, 33, 'tutto molto bello', 3, 1),
-(2, 34, 'molto interessante', 4, 1),
-(3, 35, 'na merda', 4, 1),
-(4, 36, 'belo bela', 1, 0),
-(5, 37, 'merda pe te', 2, 1),
-(6, 35, 'sasasasa', 1, 1),
-(7, 35, 'aaaqqqqwwww', 4, 0),
-(8, 36, '1112334', 4, 1),
-(9, 35, 'aaaaaa', 4, 1),
-(10, 37, '12313123', 4, 1);
+(1, 1, 'Tutto molto bello', 4, 1),
+(3, 2, '  Bello ma non bellissimo', 4, 1),
+(4, 3, 'Fa schifo', 3, 1),
+(5, 4, 'Bello, ma ingiocabile', 3.5, 1),
+(6, 5, 'Non parlo italiano quindi non mi piace', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -164,8 +160,11 @@ CREATE TABLE `timeline` (
 --
 
 INSERT INTO `timeline` (`timeline_id`, `user_id`, `gioco_id`, `data_ultima_sessione`, `esperienza_guadagnata`) VALUES
-(1, 33, 1, '2017-06-09', 0),
-(2, 34, 1, '2017-06-09', 0);
+(2, 1, 1, '1111-11-11', 0),
+(3, 2, 1, '1111-11-11', 0),
+(4, 3, 1, '1111-11-11', 0),
+(5, 4, 1, '1111-11-11', 0),
+(6, 5, 1, '2017-06-12', 1530);
 
 -- --------------------------------------------------------
 
@@ -189,11 +188,11 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `data_di_nascita`, `email`, `tipo`) VALUES
-(33, 'a', '$2a$12$ZCCzckOE3E9JjNdFVZj9TOALo0kYq.kmtbv45SDamMQ784D1SDKly', 'a', 'a', '1995-10-11', 'a', 'user'),
-(34, 'b', '$2a$12$zIUDU95lSJCRYr6NH1VIdued0g7I5RenfyEqraIKsGf68CuRcbn8K', 'b', 'b', '1888-11-11', 'b', 'user'),
-(35, 'c', '$2a$12$mLDFI2zdjPTABeZyDoB1OefGmfCDskRbYnA2cHFWJ.eMiTZn2DDd.', 'c', 'c', '1111-11-11', 'c', 'user'),
-(36, 'd', '$2a$12$2RlHSOsRwNNtzLAdTKWi6.y2tG.Ja0gxLEucZxGOT.NFlAFoA2mJq', 'd', 'd', '1111-11-11', 'd', 'user'),
-(37, 'e', '$2a$12$ygcTvhJjWjSMOILjIkJRYeBbF85Y/tRTF0V88ooFOX65twEOa3f4m', 'e', 'e', '1111-11-11', 'e', 'user');
+(1, 'prova', '$2a$12$RAuYWqucaqKZkZXMKCFeUujB.N3exT0.mbxfo.2WoulNjAfafqX62', 'prova', 'prova', '1111-11-11', 'prova@hotmail.it', 'moderator'),
+(2, 'a', '$2a$12$MAKDkzO/BayxYXBacbDkP.O5iW/tn97hPBXlUtSrvYwwaiyNqJttm', 'utente1', 'a', '1111-11-11', 'a@hotmail.it', 'user'),
+(3, 'b', '$2a$12$u.zqTefB928jJAHC7wCJSOnrpKmhywQAwPbqt2xMyFDj11qdWmtL2', 'b', 'b', '1111-11-11', 'b@hotmail.it', 'user'),
+(4, 'c', '$2a$12$Nd3DK9ehPB9mYU6nftU6a.FSRmx6pUiBgPt7HEpgL9.TedJuwvEB.', 'c', 'c', '1111-11-11', 'c@hotmail.it', 'user'),
+(5, 'h', '$2a$12$Q4RWoSRJSGFkiqT6VF2wmOydzH.7yNPUT4VIMi7FB/jM5llAzo9dC', 'h', 'h', '1955-11-11', 'h@hotmail.it', 'user');
 
 --
 -- Indici per le tabelle scaricate
@@ -211,8 +210,8 @@ ALTER TABLE `achievement`
 --
 ALTER TABLE `achievement_ottenuti`
   ADD PRIMARY KEY (`achievement_ottenuti_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `achievement_id` (`achievement_id`);
+  ADD KEY `achievement_id` (`achievement_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indici per le tabelle `game_profile`
@@ -266,7 +265,7 @@ ALTER TABLE `achievement_ottenuti`
 -- AUTO_INCREMENT per la tabella `game_profile`
 --
 ALTER TABLE `game_profile`
-  MODIFY `game_profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `game_profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT per la tabella `gioco`
 --
@@ -276,17 +275,17 @@ ALTER TABLE `gioco`
 -- AUTO_INCREMENT per la tabella `recensione`
 --
 ALTER TABLE `recensione`
-  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT per la tabella `timeline`
 --
 ALTER TABLE `timeline`
-  MODIFY `timeline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `timeline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Limiti per le tabelle scaricate
 --
@@ -301,8 +300,8 @@ ALTER TABLE `achievement`
 -- Limiti per la tabella `achievement_ottenuti`
 --
 ALTER TABLE `achievement_ottenuti`
-  ADD CONSTRAINT `achievement_ottenuti_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `utente` (`user_id`),
-  ADD CONSTRAINT `achievement_ottenuti_ibfk_2` FOREIGN KEY (`achievement_id`) REFERENCES `achievement` (`achievement_id`);
+  ADD CONSTRAINT `achievement_ottenuti_ibfk_1` FOREIGN KEY (`achievement_id`) REFERENCES `achievement` (`achievement_id`),
+  ADD CONSTRAINT `achievement_ottenuti_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `utente` (`user_id`);
 
 --
 -- Limiti per la tabella `game_profile`
