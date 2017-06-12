@@ -73,7 +73,8 @@ public class UserManagement {
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
                0 for SQL statements that return nothing
              */
-            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))) {
+            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))
+            && (addTimeline(eventsListener.getUserID(user), 1, date, 0))){
 
                 return true;
             }
@@ -519,10 +520,37 @@ public class UserManagement {
 
     /* Check if achievements have been unlocked */
     public void checkAchievement(gameProfile gameProfile) throws SQLException {
-        if (gameProfile.getLivello() == 2) {
-            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement, MERDA!");
+        if ((gameProfile.getLivello() == 2) && (!eventsListener.AchievementFoundOnProfile(1, gameProfile.getUserId()))){
+            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Novizio !");
+            eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 1);
+        }
+
+        if ((gameProfile.getLivello() == 4)&& (!eventsListener.AchievementFoundOnProfile(2, gameProfile.getUserId()))) {
+            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Principiante !");
             eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 2);
         }
+
+        if ((gameProfile.getLivello() == 6) && (!eventsListener.AchievementFoundOnProfile(3, gameProfile.getUserId()))){
+            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Esperto !");
+            eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 3);
+        }
+
+        if ((gameProfile.getLivello() == 8)&& (!eventsListener.AchievementFoundOnProfile(4, gameProfile.getUserId()))){
+            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Maestro !");
+            eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 4);
+        }
+
+        if ((eventsListener.getTimeline(gameProfile.getUserId()).getEsperienza_guadagnata() > 500)&& (!eventsListener.AchievementFoundOnProfile(6, gameProfile.getUserId()))) {
+            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Professionista !");
+            eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 6);
+        }
+
+        if ((eventsListener.getTimeline(gameProfile.getUserId()).getEsperienza_guadagnata() > 1000) && (!eventsListener.AchievementFoundOnProfile(5, gameProfile.getUserId()))) {
+            JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Flipper !");
+            eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 5);
+        }
+
+
 
     }
 

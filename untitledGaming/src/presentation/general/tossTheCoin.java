@@ -2,6 +2,7 @@ package presentation.general;
 
 import business.implementation.DBManager;
 import business.model.Utente;
+import controller.eventsListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,6 +80,11 @@ public class tossTheCoin {
                     }
 
 
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                try {
+                    eventsListener.checkAchievement(eventsListener.getGameProfile(utente.getUserId()));
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

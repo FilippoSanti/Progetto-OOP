@@ -158,7 +158,7 @@ public class achievementsList {
 			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
 			label_3.setBounds(188, 253, 156, 30);
 			frmUntitledGaming.getContentPane().add(label_3);
-		
+
             // Text description
             JTextArea txtrDescrizione_1 = new JTextArea();
             txtrDescrizione_1.setLineWrap(true);
