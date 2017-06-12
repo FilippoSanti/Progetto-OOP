@@ -75,7 +75,7 @@ public class editData {
 
 
         button = new JButton("");
-        button.setIcon(new ImageIcon("imgs/back-icon.png"));
+        button.setIcon(new ImageIcon(getClass().getResource("imgs/back-icon.png")));
         button.setToolTipText("torna indietro");
         button.setBounds(10, 11, 45, 45);
         frmUntitledGaming.getContentPane().add(button);

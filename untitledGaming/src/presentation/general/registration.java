@@ -36,7 +36,7 @@ public class registration {
         frmUntitledGaming.setVisible(true);
 
         frmUntitledGaming.setResizable(false);
-        frmUntitledGaming.setTitle("Untitled Gaming - Register");
+        frmUntitledGaming.setTitle("Untitled Gaming - Registrati");
         frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
@@ -251,7 +251,7 @@ public class registration {
 		
 
         button = new JButton("");
-        button.setIcon(new ImageIcon("imgs/back_icon.png"));
+        button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
         button.setToolTipText("Go back");
         button.setBounds(10, 11, 45, 45);
 

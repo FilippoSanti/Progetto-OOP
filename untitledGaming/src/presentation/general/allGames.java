@@ -32,7 +32,7 @@ public class allGames {
         frmUntitledGaming.setLocationRelativeTo(null);
 
         JButton button = new JButton("");
-        button.setIcon(new ImageIcon("imgs/back_icon.png"));
+        button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
         button.setToolTipText("torna indietro");
         button.setBounds(10, 11, 45, 45);
         frmUntitledGaming.getContentPane().add(button);
@@ -230,14 +230,20 @@ public class allGames {
 
         // Next button
         JButton btnSuccessiva = new JButton("");
-        btnSuccessiva.setIcon(new ImageIcon("rounded_next.png"));
+        btnSuccessiva.setIcon(new ImageIcon(getClass().getResource("imgs/rounded_next.png")));
         btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
         btnSuccessiva.setToolTipText("Pagina Successiva");
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
-        // TODO: Next page
-        //btnSuccessiva.setEnabled(false);
+        // bottone pagina precedente
+        JButton button_7 = new JButton("");
+        button_7.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_back_1.png")));
+        button_7.setToolTipText("Pagina Precedente");
+        button_7.setFont(new Font("MV Boli", Font.ITALIC, 13));
+        button_7.setBounds(68, 581, 45, 45);
+        button_7.setEnabled(false);
 
+        frmUntitledGaming.getContentPane().add(button_7);
         frmUntitledGaming.getContentPane().add(btnSuccessiva);
     }
 }
