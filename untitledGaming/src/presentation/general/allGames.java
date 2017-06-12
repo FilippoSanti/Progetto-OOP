@@ -56,7 +56,7 @@ public class allGames {
         try {
 
             JTable table = new JTable(eventsListener.getGames());
-            String titolo = String.valueOf(table.getValueAt(0, 1));
+            String titolo = String.valueOf(table.getValueAt(1, 1));
 
             // Game logo
             JPanel panel = new JPanel();
@@ -111,7 +111,8 @@ public class allGames {
         try {
 
             JTable table = new JTable(eventsListener.getGames());
-            String titolo1 = String.valueOf(table.getValueAt(1, 1));
+            String titolo1 = String.valueOf(table.getValueAt(0
+                    , 1));
 
             // Game logo
             JPanel panel_1 = new JPanel();
