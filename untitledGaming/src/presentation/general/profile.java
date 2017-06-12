@@ -103,7 +103,7 @@ public class profile {
 		JLabel lblNewLabel_7 = new JLabel(utente.getEmail());
 		lblNewLabel_7.setForeground(Color.DARK_GRAY);
 		lblNewLabel_7.setFont(new Font("Georgia", Font.ITALIC, 18));
-		lblNewLabel_7.setBounds(636, 232, 183, 31);;
+		lblNewLabel_7.setBounds(636, 232, 275, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_7);
 
 		JLabel lblNewLabel_8 = new JLabel("Il Tuo Livello :");
