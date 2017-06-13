@@ -147,6 +147,8 @@ public class reviewList extends MainPanel {
 
 
             String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row, 0));
+            System.out.println(row);
+
             int b = Integer.parseInt(a);
             label = new JLabel(eventsListener.getUsername(b));
 
@@ -182,13 +184,12 @@ public class reviewList extends MainPanel {
         JLabel label_1 = null;
         try {
             if (row + 1 >= eventsListener.getApprovedReviews().getRowCount()) {
-
-
                 label_1 = new JLabel("vuoto");
-            }  else {
-                String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row + 1, 0));
-                int b = Integer.parseInt(a);
-                label_1 = new JLabel(eventsListener.getUsername(b));
+
+            } else {
+                String a  = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row + 1, 0));
+                int    b    = Integer.parseInt(a);
+                label_1   = new JLabel(eventsListener.getUsername(b));
 
 
                 JButton btnGioca = new JButton("Leggi Commento");

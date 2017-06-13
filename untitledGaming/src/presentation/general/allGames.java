@@ -13,10 +13,12 @@ public class allGames {
 
     Utente utente;
     private JFrame frmUntitledGaming;
+    int row;
 
     /* Create the application */
-    public allGames(Utente c) {
+    public allGames(Utente c, int a) {
         this.utente = c;
+        this.row = a;
         initialize();
     }
 
@@ -46,17 +48,68 @@ public class allGames {
             }
         });
 
-        JLabel lblListaGiochi = new JLabel("Scelta Giochi");
+        JLabel lblListaGiochi = new JLabel("Lista Giochi" + "(" + (row+1) + " / " + (row+4) + ")");
         lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
         lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
         lblListaGiochi.setBounds(0, 23, 944, 61);
         frmUntitledGaming.getContentPane().add(lblListaGiochi);
 
+        // Next button
+        JButton btnSuccessiva = new JButton("");
+        btnSuccessiva.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_next.png")));
+        btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
+        btnSuccessiva.setToolTipText("Pagina Successiva");
+        btnSuccessiva.setBounds(830, 581, 45, 45);
+
+        try {
+            if (row +4
+                    >= eventsListener.getGames().getRowCount()) {
+                btnSuccessiva.setEnabled(false);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        frmUntitledGaming.getContentPane().add(btnSuccessiva);
+
+
+        btnSuccessiva.addActionListener(new ActionListener() {
+
+
+            public void actionPerformed(ActionEvent e) {
+
+                frmUntitledGaming.setVisible(false);
+                new allGames(utente, row + 4);
+
+            }
+        });
+
+        // Previous button
+        JButton button_4 = new JButton("");
+        button_4.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_back_1.png")));
+        button_4.setToolTipText("Pagina Precedente");
+        button_4.setFont(new Font("MV Boli", Font.ITALIC, 13));
+        button_4.setBounds(68, 581, 45, 45);
+        if (row == 0) button_4.setEnabled(false);
+
+        frmUntitledGaming.getContentPane().add(button_4);
+        button_4.addActionListener(new ActionListener() {
+
+
+            public void actionPerformed(ActionEvent e) {
+
+                frmUntitledGaming.setVisible(false);
+                new allGames(utente, row - 4);
+
+            }
+        });
+
         // Game 1
         try {
 
             JTable table = new JTable(eventsListener.getGames());
-            String titolo = String.valueOf(table.getValueAt(1, 1));
+            String titolo = String.valueOf(table.getValueAt(row, 1));
+
+            System.out.println(titolo);
 
             // Game logo
             JPanel panel = new JPanel();
@@ -85,7 +138,7 @@ public class allGames {
             btnGioca0.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     frmUntitledGaming.setVisible(false);
-                    eventsListener.changePage("tossTheCoin", utente);
+                    eventsListener.changePage(titolo, utente);
                 }
             });
 
@@ -108,41 +161,51 @@ public class allGames {
 
 
         // Game 2
+
         try {
 
-            JTable table = new JTable(eventsListener.getGames());
-            String titolo1 = String.valueOf(table.getValueAt(0
-                    , 1));
+            if (row + 1 >= eventsListener.getGames().getRowCount()) {
 
-            // Game logo
-            JPanel panel_1 = new JPanel();
-            panel_1.setBackground(Color.BLUE);
-            panel_1.setBounds(65, 203, 90, 90);
-            frmUntitledGaming.getContentPane().add(panel_1);
+                // Show an empty label
+                JPanel panel_1 = new JPanel();
+                JLabel lblNewLabel = new JLabel("Empty");
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_1);
 
-            JLabel lblNewLabel = new JLabel(titolo1);
-            lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            lblNewLabel.setLabelFor(panel_1);
+            } else {
+                JTable table = new JTable(eventsListener.getGames());
+                String titolo1 = String.valueOf(table.getValueAt(row + 1,1));
 
-            JLabel lblInserireQuIl = new JLabel("");
-            panel_1.add(lblInserireQuIl);
-            lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
-            lblNewLabel.setBounds(172, 112, 375, 31);
-            frmUntitledGaming.getContentPane().add(lblNewLabel);
+                // Game logo
+                JPanel panel_1 = new JPanel();
+                panel_1.setBackground(Color.BLUE);
+                panel_1.setBounds(65, 203, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_1);
 
-            // Game button
-            JButton btnGioca = new JButton("Gioca!");
-            btnGioca.setToolTipText("Gioca!");
-            btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
-            btnGioca.setBounds(743, 236, 142, 30);
-            frmUntitledGaming.getContentPane().add(btnGioca);
+                JLabel lblNewLabel = new JLabel(titolo1);
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_1);
 
-            // Button recensioni
-            JButton button_2 = new JButton("Recensioni");
-            button_2.setToolTipText("Recensioni");
-            button_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
-            button_2.setBounds(573, 237, 142, 30);
-            frmUntitledGaming.getContentPane().add(button_2);
+                JLabel lblInserireQuIl = new JLabel("");
+                panel_1.add(lblInserireQuIl);
+                lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
+                lblNewLabel.setBounds(172, 112, 375, 31);
+                frmUntitledGaming.getContentPane().add(lblNewLabel);
+
+                // Game button
+                JButton btnGioca = new JButton("Gioca!");
+                btnGioca.setToolTipText("Gioca!");
+                btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnGioca.setBounds(743, 236, 142, 30);
+                frmUntitledGaming.getContentPane().add(btnGioca);
+
+                // Button recensioni
+                JButton button_2 = new JButton("Recensioni");
+                button_2.setToolTipText("Recensioni");
+                button_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                button_2.setBounds(573, 237, 142, 30);
+                frmUntitledGaming.getContentPane().add(button_2);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -151,38 +214,49 @@ public class allGames {
         // Game 3
         try {
 
-            JTable table = new JTable(eventsListener.getGames());
-            String titolo1 = String.valueOf(table.getValueAt(2, 1));
+            if (row + 2 >= eventsListener.getGames().getRowCount()) {
 
-            // Game logo
-            JPanel panel_2 = new JPanel();
-            panel_2.setBackground(Color.GREEN);
-            panel_2.setBounds(65, 321, 90, 90);
-            frmUntitledGaming.getContentPane().add(panel_2);
+                // Show an empty label
+                JPanel panel_1 = new JPanel();
+                JLabel lblNewLabel = new JLabel("Empty");
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_1);
 
-            JLabel lblNewLabel = new JLabel(titolo1);
-            lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            lblNewLabel.setLabelFor(panel_2);
+            } else {
+                JTable table = new JTable(eventsListener.getGames());
+                String titolo1 = String.valueOf(table.getValueAt(row + 2, 1));
 
-            JLabel lblInserireQuIl = new JLabel("");
-            panel_2.add(lblInserireQuIl);
-            lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
-            lblNewLabel.setBounds(172, 350, 375, 31);
-            frmUntitledGaming.getContentPane().add(lblNewLabel);
+                // Game logo
+                JPanel panel_2 = new JPanel();
+                panel_2.setBackground(Color.GREEN);
+                panel_2.setBounds(65, 321, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_2);
 
-            // Game button
-            JButton btnGioca_1 = new JButton("Gioca!");
-            btnGioca_1.setToolTipText("Gioca!");
-            btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-            btnGioca_1.setBounds(743, 351, 142, 30);
-            frmUntitledGaming.getContentPane().add(btnGioca_1);
+                JLabel lblNewLabel = new JLabel(titolo1);
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_2);
 
-            // Button recensioni
-            JButton button_1 = new JButton("Recensioni");
-            button_1.setToolTipText("Recensioni");
-            button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-            button_1.setBounds(573, 352, 142, 30);
-            frmUntitledGaming.getContentPane().add(button_1);
+                JLabel lblInserireQuIl = new JLabel("");
+                panel_2.add(lblInserireQuIl);
+                lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
+                lblNewLabel.setBounds(172, 350, 375, 31);
+                frmUntitledGaming.getContentPane().add(lblNewLabel);
+
+                // Game button
+                JButton btnGioca_1 = new JButton("Gioca!");
+                btnGioca_1.setToolTipText("Gioca!");
+                btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnGioca_1.setBounds(743, 351, 142, 30);
+                frmUntitledGaming.getContentPane().add(btnGioca_1);
+
+                // Button recensioni
+                JButton button_1 = new JButton("Recensioni");
+                button_1.setToolTipText("Recensioni");
+                button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                button_1.setBounds(573, 352, 142, 30);
+                frmUntitledGaming.getContentPane().add(button_1);
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -191,59 +265,52 @@ public class allGames {
         // Game 4
         try {
 
-            JTable table = new JTable(eventsListener.getGames());
-            String titolo1 = String.valueOf(table.getValueAt(3, 1));
+            if (row + 3 >= eventsListener.getGames().getRowCount()) {
 
-            // Game logo
-            JPanel panel_3 = new JPanel();
-            panel_3.setBackground(Color.RED);
-            panel_3.setBounds(65, 440, 90, 90);
-            frmUntitledGaming.getContentPane().add(panel_3);
+                // Show an empty label
+                JPanel panel_1 = new JPanel();
+                JLabel lblNewLabel = new JLabel("Empty");
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_1);
 
-            JLabel lblNewLabel = new JLabel(titolo1);
-            lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            lblNewLabel.setLabelFor(panel_3);
+            } else {
+                JTable table = new JTable(eventsListener.getGames());
+                String titolo1 = String.valueOf(table.getValueAt(row + 3, 1));
 
-            JLabel lblInserireQuIl = new JLabel("");
-            panel_3.add(lblInserireQuIl);
-            lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
-            lblNewLabel.setBounds(172, 469, 375, 31);
-            frmUntitledGaming.getContentPane().add(lblNewLabel);
+                // Game logo
+                JPanel panel_3 = new JPanel();
+                panel_3.setBackground(Color.RED);
+                panel_3.setBounds(65, 440, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_3);
 
-            // Game button
-            JButton btnGioca_1 = new JButton("Gioca!");
-            btnGioca_1.setToolTipText("Gioca!");
-            btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-            btnGioca_1.setBounds(743, 470, 142, 30);
-            frmUntitledGaming.getContentPane().add(btnGioca_1);
+                JLabel lblNewLabel = new JLabel(titolo1);
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_3);
 
-            // Button recensioni
-            JButton button_1 = new JButton("Recensioni");
-            button_1.setToolTipText("Recensioni");
-            button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-            button_1.setBounds(573, 471, 142, 30);
-            frmUntitledGaming.getContentPane().add(button_1);
+                JLabel lblInserireQuIl = new JLabel("");
+                panel_3.add(lblInserireQuIl);
+                lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
+                lblNewLabel.setBounds(172, 469, 375, 31);
+                frmUntitledGaming.getContentPane().add(lblNewLabel);
+
+                // Game button
+                JButton btnGioca_1 = new JButton("Gioca!");
+                btnGioca_1.setToolTipText("Gioca!");
+                btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnGioca_1.setBounds(743, 470, 142, 30);
+                frmUntitledGaming.getContentPane().add(btnGioca_1);
+
+                // Button recensioni
+                JButton button_1 = new JButton("Recensioni");
+                button_1.setToolTipText("Recensioni");
+                button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                button_1.setBounds(573, 471, 142, 30);
+                frmUntitledGaming.getContentPane().add(button_1);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Next button
-        JButton btnSuccessiva = new JButton("");
-        btnSuccessiva.setIcon(new ImageIcon(getClass().getResource("imgs/rounded_next.png")));
-        btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
-        btnSuccessiva.setToolTipText("Pagina Successiva");
-        btnSuccessiva.setBounds(830, 581, 45, 45);
-
-        // bottone pagina precedente
-        JButton button_7 = new JButton("");
-        button_7.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_back_1.png")));
-        button_7.setToolTipText("Pagina Precedente");
-        button_7.setFont(new Font("MV Boli", Font.ITALIC, 13));
-        button_7.setBounds(68, 581, 45, 45);
-        button_7.setEnabled(false);
-
-        frmUntitledGaming.getContentPane().add(button_7);
-        frmUntitledGaming.getContentPane().add(btnSuccessiva);
     }
 }
