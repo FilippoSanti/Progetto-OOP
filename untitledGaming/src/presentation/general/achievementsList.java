@@ -21,10 +21,13 @@ public class achievementsList {
 
     Utente utente;
     private JFrame frmUntitledGaming;
+    int row, nPages;
 
     /* Create the application */
-    public achievementsList(Utente c) {
-        this.utente = c;
+    public achievementsList(Utente c, int r, int n) {
+        this.utente        = c;
+        this.row           = r;
+        this.nPages        = n;
         initialize();
     }
 
@@ -33,10 +36,8 @@ public class achievementsList {
         initialize();
     }
 
-
     /*Initialize the contents of the frame */
     private void initialize() {
-
         Achievement ach = null;
 
         frmUntitledGaming = new JFrame();
@@ -49,6 +50,7 @@ public class achievementsList {
         frmUntitledGaming.getContentPane().setLayout(null);
         frmUntitledGaming.setLocationRelativeTo(null);
 
+        // Back button
         JButton button = new JButton("");
         button.setIcon(new ImageIcon("imgs/back-icon.png"));
         button.setToolTipText("torna indietro");
@@ -63,20 +65,59 @@ public class achievementsList {
             }
         });
 
-        JLabel lblListaGiochi = new JLabel("Visualizza Achievements");
-        lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
-        lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
-        lblListaGiochi.setBounds(0, 11, 944, 61);
-        frmUntitledGaming.getContentPane().add(lblListaGiochi);
+
+        // Next button
+        JButton btnSuccessiva = new JButton("");
+        btnSuccessiva.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_next.png")));
+        btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
+        btnSuccessiva.setToolTipText("Pagina Successiva");
+        btnSuccessiva.setBounds(830, 581, 45, 45);
+
+        try {
+            if (row + 4 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+                btnSuccessiva.setEnabled(false);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        frmUntitledGaming.getContentPane().add(btnSuccessiva);
+        btnSuccessiva.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.setVisible(false);
+                    new achievementsList(utente, row + 4, nPages + 1);
+            }
+        });
+
+        // Previous button
+        JButton button_4 = new JButton("");
+        button_4.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_back_1.png")));
+        button_4.setToolTipText("Pagina Precedente");
+        button_4.setFont(new Font("MV Boli", Font.ITALIC, 13));
+        button_4.setBounds(68, 581, 45, 45);
+        if (row == 0) button_4.setEnabled(false);
+
+        frmUntitledGaming.getContentPane().add(button_4);
+        button_4.addActionListener(new ActionListener() {
+
+
+            public void actionPerformed(ActionEvent e) {
+
+                frmUntitledGaming.setVisible(false);
+                    new achievementsList(utente, row - 4, nPages - 1);
+            }
+        });
 
         // Achievement 1
         try {
 
+
             JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
-            String achievementDesc = String.valueOf(table.getValueAt(0, 1));
+            String achievementDesc = String.valueOf(table.getValueAt(row, 1));
 
             // Get the game id from th Table Model
-            String gameID = String.valueOf(table.getValueAt(0, 2));
+            String gameID = String.valueOf(table.getValueAt(row, 2));
 
             // Game logo
             JPanel panel = new JPanel();
@@ -117,6 +158,7 @@ public class achievementsList {
             txtrDescrizione.setBounds(354, 107, 537, 56);
             frmUntitledGaming.getContentPane().add(txtrDescrizione);
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,52 +166,63 @@ public class achievementsList {
         // Achievement 2
         try {
 
-            JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
-            String achievementDesc = String.valueOf(table.getValueAt(1, 1));
+            if (row + 1 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
 
-            // Get the game id from the Table Model
-            String gameID = String.valueOf(table.getValueAt(1, 2));
+                // Show an empty label
+                JPanel panel_1 = new JPanel();
+                JLabel lblNewLabel = new JLabel("Empty");
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_1);
 
-            System.out.println(gameID);
+            } else {
 
-            // Game logo
-            JPanel panel_1 = new JPanel();
-            panel_1.setBackground(Color.BLUE);
-            panel_1.setBounds(88, 209, 90, 90);
-            frmUntitledGaming.getContentPane().add(panel_1);
+                JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+                String achievementDesc = String.valueOf(table.getValueAt(row +1, 1));
 
-            // Description
-            JLabel label_1 = new JLabel("Descrizione:");
-            label_1.setHorizontalAlignment(SwingConstants.CENTER);
-            label_1.setForeground(Color.DARK_GRAY);
-            label_1.setFont(new Font("Oregano", Font.PLAIN, 21));
-            label_1.setBounds(204, 223, 125, 30);
-            frmUntitledGaming.getContentPane().add(label_1);
+                // Get the game id from the Table Model
+                String gameID = String.valueOf(table.getValueAt(row + 1, 2));
 
-            //Game name
-            int    id_game       = Integer.parseInt(gameID);
-            JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
-            String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
+                System.out.println(gameID);
 
-            JLabel label_3 = new JLabel(achNameString);
+                // Game logo
+                JPanel panel_1 = new JPanel();
+                panel_1.setBackground(Color.BLUE);
+                panel_1.setBounds(88, 209, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_1);
 
-			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setForeground(Color.GRAY);
-			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
-			label_3.setBounds(188, 253, 156, 30);
-			frmUntitledGaming.getContentPane().add(label_3);
+                // Description
+                JLabel label_1 = new JLabel("Descrizione:");
+                label_1.setHorizontalAlignment(SwingConstants.CENTER);
+                label_1.setForeground(Color.DARK_GRAY);
+                label_1.setFont(new Font("Oregano", Font.PLAIN, 21));
+                label_1.setBounds(204, 223, 125, 30);
+                frmUntitledGaming.getContentPane().add(label_1);
 
-            // Text description
-            JTextArea txtrDescrizione_1 = new JTextArea();
-            txtrDescrizione_1.setLineWrap(true);
-            txtrDescrizione_1.setWrapStyleWord(true);
-            txtrDescrizione_1.setFont(new Font("MV Boli", txtrDescrizione_1.getFont().getStyle(), 14));
-            txtrDescrizione_1.setText(achievementDesc);
-            txtrDescrizione_1.setBackground(UIManager.getColor("Button.background"));
-            txtrDescrizione_1.setEditable(false);
-            txtrDescrizione_1.setRows(2);
-            txtrDescrizione_1.setBounds(354, 227, 537, 56);
-            frmUntitledGaming.getContentPane().add(txtrDescrizione_1);
+                //Game name
+                int    id_game       = Integer.parseInt(gameID);
+                JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
+                String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
+
+                JLabel label_3 = new JLabel(achNameString);
+
+                label_3.setHorizontalAlignment(SwingConstants.CENTER);
+                label_3.setForeground(Color.GRAY);
+                label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                label_3.setBounds(188, 253, 156, 30);
+                frmUntitledGaming.getContentPane().add(label_3);
+
+                // Text description
+                JTextArea txtrDescrizione_1 = new JTextArea();
+                txtrDescrizione_1.setLineWrap(true);
+                txtrDescrizione_1.setWrapStyleWord(true);
+                txtrDescrizione_1.setFont(new Font("MV Boli", txtrDescrizione_1.getFont().getStyle(), 14));
+                txtrDescrizione_1.setText(achievementDesc);
+                txtrDescrizione_1.setBackground(UIManager.getColor("Button.background"));
+                txtrDescrizione_1.setEditable(false);
+                txtrDescrizione_1.setRows(2);
+                txtrDescrizione_1.setBounds(354, 227, 537, 56);
+                frmUntitledGaming.getContentPane().add(txtrDescrizione_1);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -178,48 +231,59 @@ public class achievementsList {
         // Achievement 3
         try {
 
-            JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
-            String achievementDesc = String.valueOf(table.getValueAt(2, 1));
+            if (row + 2 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+                // Show an empty label
+                JPanel panel_1 = new JPanel();
+                JLabel lblNewLabel = new JLabel("Empty");
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_1);
+            } else {
 
-            // Get the game id from the Table Model
-            String gameID = String.valueOf(table.getValueAt(2, 2));
 
-            // Game logo
-            JPanel panel_2 = new JPanel();
-            panel_2.setBackground(Color.GREEN);
-            panel_2.setBounds(88, 327, 90, 90);
-            frmUntitledGaming.getContentPane().add(panel_2);
+                JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+                String achievementDesc = String.valueOf(table.getValueAt(row + 2 , 1));
 
-            // Description
-            JLabel label = new JLabel("Descrizione:");
-            label.setHorizontalAlignment(SwingConstants.CENTER);
-            label.setForeground(Color.DARK_GRAY);
-            label.setFont(new Font("Oregano", Font.PLAIN, 21));
-            label.setBounds(204, 340, 125, 30);
-            frmUntitledGaming.getContentPane().add(label);
+                // Get the game id from the Table Model
+                String gameID = String.valueOf(table.getValueAt(row + 2, 2));
 
-            int    id_game       = Integer.parseInt(gameID);
-            JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
-            String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
-            JLabel label_3       = new JLabel(achNameString);
+                // Game logo
+                JPanel panel_2 = new JPanel();
+                panel_2.setBackground(Color.GREEN);
+                panel_2.setBounds(88, 327, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_2);
 
-			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setForeground(Color.GRAY);
-			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
-			label_3.setBounds(188, 370, 156, 30);
-			frmUntitledGaming.getContentPane().add(label_3);
+                // Description
+                JLabel label = new JLabel("Descrizione:");
+                label.setHorizontalAlignment(SwingConstants.CENTER);
+                label.setForeground(Color.DARK_GRAY);
+                label.setFont(new Font("Oregano", Font.PLAIN, 21));
+                label.setBounds(204, 340, 125, 30);
+                frmUntitledGaming.getContentPane().add(label);
 
-            // Text description
-            JTextArea txtrDescrizioneAchievementsDa = new JTextArea();
-            txtrDescrizioneAchievementsDa.setWrapStyleWord(true);
-            txtrDescrizioneAchievementsDa.setFont(new Font("MV Boli", txtrDescrizioneAchievementsDa.getFont().getStyle(), 14));
-            txtrDescrizioneAchievementsDa.setText(achievementDesc);
-            txtrDescrizioneAchievementsDa.setBackground(UIManager.getColor("Button.background"));
-            txtrDescrizioneAchievementsDa.setEditable(false);
-            txtrDescrizioneAchievementsDa.setLineWrap(true);
-            txtrDescrizioneAchievementsDa.setRows(2);
-            txtrDescrizioneAchievementsDa.setBounds(354, 344, 537, 56);
-            frmUntitledGaming.getContentPane().add(txtrDescrizioneAchievementsDa);
+                int    id_game       = Integer.parseInt(gameID);
+                JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
+                String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
+                JLabel label_3       = new JLabel(achNameString);
+
+                label_3.setHorizontalAlignment(SwingConstants.CENTER);
+                label_3.setForeground(Color.GRAY);
+                label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                label_3.setBounds(188, 370, 156, 30);
+                frmUntitledGaming.getContentPane().add(label_3);
+
+                // Text description
+                JTextArea txtrDescrizioneAchievementsDa = new JTextArea();
+                txtrDescrizioneAchievementsDa.setWrapStyleWord(true);
+                txtrDescrizioneAchievementsDa.setFont(new Font("MV Boli", txtrDescrizioneAchievementsDa.getFont().getStyle(), 14));
+                txtrDescrizioneAchievementsDa.setText(achievementDesc);
+                txtrDescrizioneAchievementsDa.setBackground(UIManager.getColor("Button.background"));
+                txtrDescrizioneAchievementsDa.setEditable(false);
+                txtrDescrizioneAchievementsDa.setLineWrap(true);
+                txtrDescrizioneAchievementsDa.setRows(2);
+                txtrDescrizioneAchievementsDa.setBounds(354, 344, 537, 56);
+                frmUntitledGaming.getContentPane().add(txtrDescrizioneAchievementsDa);
+
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -228,77 +292,79 @@ public class achievementsList {
         // Achievement 4
         try {
 
-            JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
-            String achievementDesc = String.valueOf(table.getValueAt(3, 1));
+            if (row + 3 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+                // Show an empty label
+                JPanel panel_1 = new JPanel();
+                JLabel lblNewLabel = new JLabel("Empty");
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setLabelFor(panel_1);
 
-            // Get the game id from the Table Model
-            String gameID = String.valueOf(table.getValueAt(3, 2));
+            } else {
 
-            // Game logo
-            JPanel panel_3 = new JPanel();
-            panel_3.setBackground(Color.RED);
-            panel_3.setBounds(88, 446, 90, 90);
-            frmUntitledGaming.getContentPane().add(panel_3);
 
-            // Description
-            JLabel label_2 = new JLabel("Descrizione:");
-            label_2.setHorizontalAlignment(SwingConstants.CENTER);
-            label_2.setForeground(Color.DARK_GRAY);
-            label_2.setFont(new Font("Oregano", Font.PLAIN, 21));
-            label_2.setBounds(204, 459, 125, 30);
-            frmUntitledGaming.getContentPane().add(label_2);
+                JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+                String achievementDesc = String.valueOf(table.getValueAt(row + 3, 1));
 
-            // Game name
-            int    id_game        = Integer.parseInt(gameID);
-            JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
-            String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
-            JLabel label_3        = new JLabel(achNameString);
+                // Get the game id from the Table Model
+                String gameID = String.valueOf(table.getValueAt(row + 3, 2));
 
-			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setForeground(Color.GRAY);
-			label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
-			label_3.setBounds(188, 489, 156, 30);
-			frmUntitledGaming.getContentPane().add(label_3);
+                // Game logo
+                JPanel panel_3 = new JPanel();
+                panel_3.setBackground(Color.RED);
+                panel_3.setBounds(88, 446, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_3);
 
-            // Text description
-            JTextArea txtrDescrizioneAchievementsDa_1 = new JTextArea();
-            txtrDescrizioneAchievementsDa_1.setWrapStyleWord(true);
-            txtrDescrizioneAchievementsDa_1.setFont(new Font("MV Boli", txtrDescrizioneAchievementsDa_1.getFont().getStyle(), 14));
-            txtrDescrizioneAchievementsDa_1.setText(achievementDesc);
-            txtrDescrizioneAchievementsDa_1.setBackground(UIManager.getColor("Button.background"));
-            txtrDescrizioneAchievementsDa_1.setEditable(false);
-            txtrDescrizioneAchievementsDa_1.setLineWrap(true);
-            txtrDescrizioneAchievementsDa_1.setRows(2);
-            txtrDescrizioneAchievementsDa_1.setBounds(354, 463, 537, 56);
-            frmUntitledGaming.getContentPane().add(txtrDescrizioneAchievementsDa_1);
+                // Description
+                JLabel label_2 = new JLabel("Descrizione:");
+                label_2.setHorizontalAlignment(SwingConstants.CENTER);
+                label_2.setForeground(Color.DARK_GRAY);
+                label_2.setFont(new Font("Oregano", Font.PLAIN, 21));
+                label_2.setBounds(204, 459, 125, 30);
+                frmUntitledGaming.getContentPane().add(label_2);
+
+                // Game name
+                int    id_game        = Integer.parseInt(gameID);
+                JTable achTable       = new JTable(eventsListener.getGameNameByID(id_game));
+                String achNameString  = String.valueOf(achTable.getValueAt(0, 0));
+                JLabel label_3        = new JLabel(achNameString);
+
+                label_3.setHorizontalAlignment(SwingConstants.CENTER);
+                label_3.setForeground(Color.GRAY);
+                label_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                label_3.setBounds(188, 489, 156, 30);
+                frmUntitledGaming.getContentPane().add(label_3);
+
+                // Text description
+                JTextArea txtrDescrizioneAchievementsDa_1 = new JTextArea();
+                txtrDescrizioneAchievementsDa_1.setWrapStyleWord(true);
+                txtrDescrizioneAchievementsDa_1.setFont(new Font("MV Boli", txtrDescrizioneAchievementsDa_1.getFont().getStyle(), 14));
+                txtrDescrizioneAchievementsDa_1.setText(achievementDesc);
+                txtrDescrizioneAchievementsDa_1.setBackground(UIManager.getColor("Button.background"));
+                txtrDescrizioneAchievementsDa_1.setEditable(false);
+                txtrDescrizioneAchievementsDa_1.setLineWrap(true);
+                txtrDescrizioneAchievementsDa_1.setRows(2);
+                txtrDescrizioneAchievementsDa_1.setBounds(354, 463, 537, 56);
+
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
-        JButton btnSuccessiva = new JButton("");
-        btnSuccessiva.setIcon(new ImageIcon("Rounded_next.png"));
-        btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
-        btnSuccessiva.setToolTipText("Pagina Successiva");
-        btnSuccessiva.setBounds(830, 581, 45, 45);
-        frmUntitledGaming.getContentPane().add(btnSuccessiva);
-
-        JButton button_4 = new JButton("");
-        button_4.setEnabled(false);
-        button_4.setIcon(new ImageIcon("Rounded_back_1.png"));
-        button_4.setToolTipText("Pagina Precedente");
-        button_4.setFont(new Font("MV Boli", Font.ITALIC, 13));
-        button_4.setBounds(68, 581, 45, 45);
-        frmUntitledGaming.getContentPane().add(button_4);
-
+        int totaListCount = 0;
         try {
-
-            JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
-            String achievementDesc = String.valueOf(table.getValueAt(0, 0));
-
+            totaListCount = eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        int totalPages = (totaListCount / 4) + 1;
+        JLabel lblListaGiochi = new JLabel("Achievement list - " + "Page " + nPages + " of " +totalPages);
+
+        lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
+        lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
+        lblListaGiochi.setBounds(0, 23, 944, 61);
+        frmUntitledGaming.getContentPane().add(lblListaGiochi);
+
     }
 }
