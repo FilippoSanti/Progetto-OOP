@@ -265,7 +265,7 @@ public class eventsListener {
                 break;
 
             case "allGames" :
-                new allGames(utente);
+                new allGames(utente, 0);
                 break;
 
             case "reviewList" :
