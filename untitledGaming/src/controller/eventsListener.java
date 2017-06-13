@@ -249,8 +249,6 @@ public class eventsListener {
                 new profile(utente);
                 break;
 
-
-
             case "editData":
                 new editData(utente);
                 break;
@@ -260,8 +258,7 @@ public class eventsListener {
                 break;
 
             case "achievementsList":
-                new achievementsList(utente
-                );
+                new achievementsList(utente, 0, 1);
                 break;
 
             case "allGames" :

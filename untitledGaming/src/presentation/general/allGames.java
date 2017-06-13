@@ -48,7 +48,18 @@ public class allGames {
             }
         });
 
-        JLabel lblListaGiochi = new JLabel("Lista Giochi" + "(" + (row+1) + " / " + (row+4) + ")");
+
+        int fineLista = 0;
+        try {
+            fineLista = eventsListener.getApprovedReviews().getRowCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int inizioLista = row + 4;
+        if ((row + 4) >= fineLista) {inizioLista = fineLista;}
+
+        JLabel lblListaGiochi = new JLabel("Lista Giochi" + "(" + (inizioLista) + " / " + (fineLista) + ")");
+
         lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
         lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
         lblListaGiochi.setBounds(0, 23, 944, 61);
@@ -62,8 +73,7 @@ public class allGames {
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
         try {
-            if (row +4
-                    >= eventsListener.getGames().getRowCount()) {
+            if (row +4 >= eventsListener.getGames().getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
         } catch (SQLException e) {
@@ -108,8 +118,6 @@ public class allGames {
 
             JTable table = new JTable(eventsListener.getGames());
             String titolo = String.valueOf(table.getValueAt(row, 1));
-
-          
 
             // Game logo
             JPanel panel = new JPanel();
@@ -161,9 +169,7 @@ public class allGames {
 
 
         // Game 2
-
         try {
-
             if (row + 1 >= eventsListener.getGames().getRowCount()) {
 
                 // Show an empty label
