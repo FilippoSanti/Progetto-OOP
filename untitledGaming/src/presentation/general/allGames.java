@@ -109,7 +109,7 @@ public class allGames {
             JTable table = new JTable(eventsListener.getGames());
             String titolo = String.valueOf(table.getValueAt(row, 1));
 
-          
+
 
             // Game logo
             JPanel panel = new JPanel();
