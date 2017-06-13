@@ -77,9 +77,9 @@ public class eventsListener {
     }
 
 
-    public static void newUser(String username, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
+    public static void newUser(String username, String password, String nome, String cognome, String email, String dateString, int img_value, String tipo) throws SQLException {
 
-        if (new UserManagement().newUser(username, password, nome, cognome, email, dateString, tipo)) {
+        if (new UserManagement().newUser(username, password, nome, cognome, email, dateString, img_value, tipo)) {
             JOptionPane.showMessageDialog(null, "Successfully registered");
         } else {
             JOptionPane.showMessageDialog(null, "Internal error, try again");

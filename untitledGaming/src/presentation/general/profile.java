@@ -7,9 +7,11 @@ import presentation.general.logged;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -31,6 +33,10 @@ public class profile {
 
 	/* Initialize the contents of the frame */
 	private void initialize() {
+
+		// File chooser settings
+		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
 		frmUntitledGaming = new JFrame();
 		frmUntitledGaming.setVisible(true);
 
@@ -311,6 +317,22 @@ public class profile {
 		btnScegliImmagine.setFont(new Font("MV Boli", Font.PLAIN, 17));
 		btnScegliImmagine.setBounds(94, 294, 175, 34);
 		frmUntitledGaming.getContentPane().add(btnScegliImmagine);
+
+		btnScegliImmagine.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				int retVal = jfc.showOpenDialog(frmUntitledGaming);
+				if (retVal == JFileChooser.APPROVE_OPTION) {
+					File selectedfile = jfc.getSelectedFile();
+					StringBuilder sb = new StringBuilder();
+					JOptionPane.showMessageDialog(frmUntitledGaming, sb.toString());
+
+					// Store the image into the DB
+					business.implementation.DBManager.storeImg(utente.getUserId(), selectedfile);
+				}
+
+			}
+		});
 
 		JButton btnModifica = new JButton("Modifica");
 		btnModifica.setToolTipText("Modifica");

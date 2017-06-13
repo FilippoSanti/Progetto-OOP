@@ -1,5 +1,6 @@
 package business.implementation;
 
+import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,7 +15,7 @@ public class DBManager {
         // DB Config
         String dbAddress = "jdbc:mysql://localhost:3306/untitled_gaming";
         String dbUser = "root";
-        String dbPassword = "";
+        String dbPassword = "Provatest123!";
         Connection dbConnection = null;
 
         // Check if JDBC driver exists
@@ -167,6 +168,75 @@ public class DBManager {
             }
         }
 
+        return false;
+    }
+
+    public static boolean storeImg (int userID, File imgfile) {
+        try {
+
+            // Open the connection
+            Connection con       = business.implementation.DBManager.Connect();
+            Statement st        = con.createStatement();
+
+            FileInputStream fin  = new FileInputStream(imgfile);
+
+            // Prepare the query
+            PreparedStatement pre =
+                    con.prepareStatement("UPDATE utente\n" +
+                            "SET immagine_profilo = ?\n" +
+                            "WHERE utente.user_id = ?");
+
+            pre.setInt   (2,userID);
+
+            // Store the image into the db
+            pre.setBinaryStream(1,(InputStream)fin,(int)imgfile.length());
+            pre.executeUpdate();
+            System.out.println("Successfully inserted the file into the database!");
+
+            // Close the connection
+            pre.close();
+            con.close();
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+
+    public static boolean getImg(int userID) {
+        try {
+
+            // Open the connection
+            Connection con = DBManager.Connect();
+
+            // Execute the query and get the ResultSet
+            PreparedStatement stmt = con.prepareStatement(
+                    "SELECT `immagine_profilo` FROM `utente` WHERE user_id = ?");
+
+            stmt.setInt(1, userID);
+
+            ResultSet rs = stmt.executeQuery();
+
+            int i = 0;
+            while (rs.next()) {
+                InputStream in = rs.getBinaryStream(1);
+                OutputStream f = new FileOutputStream(new File("./src/presentation/asdasd.png"));
+                i++;
+                int c = 0;
+                while ((c = in.read()) > -1) {
+                    f.write(c);
+                }
+                f.close();
+                in.close();
+
+                return true;
+            }
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
         return false;
     }
 

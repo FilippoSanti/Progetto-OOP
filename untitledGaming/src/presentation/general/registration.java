@@ -83,6 +83,7 @@ public class registration {
                 try {
                     String dateText  = txtDate.getText();
                     String passText  = new String(passwordField.getPassword());
+                    int img_value    = 0;
 
                     // Check if every field id empty
                     if (txtNickname.getText().equals("Username ") || txtNome.getText().equals("Nome ") ||
@@ -113,7 +114,7 @@ public class registration {
 
                     frmUntitledGaming.dispose();
                     newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
-                            txtEmil.getText(), dateText,"user");
+                            txtEmil.getText(), dateText, img_value,"user");
                     changePage("startPage", null);
 
                 } catch (SQLException e1) {

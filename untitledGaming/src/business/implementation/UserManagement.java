@@ -10,10 +10,8 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +21,7 @@ import java.util.Random;
 public class UserManagement {
 
     /* Insert the user data into the DB */
-    public boolean newUser(String user, String password, String nome, String cognome, String email, String dateString, String tipo) throws SQLException {
+    public boolean newUser(String user, String password, String nome, String cognome, String email, String dateString, int img_value, String tipo) throws SQLException {
         System.out.println(user);
         // Convert the date string to a  java.sql.Date format
         java.sql.Date date = null;
@@ -54,8 +52,8 @@ public class UserManagement {
         password = business.implementation.DBManager.hashPassword(password);
 
         String insertTableSQL = "INSERT INTO utente"
-                + "(username, password, nome, cognome, email, data_di_nascita, tipo) VALUES"
-                + "(?,?,?,?,?,?,?)";
+                + "(username, password, nome, cognome, email, data_di_nascita, immagine_profilo, tipo) VALUES"
+                + "(?,?,?,?,?,?,?,?)";
 
         // Insert the values into the DB
         try {
@@ -67,7 +65,8 @@ public class UserManagement {
             preparedStatement.setString(4, cognome);
             preparedStatement.setString(5, email);
             preparedStatement.setDate(6, date);
-            preparedStatement.setString(7, tipo);
+            preparedStatement.setInt(7, img_value);
+            preparedStatement.setString(8, tipo);
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -549,8 +548,6 @@ public class UserManagement {
             JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Flipper !");
             eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 5);
         }
-
-
 
     }
 
