@@ -192,7 +192,7 @@ public class editData {
         frmUntitledGaming.getContentPane().add(passwordField);
         
         textField_3 = new JTextField();
-        textField_3.setToolTipText("E-m@il");
+        textField_3.setToolTipText("E-mail");
         
         //listen for focus
         textField_3.addFocusListener(new FocusListener() {
@@ -201,7 +201,7 @@ public class editData {
             }
             public void focusLost (FocusEvent e){
                 if (textField_3.getText().isEmpty())
-                    textField_3.setText("E-m@il");
+                    textField_3.setText(utente.getEmail());
             }
         });
                 
@@ -281,12 +281,13 @@ public class editData {
                     }
 
                     // Validate the email field
+                    if (!textField_3.getText().equals(utente.getUsername()))
                     if (!business.implementation.DBManager.isValidEmailAddress(textField_3.getText())) {
                         throw new BusinessException("Enter a valid email");
                     }
 
                     // If the username is different, we update it
-                    if (!textField_4.getText().equals(utente.getUsername())) {
+                    if (!textField_4.getText().equals(utente.getEmail())) {
                         if (business.implementation.DBManager.checkUsername(textField_4.getText())) {
                             throw new BusinessException("The username is not available, try again");
                         }
