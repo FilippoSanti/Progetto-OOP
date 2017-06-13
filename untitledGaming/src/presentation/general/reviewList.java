@@ -65,7 +65,16 @@ public class reviewList extends MainPanel {
             }
         });
 
-        JLabel lblListaGiochi = new JLabel("Lista Commenti" + "(" + (row+1) + " / " + (row+4) + ")");
+        JLabel lblListaGiochi = null;
+        try {
+            int fineLista = eventsListener.getApprovedReviews().getRowCount();
+            int inizioLista = row+4;
+            if ((row+4) >= fineLista)
+                inizioLista = fineLista;
+            lblListaGiochi = new JLabel("Lista Commenti" + "(" + (inizioLista) + " / " + (fineLista) + ")");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
         lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
         lblListaGiochi.setBounds(0, 23, 944, 61);
@@ -147,7 +156,7 @@ public class reviewList extends MainPanel {
 
 
             String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row, 0));
-            System.out.println(row);
+
 
             int b = Integer.parseInt(a);
             label = new JLabel(eventsListener.getUsername(b));

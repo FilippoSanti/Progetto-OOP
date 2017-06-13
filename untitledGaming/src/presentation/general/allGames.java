@@ -109,7 +109,7 @@ public class allGames {
             JTable table = new JTable(eventsListener.getGames());
             String titolo = String.valueOf(table.getValueAt(row, 1));
 
-            System.out.println(titolo);
+          
 
             // Game logo
             JPanel panel = new JPanel();
@@ -124,7 +124,7 @@ public class allGames {
             JLabel lblInserireQuIl = new JLabel("");
             panel.add(lblInserireQuIl);
             lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
-            lblNewLabel.setBounds(172, 235, 375, 31);
+            lblNewLabel.setBounds(172, 112, 375, 31);
             frmUntitledGaming.getContentPane().add(lblNewLabel);
 
             // Game button
@@ -174,7 +174,7 @@ public class allGames {
 
             } else {
                 JTable table = new JTable(eventsListener.getGames());
-                String titolo1 = String.valueOf(table.getValueAt(row + 1,1));
+                String titolo1 = String.valueOf(table.getValueAt(row +1 ,1));
 
                 // Game logo
                 JPanel panel_1 = new JPanel();
@@ -189,7 +189,8 @@ public class allGames {
                 JLabel lblInserireQuIl = new JLabel("");
                 panel_1.add(lblInserireQuIl);
                 lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 21));
-                lblNewLabel.setBounds(172, 112, 375, 31);
+
+                lblNewLabel.setBounds(172, 235, 375, 31);
                 frmUntitledGaming.getContentPane().add(lblNewLabel);
 
                 // Game button
