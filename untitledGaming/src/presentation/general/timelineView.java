@@ -100,6 +100,7 @@ Utente utente;
 
 
 			lblNewLabel = new JLabel(eventsListener.getGameFromId(eventsListener.getTimeline(utente.getUserId()).getGioco_id()));
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

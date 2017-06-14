@@ -190,13 +190,13 @@ public class UserManagement {
     }
 
     /* Update the timeline informations */
-    public boolean updateTimeline(int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
+    public boolean updateTimeline(int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata, int gioco_id) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Query
-        String addtimeline = "UPDATE timeline SET `data_ultima_sessione`= ?,`esperienza_guadagnata` = ? WHERE user_id = ?";
+        String addtimeline = "UPDATE timeline SET `data_ultima_sessione`= ?,`esperienza_guadagnata` = ? , `gioco_id` = ? WHERE user_id = ?";
 
         PreparedStatement preparedStatement = null;
 
@@ -204,7 +204,8 @@ public class UserManagement {
             preparedStatement = dbConnection.prepareStatement(addtimeline);
             preparedStatement.setDate(1, dataUltima);
             preparedStatement.setInt(2, esperienzaGuadagnata);
-            preparedStatement.setInt(3, user_id);
+            preparedStatement.setInt(4, user_id);
+            preparedStatement.setInt(3, gioco_id);
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -761,6 +762,29 @@ public class UserManagement {
         return esperienza_sessione;
     }
 
+    /*  ShitOnCoin Minigame */
+    public int ShitOnCoin(Utente utente) throws SQLException {
+
+        Random randomNum = new Random();
+        int esperienza_sessione = 0;
+        int result = randomNum.nextInt(2);
+
+        if (result == 0) {
+            JOptionPane.showMessageDialog(null, "You Shitted Head! Gain 100 xP");
+            eventsListener.addXP(utente, 100);
+            esperienza_sessione = 100;
+            eventsListener.checkLivello(getGameProfile(utente.getUserId()));
+
+        }
+
+        if (result == 1) {
+            JOptionPane.showMessageDialog(null, "you shitted Tail! Gain 5 xP");
+            esperienza_sessione = +5;
+            eventsListener.addXP(utente, +5);
+        }
+
+        return esperienza_sessione;
+    }
 }
 
 

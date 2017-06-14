@@ -13,14 +13,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class tossTheCoin {
+public class ShitOnCoin {
 
     private JFrame frmUntitledGaming;
     Utente utente = null;
     int esp = 0;
 
     /* Create the application */
-    public tossTheCoin(Utente c) {
+    public ShitOnCoin(Utente c) {
         this.utente = c;
         initialize();
     }
@@ -53,7 +53,7 @@ public class tossTheCoin {
         lblusernameHere.setBounds(598, 25, 126, 19);
         frmUntitledGaming.getContentPane().add(lblusernameHere);
 
-        JLabel lblNewLabel_1 = new JLabel("Toss the coin");
+        JLabel lblNewLabel_1 = new JLabel("ShitOnCoin");
         lblNewLabel_1.setFont(new Font("Vivaldi", Font.BOLD, 30));
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_1.setBounds(0, 68, 734, 37);
@@ -70,24 +70,16 @@ public class tossTheCoin {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
 
+
                 try {
-                    if (DBManager.checkTimeline(utente.getUserId())) {
-                        controller.eventsListener.updateTimeline(utente.getUserId(),
-                                DBManager.getCurrentData(), esp, 1);
-                    }
-                    else {
-                        controller.eventsListener.addTimeline(utente.getUserId(), 1, DBManager.getCurrentData(), esp);
-                    }
-
-
+                    eventsListener.updateTimeline(utente.getUserId(),
+                            DBManager.getCurrentData(), esp, 5);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
-                try {
-                    eventsListener.checkAchievement(eventsListener.getGameProfile(utente.getUserId()));
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
+
+
+
                 controller.eventsListener.changePage("allGames", utente);
             }
         });
@@ -103,7 +95,7 @@ public class tossTheCoin {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    esp = esp + controller.eventsListener.tossTheCoin(utente);
+                    esp = esp + controller.eventsListener.ShitOnCoin(utente);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

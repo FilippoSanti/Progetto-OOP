@@ -76,7 +76,6 @@ public class eventsListener {
         return game;
     }
 
-
     public static void newUser(String username, String password, String nome, String cognome, String email, String dateString, int img_value, String tipo) throws SQLException {
 
         if (new UserManagement().newUser(username, password, nome, cognome, email, dateString, img_value, tipo)) {
@@ -207,13 +206,18 @@ public class eventsListener {
         return gameList;
     }
 
-    public static boolean updateTimeline (int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
-    return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata);
+    public static boolean updateTimeline (int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata, int gioco_id) throws SQLException {
+    return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata, gioco_id);
     }
 
     public static int tossTheCoin(Utente utente) throws SQLException {
-       return new business.implementation.UserManagement().tossTheCoin(utente);
+        return new business.implementation.UserManagement().tossTheCoin(utente);
     }
+
+    public static int ShitOnCoin(Utente utente) throws SQLException {
+        return new business.implementation.UserManagement().ShitOnCoin(utente);
+    }
+
     public static void checkAchievement (gameProfile gameProfile) throws SQLException{
         new business.implementation.UserManagement().checkAchievement(gameProfile);
     }
@@ -256,6 +260,11 @@ public class eventsListener {
             case "tossTheCoin":
                 new tossTheCoin(utente);
                 break;
+
+            case "ShitOnCoin":
+                new ShitOnCoin(utente);
+                break;
+
 
             case "achievementsList":
                 new achievementsList(utente, 0, 1);
