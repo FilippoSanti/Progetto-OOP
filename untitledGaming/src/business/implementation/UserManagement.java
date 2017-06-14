@@ -1,10 +1,7 @@
 package business.implementation;
 
 import business.BusinessException;
-import business.model.Achievement;
-import business.model.Timeline;
-import business.model.Utente;
-import business.model.gameProfile;
+import business.model.*;
 import controller.eventsListener;
 import net.proteanit.sql.DbUtils;
 
@@ -73,7 +70,7 @@ public class UserManagement {
                0 for SQL statements that return nothing
              */
             if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))
-            && (addTimeline(eventsListener.getUserID(user), 1, date, 0))){
+                    && (addTimeline(eventsListener.getUserID(user), 1, date, 0))) {
 
                 return true;
             }
@@ -489,6 +486,118 @@ public class UserManagement {
 
     }
 
+    /* promote a user */
+    public boolean setToModerator(String username) throws SQLException {
+
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        String approveReview = "UPDATE `utente` SET `tipo` = 'moderator' WHERE `utente`.`username` = ?";
+        PreparedStatement preparedStatement = null;
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(approveReview);
+
+            preparedStatement.setString(1, username);
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Avvenuto con successo");
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+    public boolean setToUser(String username) throws SQLException {
+
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        String approveReview = "UPDATE `utente` SET `tipo` = 'user' WHERE `utente`.`username` = ?";
+        PreparedStatement preparedStatement = null;
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(approveReview);
+
+            preparedStatement.setString(1, username);
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Avvenuto con successo");
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+
+    public boolean setToAdministrator(String username) throws SQLException {
+
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        String approveReview = "UPDATE `utente` SET `tipo` = 'administrator' WHERE `utente`.`username` = ?";
+        PreparedStatement preparedStatement = null;
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(approveReview);
+
+            preparedStatement.setString(1, username);
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Avvenuto con successo");
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
     /* Determine the user level from the exp points */
     public void checkLivello(gameProfile gameProfile) throws SQLException {
         if (gameProfile.getEsperienza() >= 100 && gameProfile.getLivello() == 1) {
@@ -520,27 +629,27 @@ public class UserManagement {
 
     /* Check if achievements have been unlocked */
     public void checkAchievement(gameProfile gameProfile) throws SQLException {
-        if ((gameProfile.getLivello() == 2) && (!eventsListener.AchievementFoundOnProfile(1, gameProfile.getUserId()))){
+        if ((gameProfile.getLivello() == 2) && (!eventsListener.AchievementFoundOnProfile(1, gameProfile.getUserId()))) {
             JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Novizio !");
             eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 1);
         }
 
-        if ((gameProfile.getLivello() == 4)&& (!eventsListener.AchievementFoundOnProfile(2, gameProfile.getUserId()))) {
+        if ((gameProfile.getLivello() == 4) && (!eventsListener.AchievementFoundOnProfile(2, gameProfile.getUserId()))) {
             JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Principiante !");
             eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 2);
         }
 
-        if ((gameProfile.getLivello() == 6) && (!eventsListener.AchievementFoundOnProfile(3, gameProfile.getUserId()))){
+        if ((gameProfile.getLivello() == 6) && (!eventsListener.AchievementFoundOnProfile(3, gameProfile.getUserId()))) {
             JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Esperto !");
             eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 3);
         }
 
-        if ((gameProfile.getLivello() == 8)&& (!eventsListener.AchievementFoundOnProfile(4, gameProfile.getUserId()))){
+        if ((gameProfile.getLivello() == 8) && (!eventsListener.AchievementFoundOnProfile(4, gameProfile.getUserId()))) {
             JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Maestro !");
             eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 4);
         }
 
-        if ((eventsListener.getTimeline(gameProfile.getUserId()).getEsperienza_guadagnata() > 500)&& (!eventsListener.AchievementFoundOnProfile(6, gameProfile.getUserId()))) {
+        if ((eventsListener.getTimeline(gameProfile.getUserId()).getEsperienza_guadagnata() > 500) && (!eventsListener.AchievementFoundOnProfile(6, gameProfile.getUserId()))) {
             JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Professionista !");
             eventsListener.insertAchievementToProfile(gameProfile.getUserId(), 6);
         }
@@ -590,14 +699,14 @@ public class UserManagement {
         } catch (ParseException e) {
             e.printStackTrace();
         } finally {
-        if (stmt != null) {
-            stmt.close();
-        }
+            if (stmt != null) {
+                stmt.close();
+            }
 
-        if (dbConnection != null) {
-            dbConnection.close();
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
         }
-    }
         return new Timeline(timeline_id, userId, gioco_id, DataFinale, esperienza_guadagnata);
 
     }
@@ -726,7 +835,7 @@ public class UserManagement {
     }
 
     public boolean AchievementFoundOnProfile(int achievement_id, int user_id) throws SQLException {
-          String achId = String.valueOf(achievement_id);
+        String achId = String.valueOf(achievement_id);
         for (int i = 0; i < eventsListener.getUserAchievementsList(user_id).getRowCount(); i++) {
             if (String.valueOf(eventsListener.getUserAchievementsList(user_id).getValueAt(i, 3)).equals(achId)) {
 
@@ -734,7 +843,7 @@ public class UserManagement {
             }
         }
 
-            return false;
+        return false;
 
     }
 
@@ -761,7 +870,7 @@ public class UserManagement {
 
         return esperienza_sessione;
     }
-<<<<<<< HEAD
+
 
     /*  ShitOnCoin Minigame */
     public int ShitOnCoin(Utente utente) throws SQLException {
@@ -786,8 +895,22 @@ public class UserManagement {
 
         return esperienza_sessione;
     }
-=======
->>>>>>> d099b845c914a1e57cd46c989cbfa1bc5ef3e457
+
+    public TableModel getUsers () throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT * FROM `utente` ");
+
+        ResultSet rs = stmt.executeQuery();
+        TableModel tm = DbUtils.resultSetToTableModel(rs);
+        dbConnection.close();
+        return tm;
+    }
+
 }
+
 
 

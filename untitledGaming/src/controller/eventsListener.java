@@ -38,6 +38,27 @@ public class eventsListener {
         return userID;
     }
 
+    public static String getUserTipo(String user) throws SQLException {
+
+        // User id that will be returned
+        String tipo = "";
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT tipo FROM utente WHERE username = ?");
+        stmt.setString(1, user);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            tipo = rs.getString(1);
+        }
+
+        return tipo;
+    }
+
     public static String getUsername (int user_id) throws SQLException{
        String username = "";
 
@@ -289,6 +310,9 @@ public class eventsListener {
             case "timelineView":
                 new timelineView (utente);
                 break;
+
+            case "userList" :
+                new usersList(utente, 0);
         }
     }
 
@@ -301,8 +325,24 @@ public class eventsListener {
         return new business.implementation.UserManagement().getUserAchievementsList(userId);
     }
 
+    public static boolean setToModerator(String username) throws SQLException {
+        return new business.implementation.UserManagement().setToModerator(username);
+    }
+
+    public static boolean setToUser (String username) throws SQLException {
+        return new business.implementation.UserManagement().setToUser(username);
+    }
+
+    public static boolean setToAdministrator (String username) throws SQLException {
+        return new business.implementation.UserManagement().setToAdministrator(username);
+    }
+
     public static TableModel getGameNameByID (int gameId) throws SQLException {
         return new business.implementation.UserManagement().getGameNameByID(gameId);
+    }
+
+    public static TableModel getUsers () throws SQLException {
+        return new business.implementation.UserManagement().getUsers();
     }
 
 }

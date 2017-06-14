@@ -107,6 +107,16 @@ public class logged {
 		btnListaUtenti.setBounds(123, 454, 250, 65);
 
 		frmUntitledGaming.getContentPane().add(btnListaUtenti);
+		btnListaUtenti.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				frmUntitledGaming.setVisible(false);
+				controller.eventsListener.changePage("userList", utente);
+			}
+		});
+
+
+
 
 		JButton btnGiocaOra = new JButton("Gioca Ora");
 		btnGiocaOra.setToolTipText("Gioca Ora");
