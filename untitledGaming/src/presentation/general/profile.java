@@ -61,37 +61,37 @@ public class profile {
 		JLabel lblNewLabel = new JLabel("Nome :");
 		lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel.setForeground(Color.GRAY);
-		lblNewLabel.setBounds(488, 141, 131, 31);
+		lblNewLabel.setBounds(487, 141, 185, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Cognome :");
 		lblNewLabel_1.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_1.setForeground(Color.GRAY);
-		lblNewLabel_1.setBounds(488, 171, 131, 31);
+		lblNewLabel_1.setBounds(487, 171, 185, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Data di Nascita :");
 		lblNewLabel_2.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_2.setForeground(Color.GRAY);
-		lblNewLabel_2.setBounds(488, 202, 131, 31);
+		lblNewLabel_2.setBounds(487, 202, 185, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("E-mail :");
 		lblNewLabel_3.setFont(new Font("Georgia", Font.ITALIC, 18));
 		lblNewLabel_3.setForeground(Color.GRAY);
-		lblNewLabel_3.setBounds(488, 232, 131, 31);
+		lblNewLabel_3.setBounds(487, 232, 185, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_3);
 
 		JLabel lblNewLabel_4 = new JLabel(utente.getNome());
 		lblNewLabel_4.setForeground(Color.DARK_GRAY);
 		lblNewLabel_4.setFont(new Font("Georgia", Font.ITALIC, 18));
-		lblNewLabel_4.setBounds(636, 141, 183, 31);
+		lblNewLabel_4.setBounds(659, 141, 183, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_4);
 
 		JLabel lblNewLabel_5 = new JLabel(utente.getCognome());
 		lblNewLabel_5.setForeground(Color.DARK_GRAY);
 		lblNewLabel_5.setFont(new Font("Georgia", Font.ITALIC, 18));
-		lblNewLabel_5.setBounds(636, 172, 183, 30);
+		lblNewLabel_5.setBounds(659, 172, 183, 30);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_5);
 
 		String dateString = utente.getData().toString();
@@ -102,13 +102,13 @@ public class profile {
 		JLabel lblNewLabel_6 = new JLabel(dataFinale);
 		lblNewLabel_6.setForeground(Color.DARK_GRAY);
 		lblNewLabel_6.setFont(new Font("Georgia", Font.ITALIC, 18));
-		lblNewLabel_6.setBounds(636, 202, 183, 31);
+		lblNewLabel_6.setBounds(659, 202, 183, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel(utente.getEmail());
 		lblNewLabel_7.setForeground(Color.DARK_GRAY);
 		lblNewLabel_7.setFont(new Font("Georgia", Font.ITALIC, 18));
-		lblNewLabel_7.setBounds(636, 232, 275, 31);
+		lblNewLabel_7.setBounds(659, 232, 275, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_7);
 
 		JLabel lblNewLabel_8 = new JLabel("Il Tuo Livello :");
