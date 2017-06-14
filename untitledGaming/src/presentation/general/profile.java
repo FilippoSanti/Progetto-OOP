@@ -129,17 +129,67 @@ public class profile {
 		lblNewLabel_10.setBounds(55, 478, 210, 30);
 		frmUntitledGaming.getContentPane().add(lblNewLabel_10);
 
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setFont(new Font("Georgia", Font.ITALIC, 14));
-		progressBar.setStringPainted(true);
-		progressBar.setToolTipText("% XP");
-		progressBar.setForeground(Color.BLUE);
-		progressBar.setValue(75);
-		progressBar.setBackground(SystemColor.menu);
-		progressBar.setBounds(247, 427, 273, 18);
-		frmUntitledGaming.getContentPane().add(progressBar);
+        int exp = 0;
+        try {
+            exp = eventsListener.getGameProfile(utente.getUserId()).getEsperienza();
 
-		JButton btnNewButton = new JButton("Cronologia di Gioco");
+            JProgressBar progressBar = new JProgressBar();
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 1){
+                progressBar.setMinimum(0);
+                progressBar.setMaximum(100);
+            }
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 2){
+                progressBar.setMinimum(100);
+                progressBar.setMaximum(250);
+            }
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 3){
+                progressBar.setMinimum(250);
+                progressBar.setMaximum(450);
+            }
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 4){
+                progressBar.setMinimum(450);
+                progressBar.setMaximum(700);
+            }
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 5){
+                progressBar.setMinimum(700);
+                progressBar.setMaximum(1100);
+            }
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 6){
+                progressBar.setMinimum(1100);
+                progressBar.setMaximum(1500);
+            }
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 7){
+                progressBar.setMinimum(1500);
+                progressBar.setMaximum(2000);
+            }
+
+            if (eventsListener.getGameProfile(utente.getUserId()).getLivello() == 8){
+                progressBar.setMinimum(2000);
+                progressBar.setMaximum(2800);
+            }
+
+            progressBar.setFont(new Font("Georgia", Font.ITALIC, 14));
+            progressBar.setStringPainted(true);
+            progressBar.setToolTipText("% XP");
+            progressBar.setForeground(Color.BLUE);
+            progressBar.setValue(exp);
+            progressBar.setBackground(SystemColor.menu);
+            progressBar.setBounds(247, 427, 273, 18);
+            frmUntitledGaming.getContentPane().add(progressBar);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        JButton btnNewButton = new JButton("Cronologia di Gioco");
 		btnNewButton.setToolTipText("I Tuoi Giochi");
 		btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 18));
 
