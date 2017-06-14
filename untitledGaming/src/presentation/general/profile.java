@@ -169,148 +169,29 @@ public class profile {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		try {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.GREEN);
 		panel_2.setBounds(275, 468, 50, 50);
 		panel_2.setBorder(new LineBorder(Color.BLACK));
-		try {
-			if (!eventsListener.AchievementFoundOnProfile(1, utente.getUserId()))
 
-			{ panel_2.setOpaque(false);}
-			else {
-				JLabel jlabel = new JLabel("1");
+			int achievement = 0;
+			achievement = eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount();
+			String b = String.valueOf(achievement);
+
+
+
+				JLabel jlabel = new JLabel(b);
 				jlabel.setFont(new Font("Verdana", 1, 30));
 				panel_2.add(jlabel);
+			frmUntitledGaming.getContentPane().add(panel_2);
 
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		frmUntitledGaming.getContentPane().add(panel_2);
 
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Color.CYAN);
-		panel_4.setBounds(365, 468, 50, 50);
-		panel_4.setBorder(new LineBorder(Color.BLACK));
-
-		try {
-			if (!eventsListener.AchievementFoundOnProfile(2, utente.getUserId())){
-
-				panel_4.setOpaque(false);}
-			else {
-
-				JLabel jlabel1 = new JLabel("2");
-				jlabel1.setFont(new Font("Verdana",1,30));
-				panel_4.add(jlabel1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		frmUntitledGaming.getContentPane().add(panel_4);
-
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(Color.PINK);
-		panel_5.setBounds(455, 468, 50, 50);
-		panel_5.setBorder(new LineBorder(Color.BLACK));
-
-		try {
-			if (!eventsListener.AchievementFoundOnProfile(3, utente.getUserId())){
-				panel_5.setOpaque(false);}
-			else {
-				JLabel jlabel2 = new JLabel("3");
-				jlabel2.setFont(new Font("Verdana", 1, 30));
-				panel_5.add(jlabel2);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		frmUntitledGaming.getContentPane().add(panel_5);
-
-		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(Color.ORANGE);
-		panel_6.setBounds(545, 468, 50, 50);
-		panel_6.setBorder(new LineBorder(Color.BLACK));
-
-		try {
-			if (!eventsListener.AchievementFoundOnProfile(4, utente.getUserId())){
-				panel_6.setOpaque(false);
-			}
-
-			else {
-				JLabel jlabel3 = new JLabel("4");
-				jlabel3.setFont(new Font("Verdana", 1, 30));
-				panel_6.add(jlabel3);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		frmUntitledGaming.getContentPane().add(panel_6);
-
-		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(Color.DARK_GRAY);
-		panel_7.setBounds(635, 468, 50, 50);
-		panel_7.setBorder(new LineBorder(Color.BLACK));
-
-		try {
-			if (!eventsListener.AchievementFoundOnProfile(5, utente.getUserId()))
-			{
-				panel_7.setOpaque(false);
-			}
-
-			else {
-				JLabel jlabel4 = new JLabel("5");
-				jlabel4.setFont(new Font("Verdana",1,30));
-				panel_7.add(jlabel4);}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		frmUntitledGaming.getContentPane().add(panel_7);
-
-		JPanel panel_8 = new JPanel();
-		panel_8.setBackground(Color.BLUE);
-		panel_8.setBounds(725, 468, 50, 50);
-		panel_8.setBorder(new LineBorder(Color.BLACK));
-		try {
-			if (!eventsListener.AchievementFoundOnProfile(6, utente.getUserId())){
-				panel_8.setOpaque(false);
-			}
-			else {
-				JLabel jlabel5 = new JLabel("6");
-				jlabel5.setFont(new Font("Verdana", 1, 30));
-				panel_8.add(jlabel5);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		frmUntitledGaming.getContentPane().add(panel_8);
-
-		JPanel panel_9 = new JPanel();
-		panel_9.setBackground(Color.MAGENTA);
-		panel_9.setBounds(815, 468, 50, 50);
-		panel_9.setBorder(new LineBorder(Color.BLACK));
-		try {
-			if (!eventsListener.AchievementFoundOnProfile(7, utente.getUserId())){
-				panel_9.setOpaque(false);
-			}
-			else {
-				JLabel jlabel6 = new JLabel("7");
-				jlabel6.setFont(new Font("Verdana", 1, 30));
-				panel_9.add(jlabel6);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		frmUntitledGaming.getContentPane().add(panel_9);
-
+		
 		JButton btnScegliImmagine = new JButton("Scegli Immagine");
 		btnScegliImmagine.setToolTipText("Scegli Immagine");
 		btnScegliImmagine.setFont(new Font("MV Boli", Font.PLAIN, 17));
