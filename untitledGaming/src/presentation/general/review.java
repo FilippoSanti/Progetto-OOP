@@ -3,27 +3,23 @@ package presentation.general;
 import business.model.Utente;
 import controller.eventsListener;
 
-import java.awt.EventQueue;
-
 import javax.swing.*;
-import java.awt.SystemColor;
-import java.awt.Font;
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.ActionEvent;
-import java.awt.Button;
 import java.awt.image.ImageProducer;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-public class review extends MainPanel {
+public class review extends starEdit {
 
     private JFrame frmUntitledGaming;
 
-Utente utente;
+    Utente utente;
+
     /**
      * Create the application.
      */
@@ -37,6 +33,7 @@ Utente utente;
      * Initialize the contents of the frame.
      */
     private void initialize() {
+
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Scrivi Recensione");
         frmUntitledGaming.setResizable(false);
@@ -66,7 +63,8 @@ Utente utente;
             public void focusGained(FocusEvent e) {
                 dtrpnLasciaQuIl.setText("  ");
             }
-            public void focusLost (FocusEvent e){
+
+            public void focusLost(FocusEvent e) {
                 if (dtrpnLasciaQuIl.getText().isEmpty())
                     dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento......");
             }
@@ -80,7 +78,24 @@ Utente utente;
         frmUntitledGaming.getContentPane().add(dtrpnLasciaQuIl);
 
 
-        JButton btnInviaRecensione = new JButton("Invia Recensione");
+        JPanel panel = new JPanel();
+        panel.setBounds(115, 127, 696, 90);
+
+        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+        ImageProducer ip = defaultIcon.getImage().getSource();
+        List<ImageIcon>
+                list = Arrays.asList(
+                makeStarImageIcon(ip, .6f, .6f, 0f),
+                makeStarImageIcon(ip, .7f, .7f, 0f),
+                makeStarImageIcon(ip, .8f, .8f, 0f),
+                makeStarImageIcon(ip, .9f, .9f, 0f),
+                makeStarImageIcon(ip, 1f, 1f, 0f));
+
+        LevelBarEdit lb = new LevelBarEdit(defaultIcon, list, 2);
+        panel.add(makeStarRatingPanel("", lb));
+        frmUntitledGaming.getContentPane().add(panel);
+
+        JButton btnInviaRecensione = new JButton("Invia Recensioneeeeee");
         btnInviaRecensione.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             }
@@ -90,33 +105,19 @@ Utente utente;
         btnInviaRecensione.setBounds(355, 573, 234, 52);
         frmUntitledGaming.getContentPane().add(btnInviaRecensione);
 
-        btnInviaRecensione.addActionListener(new ActionListener()
-        {
+        btnInviaRecensione.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
                 eventsListener.changePage("reviewList", utente);
                 try {
-                    controller.eventsListener.addReview(utente, dtrpnLasciaQuIl.getText(), 4);
+                    int vote = lb.getLevel();
+                    controller.eventsListener.addReview(utente, dtrpnLasciaQuIl.getText(), vote + 1);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
             }
         });
 
-
-        JPanel panel = new JPanel();
-        panel.setBounds(115, 127, 696, 90);
-        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
-        ImageProducer ip = defaultIcon.getImage().getSource();
-        List<ImageIcon>
-                list = Arrays.asList(
-                makeStarImageIcon(ip, .6f, .6f, 0f),
-                makeStarImageIcon(ip, .7f, .7f, 0f),
-                makeStarImageIcon(ip, .8f, .8f, 0f),
-                makeStarImageIcon(ip, .9f, .9f, 0f),
-                makeStarImageIcon(ip,  1f,  1f, 0f));
-        panel.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
-        frmUntitledGaming.getContentPane().add(panel);
 
         JLabel lblnomeGioco = new JLabel("-Nome Gioco-");
         lblnomeGioco.setHorizontalAlignment(SwingConstants.LEFT);

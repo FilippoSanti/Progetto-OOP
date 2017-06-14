@@ -3,27 +3,17 @@ package presentation.general;
 import business.model.Utente;
 import controller.eventsListener;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import java.awt.Color;
-
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-
 import java.awt.image.ImageProducer;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class reviewList extends MainPanel {
+public class reviewList extends starView {
 
     private JFrame frmUntitledGaming;
     Utente utente;
@@ -35,7 +25,6 @@ public class reviewList extends MainPanel {
         this.row = a;
         initialize();
     }
-
 
     private void initialize() {
 
@@ -68,8 +57,8 @@ public class reviewList extends MainPanel {
         JLabel lblListaGiochi = null;
         try {
             int fineLista = eventsListener.getApprovedReviews().getRowCount();
-            int inizioLista = row+4;
-            if ((row+4) >= fineLista)
+            int inizioLista = row + 4;
+            if ((row + 4) >= fineLista)
                 inizioLista = fineLista;
             lblListaGiochi = new JLabel("Lista Commenti" + "(" + (inizioLista) + " / " + (fineLista) + ")");
         } catch (SQLException e) {
@@ -108,7 +97,7 @@ public class reviewList extends MainPanel {
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
         try {
-            if (row +4
+            if (row + 4
                     >= eventsListener.getApprovedReviews().getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
@@ -144,7 +133,7 @@ public class reviewList extends MainPanel {
             public void actionPerformed(ActionEvent e) {
 
                 frmUntitledGaming.setVisible(false);
-                new reviewList(utente, row -4);
+                new reviewList(utente, row - 4);
 
 
             }
@@ -174,7 +163,7 @@ public class reviewList extends MainPanel {
                 public void actionPerformed(ActionEvent e) {
 
                     frmUntitledGaming.setVisible(false);
-                    new viewReview (utente, row, b);
+                    new viewReview(utente, row, b);
 
                 }
             });
@@ -196,9 +185,9 @@ public class reviewList extends MainPanel {
                 label_1 = new JLabel("vuoto");
 
             } else {
-                String a  = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row + 1, 0));
-                int    b    = Integer.parseInt(a);
-                label_1   = new JLabel(eventsListener.getUsername(b));
+                String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row + 1, 0));
+                int b = Integer.parseInt(a);
+                label_1 = new JLabel(eventsListener.getUsername(b));
 
 
                 JButton btnGioca = new JButton("Leggi Commento");
@@ -234,9 +223,7 @@ public class reviewList extends MainPanel {
         try {
             if (row + 2 >= eventsListener.getApprovedReviews().getRowCount()) {
                 label_2 = new JLabel("vuoto");
-            }
-
-            else {
+            } else {
                 String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row + 2, 0));
                 int b = Integer.parseInt(a);
                 label_2 = new JLabel(eventsListener.getUsername(b));
@@ -272,9 +259,7 @@ public class reviewList extends MainPanel {
         try {
             if (row + 3 >= eventsListener.getApprovedReviews().getRowCount()) {
                 label_3 = new JLabel("vuoto");
-            }
-
-            else {
+            } else {
 
                 String a = String.valueOf(eventsListener.getApprovedReviews().getValueAt(row + 3, 0));
                 int b = Integer.parseInt(a);
@@ -385,9 +370,8 @@ public class reviewList extends MainPanel {
                     if (eventsListener.reviewFoundOnProfile(utente.getUserId())) {
                         frmUntitledGaming.setVisible(false);
                         new viewReview(utente, 0, utente.getUserId()
-                        );}
-
-                        else{
+                        );
+                    } else {
                         frmUntitledGaming.setVisible(false);
                         eventsListener.changePage("review", utente);
                     }
