@@ -171,7 +171,7 @@ public class DBManager {
         return false;
     }
 
-    public static boolean storeImg (int userID, File imgfile) {
+    public static boolean setImg (int userID, File imgfile) {
         try {
 
             // Open the connection
@@ -209,6 +209,7 @@ public class DBManager {
     public static boolean getImg(int userID) {
         try {
 
+            File selectedfile;
             // Open the connection
             Connection con = DBManager.Connect();
 
@@ -223,7 +224,7 @@ public class DBManager {
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File("./src/presentation/asdasd.png"));
+                OutputStream f = new FileOutputStream(new File("./src/presentation/propic.png"));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {
@@ -249,6 +250,36 @@ public class DBManager {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
         return sqlDate;
+    }
+
+    /* Check if the profile pic of an user exists (true) */
+    public static boolean checkImage(int userID) throws SQLException {
+
+        // DB Connection
+        Connection connection = Connect();
+
+        int resultInt = 0;
+
+        // Prepare and execute the query
+        PreparedStatement st = null;
+
+        st = connection.prepareStatement("select immagine_profilo from utente WHERE user_id = ?");
+
+        st.setInt(1, userID);
+        ResultSet rs = st.executeQuery();
+
+        try {
+        if (rs.next()) {
+            resultInt = rs.getInt("immagine_profilo");
+        }
+
+        } catch (SQLException e) {
+            return true;
+        }
+
+        if (resultInt == 0) return false;
+        return true;
+
     }
 
     /* Reformat a text date */
