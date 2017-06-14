@@ -761,6 +761,7 @@ public class UserManagement {
 
         return esperienza_sessione;
     }
+<<<<<<< HEAD
 
     /*  ShitOnCoin Minigame */
     public int ShitOnCoin(Utente utente) throws SQLException {
@@ -785,6 +786,8 @@ public class UserManagement {
 
         return esperienza_sessione;
     }
+=======
+>>>>>>> d099b845c914a1e57cd46c989cbfa1bc5ef3e457
 }
 
 

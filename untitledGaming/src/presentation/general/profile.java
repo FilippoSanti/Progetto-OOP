@@ -1,17 +1,21 @@
 package presentation.general;
 
+import business.BusinessException;
 import business.implementation.DBManager;
 import business.model.Utente;
 import controller.eventsListener;
 import presentation.general.logged;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -53,11 +57,6 @@ public class profile {
 		lblIlTuoProfilo.setFont(new Font("Vivaldi", Font.BOLD, 40));
 		lblIlTuoProfilo.setBounds(0, 38, 944, 61);
 		frmUntitledGaming.getContentPane().add(lblIlTuoProfilo);
-
-		Panel panel = new Panel();
-		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(94, 105, 175, 175);
-		frmUntitledGaming.getContentPane().add(panel);
 
 		JLabel lblNewLabel = new JLabel("Nome :");
 		lblNewLabel.setFont(new Font("Georgia", Font.ITALIC, 18));
@@ -320,19 +319,63 @@ public class profile {
 
 		btnScegliImmagine.addActionListener(new ActionListener() {
 
+			// Image chooser dialog
 			public void actionPerformed(ActionEvent e) {
 				int retVal = jfc.showOpenDialog(frmUntitledGaming);
 				if (retVal == JFileChooser.APPROVE_OPTION) {
 					File selectedfile = jfc.getSelectedFile();
-					StringBuilder sb = new StringBuilder();
-					JOptionPane.showMessageDialog(frmUntitledGaming, sb.toString());
 
 					// Store the image into the DB
-					business.implementation.DBManager.storeImg(utente.getUserId(), selectedfile);
-				}
+					if (business.implementation.DBManager.setImg(utente.getUserId(), selectedfile)) {
+						JOptionPane.showMessageDialog(frmUntitledGaming, "Propic set successfully");
+						frmUntitledGaming.dispose();
+						controller.eventsListener.changePage("profile", utente);
 
+					} else {
+						throw new BusinessException("Error during the upload, try again");
+					}
+				}
 			}
 		});
+
+		try {
+
+			if (DBManager.checkImage(utente.getUserId())) {
+
+				// Declare the panel
+				Panel panel = new Panel();
+
+				// Get the image and show it on the panel
+				BufferedImage myPicture = null;
+				try {
+					business.implementation.DBManager.getImg(utente.getUserId());
+					myPicture = ImageIO.read(new File("./src/presentation/propic.png"));
+
+					// TODO: additional local file check
+
+					JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+					panel.add(picLabel);
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				// Propic panel with the user image
+				panel.setBounds(94, 105, 175, 175);
+				frmUntitledGaming.getContentPane().add(panel);
+
+            } else {
+
+				// Propic panel with no image
+				Panel panel = new Panel();
+				panel.setBackground(Color.LIGHT_GRAY);
+				panel.setBounds(94, 105, 175, 175);
+				//panel.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
+				frmUntitledGaming.getContentPane().add(panel);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		JButton btnModifica = new JButton("Modifica");
 		btnModifica.setToolTipText("Modifica");
