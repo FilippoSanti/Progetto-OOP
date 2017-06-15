@@ -124,7 +124,7 @@ this.gioco_id = g;
         frmUntitledGaming.getContentPane().add(lblnomeGioco);
 
         JButton button = new JButton("");
-        button.setIcon(new ImageIcon(".src/presentation/general/imgs/back_icon.png"));
+        button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
         button.setToolTipText("Torna Indietro");
         button.setBounds(10, 11, 45, 45);
 

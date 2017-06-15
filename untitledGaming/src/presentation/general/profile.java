@@ -340,7 +340,7 @@ public class profile {
 		}
 
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setToolTipText("Go back");
+		btnNewButton_1.setToolTipText("torna indietro");
 		btnNewButton_1.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
 		btnNewButton_1.setBounds(10, 11, 45, 45);
 

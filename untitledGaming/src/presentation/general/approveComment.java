@@ -46,8 +46,10 @@ Review review;
 		frmUntitledGaming.getContentPane().setLayout(null);
 		frmUntitledGaming.setLocationRelativeTo(null);
 		
-		JButton btnApprovaCommento = new JButton("Approva Commento");
-		btnApprovaCommento.setToolTipText("Invia Recensione");
+		JButton btnApprovaCommento = new JButton("Approva Recensione");
+		btnApprovaCommento.setToolTipText("Approva Recensione");
+		btnApprovaCommento.setForeground(new Color(50, 205, 50));
+		btnApprovaCommento.setBackground(new Color(152, 251, 152));
 		btnApprovaCommento.setFont(new Font("MV Boli", Font.ITALIC, 18));
 		btnApprovaCommento.setBounds(124, 545, 260, 46);
 		frmUntitledGaming.getContentPane().add(btnApprovaCommento);
@@ -67,9 +69,11 @@ Review review;
 			}
 		});
 		
-		JButton btnEliminaCommento = new JButton("Elimina Commento");
-		btnEliminaCommento.setToolTipText("Invia Recensione");
+		JButton btnEliminaCommento = new JButton("Elimina Recensione");
+		btnEliminaCommento.setToolTipText("Elimina Recensione");
+		btnEliminaCommento.setForeground(new Color(255, 99, 71));
 		btnEliminaCommento.setFont(new Font("MV Boli", Font.ITALIC, 18));
+		btnEliminaCommento.setBackground(new Color(240, 128, 128));
 		btnEliminaCommento.setBounds(560, 545, 260, 46);
 		frmUntitledGaming.getContentPane().add(btnEliminaCommento);
 
@@ -89,7 +93,7 @@ Review review;
 			}
 		});
 		
-		JLabel lblHaScritto_1 = new JLabel("ha scritto:");
+		JLabel lblHaScritto_1 = new JLabel("  ha scritto:");
 		lblHaScritto_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHaScritto_1.setForeground(SystemColor.textInactiveText);
 		lblHaScritto_1.setFont(new Font("Georgia", Font.ITALIC, 30));
@@ -104,7 +108,7 @@ Review review;
 		}
 		lblusername.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblusername.setForeground(SystemColor.textInactiveText);
-		lblusername.setFont(new Font("Georgia", Font.ITALIC, 30));
+		lblusername.setFont(new Font("Georgia", Font.BOLD | Font.ITALIC, 30));
 		lblusername.setBounds(177, 87, 226, 35);
 		frmUntitledGaming.getContentPane().add(lblusername);
 		
@@ -115,20 +119,19 @@ Review review;
 		txtpncommentoPrecedentementeInserito.setEditable(false);
 		txtpncommentoPrecedentementeInserito.setBounds(124, 206, 696, 223);
 		frmUntitledGaming.getContentPane().add(txtpncommentoPrecedentementeInserito);
-		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("imgs/back-icon.png"));
-		button.setToolTipText("torna indietro");
-		button.setBounds(10, 11, 45, 45);
-		frmUntitledGaming.getContentPane().add(button);
+
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setToolTipText("torna indietro");
+		btnNewButton_1.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
+		btnNewButton_1.setBounds(10, 11, 45, 45);
+		frmUntitledGaming.getContentPane().add(btnNewButton_1);
 		frmUntitledGaming.setVisible(true);
-		button.addActionListener(new ActionListener() {
+		btnNewButton_1.addActionListener(new ActionListener() {
 
 
 			public void actionPerformed(ActionEvent e) {
 
-				frmUntitledGaming.setVisible(false);
-				eventsListener.changePage("evalutateReview", utente);
+			eventsListener.changePage("evalutateReview", utente);
 
 			}
 		});

@@ -63,7 +63,7 @@ public class evalutateReview extends starView {
 			int fineLista = eventsListener.getPendingReviews().getRowCount();
 			int inizioLista = row + 4;
 			if (fineLista == 0) {
-				JOptionPane.showMessageDialog(null, "Nessuna review da approvare");
+				JOptionPane.showMessageDialog(null, "Nessuna review da valutare");
 				
 
 			}
