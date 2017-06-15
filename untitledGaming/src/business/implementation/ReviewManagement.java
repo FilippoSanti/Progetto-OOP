@@ -99,7 +99,8 @@ public class ReviewManagement {
         PreparedStatement stmt = dbConnection.prepareStatement(
                 "SELECT user_id, \n" +
                         "       testo_recensione, \n" +
-                        "       voto \n" +
+                        "       voto, \n" +
+                        "       gioco_id \n" +
                         "FROM   recensione \n" +
                         "WHERE  approvata = '0'");
 
@@ -119,7 +120,8 @@ public class ReviewManagement {
         PreparedStatement stmt = dbConnection.prepareStatement(
                 "SELECT user_id, \n" +
                         "       testo_recensione, \n" +
-                        "       voto \n" +
+                        "       voto, \n" +
+                        "       gioco_id \n" +
                         "FROM   recensione \n" +
                         "WHERE  approvata = '1'");
 
@@ -155,7 +157,44 @@ public class ReviewManagement {
 
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        String approveReview = "UPDATE `recensione` SET `approvata` = '1' WHERE `recensione`.`recensione_id` = ?";
+        String approveReview = "UPDATE `recensione` SET `approvata` = '1' WHERE `recensione`.`recensione_id`= ?";
+        PreparedStatement preparedStatement = null;
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(approveReview);
+
+            preparedStatement.setInt(1, review.getReviewId());
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+    /* delete a review */
+    public boolean deleteReview(Review review) throws SQLException {
+
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        String approveReview = "DELETE FROM `recensione` WHERE `recensione`.`recensione_id` = ?";
         PreparedStatement preparedStatement = null;
 
         // Insert the values into the DB
@@ -223,14 +262,14 @@ public class ReviewManagement {
         return gameID;
     }
 
-    /* Get the list of reviews for a specific game */
+    /* Get the list of APPROVED reviews for a specific game */
     public TableModel getReviewsByID (int gameID) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM `recensione` WHERE gioco_id = ?");
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM `recensione` WHERE gioco_id = ? AND approvata = '1'");
         stmt.setInt(1, gameID);
 
         ResultSet rs = stmt.executeQuery();

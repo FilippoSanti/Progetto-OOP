@@ -122,7 +122,7 @@ public class eventsListener {
 
     public static void newReview(Utente utente, String review, int giocoId, double vote) throws SQLException {
         if (new ReviewManagement().newReview(utente, review, giocoId, vote)) {
-            JOptionPane.showMessageDialog(null, "Review aggiunta correttamente.");
+            JOptionPane.showMessageDialog(null, "Review aggiunta correttamente. In attesa di approvazione");
         }
 
     }
@@ -285,6 +285,9 @@ public class eventsListener {
                 new ShitOnCoin(utente);
                 break;
 
+            case "evalutateReview" :
+                new evalutateReview(utente, 0);
+                break;
 
             case "achievementsList":
                 new achievementsList(utente, 0, 1);
@@ -312,12 +315,19 @@ public class eventsListener {
 
             case "userList" :
                 new usersList(utente, 0);
+
+            case "approveComment" :
+                new approveComment(utente, null);
         }
     }
 
     public static boolean insertAchievementToProfile (int user_id, int achievement_id) throws SQLException
     {
         return new business.implementation.UserManagement().insertAchievementToProfile(user_id, achievement_id);
+    }
+
+    public static boolean deleteReview (Review review) throws SQLException {
+        return new business.implementation.ReviewManagement().deleteReview(review);
     }
 
     public static TableModel getUserAchievementsList(int userId) throws SQLException {

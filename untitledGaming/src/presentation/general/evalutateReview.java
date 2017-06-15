@@ -5,33 +5,34 @@ import controller.eventsListener;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.ImageProducer;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
 public class evalutateReview extends starView {
-
 	private JFrame frmUntitledGaming;
 	Utente utente;
+	int row;
 
 
-	private evalutateReview(Utente c) {
+	public evalutateReview(Utente c, int r) {
 
 		this.utente = c;
+		this.row = r;
 		initialize();
 	}
 
 	private void initialize() {
 
 		frmUntitledGaming = new JFrame();
+
+
 		frmUntitledGaming.setTitle("   Untitled Gaming  -  Valuta Recensioni");
 		frmUntitledGaming.setResizable(false);
 		frmUntitledGaming.setBounds(100, 100, 950, 700);
@@ -44,8 +45,36 @@ public class evalutateReview extends starView {
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
+		button.addActionListener(new ActionListener() {
 
-		JLabel lblListaGiochi = new JLabel("Valuta Recensioni");
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				eventsListener.changePage("logged", utente);
+
+			}
+		});
+
+
+
+		JLabel lblListaGiochi = null;
+		try {
+			int fineLista = eventsListener.getPendingReviews().getRowCount();
+			int inizioLista = row + 4;
+			if (fineLista == 0) {
+				JOptionPane.showMessageDialog(null, "Nessuna review da approvare");
+				
+
+			}
+
+			if ((row + 4) >= fineLista)
+				inizioLista = fineLista;
+			lblListaGiochi = new JLabel("Lista Commenti" + "(" + (inizioLista) + " / " + (fineLista) + ")");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
 		lblListaGiochi.setBounds(0, 23, 944, 61);
@@ -56,31 +85,27 @@ public class evalutateReview extends starView {
 		btnSuccessiva.setFont(new Font("MV Boli", Font.ITALIC, 13));
 		btnSuccessiva.setToolTipText("Pagina Successiva");
 		btnSuccessiva.setBounds(830, 581, 45, 45);
+
+
+		try {
+			if (row + 4 >= eventsListener.getPendingReviews().getRowCount()) {
+				btnSuccessiva.setEnabled(false);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		frmUntitledGaming.getContentPane().add(btnSuccessiva);
+		btnSuccessiva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-		JButton btnRecensione = new JButton("Leggi Commento");
-		btnRecensione.setToolTipText("Leggi Commento");
-		btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnRecensione.setBounds(738, 148, 180, 30);
-		frmUntitledGaming.getContentPane().add(btnRecensione);
+				frmUntitledGaming.setVisible(false);
+				new evalutateReview(utente, row + 4);
 
-		JButton btnGioca = new JButton("Leggi Commento");
-		btnGioca.setToolTipText("Leggi Commento");
-		btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnGioca.setBounds(738, 271, 180, 30);
-		frmUntitledGaming.getContentPane().add(btnGioca);
+			}
+		});
 
-		JButton btnGioca_1 = new JButton("Leggi Commento");
-		btnGioca_1.setToolTipText("Leggi Commento");
-		btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnGioca_1.setBounds(738, 386, 180, 30);
-		frmUntitledGaming.getContentPane().add(btnGioca_1);
-
-		JButton btnGioca_2 = new JButton("Leggi Commento");
-		btnGioca_2.setToolTipText("Leggi Commento");
-		btnGioca_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
-		btnGioca_2.setBounds(738, 504, 180, 30);
-		frmUntitledGaming.getContentPane().add(btnGioca_2);
 
 		JButton button_4 = new JButton("");
 		button_4.setEnabled(false);
@@ -90,33 +115,218 @@ public class evalutateReview extends starView {
 		button_4.setBounds(68, 581, 45, 45);
 		frmUntitledGaming.getContentPane().add(button_4);
 
-		JLabel label = new JLabel("-Username Here!-");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.DARK_GRAY);
-		label.setFont(new Font("Oregano", Font.PLAIN, 21));
-		label.setBounds(243, 148, 211, 30);
-		frmUntitledGaming.getContentPane().add(label);
+		if (row == 0) button_4.setEnabled(false);
 
-		JLabel label_1 = new JLabel("-Username Here!-");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setForeground(Color.DARK_GRAY);
-		label_1.setFont(new Font("Oregano", Font.PLAIN, 21));
-		label_1.setBounds(243, 271, 211, 30);
-		frmUntitledGaming.getContentPane().add(label_1);
+		frmUntitledGaming.getContentPane().add(button_4);
+		button_4.addActionListener(new ActionListener() {
 
-		JLabel label_2 = new JLabel("-Username Here!-");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setForeground(Color.DARK_GRAY);
-		label_2.setFont(new Font("Oregano", Font.PLAIN, 21));
-		label_2.setBounds(243, 386, 211, 30);
-		frmUntitledGaming.getContentPane().add(label_2);
+			public void actionPerformed(ActionEvent e) {
 
-		JLabel label_3 = new JLabel("-Username Here!-");
+				frmUntitledGaming.setVisible(false);
+				new evalutateReview(utente, row - 4);
+			}
+		});
+
+
+		//username 1
+int userId1 = 0;
+String gioco1 = "";
+int gameId1 = 0;
+
+JLabel label = null;
+		try {
+			if (row >= eventsListener.getPendingReviews().getRowCount()) {
+				label = new JLabel("vuoto");}
+			else {
+
+				userId1 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row, 0)));
+				gameId1 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row, 3)));
+				gioco1 = eventsListener.getGameFromId(gameId1);
+				String username1 = eventsListener.getUsername(userId1);
+				label = new JLabel(username1);
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setForeground(Color.DARK_GRAY);
+				label.setFont(new Font("Oregano", Font.PLAIN, 21));
+				label.setBounds(243, 148, 211, 30);
+				frmUntitledGaming.getContentPane().add(label);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		//username 2
+        String gioco2 = "" ;
+		int gameId2 = 0;
+		int userId2 = 0;
+
+		JLabel label_1 = null;
+		try {
+			if (row + 1 >= eventsListener.getPendingReviews().getRowCount()) {
+				label_1 = new JLabel("vuoto");}
+				else{
+					userId2 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 1, 0)));
+				gameId2 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 1, 3)));
+                gioco2 = eventsListener.getGameFromId(gameId2);
+					String username2 = eventsListener.getUsername(userId2);
+
+					label_1 = new JLabel(username2);
+					label_1.setHorizontalAlignment(SwingConstants.CENTER);
+					label_1.setForeground(Color.DARK_GRAY);
+					label_1.setFont(new Font("Oregano", Font.PLAIN, 21));
+					label_1.setBounds(243, 271, 211, 30);
+					frmUntitledGaming.getContentPane().add(label_1);
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+
+		//username 3
+		int userId3 = 0;
+		String gioco3 = "";
+		int gameId3 = 0;
+		JLabel label_2 = null;
+		try {
+			if (row + 2 >= eventsListener.getPendingReviews().getRowCount()) {
+				label_2 = new JLabel("vuoto");}
+			else {
+				userId3 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 2, 0)));
+				gameId3 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 2, 3)));
+             gioco3 = eventsListener.getGameFromId(gameId3);
+				String username3 = eventsListener.getUsername(userId3);
+
+
+				label_2 = new JLabel(username3);
+				label_2.setHorizontalAlignment(SwingConstants.CENTER);
+				label_2.setForeground(Color.DARK_GRAY);
+				label_2.setFont(new Font("Oregano", Font.PLAIN, 21));
+				label_2.setBounds(243, 386, 211, 30);
+				frmUntitledGaming.getContentPane().add(label_2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+
+		//username 4
+		int userId4 = 0;
+		String gioco4 = "" ;
+		int gameId4 = 0;
+		JLabel label_3 = null;
+		try {
+			if (row + 3 >= eventsListener.getPendingReviews().getRowCount()) {
+				label_3 = new JLabel("vuoto");}
+			else {
+				userId4 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 3, 0)));
+				gameId4 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 3, 3)));
+				gioco4 = eventsListener.getGameFromId(gameId4);
+				String username4 = eventsListener.getUsername(userId4);
+
+				label_3 = new JLabel(username4);
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setForeground(Color.DARK_GRAY);
 		label_3.setFont(new Font("Oregano", Font.PLAIN, 21));
 		label_3.setBounds(243, 504, 211, 30);
 		frmUntitledGaming.getContentPane().add(label_3);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		JButton btnRecensione = new JButton("Leggi Commento");
+		btnRecensione.setToolTipText("Leggi Commento");
+		btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		btnRecensione.setBounds(738, 148, 180, 30);
+		frmUntitledGaming.getContentPane().add(btnRecensione);
+
+		int finalGameId = gameId1;
+		int finalUserId = userId1;
+		btnRecensione.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				try {
+					new approveComment(utente, eventsListener.getReview(finalUserId, finalGameId));
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		JButton btnGioca = new JButton("Leggi Commento");
+		btnGioca.setToolTipText("Leggi Commento");
+		btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		btnGioca.setBounds(738, 271, 180, 30);
+		frmUntitledGaming.getContentPane().add(btnGioca);
+		int finalGameId2 = gameId2;
+		int finalUserId2 = userId2;
+		btnGioca.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				try {
+					new approveComment(utente, eventsListener.getReview(finalUserId2, finalGameId2));
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		JButton btnGioca_1 = new JButton("Leggi Commento");
+		btnGioca_1.setToolTipText("Leggi Commento");
+		btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		btnGioca_1.setBounds(738, 386, 180, 30);
+		frmUntitledGaming.getContentPane().add(btnGioca_1);
+
+		int finalGameId3 = gameId3;
+		int finalUserId3 = userId3;
+		btnGioca_1.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				try {
+					new approveComment(utente, eventsListener.getReview(finalUserId3, finalGameId3));
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		JButton btnGioca_2 = new JButton("Leggi Commento");
+		btnGioca_2.setToolTipText("Leggi Commento");
+		btnGioca_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
+		btnGioca_2.setBounds(738, 504, 180, 30);
+		frmUntitledGaming.getContentPane().add(btnGioca_2);
+
+		int finalGameId4 = gameId4;
+		int finalUserId4 = userId4;
+		btnGioca_2.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				try {
+					new approveComment(utente, eventsListener.getReview(finalUserId4, finalGameId4));
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setToolTipText("Valutazione");
@@ -178,28 +388,28 @@ public class evalutateReview extends starView {
 		panel_7.add(makeStarRatingPanel("", new LevelBar(defaultIcon, list, 2)));
 		frmUntitledGaming.getContentPane().add(panel_7);
 
-		JLabel lblgamenameHere_2 = new JLabel("-Gamename Here!-");
+		JLabel lblgamenameHere_2 = new JLabel(gioco1);
 		lblgamenameHere_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblgamenameHere_2.setForeground(Color.DARK_GRAY);
 		lblgamenameHere_2.setFont(new Font("Oregano", Font.PLAIN, 21));
 		lblgamenameHere_2.setBounds(22, 148, 211, 30);
 		frmUntitledGaming.getContentPane().add(lblgamenameHere_2);
 
-		JLabel lblgamenameHere_1 = new JLabel("-Gamename Here!-");
+		JLabel lblgamenameHere_1 = new JLabel(gioco2);
 		lblgamenameHere_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblgamenameHere_1.setForeground(Color.DARK_GRAY);
 		lblgamenameHere_1.setFont(new Font("Oregano", Font.PLAIN, 21));
 		lblgamenameHere_1.setBounds(22, 271, 211, 30);
 		frmUntitledGaming.getContentPane().add(lblgamenameHere_1);
 
-		JLabel lblgamenameHere = new JLabel("-Gamename Here!-");
+		JLabel lblgamenameHere = new JLabel(gioco3);
 		lblgamenameHere.setHorizontalAlignment(SwingConstants.CENTER);
 		lblgamenameHere.setForeground(Color.DARK_GRAY);
 		lblgamenameHere.setFont(new Font("Oregano", Font.PLAIN, 21));
 		lblgamenameHere.setBounds(22, 386, 211, 30);
 		frmUntitledGaming.getContentPane().add(lblgamenameHere);
 
-		JLabel lblGamenameHere = new JLabel("-Gamename Here!-");
+		JLabel lblGamenameHere = new JLabel(gioco4);
 		lblGamenameHere.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGamenameHere.setForeground(Color.DARK_GRAY);
 		lblGamenameHere.setFont(new Font("Oregano", Font.PLAIN, 21));
@@ -223,5 +433,6 @@ public class evalutateReview extends starView {
 		lblRecensione.setFont(new Font("Georgia", Font.ITALIC, 13));
 		lblRecensione.setBounds(484, 98, 140, 21);
 		frmUntitledGaming.getContentPane().add(lblRecensione);
+		frmUntitledGaming.setVisible(true);
 	}
 }

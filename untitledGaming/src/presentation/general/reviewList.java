@@ -50,7 +50,7 @@ public class reviewList extends starView {
 
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                eventsListener.changePage("logged", utente);
+                eventsListener.changePage("allGames", utente);
 
             }
         });
@@ -209,7 +209,7 @@ public class reviewList extends starView {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
                 String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+1, 1));
 
-                int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
+                int voteInt = Integer.parseInt(table.getValueAt(row+1, 1).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -275,7 +275,7 @@ public class reviewList extends starView {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
                 String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+2, 1));
 
-                int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
+                int voteInt = Integer.parseInt(table.getValueAt(row+2, 1).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -340,7 +340,7 @@ public class reviewList extends starView {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
                 String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+3, 1));
 
-                int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
+                int voteInt = Integer.parseInt(table.getValueAt(row+3, 1).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);

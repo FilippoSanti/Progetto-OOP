@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 15, 2017 alle 12:31
+-- Creato il: Giu 15, 2017 alle 15:12
 -- Versione del server: 10.1.22-MariaDB
 -- Versione PHP: 7.1.4
 
@@ -171,11 +171,12 @@ CREATE TABLE `recensione` (
 --
 
 INSERT INTO `recensione` (`recensione_id`, `user_id`, `testo_recensione`, `voto`, `gioco_id`, `approvata`) VALUES
-(1, 1, 'Merda pe te', 4, 1, 1),
-(2, 1, 'merda', 2, 5, 1),
+(2, 1, 'merda', 2, 5, 0),
 (3, 2, '  Le bestemmie', 1, 3, 0),
-(4, 2, '  Mannaggia a i santi', 3, 1, 0),
-(5, 2, '  I santi', 5, 5, 0);
+(6, 3, '  porca ma', 0, 1, 0),
+(8, 1, 'porcaccia', 2, 1, 0),
+(9, 1, 'Ma vafammocc', 1, 1, 0),
+(10, 1, 'Ti sfascio il letto', 3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -233,7 +234,7 @@ CREATE TABLE `utente` (
 INSERT INTO `utente` (`user_id`, `username`, `password`, `nome`, `cognome`, `data_di_nascita`, `email`, `immagine_profilo`, `tipo`) VALUES
 (1, 'a', '$2a$12$nAx9VaUuV8w2OhoI5qGLmuZtzrIdD0fsWs9HU5HqMIEJR3mSIeiRC', 'a', 'a', '1111-11-11', 'a@email.it', 0x30, 'user'),
 (2, 'b', '$2a$12$9exGhnJ5ih803NRBzMPQ4uMGNcdoOGVeYeWtIuckGV0cA7Uyyyyyy', 'b', 'b', '1111-11-11', 'b@hotmail.it', 0x30, 'administrator'),
-(3, 'c', '$2a$12$fGMlnLLZLhhNLN7J.nztzeEqcNFmR3O8hHuBfKp.rZCzVKbjGkj7u', 'c', 'c', '1111-11-11', 'c@hotmail.it', 0x30, 'user'),
+(3, 'merda', '$2a$12$fGMlnLLZLhhNLN7J.nztzeEqcNFmR3O8hHuBfKp.rZCzVKbjGkj7u', 'cacarella', 'cacca', '1111-11-11', 'c@hotmail.it', 0x30, 'user'),
 (4, 'd', '$2a$12$c5b/A4BU.AshPZMmGT1pvOhNhQIDJYjxIp37xNkH7jJgzt3GWQZdK', 'd', 'd', '1111-11-11', 'd@hotmail.it', 0x30, 'moderator'),
 (5, 'e', '$2a$12$OocLU/5qUviV0moTXbKUYe.4k8QWLOUKyVQKCNqzDn7MhCg1z02pG', 'e', 'e', '1111-11-11', 'e@d.it', 0x30, 'user'),
 (6, 'f', '$2a$12$MJcmyonO0T6GWXXm9/erUuQ7SnWYntKsFNUepAPo1NnFNeEUg3JtS', 'f', 'f', '1111-11-11', 'f@k.it', 0x30, 'user'),
@@ -324,7 +325,7 @@ ALTER TABLE `gioco`
 -- AUTO_INCREMENT per la tabella `recensione`
 --
 ALTER TABLE `recensione`
-  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT per la tabella `timeline`
 --

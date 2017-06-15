@@ -1,5 +1,9 @@
 package presentation.general;
 
+import business.model.Review;
+import business.model.Utente;
+import controller.eventsListener;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,34 +14,25 @@ import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 
 public class approveComment {
 
 	private JFrame frmUntitledGaming;
 
-	/**
-	 * Create the application.
-	 */
-	public approveComment() {
+Utente utente;
+Review review;
+	public approveComment(Utente c, Review r) {
+
+		this.utente = c;
+		this.review = r;
 		initialize();
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					approveComment window = new approveComment();
-					window.frmUntitledGaming.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -56,12 +51,43 @@ public class approveComment {
 		btnApprovaCommento.setFont(new Font("MV Boli", Font.ITALIC, 18));
 		btnApprovaCommento.setBounds(124, 545, 260, 46);
 		frmUntitledGaming.getContentPane().add(btnApprovaCommento);
+		btnApprovaCommento.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				try {
+					eventsListener.approveReview(review);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				eventsListener.changePage("evalutateReview", utente);
+
+			}
+		});
 		
 		JButton btnEliminaCommento = new JButton("Elimina Commento");
 		btnEliminaCommento.setToolTipText("Invia Recensione");
 		btnEliminaCommento.setFont(new Font("MV Boli", Font.ITALIC, 18));
 		btnEliminaCommento.setBounds(560, 545, 260, 46);
 		frmUntitledGaming.getContentPane().add(btnEliminaCommento);
+
+		btnEliminaCommento.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				try {
+					eventsListener.deleteReview(review);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				eventsListener.changePage("evalutateReview", utente);
+
+			}
+		});
 		
 		JLabel lblHaScritto_1 = new JLabel("ha scritto:");
 		lblHaScritto_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -69,8 +95,13 @@ public class approveComment {
 		lblHaScritto_1.setFont(new Font("Georgia", Font.ITALIC, 30));
 		lblHaScritto_1.setBounds(417, 87, 190, 35);
 		frmUntitledGaming.getContentPane().add(lblHaScritto_1);
-		
-		JLabel lblusername = new JLabel("-Username-");
+
+		JLabel lblusername = null;
+		try {
+			lblusername = new JLabel(eventsListener.getUsername(review.getUser_id()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		lblusername.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblusername.setForeground(SystemColor.textInactiveText);
 		lblusername.setFont(new Font("Georgia", Font.ITALIC, 30));
@@ -80,7 +111,7 @@ public class approveComment {
 		JTextPane txtpncommentoPrecedentementeInserito = new JTextPane();
 		txtpncommentoPrecedentementeInserito.setBackground(new Color(220, 220, 220));
 		txtpncommentoPrecedentementeInserito.setFont(new Font("Oregano", Font.ITALIC, 25));
-		txtpncommentoPrecedentementeInserito.setText("-Commento precedentemente inserito DA VALUTARE-");
+		txtpncommentoPrecedentementeInserito.setText(review.getText());
 		txtpncommentoPrecedentementeInserito.setEditable(false);
 		txtpncommentoPrecedentementeInserito.setBounds(124, 206, 696, 223);
 		frmUntitledGaming.getContentPane().add(txtpncommentoPrecedentementeInserito);
@@ -90,5 +121,16 @@ public class approveComment {
 		button.setToolTipText("torna indietro");
 		button.setBounds(10, 11, 45, 45);
 		frmUntitledGaming.getContentPane().add(button);
+		frmUntitledGaming.setVisible(true);
+		button.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+
+				frmUntitledGaming.setVisible(false);
+				eventsListener.changePage("evalutateReview", utente);
+
+			}
+		});
 	}
 }
