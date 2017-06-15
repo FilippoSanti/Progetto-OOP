@@ -331,7 +331,7 @@ JLabel label = null;
 		JPanel panel_4 = new JPanel();
 		panel_4.setToolTipText("Valutazione");
 		panel_4.setBounds(464, 141, 259, 45);
-		ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g.png"));
 		ImageProducer ip = defaultIcon.getImage().getSource();
 		List<ImageIcon>
 				list = Arrays.asList(
@@ -347,7 +347,7 @@ JLabel label = null;
 		JPanel panel_5 = new JPanel();
 		panel_5.setToolTipText("Valutazione");
 		panel_5.setBounds(464, 265, 259, 45);
-		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g.png"));
 		ip = defaultIcon.getImage().getSource();
 		list = Arrays.asList(
 				makeStarImageIcon(ip, .6f, .6f, 0f),
@@ -362,7 +362,7 @@ JLabel label = null;
 		JPanel panel_6 = new JPanel();
 		panel_6.setToolTipText("Valutazione");
 		panel_6.setBounds(464, 380, 259, 45);
-		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g.png"));
 		ip = defaultIcon.getImage().getSource();
 		list = Arrays.asList(
 				makeStarImageIcon(ip, .6f, .6f, 0f),
@@ -377,7 +377,7 @@ JLabel label = null;
 		JPanel panel_7 = new JPanel();
 		panel_7.setToolTipText("Valutazione");
 		panel_7.setBounds(464, 497, 259, 45);
-		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
+		defaultIcon = new ImageIcon(getClass().getResource("imgs/31g.png"));
 		ip = defaultIcon.getImage().getSource();
 		list = Arrays.asList(
 				makeStarImageIcon(ip, .6f, .6f, 0f),
