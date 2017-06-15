@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 15, 2017 alle 11:30
+-- Creato il: Giu 15, 2017 alle 12:31
 -- Versione del server: 10.1.22-MariaDB
 -- Versione PHP: 7.1.4
 
@@ -162,6 +162,7 @@ CREATE TABLE `recensione` (
   `user_id` int(11) NOT NULL,
   `testo_recensione` varchar(250) NOT NULL,
   `voto` double DEFAULT NULL,
+  `gioco_id` int(11) NOT NULL,
   `approvata` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -169,12 +170,12 @@ CREATE TABLE `recensione` (
 -- Dump dei dati per la tabella `recensione`
 --
 
-INSERT INTO `recensione` (`recensione_id`, `user_id`, `testo_recensione`, `voto`, `approvata`) VALUES
-(1, 1, 'Tutto molto bello', 4, 1),
-(3, 2, '  Bello ma non bellissimo', 4, 1),
-(4, 3, 'Fa schifo', 3, 1),
-(5, 4, 'Bello, ma ingiocabile', 3.5, 1),
-(6, 5, 'Non parlo italiano quindi non mi piace', 1, 1);
+INSERT INTO `recensione` (`recensione_id`, `user_id`, `testo_recensione`, `voto`, `gioco_id`, `approvata`) VALUES
+(1, 1, 'Merda pe te', 4, 1, 1),
+(2, 1, 'merda', 2, 5, 1),
+(3, 2, '  Le bestemmie', 1, 3, 0),
+(4, 2, '  Mannaggia a i santi', 3, 1, 0),
+(5, 2, '  I santi', 5, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -323,7 +324,7 @@ ALTER TABLE `gioco`
 -- AUTO_INCREMENT per la tabella `recensione`
 --
 ALTER TABLE `recensione`
-  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `recensione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT per la tabella `timeline`
 --
