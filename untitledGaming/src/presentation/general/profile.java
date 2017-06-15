@@ -4,7 +4,6 @@ import business.BusinessException;
 import business.implementation.DBManager;
 import business.model.Utente;
 import controller.eventsListener;
-import presentation.general.logged;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,10 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-
-import static javax.swing.text.html.HTML.Tag.HEAD;
 
 
 public class profile {

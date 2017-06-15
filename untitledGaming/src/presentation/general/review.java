@@ -20,18 +20,14 @@ public class review extends starEdit {
 
     Utente utente;
 
-    /**
-     * Create the application.
-     */
+    /* Create the application */
     public review(Utente c) {
 
         this.utente = c;
         initialize();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
+    /* Initialize the contents of the frame */
     private void initialize() {
 
         frmUntitledGaming = new JFrame();
@@ -66,21 +62,20 @@ public class review extends starEdit {
 
             public void focusLost(FocusEvent e) {
                 if (dtrpnLasciaQuIl.getText().isEmpty())
-                    dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento......");
+                    dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento");
             }
         });
 
-
-        dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento......");
+        dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento");
         dtrpnLasciaQuIl.setFont(new Font("Oregano", Font.PLAIN, 25));
         dtrpnLasciaQuIl.setBackground(new Color(220, 220, 220));
         dtrpnLasciaQuIl.setBounds(124, 313, 696, 223);
         frmUntitledGaming.getContentPane().add(dtrpnLasciaQuIl);
 
-
         JPanel panel = new JPanel();
         panel.setBounds(115, 127, 696, 90);
 
+        // Star rating panel
         ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g_1.png"));
         ImageProducer ip = defaultIcon.getImage().getSource();
         List<ImageIcon>
@@ -95,7 +90,7 @@ public class review extends starEdit {
         panel.add(makeStarRatingPanel("", lb));
         frmUntitledGaming.getContentPane().add(panel);
 
-        JButton btnInviaRecensione = new JButton("Invia Recensioneeeeee");
+        JButton btnInviaRecensione = new JButton("Invia Recensione");
         btnInviaRecensione.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             }
@@ -127,9 +122,19 @@ public class review extends starEdit {
         frmUntitledGaming.getContentPane().add(lblnomeGioco);
 
         JButton button = new JButton("");
-        button.setIcon(new ImageIcon("imgs/back_icon.png"));
+        button.setIcon(new ImageIcon(".src/presentation/general/imgs/back_icon.png"));
         button.setToolTipText("Torna Indietro");
         button.setBounds(10, 11, 45, 45);
+
+        // Go back
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.dispose();
+                controller.eventsListener.changePage("reviewList", utente);
+
+            }
+        });
+
         frmUntitledGaming.getContentPane().add(button);
 
         JButton btnTornaAllaHome = new JButton("Torna alla Home");

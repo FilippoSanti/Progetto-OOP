@@ -5,8 +5,6 @@ import business.model.Achievement;
 import business.model.Utente;
 import controller.eventsListener;
 
-import java.awt.EventQueue;
-
 import java.awt.*;
 
 

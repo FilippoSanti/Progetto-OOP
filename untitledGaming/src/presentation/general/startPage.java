@@ -11,8 +11,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.SQLException;
 
-import static java.sql.Types.NULL;
-
 
 public class startPage {
     Utente utente = null;

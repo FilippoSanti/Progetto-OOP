@@ -18,11 +18,13 @@ public class viewReview extends starView {
     private JFrame frmUntitledGaming;
     int userId;
     int riga;
+    int gameID;
 
-    public viewReview(Utente c, int row, int u) {
+    public viewReview(Utente c, int row, int u, int gam) {
         this.utente = c;
         this.userId = u;
         this.riga = row;
+        this.gameID = gam;
         initialize();
     }
 
@@ -42,7 +44,6 @@ public class viewReview extends starView {
         lblLaTuaRecensione.setBounds(0, 50, 944, 61);
         frmUntitledGaming.getContentPane().add(lblLaTuaRecensione);
 
-
         JLabel lblScriviUnCommento = new JLabel("Il Tuo Commento :");
         lblScriviUnCommento.setHorizontalAlignment(SwingConstants.LEFT);
         lblScriviUnCommento.setForeground(SystemColor.textInactiveText);
@@ -59,7 +60,7 @@ public class viewReview extends starView {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                new reviewList(utente, riga);
+                new reviewList(utente, riga, gameID);
             }
         });
 
@@ -76,8 +77,9 @@ public class viewReview extends starView {
 
         JTextPane txtpncommentoPrecedentementeInserito = new JTextPane();
         Review rev = null;
+
         try {
-            rev = eventsListener.getReview(userId);
+            rev = eventsListener.getReview(userId, 1);
         } catch (SQLException e) {
             e.printStackTrace();
         }

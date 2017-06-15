@@ -79,14 +79,12 @@ public class allGames {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // Next
         frmUntitledGaming.getContentPane().add(btnSuccessiva);
 
-
         btnSuccessiva.addActionListener(new ActionListener() {
-
-
             public void actionPerformed(ActionEvent e) {
-
                 frmUntitledGaming.setVisible(false);
                 new allGames(utente, row + 4);
 
@@ -104,20 +102,18 @@ public class allGames {
         frmUntitledGaming.getContentPane().add(button_4);
         button_4.addActionListener(new ActionListener() {
 
-
             public void actionPerformed(ActionEvent e) {
-
                 frmUntitledGaming.setVisible(false);
                 new allGames(utente, row - 4);
-
             }
         });
 
         // Game 1
         try {
 
-            JTable table = new JTable(eventsListener.getGames());
-            String titolo = String.valueOf(table.getValueAt(row, 1));
+            JTable table   = new JTable(eventsListener.getGames());
+            String titolo  = String.valueOf(table.getValueAt(row, 1));
+            int    gameID  = controller.eventsListener.getGameIDFromName(titolo);
             
             // Game logo
             JPanel panel = new JPanel();
@@ -142,7 +138,7 @@ public class allGames {
             btnGioca0.setBounds(743, 113, 142, 30);
             frmUntitledGaming.getContentPane().add(btnGioca0);
 
-            // Listener for btnGioca0
+            // Listener tasto gioca
             btnGioca0.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     frmUntitledGaming.setVisible(false);
@@ -157,12 +153,14 @@ public class allGames {
             btnRecensioni.setBounds(573, 114, 142, 30);
             frmUntitledGaming.getContentPane().add(btnRecensioni);
 
+            // Listener tasto recensioni
             btnRecensioni.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     frmUntitledGaming.setVisible(false);
-                    eventsListener.changePage("reviewList", utente);
+                    new reviewList(utente, 0, gameID);
                 }
             });
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -181,6 +179,7 @@ public class allGames {
             } else {
                 JTable table = new JTable(eventsListener.getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row +1 ,1));
+                int    gameID  = controller.eventsListener.getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_1 = new JPanel();
@@ -212,6 +211,14 @@ public class allGames {
                 button_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 button_2.setBounds(573, 237, 142, 30);
                 frmUntitledGaming.getContentPane().add(button_2);
+
+                // Apre la lista recensioni
+                button_2.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        frmUntitledGaming.setVisible(false);
+                        new reviewList(utente, 0, gameID);
+                    }
+                });
             }
 
         } catch (SQLException e) {
@@ -232,6 +239,7 @@ public class allGames {
             } else {
                 JTable table = new JTable(eventsListener.getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 2, 1));
+                int    gameID  = controller.eventsListener.getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_2 = new JPanel();
@@ -262,6 +270,14 @@ public class allGames {
                 button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 button_1.setBounds(573, 352, 142, 30);
                 frmUntitledGaming.getContentPane().add(button_1);
+
+                // Apre la lista recensioni
+                button_1.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        frmUntitledGaming.setVisible(false);
+                        new reviewList(utente, 0, gameID);
+                    }
+                });
             }
 
 
@@ -283,6 +299,7 @@ public class allGames {
             } else {
                 JTable table = new JTable(eventsListener.getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 3, 1));
+                int    gameID  = controller.eventsListener.getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_3 = new JPanel();
@@ -313,6 +330,15 @@ public class allGames {
                 button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 button_1.setBounds(573, 471, 142, 30);
                 frmUntitledGaming.getContentPane().add(button_1);
+
+                // Apre la lista recensioni
+                button_1.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        frmUntitledGaming.setVisible(false);
+                        new reviewList(utente, 0, gameID);
+                    }
+                });
+
             }
 
         } catch (SQLException e) {

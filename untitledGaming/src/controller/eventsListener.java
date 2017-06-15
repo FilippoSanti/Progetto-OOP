@@ -3,7 +3,6 @@ package controller;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.*;
-import javafx.scene.control.Tab;
 import presentation.general.*;
 
 import javax.swing.*;
@@ -137,8 +136,8 @@ public class eventsListener {
         return new UserManagement().addTimeline(user_id, gioco_id, dataUltima, esperienzaGuadagnata);
     }
 
-    public static Review getReview(int user_id) throws SQLException {
-        return new ReviewManagement().getReview(user_id);
+    public static Review getReview(int user_id, int game_id) throws SQLException {
+        return new ReviewManagement().getReview(user_id, game_id);
     }
 
     public static TableModel getPendingReviews() throws SQLException {
@@ -296,11 +295,11 @@ public class eventsListener {
                 break;
 
             case "reviewList" :
-                new reviewList(utente,0);
+                new reviewList(utente,0, 0);
                 break;
 
             case "viewRievew" :
-                new viewReview(utente, 0, 0);
+                new viewReview(utente, 0, 0, 0);
                 break;
 
             case "review" :
@@ -344,5 +343,14 @@ public class eventsListener {
     public static TableModel getUsers () throws SQLException {
         return new business.implementation.UserManagement().getUsers();
     }
+
+    public static int getGameIDFromName(String gameName) throws SQLException {
+        return new business.implementation.ReviewManagement().getGameIDFromName(gameName);
+    }
+
+    public static TableModel getReviewsByID (int gameID) throws SQLException {
+        return new business.implementation.ReviewManagement().getReviewsByID(gameID);
+    }
+
 
 }

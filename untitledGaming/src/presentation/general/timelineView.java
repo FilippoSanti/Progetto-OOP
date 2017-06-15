@@ -1,10 +1,7 @@
 package presentation.general;
 
-import business.implementation.DBManager;
 import business.model.Utente;
 import controller.eventsListener;
-
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
@@ -15,13 +12,9 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.EtchedBorder;
 
 public class timelineView {
 

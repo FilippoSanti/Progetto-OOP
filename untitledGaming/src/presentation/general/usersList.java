@@ -3,8 +3,6 @@ package presentation.general;
 import business.model.Utente;
 import controller.eventsListener;
 
-import java.awt.EventQueue;
-
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;

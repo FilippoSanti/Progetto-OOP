@@ -55,32 +55,37 @@ public class ReviewManagement {
         return false;
     }
 
-    /* Get a review */
-    public Review getReview(int user_id) throws SQLException {
+    /* Get a review from a user id and game review*/
+    public Review getReview(int user_id, int game_id) throws SQLException {
 
-        int reviewId = 0;
-        double vote = 0;
+        int     reviewId  = 0;
+        double  vote      = 0;
         boolean approvata = false;
-        String text = "";
+        String  text      = "";
+        int     game_text = 0;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * \n" +
-                "FROM   `recensione` \n" +
-                "WHERE  user_id = ? ");
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT *\n" +
+                "FROM recensione\n" +
+                "INNER JOIN gioco ON recensione.game_id = gioco.gioco_id\n" +
+                "WHERE recensione.user_id = ? AND recensione.game_id = ?");
 
         stmt.setInt(1, user_id);
+        stmt.setInt(2, game_id);
+
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
             reviewId = rs.getInt("recensione_id");
             text = rs.getString("testo_recensione");
+            game_text = rs.getInt("game_id");
             vote = rs.getDouble("voto");
             approvata = rs.getBoolean("approvata");
 
         }
-        return new Review(reviewId, user_id, text, vote, approvata);
+        return new Review(reviewId, user_id, text, vote, approvata, game_text);
     }
 
     /* Get pending reviews */
@@ -123,7 +128,9 @@ public class ReviewManagement {
         return tm;
     }
 
+    /* Get every review in the db */
     public TableModel getAllReviews () throws SQLException {
+
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -140,7 +147,6 @@ public class ReviewManagement {
 
         return tm;
     }
-
 
     /* Approve a review */
     public boolean approveReview(Review review) throws SQLException {
@@ -179,6 +185,7 @@ public class ReviewManagement {
         return false;
     }
 
+    /* Find a review on a profile */
     public boolean reviewFoundOnProfile(int user_id) throws SQLException {
 
 
@@ -193,4 +200,39 @@ public class ReviewManagement {
 
     }
 
+    /* Get a game id from name (used for reviews) */
+    public int getGameIDFromName(String gameName) throws SQLException {
+
+        int gameID = 0;
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT gioco_id FROM gioco WHERE nome = ?");
+
+        stmt.setString(1, gameName);
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            gameID = rs.getInt("gioco_id");
+        }
+        return gameID;
+    }
+
+    /* Get the list of reviews for a specific game */
+    public TableModel getReviewsByID (int gameID) throws SQLException {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM `recensione` WHERE game_id = ?");
+        stmt.setInt(1, gameID);
+
+        ResultSet rs = stmt.executeQuery();
+        TableModel tm = DbUtils.resultSetToTableModel(rs);
+
+        return tm;
+    }
 }
