@@ -51,7 +51,7 @@ public class allGames {
 
         int fineLista = 0;
         try {
-            fineLista = eventsListener.getApprovedReviews().getRowCount();
+            fineLista = eventsListener.getGames().getRowCount();
         } catch (SQLException e) {
             e.printStackTrace();
         }

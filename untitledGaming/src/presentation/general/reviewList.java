@@ -57,7 +57,7 @@ public class reviewList extends starView {
 
         JLabel lblListaGiochi = null;
         try {
-            int fineLista = eventsListener.getApprovedReviews().getRowCount();
+            int fineLista = eventsListener.getReviewsByID(game).getRowCount();
             int inizioLista = row + 4;
             if ((row + 4) >= fineLista)
                 inizioLista = fineLista;
@@ -99,7 +99,7 @@ public class reviewList extends starView {
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
         try {
-            if (row + 4 >= eventsListener.getApprovedReviews().getRowCount()) {
+            if (row + 4 >= eventsListener.getReviewsByID(game).getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
 
@@ -202,12 +202,12 @@ public class reviewList extends starView {
 
         JLabel label_1 = null;
         try {
-            if (row + 1 >= eventsListener.getApprovedReviews().getRowCount()) {
+            if (row + 1 >= eventsListener.getReviewsByID(game).getRowCount()) {
                 label_1 = new JLabel("vuoto");
 
             } else {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
+                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+1, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
 
@@ -269,11 +269,11 @@ public class reviewList extends starView {
 
         JLabel label_2 = null;
         try {
-            if (row + 2 >= eventsListener.getApprovedReviews().getRowCount()) {
+            if (row + 2 >= eventsListener.getReviewsByID(game).getRowCount()) {
                 label_2 = new JLabel("vuoto");
             } else {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
+                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+2, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
 
@@ -334,11 +334,11 @@ public class reviewList extends starView {
 
         JLabel label_3 = null;
         try {
-            if (row + 3 >= eventsListener.getApprovedReviews().getRowCount()) {
+            if (row + 3 >= eventsListener.getReviewsByID(game).getRowCount()) {
                 label_3 = new JLabel("vuoto");
             } else {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
+                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+3, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
 
@@ -395,8 +395,8 @@ public class reviewList extends starView {
         frmUntitledGaming.getContentPane().add(label_3);
 
 
-        JButton btnLaTuaRecensione = new JButton("La Tua Recensione");
-        btnLaTuaRecensione.setToolTipText("La Tua Recensione");
+        JButton btnLaTuaRecensione = new JButton("La Mia Recensione");
+        btnLaTuaRecensione.setToolTipText("La Mia Recensione");
         btnLaTuaRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
         btnLaTuaRecensione.setBounds(375, 570, 198, 45);
         frmUntitledGaming.getContentPane().add(btnLaTuaRecensione);
@@ -408,12 +408,12 @@ public class reviewList extends starView {
 
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (eventsListener.reviewFoundOnProfile(utente.getUserId())) {
+                    if (eventsListener.reviewFoundOnProfile(utente.getUserId(), game)) {
                         frmUntitledGaming.setVisible(false);
                         new viewReview(utente, 0, utente.getUserId(), game);
                     } else {
                         frmUntitledGaming.setVisible(false);
-                        eventsListener.changePage("review", utente);
+                        new review (utente, game);
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();

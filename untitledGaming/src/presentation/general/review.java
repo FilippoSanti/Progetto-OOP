@@ -19,10 +19,11 @@ public class review extends starEdit {
     private JFrame frmUntitledGaming;
 
     Utente utente;
+    int gioco_id;
 
     /* Create the application */
-    public review(Utente c) {
-
+    public review(Utente c, int g) {
+this.gioco_id = g;
         this.utente = c;
         initialize();
     }
@@ -103,10 +104,11 @@ public class review extends starEdit {
         btnInviaRecensione.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                eventsListener.changePage("reviewList", utente);
+
                 try {
                     int vote = lb.getLevel();
-                    controller.eventsListener.addReview(utente, dtrpnLasciaQuIl.getText(), vote + 1);
+                    controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(),gioco_id, vote + 1);
+                    new reviewList(utente, 0, gioco_id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -129,8 +131,8 @@ public class review extends starEdit {
         // Go back
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("reviewList", utente);
+                frmUntitledGaming.setVisible(false);
+                new reviewList(utente, 0, gioco_id);
 
             }
         });
@@ -142,6 +144,16 @@ public class review extends starEdit {
         btnTornaAllaHome.setFont(new Font("MV Boli", Font.ITALIC, 15));
         btnTornaAllaHome.setBounds(758, 26, 161, 35);
         frmUntitledGaming.getContentPane().add(btnTornaAllaHome);
+
+        // Go back to home
+        btnTornaAllaHome.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frmUntitledGaming.setVisible(false);
+               eventsListener.changePage("logged", utente);
+
+            }
+        });
+
 
         frmUntitledGaming.setVisible(true
         );

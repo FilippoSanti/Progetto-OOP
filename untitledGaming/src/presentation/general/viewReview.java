@@ -79,7 +79,7 @@ public class viewReview extends starView {
         Review rev = null;
 
         try {
-            rev = eventsListener.getReview(userId, 1);
+            rev = eventsListener.getReview(userId, gameID);
         } catch (SQLException e) {
             e.printStackTrace();
         }

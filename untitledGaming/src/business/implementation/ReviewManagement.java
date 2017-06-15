@@ -14,13 +14,13 @@ import java.sql.SQLException;
 public class ReviewManagement {
 
     /* Adds a new review */
-    public boolean newReview(Utente utente, String text, double vote) throws SQLException {
+    public boolean newReview(Utente utente, String text, int giocoId, double vote) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        String insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, approvata) VALUES" +
-                "(?, ?, ?, false)";
+        String insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
+                "(?, ?, ?, ?, false)";
 
         PreparedStatement preparedStatement = null;
 
@@ -31,6 +31,7 @@ public class ReviewManagement {
             preparedStatement.setInt(1, utente.getUserId());
             preparedStatement.setString(2, text);
             preparedStatement.setDouble(3, vote);
+            preparedStatement.setInt(4, giocoId);
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -70,8 +71,8 @@ public class ReviewManagement {
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement("SELECT *\n" +
                 "FROM recensione\n" +
-                "INNER JOIN gioco ON recensione.game_id = gioco.gioco_id\n" +
-                "WHERE recensione.user_id = ? AND recensione.game_id = ?");
+                "INNER JOIN gioco ON recensione.gioco_id = gioco.gioco_id\n" +
+                "WHERE recensione.user_id = ? AND recensione.gioco_id = ?");
 
         stmt.setInt(1, user_id);
         stmt.setInt(2, game_id);
@@ -80,7 +81,7 @@ public class ReviewManagement {
         if (rs.next()) {
             reviewId = rs.getInt("recensione_id");
             text = rs.getString("testo_recensione");
-            game_text = rs.getInt("game_id");
+            game_text = rs.getInt("gioco_id");
             vote = rs.getDouble("voto");
             approvata = rs.getBoolean("approvata");
 
@@ -138,7 +139,8 @@ public class ReviewManagement {
         PreparedStatement stmt = dbConnection.prepareStatement(
                 "SELECT user_id, \n" +
                         "       testo_recensione, \n" +
-                        "       voto \n" +
+                        "       voto, \n" +
+                        "       gioco_id \n" +
                         "FROM   recensione \n"
                         );
 
@@ -186,11 +188,12 @@ public class ReviewManagement {
     }
 
     /* Find a review on a profile */
-    public boolean reviewFoundOnProfile(int user_id) throws SQLException {
+    public boolean reviewFoundOnProfile(int user_id, int game_id) throws SQLException {
 
 
         for (int i = 0; i < eventsListener.getAllReviews().getRowCount(); i++) {
-            if (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 0)).equals(String.valueOf(user_id))) {
+            if (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 0)).equals(String.valueOf(user_id))&&
+            (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 3)).equals(String.valueOf(game_id)))){
 
                 return true;
             }
@@ -227,7 +230,7 @@ public class ReviewManagement {
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM `recensione` WHERE game_id = ?");
+        PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM `recensione` WHERE gioco_id = ?");
         stmt.setInt(1, gameID);
 
         ResultSet rs = stmt.executeQuery();

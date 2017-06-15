@@ -120,8 +120,8 @@ public class eventsListener {
         return new UserManagement().setUtente(utente, nome, cognome, date, email, password, newUsername);
     }
 
-    public static void addReview(Utente utente, String review, double vote) throws SQLException {
-        if (new ReviewManagement().newReview(utente, review, vote)) {
+    public static void newReview(Utente utente, String review, int giocoId, double vote) throws SQLException {
+        if (new ReviewManagement().newReview(utente, review, giocoId, vote)) {
             JOptionPane.showMessageDialog(null, "Review aggiunta correttamente.");
         }
 
@@ -250,8 +250,8 @@ public class eventsListener {
         return new business.implementation.ReviewManagement().getAllReviews ();
     }
 
-    public static boolean reviewFoundOnProfile(int user_id) throws SQLException {
-        return new business.implementation.ReviewManagement().reviewFoundOnProfile(user_id);
+    public static boolean reviewFoundOnProfile(int user_id, int game_id) throws SQLException {
+        return new business.implementation.ReviewManagement().reviewFoundOnProfile(user_id, game_id);
     }
 
     /* Change the current JFrame */
@@ -303,7 +303,7 @@ public class eventsListener {
                 break;
 
             case "review" :
-                new review(utente);
+                new review(utente, 0);
                 break;
 
             case "timelineView":
