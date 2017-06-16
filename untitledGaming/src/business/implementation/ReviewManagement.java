@@ -86,6 +86,7 @@ public class ReviewManagement {
             approvata = rs.getBoolean("approvata");
 
         }
+        dbConnection.close();
         return new Review(reviewId, user_id, text, vote, approvata, game_text);
     }
 
@@ -106,6 +107,7 @@ public class ReviewManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
+        dbConnection.close();
 
         return tm;
     }
@@ -127,6 +129,7 @@ public class ReviewManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
+        dbConnection.close();
 
         return tm;
     }
@@ -148,6 +151,7 @@ public class ReviewManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
+        dbConnection.close();
 
         return tm;
     }
@@ -259,6 +263,8 @@ public class ReviewManagement {
         if (rs.next()) {
             gameID = rs.getInt("gioco_id");
         }
+        dbConnection.close();
+
         return gameID;
     }
 
@@ -274,6 +280,7 @@ public class ReviewManagement {
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
+        dbConnection.close();
 
         return tm;
     }

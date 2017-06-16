@@ -907,6 +907,7 @@ public class UserManagement {
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
         dbConnection.close();
+
         return tm;
     }
 
