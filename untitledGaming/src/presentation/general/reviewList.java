@@ -139,53 +139,59 @@ public class reviewList extends starView {
 
         JLabel label = null;
         try {
-            JTable table = new JTable(eventsListener.getReviewsByID(game));
-            String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
+            if (row >= eventsListener.getReviewsByID(game).getRowCount()) {
+                label = new JLabel("vuoto");
 
-            int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
-            System.out.println(voteInt);
-            // Get the user id
-            int b = Integer.parseInt(a);
+            } else {
 
-            // Create a new label
-            label = new JLabel(eventsListener.getUsername(b));
+                JTable table = new JTable(eventsListener.getReviewsByID(game));
+                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
 
-            // Star Rating
-            JPanel panel_4 = new JPanel();
-            panel_4.setToolTipText("Valutazione");
-            panel_4.setBounds(384, 112, 311, 45);
-            ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g.png"));
-            ImageProducer ip = defaultIcon.getImage().getSource();
-            List<ImageIcon>
-                    list = Arrays.asList(
-                    makeStarImageIcon(ip, .6f, .6f, 0f),
-                    makeStarImageIcon(ip, .7f, .7f, 0f),
-                    makeStarImageIcon(ip, .8f, .8f, 0f),
-                    makeStarImageIcon(ip, .9f, .9f, 0f),
-                    makeStarImageIcon(ip, 1f, 1f, 0f));
+                int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
+                System.out.println(voteInt);
+                // Get the user id
+                int b = Integer.parseInt(a);
 
-            LevelBar lb = new LevelBar(defaultIcon, list, 2);
+                // Create a new label
+                label = new JLabel(eventsListener.getUsername(b));
 
-            panel_4.add(makeStarRatingPanel("", lb));
-            lb.setLevel(voteInt);
-            frmUntitledGaming.getContentPane().add(panel_4);
+                // Star Rating
+                JPanel panel_4 = new JPanel();
+                panel_4.setToolTipText("Valutazione");
+                panel_4.setBounds(384, 112, 311, 45);
+                ImageIcon defaultIcon = new ImageIcon(getClass().getResource("imgs/31g.png"));
+                ImageProducer ip = defaultIcon.getImage().getSource();
+                List<ImageIcon>
+                        list = Arrays.asList(
+                        makeStarImageIcon(ip, .6f, .6f, 0f),
+                        makeStarImageIcon(ip, .7f, .7f, 0f),
+                        makeStarImageIcon(ip, .8f, .8f, 0f),
+                        makeStarImageIcon(ip, .9f, .9f, 0f),
+                        makeStarImageIcon(ip, 1f, 1f, 0f));
 
-            // Read comment button
-            JButton btnRecensione = new JButton("Leggi Commento");
-            btnRecensione.setToolTipText("Leggi Commento");
-            btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
-            btnRecensione.setBounds(710, 119, 180, 30);
-            frmUntitledGaming.getContentPane().add(btnRecensione);
+                LevelBar lb = new LevelBar(defaultIcon, list, 2);
 
-            btnRecensione.addActionListener(new ActionListener() {
+                panel_4.add(makeStarRatingPanel("", lb));
+                lb.setLevel(voteInt);
+                frmUntitledGaming.getContentPane().add(panel_4);
 
-                public void actionPerformed(ActionEvent e) {
+                // Read comment button
+                JButton btnRecensione = new JButton("Leggi Commento");
+                btnRecensione.setToolTipText("Leggi Commento");
+                btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnRecensione.setBounds(710, 119, 180, 30);
+                frmUntitledGaming.getContentPane().add(btnRecensione);
 
-                    frmUntitledGaming.setVisible(false);
-                    new viewReview(utente, row, b, game);
+                btnRecensione.addActionListener(new ActionListener() {
 
-                }
-            });
+                    public void actionPerformed(ActionEvent e) {
+
+                        frmUntitledGaming.setVisible(false);
+                        new viewReview(utente, row, b, game);
+
+                    }
+                });
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
