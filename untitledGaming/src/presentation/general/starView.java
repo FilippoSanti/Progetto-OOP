@@ -15,8 +15,6 @@ public class starView extends JPanel {
 
     public JPanel makeStarRatingPanel(String title, final LevelBar label) {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        p.setBorder(BorderFactory.createTitledBorder(title));
-
         p.add(label);
         return p;
     }

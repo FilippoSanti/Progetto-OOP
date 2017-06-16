@@ -3,11 +3,8 @@ package presentation.general;
 import business.model.Utente;
 import controller.eventsListener;
 
-import java.awt.EventQueue;
-
 import javax.swing.*;
-import java.awt.Font;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.ImageProducer;
@@ -16,9 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class evalutateReview extends starView {
-    private JFrame frmUntitledGaming;
     Utente utente;
     int row;
+    private JFrame frmUntitledGaming;
 
     public evalutateReview(Utente c, int r) {
 
@@ -30,7 +27,6 @@ public class evalutateReview extends starView {
     private void initialize() {
 
         frmUntitledGaming = new JFrame();
-
 
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Valuta Recensioni");
         frmUntitledGaming.setResizable(false);
@@ -62,8 +58,6 @@ public class evalutateReview extends starView {
             int inizioLista = row + 4;
             if (fineLista == 0) {
                 JOptionPane.showMessageDialog(null, "Nessuna review da valutare");
-
-
             }
 
             if ((row + 4) >= fineLista)
@@ -125,13 +119,11 @@ public class evalutateReview extends starView {
             }
         });
 
-
         /** First User */
-
-        int    vote    = 0;
-        int    gameId1 = 0;
-        int    userId1 = 0;
-        String gioco1  = "";
+        int vote      = 0;
+        int gameId1   = 0;
+        int userId1   = 0;
+        String gioco1 = "";
 
         JLabel label = null;
 
@@ -143,9 +135,9 @@ public class evalutateReview extends starView {
                 userId1 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row, 0)));
                 gameId1 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row, 3)));
 
-                try{
+                try {
                     vote = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row, 2)));
-                } catch(NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
@@ -173,9 +165,32 @@ public class evalutateReview extends starView {
 
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
                 panel_4.add(makeStarRatingPanel("", lb));
-                System.out.println(vote);
-                lb.setLevel(vote);
+                lb.setLevel(vote - 1);
                 frmUntitledGaming.getContentPane().add(panel_4);
+
+                // Read the comment
+                JButton btnRecensione = new JButton("Leggi Commento");
+                btnRecensione.setToolTipText("Leggi Commento");
+                btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnRecensione.setBounds(738, 148, 180, 30);
+                frmUntitledGaming.getContentPane().add(btnRecensione);
+
+                int finalGameId = gameId1;
+                int finalUserId = userId1;
+                btnRecensione.addActionListener(new ActionListener() {
+
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        frmUntitledGaming.setVisible(false);
+                        try {
+                            new approveComment(utente, eventsListener.getReview(finalUserId, finalGameId));
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                });
 
             }
         } catch (SQLException e) {
@@ -183,10 +198,9 @@ public class evalutateReview extends starView {
         }
 
         /** User 2 */
-
-        String  gioco2  = "";
-        int     gameId2 = 0;
-        int     userId2 = 0;
+        String gioco2 = "";
+        int gameId2 = 0;
+        int userId2 = 0;
 
         JLabel label_1 = null;
         try {
@@ -196,9 +210,9 @@ public class evalutateReview extends starView {
                 userId2 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 1, 0)));
                 gameId2 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 1, 3)));
 
-                try{
+                try {
                     vote = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 1, 2)));
-                } catch(NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
@@ -212,7 +226,6 @@ public class evalutateReview extends starView {
                 label_1.setBounds(243, 271, 211, 30);
                 frmUntitledGaming.getContentPane().add(label_1);
 
-                //attenzione a modificare che defaultIcon,ip, list ereditano la dichiarazione fatta nel primo star rating
                 JPanel panel_5 = new JPanel();
                 panel_5.setToolTipText("Valutazione");
                 panel_5.setBounds(464, 265, 259, 45);
@@ -228,39 +241,60 @@ public class evalutateReview extends starView {
 
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
                 panel_5.add(makeStarRatingPanel("", lb));
-                lb.setLevel(vote);
+                lb.setLevel(vote - 1);
                 frmUntitledGaming.getContentPane().add(panel_5);
+
+                // Read the comment
+                JButton btnGioca = new JButton("Leggi Commento");
+                btnGioca.setToolTipText("Leggi Commento");
+                btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnGioca.setBounds(738, 271, 180, 30);
+                frmUntitledGaming.getContentPane().add(btnGioca);
+                int finalGameId2 = gameId2;
+                int finalUserId2 = userId2;
+                btnGioca.addActionListener(new ActionListener() {
+
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        frmUntitledGaming.setVisible(false);
+                        try {
+                            new approveComment(utente, eventsListener.getReview(finalUserId2, finalGameId2));
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                });
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
         /** User 3 */
-
-        int    gameId3  = 0;
-        int    userId3  = 0;
-        String gioco3   = "";
-        JLabel label_2  = null;
+        int gameId3 = 0;
+        int userId3 = 0;
+        String gioco3 = "";
+        JLabel label_2 = null;
 
         try {
             if (row + 2 >= eventsListener.getPendingReviews().getRowCount()) {
                 label_2 = new JLabel("vuoto");
             } else {
-                userId3  = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 2, 0)));
-                gameId3  = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 2, 3)));
+                userId3 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 2, 0)));
+                gameId3 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 2, 3)));
 
-                try{
+                try {
                     vote = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 2, 2)));
-                } catch(NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
                 gioco3 = eventsListener.getGameFromId(gameId3);
                 String username3 = eventsListener.getUsername(userId3);
 
-
+                // Username label
                 label_2 = new JLabel(username3);
                 label_2.setHorizontalAlignment(SwingConstants.CENTER);
                 label_2.setForeground(Color.DARK_GRAY);
@@ -268,7 +302,7 @@ public class evalutateReview extends starView {
                 label_2.setBounds(243, 386, 211, 30);
                 frmUntitledGaming.getContentPane().add(label_2);
 
-                //attenzione a modificare che defaultIcon,ip, list ereditano la dichiarazione fatta nel primo star rating
+                // Star rating panel
                 JPanel panel_6 = new JPanel();
                 panel_6.setToolTipText("Valutazione");
                 panel_6.setBounds(464, 380, 259, 45);
@@ -284,20 +318,43 @@ public class evalutateReview extends starView {
 
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
                 panel_6.add(makeStarRatingPanel("", lb));
-                lb.setLevel(vote);
+                lb.setLevel(vote - 1);
                 frmUntitledGaming.getContentPane().add(panel_6);
+
+                // Read the comment
+                JButton btnGioca_1 = new JButton("Leggi Commento");
+                btnGioca_1.setToolTipText("Leggi Commento");
+                btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnGioca_1.setBounds(738, 386, 180, 30);
+                frmUntitledGaming.getContentPane().add(btnGioca_1);
+
+                int finalGameId3 = gameId3;
+                int finalUserId3 = userId3;
+                btnGioca_1.addActionListener(new ActionListener() {
+
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        frmUntitledGaming.setVisible(false);
+                        try {
+                            new approveComment(utente, eventsListener.getReview(finalUserId3, finalGameId3));
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                });
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
         /** User 4 */
-
-        int userId4 = 0;
-        String gioco4 = "";
-        int gameId4 = 0;
+        int    userId4 = 0;
+        int    gameId4 = 0;
+        String gioco4  = "";
         JLabel label_3 = null;
+
         try {
             if (row + 3 >= eventsListener.getPendingReviews().getRowCount()) {
                 label_3 = new JLabel("vuoto");
@@ -305,9 +362,9 @@ public class evalutateReview extends starView {
                 userId4 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 3, 0)));
                 gameId4 = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 3, 3)));
 
-                try{
+                try {
                     vote = Integer.parseInt(String.valueOf(eventsListener.getPendingReviews().getValueAt(row + 3, 2)));
-                } catch(NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
@@ -321,7 +378,6 @@ public class evalutateReview extends starView {
                 label_3.setBounds(243, 504, 211, 30);
                 frmUntitledGaming.getContentPane().add(label_3);
 
-                //attenzione a modificare che defaultIcon,ip, list ereditano la dichiarazione fatta nel primo star rating
                 JPanel panel_7 = new JPanel();
                 panel_7.setToolTipText("Valutazione");
                 panel_7.setBounds(464, 497, 259, 45);
@@ -337,105 +393,39 @@ public class evalutateReview extends starView {
 
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
                 panel_7.add(makeStarRatingPanel("", lb));
-                lb.setLevel(vote);
+                lb.setLevel(vote - 1);
                 frmUntitledGaming.getContentPane().add(panel_7);
+
+                // Read the comment
+                JButton btnGioca_2 = new JButton("Leggi Commento");
+                btnGioca_2.setToolTipText("Leggi Commento");
+                btnGioca_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
+                btnGioca_2.setBounds(738, 504, 180, 30);
+                frmUntitledGaming.getContentPane().add(btnGioca_2);
+
+                int finalGameId4 = gameId4;
+                int finalUserId4 = userId4;
+                btnGioca_2.addActionListener(new ActionListener() {
+
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        frmUntitledGaming.setVisible(false);
+                        try {
+                            new approveComment(utente, eventsListener.getReview(finalUserId4, finalGameId4));
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                });
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        JButton btnRecensione = new JButton("Leggi Commento");
-        btnRecensione.setToolTipText("Leggi Commento");
-        btnRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        btnRecensione.setBounds(738, 148, 180, 30);
-        frmUntitledGaming.getContentPane().add(btnRecensione);
-
-        int finalGameId = gameId1;
-        int finalUserId = userId1;
-        btnRecensione.addActionListener(new ActionListener() {
-
-
-            public void actionPerformed(ActionEvent e) {
-
-                frmUntitledGaming.setVisible(false);
-                try {
-                    new approveComment(utente, eventsListener.getReview(finalUserId, finalGameId));
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-
-        JButton btnGioca = new JButton("Leggi Commento");
-        btnGioca.setToolTipText("Leggi Commento");
-        btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        btnGioca.setBounds(738, 271, 180, 30);
-        frmUntitledGaming.getContentPane().add(btnGioca);
-        int finalGameId2 = gameId2;
-        int finalUserId2 = userId2;
-        btnGioca.addActionListener(new ActionListener() {
-
-
-            public void actionPerformed(ActionEvent e) {
-
-                frmUntitledGaming.setVisible(false);
-                try {
-                    new approveComment(utente, eventsListener.getReview(finalUserId2, finalGameId2));
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-
-        JButton btnGioca_1 = new JButton("Leggi Commento");
-        btnGioca_1.setToolTipText("Leggi Commento");
-        btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        btnGioca_1.setBounds(738, 386, 180, 30);
-        frmUntitledGaming.getContentPane().add(btnGioca_1);
-
-        int finalGameId3 = gameId3;
-        int finalUserId3 = userId3;
-        btnGioca_1.addActionListener(new ActionListener() {
-
-
-            public void actionPerformed(ActionEvent e) {
-
-                frmUntitledGaming.setVisible(false);
-                try {
-                    new approveComment(utente, eventsListener.getReview(finalUserId3, finalGameId3));
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-
-        JButton btnGioca_2 = new JButton("Leggi Commento");
-        btnGioca_2.setToolTipText("Leggi Commento");
-        btnGioca_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        btnGioca_2.setBounds(738, 504, 180, 30);
-        frmUntitledGaming.getContentPane().add(btnGioca_2);
-
-        int finalGameId4 = gameId4;
-        int finalUserId4 = userId4;
-        btnGioca_2.addActionListener(new ActionListener() {
-
-
-            public void actionPerformed(ActionEvent e) {
-
-                frmUntitledGaming.setVisible(false);
-                try {
-                    new approveComment(utente, eventsListener.getReview(finalUserId4, finalGameId4));
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-
-
+        // Static text
         JLabel lblgamenameHere_2 = new JLabel(gioco1);
         lblgamenameHere_2.setHorizontalAlignment(SwingConstants.CENTER);
         lblgamenameHere_2.setForeground(Color.DARK_GRAY);
