@@ -64,20 +64,20 @@ public class achievementsList {
         btnSuccessiva.setToolTipText("Pagina Successiva");
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
+        // Get the end of the list
         int fineLista = 0;
         try {
             fineLista = eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount();
-            if (fineLista == 0) {
-                JOptionPane.showMessageDialog(null, "Nessun achievement presente nella lista");
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         int inizioLista = row + 4;
-        if ((row + 4) >= fineLista) {inizioLista = fineLista;}
+
+        if ((row + 4) >= fineLista)
+            inizioLista = fineLista;
 
         JLabel lblListaGiochi = new JLabel("Lista Achievement sbloccati " + "(" + (inizioLista) + " / " + (fineLista) + ")");
-
         lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
         lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
         lblListaGiochi.setBounds(0, 23, 944, 61);
@@ -100,7 +100,7 @@ public class achievementsList {
             }
         });
 
-        // Previous button
+        // Bottone pagina precedente
         JButton button_4 = new JButton("");
         button_4.setIcon(new ImageIcon(getClass().getResource("imgs/Rounded_back_1.png")));
         button_4.setToolTipText("Pagina Precedente");
@@ -111,18 +111,19 @@ public class achievementsList {
         frmUntitledGaming.getContentPane().add(button_4);
         button_4.addActionListener(new ActionListener() {
 
-
             public void actionPerformed(ActionEvent e) {
-
                 frmUntitledGaming.setVisible(false);
                     new achievementsList(utente, row - 4);
             }
         });
 
+        // If the list is empty, we show a message dialog
+        if (fineLista == 0) {
+            JOptionPane.showMessageDialog(null, "Nessun achievement sbloccato");
+        }
+
         /** Achievement 1 */
         try {
-
-
             JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
             String achievementDesc = String.valueOf(table.getValueAt(row, 1));
 

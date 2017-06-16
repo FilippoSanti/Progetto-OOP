@@ -23,7 +23,7 @@ public class review extends starEdit {
 
     /* Create the application */
     public review(Utente c, int g) {
-this.gioco_id = g;
+        this.gioco_id = g;
         this.utente = c;
         initialize();
     }
@@ -36,6 +36,7 @@ this.gioco_id = g;
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmUntitledGaming.setLocationRelativeTo(null);
         frmUntitledGaming.getContentPane().setLayout(null);
 
         JLabel lblValutaQuestoGioco = new JLabel("Valuta");
@@ -107,14 +108,13 @@ this.gioco_id = g;
 
                 try {
                     int vote = lb.getLevel();
-                    controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(),gioco_id, vote + 1);
+                    controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1);
                     new reviewList(utente, 0, gioco_id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
             }
         });
-
 
         JLabel lblnomeGioco = new JLabel("-Nome Gioco-");
         lblnomeGioco.setHorizontalAlignment(SwingConstants.LEFT);
@@ -149,11 +149,10 @@ this.gioco_id = g;
         btnTornaAllaHome.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-               eventsListener.changePage("logged", utente);
+                eventsListener.changePage("logged", utente);
 
             }
         });
-
 
         frmUntitledGaming.setVisible(true
         );

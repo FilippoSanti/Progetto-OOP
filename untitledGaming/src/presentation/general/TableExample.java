@@ -1,9 +1,5 @@
 package presentation.general;
 
-/**
- * Created by Davide on 04/06/2017.
- */
-
 import controller.eventsListener;
 
 import javax.swing.JFrame;
@@ -15,11 +11,9 @@ import java.sql.SQLException;
 public class TableExample extends JFrame {
     public TableExample() throws SQLException {
 
-        //CLASSE DI ESEMPIO PER VISUALIZZARE I TABLEMODEL
-
-        //inserire tablemodel qui
         JTable table = new JTable(eventsListener.getPendingReviews());
-        //add the table to the frame
+
+        //Add the table to the frame
         this.add(new JScrollPane(table));
 
         this.setTitle("Table Example");

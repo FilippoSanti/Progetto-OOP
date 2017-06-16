@@ -12,15 +12,13 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class reviewList extends starView {
 
     private JFrame frmUntitledGaming;
-    Utente utente;
     int row, game;
+    Utente utente;
 
     public reviewList(Utente c, int a, int gameID) {
-
         this.utente = c;
         this.row = a;
         this.game = gameID;
@@ -39,57 +37,63 @@ public class reviewList extends starView {
         frmUntitledGaming.getContentPane().setLayout(null);
         frmUntitledGaming.setLocationRelativeTo(null);
 
+        JButton btnLaTuaRecensione = new JButton("La Mia Recensione");
+        btnLaTuaRecensione.setToolTipText("La Mia Recensione");
+        btnLaTuaRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
+        btnLaTuaRecensione.setBounds(375, 570, 198, 45);
+        frmUntitledGaming.getContentPane().add(btnLaTuaRecensione);
+        frmUntitledGaming.setVisible(true);
+
+        btnLaTuaRecensione.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (eventsListener.reviewFoundOnProfile(utente.getUserId(), game)) {
+                        frmUntitledGaming.setVisible(false);
+                        new viewReview(utente, 0, utente.getUserId(), game);
+                    } else {
+                        frmUntitledGaming.setVisible(false);
+                        new review(utente, game);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
         JButton button = new JButton("");
         button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
-        button.setToolTipText("torna indietro");
+        button.setToolTipText("Torna indietro");
         button.setBounds(10, 11, 45, 45);
         frmUntitledGaming.getContentPane().add(button);
 
+        // allGames view button
         button.addActionListener(new ActionListener() {
-
 
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
                 eventsListener.changePage("allGames", utente);
-
             }
         });
 
-        JLabel lblListaGiochi = null;
+        int fineLista = 0;
         try {
-            int fineLista = eventsListener.getReviewsByID(game).getRowCount();
-            int inizioLista = row + 4;
-            if ((row + 4) >= fineLista)
-                inizioLista = fineLista;
-            lblListaGiochi = new JLabel("Lista Commenti" + "(" + (inizioLista) + " / " + (fineLista) + ")");
+            fineLista = eventsListener.getReviewsByID(game).getRowCount();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        JLabel lblListaGiochi = null;
+
+        int inizioLista = row + 4;
+        if ((row + 4) >= fineLista)
+            inizioLista = fineLista;
+        lblListaGiochi = new JLabel("Lista Commenti" + "(" + (inizioLista) + " / " + (fineLista) + ")");
 
         lblListaGiochi.setHorizontalAlignment(SwingConstants.CENTER);
         lblListaGiochi.setFont(new Font("Vivaldi", Font.BOLD, 40));
         lblListaGiochi.setBounds(0, 23, 944, 61);
         frmUntitledGaming.getContentPane().add(lblListaGiochi);
-
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.YELLOW);
-        panel.setBounds(66, 88, 90, 90);
-        frmUntitledGaming.getContentPane().add(panel);
-
-        JPanel panel_1 = new JPanel();
-        panel_1.setBackground(Color.BLUE);
-        panel_1.setBounds(66, 208, 90, 90);
-        frmUntitledGaming.getContentPane().add(panel_1);
-
-        JPanel panel_2 = new JPanel();
-        panel_2.setBackground(Color.GREEN);
-        panel_2.setBounds(66, 326, 90, 90);
-        frmUntitledGaming.getContentPane().add(panel_2);
-
-        JPanel panel_3 = new JPanel();
-        panel_3.setBackground(Color.RED);
-        panel_3.setBounds(66, 445, 90, 90);
-        frmUntitledGaming.getContentPane().add(panel_3);
 
         //Next Button
         JButton btnSuccessiva = new JButton("");
@@ -135,20 +139,22 @@ public class reviewList extends starView {
             }
         });
 
-        /** First Review **/
+        // If the list is empty, we show a message dialog
+        if (fineLista == 0) {
+            JOptionPane.showMessageDialog(null, "Nessuna recensione disponibile");
+        }
 
+        /** First Review **/
         JLabel label = null;
         try {
-            if (row >= eventsListener.getReviewsByID(game).getRowCount()) {
-                label = new JLabel("vuoto");
-
-            } else {
+            if (!(row >= eventsListener.getReviewsByID(game).getRowCount())) {
 
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
+                String a     = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
                 System.out.println(voteInt);
+
                 // Get the user id
                 int b = Integer.parseInt(a);
 
@@ -182,21 +188,24 @@ public class reviewList extends starView {
                 btnRecensione.setBounds(710, 119, 180, 30);
                 frmUntitledGaming.getContentPane().add(btnRecensione);
 
+                JPanel panel_back = new JPanel();
+                panel_back.setBackground(Color.YELLOW);
+                panel_back.setBounds(66, 88, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_back);
+
+                // View review button
                 btnRecensione.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
-
                         frmUntitledGaming.setVisible(false);
                         new viewReview(utente, row, b, game);
 
                     }
                 });
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setForeground(Color.DARK_GRAY);
@@ -205,17 +214,14 @@ public class reviewList extends starView {
         frmUntitledGaming.getContentPane().add(label);
 
         /** Review 2 **/
-
         JLabel label_1 = null;
         try {
-            if (row + 1 >= eventsListener.getReviewsByID(game).getRowCount()) {
-                label_1 = new JLabel("vuoto");
+            if (!(row + 1 >= eventsListener.getReviewsByID(game).getRowCount())) {
 
-            } else {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+1, 1));
+                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 1, 1));
 
-                int voteInt = Integer.parseInt(table.getValueAt(row+1, 1).toString());
+                int voteInt = Integer.parseInt(table.getValueAt(row + 1, 1).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -248,22 +254,24 @@ public class reviewList extends starView {
                 btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 btnGioca.setBounds(710, 242, 180, 30);
                 frmUntitledGaming.getContentPane().add(btnGioca);
+
+                JPanel panel_1 = new JPanel();
+                panel_1.setBackground(Color.BLUE);
+                panel_1.setBounds(66, 208, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_1);
+
                 btnGioca.addActionListener(new ActionListener() {
 
-
                     public void actionPerformed(ActionEvent e) {
-
                         frmUntitledGaming.setVisible(false);
                         new viewReview(utente, row, b, game);
 
                     }
                 });
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         label_1.setHorizontalAlignment(SwingConstants.CENTER);
         label_1.setForeground(Color.DARK_GRAY);
@@ -272,16 +280,14 @@ public class reviewList extends starView {
         frmUntitledGaming.getContentPane().add(label_1);
 
         /** Review 3 **/
-
         JLabel label_2 = null;
         try {
-            if (row + 2 >= eventsListener.getReviewsByID(game).getRowCount()) {
-                label_2 = new JLabel("vuoto");
-            } else {
-                JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+2, 1));
+            if (!(row + 2 >= eventsListener.getReviewsByID(game).getRowCount())) {
 
-                int voteInt = Integer.parseInt(table.getValueAt(row+2, 1).toString());
+                JTable table = new JTable(eventsListener.getReviewsByID(game));
+                String a     = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 2, 1));
+
+                int voteInt  = Integer.parseInt(table.getValueAt(row + 2, 1).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -315,14 +321,17 @@ public class reviewList extends starView {
                 btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 btnGioca_1.setBounds(710, 357, 180, 30);
                 frmUntitledGaming.getContentPane().add(btnGioca_1);
+
+                JPanel panel_2 = new JPanel();
+                panel_2.setBackground(Color.GREEN);
+                panel_2.setBounds(66, 326, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_2);
+
                 btnGioca_1.addActionListener(new ActionListener() {
 
-
                     public void actionPerformed(ActionEvent e) {
-
                         frmUntitledGaming.setVisible(false);
                         new viewReview(utente, row, b, game);
-
                     }
                 });
             }
@@ -337,16 +346,14 @@ public class reviewList extends starView {
         frmUntitledGaming.getContentPane().add(label_2);
 
         /** Review 4 **/
-
         JLabel label_3 = null;
         try {
             if (row + 3 >= eventsListener.getReviewsByID(game).getRowCount()) {
-                label_3 = new JLabel("vuoto");
-            } else {
-                JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row+3, 1));
 
-                int voteInt = Integer.parseInt(table.getValueAt(row+3, 1).toString());
+                JTable table = new JTable(eventsListener.getReviewsByID(game));
+                String a     = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 3, 1));
+
+                int voteInt  = Integer.parseInt(table.getValueAt(row + 3, 1).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -379,18 +386,20 @@ public class reviewList extends starView {
                 btnGioca_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 btnGioca_2.setBounds(710, 475, 180, 30);
                 frmUntitledGaming.getContentPane().add(btnGioca_2);
+
+                JPanel panel_3 = new JPanel();
+                panel_3.setBackground(Color.RED);
+                panel_3.setBounds(66, 445, 90, 90);
+                frmUntitledGaming.getContentPane().add(panel_3);
+
                 btnGioca_2.addActionListener(new ActionListener() {
 
-
                     public void actionPerformed(ActionEvent e) {
-
                         frmUntitledGaming.setVisible(false);
                         new viewReview(utente, row, b, game);
-
                     }
                 });
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -400,31 +409,5 @@ public class reviewList extends starView {
         label_3.setBounds(166, 475, 211, 30);
         frmUntitledGaming.getContentPane().add(label_3);
 
-
-        JButton btnLaTuaRecensione = new JButton("La Mia Recensione");
-        btnLaTuaRecensione.setToolTipText("La Mia Recensione");
-        btnLaTuaRecensione.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        btnLaTuaRecensione.setBounds(375, 570, 198, 45);
-        frmUntitledGaming.getContentPane().add(btnLaTuaRecensione);
-        frmUntitledGaming.setVisible(true);
-
-
-        btnLaTuaRecensione.addActionListener(new ActionListener() {
-
-
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (eventsListener.reviewFoundOnProfile(utente.getUserId(), game)) {
-                        frmUntitledGaming.setVisible(false);
-                        new viewReview(utente, 0, utente.getUserId(), game);
-                    } else {
-                        frmUntitledGaming.setVisible(false);
-                        new review (utente, game);
-                    }
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
     }
 }

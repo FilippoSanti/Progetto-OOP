@@ -42,15 +42,12 @@ public class evalutateReview extends starView {
         frmUntitledGaming.getContentPane().add(button);
         button.addActionListener(new ActionListener() {
 
-
             public void actionPerformed(ActionEvent e) {
-
                 frmUntitledGaming.setVisible(false);
                 eventsListener.changePage("logged", utente);
 
             }
         });
-
 
         JLabel lblListaGiochi = null;
         try {
