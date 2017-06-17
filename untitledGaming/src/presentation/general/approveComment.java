@@ -130,7 +130,7 @@ Review review;
 
 
 			public void actionPerformed(ActionEvent e) {
-
+frmUntitledGaming.setVisible(false);
 			eventsListener.changePage("evalutateReview", utente);
 
 			}
