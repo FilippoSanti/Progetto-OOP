@@ -1,5 +1,6 @@
 package presentation.general;
 
+import business.BusinessException;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -17,10 +18,9 @@ public class startPage {
     private JFrame frmUntitledGaming;
     private JTextField txtUsername;
     private JPasswordField passwordField;
+
     /* Create the application */
     public startPage() {
-
-
         initialize();
     }
 
@@ -48,7 +48,7 @@ public class startPage {
         txtUsername = new JTextField();
         txtUsername.setToolTipText("E-mail");
 
-        //listen for focus
+        //Listen for focus
         txtUsername.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                 txtUsername.setText("");
@@ -87,7 +87,7 @@ public class startPage {
                         Utente utente = eventsListener.getUtente(txtUsername.getText());
                         eventsListener.changePage("logged", utente);
                         frmUntitledGaming.dispose();
-                    } else JOptionPane.showMessageDialog(frmUntitledGaming, "Login failed");
+                    } else JOptionPane.showMessageDialog(frmUntitledGaming, "Username o password errati");
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -139,13 +139,13 @@ public class startPage {
         passwordField.addFocusListener(new FocusListener() {
 
             public void focusGained(FocusEvent e) {
-                char c ='\u25CF';
+                char c = '\u25CF';
                 passwordField.setEchoChar(c);
                 passwordField.setText("");
             }
 
             public void focusLost(FocusEvent e) {
-                if (passwordField.getPassword().length == 0){
+                if (passwordField.getPassword().length == 0) {
                     char c = 0;
                     passwordField.setEchoChar(c);
                     passwordField.setText("Password");
@@ -160,15 +160,6 @@ public class startPage {
         passwordField.setForeground(Color.GRAY);
         passwordField.setBounds(94, 365, 280, 60);
         frmUntitledGaming.getContentPane().add(passwordField);
-
         frmUntitledGaming.setVisible(true);
-
-        // frmUntitledGaming.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{frmUntitledGaming.getContentPane(), lblNewLabel, txtIndirizzoEmil, btnNewButton, btnNewButton_1, lblNewLabel_1, lblRegistratoPuoiFarlo, lblQui, passwordField}));
     }
-
 }
-
-
-
-
-

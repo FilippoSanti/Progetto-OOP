@@ -114,9 +114,6 @@ public class logged {
 			}
 		});
 
-
-
-
 		JButton btnGiocaOra = new JButton("Gioca Ora");
 		btnGiocaOra.setToolTipText("Gioca Ora");
 		btnGiocaOra.setFont(new Font("MV Boli", Font.ITALIC, 21));
@@ -130,6 +127,5 @@ public class logged {
 				controller.eventsListener.changePage("allGames", utente);
 			}
 		});
-
 	}
 }

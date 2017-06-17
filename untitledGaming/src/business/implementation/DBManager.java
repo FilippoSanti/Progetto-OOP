@@ -1,11 +1,20 @@
 package business.implementation;
 
+import business.BusinessException;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Iterator;
 
 public class DBManager {
 
@@ -32,8 +41,7 @@ public class DBManager {
                     .getConnection(dbAddress, dbUser, dbPassword);
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            return dbConnection;
+            throw new BusinessException("Can't connect to the db server");
         }
         return dbConnection;
     }
@@ -154,7 +162,6 @@ public class DBManager {
             if (preparedStatement.executeUpdate() != 0) {
                 return true;
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
@@ -167,7 +174,6 @@ public class DBManager {
                 dbConnection.close();
             }
         }
-
         return false;
     }
 
@@ -175,8 +181,8 @@ public class DBManager {
         try {
 
             // Open the connection
-            Connection con       = business.implementation.DBManager.Connect();
-            Statement st        = con.createStatement();
+            Connection con  = business.implementation.DBManager.Connect();
+            Statement  st   = con.createStatement();
 
             FileInputStream fin  = new FileInputStream(imgfile);
 
@@ -206,7 +212,7 @@ public class DBManager {
         return false;
     }
 
-    public static boolean getImg(int userID) {
+    public static boolean getImg(int userID, String filePathName) {
         try {
 
             File selectedfile;
@@ -218,13 +224,12 @@ public class DBManager {
                     "SELECT `immagine_profilo` FROM `utente` WHERE user_id = ?");
 
             stmt.setInt(1, userID);
-
             ResultSet rs = stmt.executeQuery();
 
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File("./src/presentation/propic.png"));
+                OutputStream f = new FileOutputStream(new File(filePathName));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {
@@ -279,7 +284,6 @@ public class DBManager {
 
         if (resultInt == 0) return false;
         return true;
-
     }
 
     /* Reformat a text date */
@@ -320,5 +324,49 @@ public class DBManager {
         return text;
     }
 
+    /**
+     * Scale an image
+     *
+     * @param imageString image to scale
+     * @param imageType type of image
+     * @param dWidth width of destination image
+     * @param dHeight height of destination image
+     * @param fWidth x-factor for transformation / scaling
+     * @param fHeight y-factor for transformation / scaling
+     * @return scaled image
+     */
+    public static BufferedImage scaleImage(String imageString, int imageType, int dWidth, int dHeight, double fWidth, double fHeight) {
 
+        BufferedImage img = null;
+        BufferedImage dbi = null;
+
+        try {
+            img = ImageIO.read(new File(imageString));
+        } catch (IOException e) {
+        }
+
+        if(img != null) {
+            dbi = new BufferedImage(dWidth, dHeight, imageType);
+            Graphics2D g = dbi.createGraphics();
+            AffineTransform at = AffineTransform.getScaleInstance(fWidth, fHeight);
+            g.drawRenderedImage(img, at);
+        }
+        return dbi;
+    }
+
+    /* Returns the format of an image if successful, null otherwise*/
+    public static String getImageType(File file) throws IOException {
+        String imageType = null;
+
+        ImageInputStream iis = ImageIO.createImageInputStream(file);
+        Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
+
+        // Read the image type
+        while (imageReaders.hasNext()) {
+            ImageReader reader = (ImageReader) imageReaders.next();
+            imageType = reader.getFormatName();
+        }
+
+        return imageType;
+    }
 }
