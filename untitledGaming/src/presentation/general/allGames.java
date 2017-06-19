@@ -25,6 +25,7 @@ public class allGames {
     /* Initialize the contents of the frame */
     private void initialize() {
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Scelta Giochi");
         frmUntitledGaming.setResizable(false);

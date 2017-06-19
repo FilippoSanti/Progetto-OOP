@@ -31,6 +31,7 @@ public class viewReview extends starView {
     /* Initialize the contents of the frame */
     private void initialize() {
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Recensione");
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setBounds(100, 100, 950, 700);

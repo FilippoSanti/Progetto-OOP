@@ -4,8 +4,7 @@ import business.model.Utente;
 import controller.eventsListener;
 
 import javax.swing.*;
-import java.awt.Font;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -27,6 +26,7 @@ public class usersList {
     private void initialize() {
 
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Lista Utenti");
         frmUntitledGaming.setResizable(false);
@@ -242,8 +242,8 @@ public class usersList {
             e.printStackTrace();
         }
         JButton btnPromuovi = new JButton("Promuovi");
-        btnPromuovi.setBackground(new Color(152, 251, 152));
-        btnPromuovi.setForeground(new Color(50, 205, 50));
+        btnPromuovi.setBackground(new Color(143, 251, 143));
+        btnPromuovi.setForeground(new Color(26, 205, 11));
         btnPromuovi.setToolTipText("Promuovi");
         btnPromuovi.setFont(new Font("MV Boli", Font.ITALIC, 17));
         btnPromuovi.setBounds(573, 114, 142, 30);
@@ -266,9 +266,9 @@ public class usersList {
 
         JButton button_1 = new JButton("Promuovi");
         button_1.setToolTipText("Promuovi");
-        button_1.setForeground(new Color(50, 205, 50));
+        button_1.setForeground(new Color(26, 205, 11));
         button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        button_1.setBackground(new Color(152, 251, 152));
+        button_1.setBackground(new Color(143, 251, 143));
         button_1.setBounds(573, 237, 142, 30);
         frmUntitledGaming.getContentPane().add(button_1);
         if (tipo2.equals("administrator")) button_1.setEnabled(false);
@@ -289,9 +289,9 @@ public class usersList {
 
         JButton button_2 = new JButton("Promuovi");
         button_2.setToolTipText("Promuovi");
-        button_2.setForeground(new Color(50, 205, 50));
+        button_2.setForeground(new Color(26, 205, 11));
         button_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        button_2.setBackground(new Color(152, 251, 152));
+        button_2.setBackground(new Color(143, 251, 143));
         button_2.setBounds(573, 352, 142, 30);
         frmUntitledGaming.getContentPane().add(button_2);
 
@@ -313,9 +313,9 @@ public class usersList {
 
         JButton button_3 = new JButton("Promuovi");
         button_3.setToolTipText("Promuovi");
-        button_3.setForeground(new Color(50, 205, 50));
+        button_3.setForeground(new Color(26, 205, 11));
         button_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        button_3.setBackground(new Color(152, 251, 152));
+        button_3.setBackground(new Color(143, 251, 143));
         button_3.setBounds(573, 470, 142, 30);
         frmUntitledGaming.getContentPane().add(button_3);
 
@@ -336,8 +336,8 @@ public class usersList {
         });
 
         JButton btnDclassa = new JButton("Declassa");
-        btnDclassa.setBackground(new Color(240, 128, 128));
-        btnDclassa.setForeground(new Color(255, 99, 71));
+        btnDclassa.setBackground(new Color(240, 142, 126));
+        btnDclassa.setForeground(new Color(255, 47, 13));
         btnDclassa.setToolTipText("Declassa");
         btnDclassa.setFont(new Font("MV Boli", Font.ITALIC, 17));
         btnDclassa.setBounds(743, 113, 142, 30);
@@ -360,9 +360,9 @@ public class usersList {
 
         JButton button_5 = new JButton("Declassa");
         button_5.setToolTipText("Declassa");
-        button_5.setForeground(new Color(255, 99, 71));
+        button_5.setForeground(new Color(255, 47, 13));
         button_5.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        button_5.setBackground(new Color(240, 128, 128));
+        button_5.setBackground(new Color(240, 142, 126));
         button_5.setBounds(743, 235, 142, 30);
         frmUntitledGaming.getContentPane().add(button_5);
 
@@ -383,9 +383,9 @@ public class usersList {
 
         JButton button_6 = new JButton("Declassa");
         button_6.setToolTipText("Declassa");
-        button_6.setForeground(new Color(255, 99, 71));
+        button_6.setForeground(new Color(255, 47, 13));
         button_6.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        button_6.setBackground(new Color(240, 128, 128));
+        button_6.setBackground(new Color(240, 142, 126));
         button_6.setBounds(743, 351, 142, 30);
         frmUntitledGaming.getContentPane().add(button_6);
 
@@ -406,9 +406,9 @@ public class usersList {
 
         JButton button_7 = new JButton("Declassa");
         button_7.setToolTipText("Declassa");
-        button_7.setForeground(new Color(255, 99, 71));
+        button_7.setForeground(new Color(255, 47, 13));
         button_7.setFont(new Font("MV Boli", Font.ITALIC, 17));
-        button_7.setBackground(new Color(240, 128, 128));
+        button_7.setBackground(new Color(240, 142, 126));
         button_7.setBounds(743, 469, 142, 30);
         frmUntitledGaming.getContentPane().add(button_7);
 

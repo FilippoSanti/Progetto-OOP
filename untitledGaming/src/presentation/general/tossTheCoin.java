@@ -25,8 +25,8 @@ public class tossTheCoin {
     /* Initialize the contents of the frame*/
     private void initialize() {
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
-
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setTitle("Untitled Gaming - Username!");
         frmUntitledGaming.setBounds(100, 100, 750, 500);

@@ -38,9 +38,8 @@ public class profile {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
-
-        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("logo_untitled_gaming.png"));
         frmUntitledGaming.setTitle("Untitled Gaming - Il Tuo Profilo");
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setBounds(100, 100, 950, 700);

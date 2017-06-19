@@ -4,16 +4,13 @@ import business.model.Review;
 import business.model.Utente;
 import controller.eventsListener;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -38,6 +35,7 @@ public class approveComment {
      */
     private void initialize() {
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Leggi Commento");
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setBounds(100, 100, 950, 700);
@@ -70,9 +68,9 @@ public class approveComment {
 
         JButton btnEliminaCommento = new JButton("Elimina Recensione");
         btnEliminaCommento.setToolTipText("Elimina Recensione");
-        btnEliminaCommento.setForeground(new Color(255, 99, 71));
+        btnEliminaCommento.setForeground(new Color(255, 47, 13));
         btnEliminaCommento.setFont(new Font("MV Boli", Font.ITALIC, 18));
-        btnEliminaCommento.setBackground(new Color(240, 128, 128));
+        btnEliminaCommento.setBackground(new Color(240, 142, 126));
         btnEliminaCommento.setBounds(560, 545, 260, 46);
         frmUntitledGaming.getContentPane().add(btnEliminaCommento);
 

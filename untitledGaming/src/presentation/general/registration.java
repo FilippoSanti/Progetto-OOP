@@ -32,8 +32,8 @@ public class registration {
     /* Initialize the contents of the frame */
     private void initialize() {
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
-
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setTitle("Untitled Gaming - Registrati");
         frmUntitledGaming.setBounds(100, 100, 950, 700);

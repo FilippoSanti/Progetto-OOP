@@ -33,6 +33,7 @@ public class achievementsList {
         Achievement ach = null;
 
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Achievements");
         frmUntitledGaming.setResizable(false);

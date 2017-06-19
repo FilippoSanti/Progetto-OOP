@@ -59,6 +59,7 @@ public class editData {
      */
     private void initialize() {
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Modifica Dati");
         frmUntitledGaming.setResizable(false);
         frmUntitledGaming.setBounds(100, 100, 950, 700);

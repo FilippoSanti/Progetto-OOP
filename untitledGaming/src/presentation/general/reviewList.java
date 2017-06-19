@@ -29,6 +29,7 @@ public class reviewList extends starView {
         int game = this.game;
 
         frmUntitledGaming = new JFrame();
+        frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Lista Commenti ");
         frmUntitledGaming.setResizable(false);

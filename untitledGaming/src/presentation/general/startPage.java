@@ -28,12 +28,9 @@ public class startPage {
     private void initialize() {
 
         frmUntitledGaming = new JFrame();
-        //frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/Bar_Logo.png"));
-        //test also the other .png!
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/general/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("Untitled Gaming");
         frmUntitledGaming.setResizable(false);
-
         frmUntitledGaming.setBounds(100, 100, 950, 700);
         frmUntitledGaming.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmUntitledGaming.getContentPane().setLayout(null);
