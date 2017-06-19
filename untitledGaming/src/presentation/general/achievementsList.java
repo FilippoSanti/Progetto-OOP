@@ -44,13 +44,15 @@ public class achievementsList {
         frmUntitledGaming.setLocationRelativeTo(null);
 
         // Back button
-        JButton button = new JButton("");
-        button.setIcon(new ImageIcon("imgs/back-icon.png"));
-        button.setToolTipText("torna indietro");
-        button.setBounds(10, 11, 45, 45);
-        frmUntitledGaming.getContentPane().add(button);
+        JButton back_btn = new JButton("");
+        back_btn.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
+        back_btn.setToolTipText("torna indietro");
+        back_btn.setFont(new Font("MV Boli", Font.ITALIC, 13));
+        back_btn.setBounds(10, 11, 45, 45);
 
-        button.addActionListener(new ActionListener() {
+        frmUntitledGaming.getContentPane().add(back_btn);
+
+        back_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
                 controller.eventsListener.changePage("profile", utente);
