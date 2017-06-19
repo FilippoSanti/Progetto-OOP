@@ -4,10 +4,14 @@ import business.model.Achievement;
 import business.model.Utente;
 import controller.eventsListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class achievementsList {
@@ -133,7 +137,7 @@ public class achievementsList {
             // Get the game id from th Table Model
             String gameID = String.valueOf(table.getValueAt(row, 2));
 
-            // Game logo
+            // Achievement icon
             JPanel panel = new JPanel();
             panel.setBackground(Color.YELLOW);
             panel.setBounds(88, 89, 90, 90);
@@ -198,9 +202,17 @@ public class achievementsList {
 
                 System.out.println(gameID);
 
-                // Game logo
+                // Achievement icon
                 JPanel panel_1 = new JPanel();
-                panel_1.setBackground(Color.BLUE);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/Thu'um_Master_(Achievement).png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_1.add(picLabel);
+
                 panel_1.setBounds(88, 209, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_1);
 
@@ -259,7 +271,7 @@ public class achievementsList {
                 // Get the game id from the Table Model
                 String gameID = String.valueOf(table.getValueAt(row + 2, 2));
 
-                // Game logo
+                // Achievement icon
                 JPanel panel_2 = new JPanel();
                 panel_2.setBackground(Color.GREEN);
                 panel_2.setBounds(88, 327, 90, 90);
@@ -319,7 +331,7 @@ public class achievementsList {
                 // Get the game id from the Table Model
                 String gameID = String.valueOf(table.getValueAt(row + 3, 2));
 
-                // Game logo
+                // Achievement icon
                 JPanel panel_2 = new JPanel();
                 panel_2.setBackground(Color.BLACK);
                 panel_2.setBounds(88, 446, 90, 90);;
