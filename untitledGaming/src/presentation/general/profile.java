@@ -248,6 +248,12 @@ public class profile {
 
                     try {
                         imgTypePassed[0] = DBManager.getImageType(selectedfile);
+                        System.out.println(imgTypePassed[0].length());
+
+                        if (!imgTypePassed[0].equals("png") && !imgTypePassed[0].equals("JPEG")) {
+                            throw new BusinessException("Wrong file type");
+                        }
+
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -271,8 +277,10 @@ public class profile {
                 // If the image type is equal to a format, we change its extension
                 if (imgTypePassed[0].equals("JPEG")) {
                     imgTypePassed[0] = "jpg";
-                } else if (imgTypePassed[0].equals("PNG")) {
+                } else if (imgTypePassed[0].equals("png")) {
                     imgTypePassed[0] = "png";
+                } else if (imgTypePassed[0].equals("gif")) {
+                    imgTypePassed[0] = "gif";
                 }
 
                 // Declare the panel

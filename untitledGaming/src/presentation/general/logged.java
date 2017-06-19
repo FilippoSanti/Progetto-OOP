@@ -37,7 +37,7 @@ public class logged {
 		JLabel lblNewLabel = new JLabel("Hello, ");
 		lblNewLabel.setForeground(Color.GRAY);
 		lblNewLabel.setFont(new Font("Oregano", Font.PLAIN, 21));
-		lblNewLabel.setBounds(650, 31, 70, 31);
+		lblNewLabel.setBounds(662, 31, 70, 31);
 		frmUntitledGaming.getContentPane().add(lblNewLabel);
 
 		JLabel lblusernameHere = new JLabel(" " + utente.getUsername());

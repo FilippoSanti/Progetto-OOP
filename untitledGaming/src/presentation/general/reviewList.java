@@ -152,7 +152,7 @@ public class reviewList extends starView {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
                 String a     = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
 
-                int voteInt = Integer.parseInt(table.getValueAt(row, 1).toString());
+                int voteInt = Integer.parseInt(table.getValueAt(row, 3).toString());
                 System.out.println(voteInt);
 
                 // Get the user id
@@ -178,7 +178,7 @@ public class reviewList extends starView {
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
 
                 panel_4.add(makeStarRatingPanel("", lb));
-                lb.setLevel(voteInt);
+                lb.setLevel(voteInt-1);
                 frmUntitledGaming.getContentPane().add(panel_4);
 
                 // Read comment button
@@ -221,7 +221,7 @@ public class reviewList extends starView {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
                 String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 1, 1));
 
-                int voteInt = Integer.parseInt(table.getValueAt(row + 1, 1).toString());
+                int voteInt = Integer.parseInt(table.getValueAt(row + 1, 3).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -246,7 +246,7 @@ public class reviewList extends starView {
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
 
                 panel_5.add(makeStarRatingPanel("", lb));
-                lb.setLevel(voteInt);
+                lb.setLevel(voteInt-1);
                 frmUntitledGaming.getContentPane().add(panel_5);
 
                 JButton btnGioca = new JButton("Leggi Commento");
@@ -287,7 +287,7 @@ public class reviewList extends starView {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
                 String a     = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 2, 1));
 
-                int voteInt  = Integer.parseInt(table.getValueAt(row + 2, 1).toString());
+                int voteInt  = Integer.parseInt(table.getValueAt(row + 2, 3).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -313,7 +313,7 @@ public class reviewList extends starView {
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
 
                 panel_6.add(makeStarRatingPanel("", lb));
-                lb.setLevel(voteInt);
+                lb.setLevel(voteInt-1);
                 frmUntitledGaming.getContentPane().add(panel_6);
 
                 JButton btnGioca_1 = new JButton("Leggi Commento");
@@ -353,7 +353,7 @@ public class reviewList extends starView {
                 JTable table = new JTable(eventsListener.getReviewsByID(game));
                 String a     = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 3, 1));
 
-                int voteInt  = Integer.parseInt(table.getValueAt(row + 3, 1).toString());
+                int voteInt  = Integer.parseInt(table.getValueAt(row + 3, 3).toString());
 
                 // Get the user id
                 int b = Integer.parseInt(a);
@@ -378,7 +378,7 @@ public class reviewList extends starView {
 
                 LevelBar lb = new LevelBar(defaultIcon, list, 2);
                 panel_7.add(makeStarRatingPanel("", lb));
-                lb.setLevel(voteInt);
+                lb.setLevel(voteInt-1);
                 frmUntitledGaming.getContentPane().add(panel_7);
 
                 JButton btnGioca_2 = new JButton("Leggi Commento");

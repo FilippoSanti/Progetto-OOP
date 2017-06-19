@@ -272,12 +272,16 @@ public class editData {
 
                     // Check for the dd/MM/yyyy format (with slashes) and replace the characters
                     if (textField_2.getText().matches("\\d{2}/\\d{2}/\\d{4}")) {
-                        dateText = dateText.replaceAll("/", "-");
+                        dateText = textField_2.getText().replaceAll("/", "-");
                     }
 
                     // Check again if the date format is valid (dd-MM-yyyy)
-                    if (!textField_2.getText().matches("\\d{2}-\\d{2}-\\d{4}")) {
+                    if (!dateText.matches("\\d{2}-\\d{2}-\\d{4}")) {
                         throw new BusinessException("The date format is not valid");
+                    }
+
+                    if (textField_2.getText().matches("\\d{2}-\\d{2}-\\d{4}")) {
+                        dateText = textField_2.getText();
                     }
 
                     // Validate the email field
@@ -287,41 +291,34 @@ public class editData {
                     }
 
                     // If the username is different, we update it
-                    if (!textField_4.getText().equals(utente.getEmail())) {
+                    if (!utente.getNome().equals(textField) && textField_4.getText().equals(utente.getEmail())) {
                         if (business.implementation.DBManager.checkUsername(textField_4.getText())) {
                             throw new BusinessException("The username is not available, try again");
                         }
                     }
 
                     frmUntitledGaming.dispose();
-                    if (eventsListener.setUtente(eventsListener.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), textField_2.getText(),
-                            textField_3.getText(), passText, textField_4.getText())) {
-Utente utenteModificato = new Utente();
+                    if (eventsListener.setUtente(eventsListener.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), dateText, textField_3.getText(), passText, textField_4.getText())) {
+                                Utente utenteModificato = new Utente();
                         try {
                              utenteModificato = new Utente (utente.getUserId(), textField_4.getText(), textField.getText(), textField_1.getText(), passText,
-                                    textField_3.getText(), utente.getTipo(),  DBManager.stringToDate(textField_2.getText()));
+                                    textField_3.getText(), utente.getTipo(), DBManager.stringToDate(dateText));
                             eventsListener.changePage("profile", utenteModificato);
 
                         } catch (ParseException e1) {
                             e1.printStackTrace();
                         }
 
-
                         JOptionPane.showMessageDialog(null, "Updated successfully");
                     } else {
                         throw new BusinessException("Internal error, try again");
                     }
-
-
-
-
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
 
             }
         });
-
         frmUntitledGaming.setVisible(true);
     }
 }
