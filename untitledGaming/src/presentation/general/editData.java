@@ -184,7 +184,7 @@ public class editData {
             
         });
         
-        passwordField.setToolTipText("The password must be at least 6 characters long");
+        passwordField.setToolTipText("La password deve contenere ALMENO 6 caratteri");
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         passwordField.setForeground(Color.GRAY);
         passwordField.setFont(new Font("Georgia", Font.ITALIC, 20));
@@ -258,7 +258,7 @@ public class editData {
                     if (textField.getText().equals(nameText) && textField_1.getText().equals(cognome)
                             && textField_2.getText().equals(dateText) && textField_3.getText().equals(emailText) &&
                             textField_4.getText().equals(userText) && passText.equals("Password ")) {
-                        throw new BusinessException("Nothing has changed");
+                        throw new BusinessException("Non è stato effettuato alcun cambiamento");
                     }
 
                     // If the user doesn't want to update his password, we pass an empty string to setUtente()
@@ -267,7 +267,7 @@ public class editData {
                     } else {
 
                         if (passText.length() < 6) {
-                            throw new BusinessException("The password must be at least 6 characters long");
+                            throw new BusinessException("La password deve contenere ALMENO 6 caratteri");
                         }
                     }
 
@@ -278,7 +278,7 @@ public class editData {
 
                     // Check again if the date format is valid (dd-MM-yyyy)
                     if (!dateText.matches("\\d{2}-\\d{2}-\\d{4}")) {
-                        throw new BusinessException("The date format is not valid");
+                        throw new BusinessException("il formato della data non è valido");
                     }
 
                     if (textField_2.getText().matches("\\d{2}-\\d{2}-\\d{4}")) {
@@ -288,13 +288,13 @@ public class editData {
                     // Validate the email field
                     if (!textField_3.getText().equals(utente.getUsername()))
                     if (!business.implementation.DBManager.isValidEmailAddress(textField_3.getText())) {
-                        throw new BusinessException("Enter a valid email");
+                        throw new BusinessException("Inserisci un indirizzo e-mail valido");
                     }
 
                     // If the username is different, we update it
                     if (!utente.getNome().equals(textField) && textField_4.getText().equals(utente.getEmail())) {
                         if (business.implementation.DBManager.checkUsername(textField_4.getText())) {
-                            throw new BusinessException("The username is not available, try again");
+                            throw new BusinessException("Questo username non è disponibile, riprova");
                         }
                     }
 
@@ -310,9 +310,9 @@ public class editData {
                             e1.printStackTrace();
                         }
 
-                        JOptionPane.showMessageDialog(null, "Updated successfully");
+                        JOptionPane.showMessageDialog(null, "Modifiche eseguite con successo");
                     } else {
-                        throw new BusinessException("Internal error, try again");
+                        throw new BusinessException("Errore interno, riprova");
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();
