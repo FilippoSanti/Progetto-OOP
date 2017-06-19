@@ -14,13 +14,20 @@ import java.sql.SQLException;
 public class ReviewManagement {
 
     /* Adds a new review */
-    public boolean newReview(Utente utente, String text, int giocoId, double vote) throws SQLException {
+    public boolean newReview(Utente utente, String text, int giocoId, double vote, boolean approved) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
-        String insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
-                "(?, ?, ?, ?, false)";
+        String insertTableSQL = null;
+
+        if (!approved) {
+           insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
+                    "(?, ?, ?, ?, false)";
+        } else {
+            insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
+                    "(?, ?, ?, ?, true)";
+        }
 
         PreparedStatement preparedStatement = null;
 

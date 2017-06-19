@@ -24,7 +24,7 @@ public class DBManager {
         // DB Config
         String dbAddress = "jdbc:mysql://localhost:3306/untitled_gaming";
         String dbUser = "root";
-        String dbPassword = "";
+        String dbPassword = "Provatest123!";
         Connection dbConnection = null;
 
         // Check if JDBC driver exists
@@ -134,6 +134,25 @@ public class DBManager {
             return true;
         }
         return false;
+    }
+
+    public static String getUserType(int user_id) throws SQLException {
+
+        String userType = null;
+
+        // DB Connection
+        Connection connection = Connect();
+
+        // Prepare and execute the query
+        PreparedStatement st = connection.prepareStatement("select tipo from utente where user_id = ?");
+        st.setInt(1, user_id);
+        ResultSet rs = st.executeQuery();
+
+        if (rs.next()) {
+            userType = rs.getString("tipo");
+        }
+
+        return userType;
     }
 
     public static boolean updatePassword(int userID, String password) throws SQLException {
@@ -369,4 +388,5 @@ public class DBManager {
 
         return imageType;
     }
+
 }

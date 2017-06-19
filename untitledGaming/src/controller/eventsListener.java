@@ -120,8 +120,8 @@ public class eventsListener {
         return new UserManagement().setUtente(utente, nome, cognome, date, email, password, newUsername);
     }
 
-    public static void newReview(Utente utente, String review, int giocoId, double vote) throws SQLException {
-        if (new ReviewManagement().newReview(utente, review, giocoId, vote)) {
+    public static void newReview(Utente utente, String review, int giocoId, double vote, boolean approved) throws SQLException {
+        if (new ReviewManagement().newReview(utente, review, giocoId, vote, approved)) {
             JOptionPane.showMessageDialog(null, "Review aggiunta correttamente. In attesa di approvazione");
         }
 

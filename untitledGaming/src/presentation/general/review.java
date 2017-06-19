@@ -106,9 +106,21 @@ public class review extends starEdit {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
 
+                // Check if the user is a moderator, if so, automatically approve the review
+                try {
+                    if (business.implementation.DBManager.getUserType(utente.getUserId()).equals("moderator") ||
+                            business.implementation.DBManager.getUserType(utente.getUserId()).equals("administrator")) {
+                        int vote = lb.getLevel();
+                        controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, true);
+                        new reviewList(utente, 0, gioco_id);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
                 try {
                     int vote = lb.getLevel();
-                    controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1);
+                    controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, false);
                     new reviewList(utente, 0, gioco_id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
