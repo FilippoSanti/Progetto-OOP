@@ -250,7 +250,7 @@ public class profile {
                         System.out.println(imgTypePassed[0].length());
 
                         if (!imgTypePassed[0].equals("png") && !imgTypePassed[0].equals("JPEG")) {
-                            throw new BusinessException("Wrong file type");
+                            throw new BusinessException("Tipo di file errato");
                         }
 
                     } catch (IOException e1) {
@@ -259,12 +259,12 @@ public class profile {
 
                     // Store the image into the DB
                     if (business.implementation.DBManager.setImg(utente.getUserId(), selectedfile)) {
-                        JOptionPane.showMessageDialog(frmUntitledGaming, "Propic set successfully");
+                        JOptionPane.showMessageDialog(frmUntitledGaming, "Operazione riuscita");
                         frmUntitledGaming.dispose();
                         controller.eventsListener.changePage("profile", utente);
 
                     } else {
-                        throw new BusinessException("Error during the upload, try again");
+                        throw new BusinessException("Errore durante il caricamento dell'immagine, riprova");
                     }
                 }
             }
@@ -349,7 +349,7 @@ public class profile {
             String stringaxp = Integer.toString(xp);
 
             JLabel label = new JLabel(stringaxp);
-            label.setToolTipText("XP point");
+            label.setToolTipText("punti XP");
             label.setHorizontalAlignment(SwingConstants.CENTER);
             label.setForeground(Color.DARK_GRAY);
             label.setFont(new Font("Georgia", Font.ITALIC, 17));
