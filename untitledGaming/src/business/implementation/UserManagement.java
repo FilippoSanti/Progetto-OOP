@@ -406,9 +406,7 @@ public class UserManagement {
     public boolean addXp(Utente utente, int xP) throws SQLException {
 
         Connection dbConnection = business.implementation.DBManager.Connect();
-         if (xP + eventsListener.getGameProfile(utente.getUserId()).getEsperienza() < 0) {
-             JOptionPane.showMessageDialog(null, "Sei riuscito ad andare in negativo! Esperienza settata a 0");
-             xP = 0; }
+
         // Query
         String addXP = "UPDATE game_profile SET `punti_esperienza` = game_profile.punti_esperienza + ? "
                 + "WHERE `user_id` = ?";
@@ -886,7 +884,6 @@ public class UserManagement {
             eventsListener.addXP(utente, 100);
             esperienza_sessione = 100;
             eventsListener.checkLivello(getGameProfile(utente.getUserId()));
-
         }
 
         if (result == 1) {
@@ -912,9 +909,4 @@ public class UserManagement {
 
         return tm;
     }
-
-
 }
-
-
-

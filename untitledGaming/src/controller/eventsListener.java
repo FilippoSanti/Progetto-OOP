@@ -4,6 +4,7 @@ import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.*;
 import presentation.general.*;
+import testing_snake.startSnake;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -319,6 +320,10 @@ public class eventsListener {
 
             case "approveComment" :
                 new approveComment(utente, null);
+                break;
+
+            case "Snake" :
+                new startSnake(utente);
                 break;
 
             case "SlotMachineGUI" :
