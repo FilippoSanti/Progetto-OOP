@@ -88,13 +88,19 @@ public class SlotMachineGUI {
                             eventsListener.addTimeline(utente.getUserId(), 1, DBManager.getCurrentData(), credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
                         }
 
-                        if (credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza() > 1500)
-                        { JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giorno Fortunato !");
-                        eventsListener.insertAchievementToProfile(utente.getUserId(), 8); }
+                        if (credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza() > 1500) {
+                            if (!eventsListener.AchievementFoundOnProfile(8, utente.getUserId())) {
+                                eventsListener.insertAchievementToProfile(utente.getUserId(), 8);
+                                JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giorno Fortunato !");
+                            }
+                        }
 
-                        if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() - credits  > 290)
-                        { JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giocatore d' azzardo !");
-                            eventsListener.insertAchievementToProfile(utente.getUserId(), 7); }
+                        if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() - credits  > 290) {
+                            if (!eventsListener.AchievementFoundOnProfile(7, utente.getUserId())) {
+                                JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giocatore d' azzardo !");
+                                eventsListener.insertAchievementToProfile(utente.getUserId(), 7);
+                            }
+                        }
 
                         eventsListener.addXP(utente, credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
 
