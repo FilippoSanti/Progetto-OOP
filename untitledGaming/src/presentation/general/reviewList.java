@@ -270,16 +270,16 @@ public class reviewList extends starView {
                     }
                 });
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         label_1.setHorizontalAlignment(SwingConstants.CENTER);
         label_1.setForeground(Color.DARK_GRAY);
         label_1.setFont(new Font("Oregano", Font.PLAIN, 21));
         label_1.setBounds(166, 242, 211, 30);
         frmUntitledGaming.getContentPane().add(label_1);
-
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
         /** Review 3 **/
         JLabel label_2 = null;
         try {
@@ -336,16 +336,16 @@ public class reviewList extends starView {
                     }
                 });
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         label_2.setHorizontalAlignment(SwingConstants.CENTER);
         label_2.setForeground(Color.DARK_GRAY);
         label_2.setFont(new Font("Oregano", Font.PLAIN, 21));
         label_2.setBounds(166, 357, 211, 30);
         frmUntitledGaming.getContentPane().add(label_2);
-
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
         /** Review 4 **/
         JLabel label_3 = null;
         try {
@@ -401,14 +401,14 @@ public class reviewList extends starView {
                     }
                 });
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
         label_3.setHorizontalAlignment(SwingConstants.CENTER);
         label_3.setForeground(Color.DARK_GRAY);
         label_3.setFont(new Font("Oregano", Font.PLAIN, 21));
         label_3.setBounds(166, 475, 211, 30);
         frmUntitledGaming.getContentPane().add(label_3);
-
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
     }
 }

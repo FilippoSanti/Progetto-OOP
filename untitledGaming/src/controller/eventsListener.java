@@ -255,7 +255,7 @@ public class eventsListener {
     }
 
     /* Change the current JFrame */
-    public static void changePage(String page, Utente utente) {
+    public static void changePage(String page, Utente utente){
         switch (page) {
             case "startPage":
                 new startPage();
@@ -321,7 +321,18 @@ public class eventsListener {
                 new approveComment(utente, null);
                 break;
 
-
+            case "SlotMachineGUI" :
+                try {
+                    if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() < 15 ) {
+                        JOptionPane.showMessageDialog(null, "Aggiunti 100 crediti");
+                        new SlotMachineGUI(utente, eventsListener.getGameProfile(utente.getUserId()).getEsperienza()+ 100, 100, 15, 25, 5, 7, 7, 7);
+                    } else {
+                        new SlotMachineGUI(utente, eventsListener.getGameProfile(utente.getUserId()).getEsperienza(), 100, 15, 25, 5, 7, 7, 7);
+                    }
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
 

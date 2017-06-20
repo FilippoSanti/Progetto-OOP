@@ -1,14 +1,21 @@
 package presentation.general;
 
+import business.implementation.DBManager;
+import business.model.Utente;
+import business.model.gameProfile;
+import controller.eventsListener;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.*;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.ArrayList;
 import javax.swing.border.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import static oracle.jrockit.jfr.events.Bits.intValue;
 
 public class SlotMachineGUI {
 
@@ -25,8 +32,10 @@ public class SlotMachineGUI {
     private int reel1 = 7, reel2 = 7, reel3 = 7; // starting values of the reels.
     private ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
     private DecimalFormat df = new DecimalFormat("0.00");
+    Utente utente;
 
-    public SlotMachineGUI(int credits, int boughtCredits, int bet, double payout, double creditBuyout, int reel1, int reel2, int reel3) {
+    public SlotMachineGUI(Utente c, int credits, int boughtCredits, int bet, double payout, double creditBuyout, int reel1, int reel2, int reel3) {
+        this.utente = c;
         this.credits=credits;
         this.boughtCredits=boughtCredits;
         this.bet=bet;
@@ -58,7 +67,51 @@ public class SlotMachineGUI {
     private void createForm() {
 
         frmFrame = new JFrame();
-        frmFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frmFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        WindowListener exitListener = new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int confirm = JOptionPane.showOptionDialog(
+                        null, "Vuoi davvero chiudere l' applicazione? I soldi rimanenti verrando convertiti in exp",
+                        "Conferma Uscita", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (confirm == 0) {
+
+                    try {
+                        if (DBManager.checkTimeline(utente.getUserId())) {
+                            eventsListener.updateTimeline(utente.getUserId(),
+                                    DBManager.getCurrentData(), credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza(), 2);
+                        }
+                        else {
+                            eventsListener.addTimeline(utente.getUserId(), 1, DBManager.getCurrentData(), credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
+                        }
+
+                        if (credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza() > 1500)
+                        { JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giorno Fortunato !");
+                        eventsListener.insertAchievementToProfile(utente.getUserId(), 8); }
+
+                        if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() - credits  > 290)
+                        { JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giocatore d' azzardo !");
+                            eventsListener.insertAchievementToProfile(utente.getUserId(), 7); }
+
+                        eventsListener.addXP(utente, credits + (intValue(funds) * 100/5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
+
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                    frmFrame.setVisible(false);
+                    eventsListener.changePage("allGames", utente);
+
+
+                }
+            }
+        };
+
+        frmFrame.addWindowListener(exitListener);
+
+
         frmFrame.setTitle("Warner Slots");
         frmFrame.setResizable(false);
         frmFrame.setVisible(true);
@@ -632,7 +685,7 @@ public class SlotMachineGUI {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new SlotMachineGUI();
+                new SlotMachineGUI(null, 1000 , 1500, 15, 25, 1, 7, 7, 7);
             }
         });
 
