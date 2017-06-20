@@ -247,14 +247,13 @@ public class profile {
 
                     try {
                         imgTypePassed[0] = DBManager.getImageType(selectedfile);
-                        System.out.println(imgTypePassed[0].length());
-
-                        if (!imgTypePassed[0].equals("png") && !imgTypePassed[0].equals("JPEG")) {
-                            throw new BusinessException("Tipo di file errato");
-                        }
-
                     } catch (IOException e1) {
                         e1.printStackTrace();
+                    }
+
+                    // Check the file type again to avoid errors
+                    if (!imgTypePassed[0].equals("png") && !imgTypePassed[0].equals("JPEG")) {
+                        throw new BusinessException("Tipo di file errato");
                     }
 
                     // Store the image into the DB
@@ -271,36 +270,46 @@ public class profile {
         });
 
         try {
-            if (DBManager.checkImage(utente.getUserId())) {
 
-                // If the image type is equal to a format, we change its extension
-                if (imgTypePassed[0].equals("JPEG")) {
-                    imgTypePassed[0] = "jpg";
-                } else if (imgTypePassed[0].equals("png")) {
-                    imgTypePassed[0] = "png";
-                } else if (imgTypePassed[0].equals("gif")) {
-                    imgTypePassed[0] = "gif";
-                }
+            if (DBManager.checkImage(utente.getUserId())) {
 
                 // Declare the panel
                 Panel panel = new Panel();
 
                 // Image name
                 String imgName = "propic";
+                String imgDir = "./src/presentation/";
 
                 // Image path
-                String imgPath = "./src/presentation/" + imgName + "." + imgTypePassed[0];
+                String imgPath = imgDir + imgName;
 
-                imgTypePassed[0] = "";
+                business.implementation.DBManager.getImg(utente.getUserId(), imgPath);
 
                 File imgFile = new File(imgPath);
+                String ext = null;
+                try {
+                    ext = DBManager.getImageType(imgFile);
+                    System.out.println(ext);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Check the file type to give it a real extension
+                if (ext.equals("JPEG")) {
+                    ext = ".jpg";
+                } else if (ext.equals("png")) {
+                    ext = ".png";
+                } else if (ext.equals("gif")) {
+                    ext = ".gif";
+                }
+
+                // Save the img + its extesion
+                imgPath += ext;
+                business.implementation.DBManager.getImg(utente.getUserId(), imgPath);
 
                 // Show the image in the JPanel
                 BufferedImage myPicture = null;
                 try {
-
-                    // Get the image
-                    business.implementation.DBManager.getImg(utente.getUserId(), imgPath);
 
                     myPicture = ImageIO.read(new File(imgPath));
 
@@ -314,6 +323,8 @@ public class profile {
                 // Propic panel with the user image
                 panel.setBounds(94, 105, 175, 175);
                 frmUntitledGaming.getContentPane().add(panel);
+
+                business.implementation.DBManager.deleteFilesForPathByPrefix(imgDir, imgName);
 
             } else {
 

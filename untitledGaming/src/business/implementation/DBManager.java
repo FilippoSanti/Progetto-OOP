@@ -9,6 +9,10 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,7 +28,7 @@ public class DBManager {
         // DB Config
         String dbAddress = "jdbc:mysql://localhost:3306/untitled_gaming";
         String dbUser = "root";
-        String dbPassword = "";
+        String dbPassword = "Provatest123!";
         Connection dbConnection = null;
 
         // Check if JDBC driver exists
@@ -386,7 +390,23 @@ public class DBManager {
             imageType = reader.getFormatName();
         }
 
+        if (imageType == null) {
+            throw new BusinessException("Errore durante la lettura del file");
+        }
         return imageType;
     }
 
+    /* Delete an image after it's been downloaded */
+    public static boolean deleteFilesForPathByPrefix(final String path, final String prefix) {
+        boolean success = true;
+        try (DirectoryStream<Path> newDirectoryStream = Files.newDirectoryStream(Paths.get(path), prefix + "*")) {
+            for (final Path newDirectoryStreamItem : newDirectoryStream) {
+                Files.delete(newDirectoryStreamItem);
+            }
+        } catch (final Exception e) {
+            success = false;
+            e.printStackTrace();
+        }
+        return success;
+    }
 }
