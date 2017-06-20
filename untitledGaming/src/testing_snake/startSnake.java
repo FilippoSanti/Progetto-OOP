@@ -1,10 +1,11 @@
 package testing_snake;
 
 import business.model.Utente;
-
-import javax.swing.JFrame;
-import java.awt.*;
-
+import controller.eventsListener;
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 public class startSnake {
 
     Utente utente;
@@ -21,9 +22,26 @@ public class startSnake {
 
         //Setting up the window settings
         f1.setTitle("Snake");
-        f1.setSize(300, 300);
+        f1.setSize(700, 700);
         f1.setVisible(true);
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        WindowListener exitListener = new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int confirm = JOptionPane.showOptionDialog(
+                        null, "Vuoi davvero chiudere l' applicazione?",
+                        "Conferma Uscita", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (confirm == 0) {
+                    f1.setVisible(false);
+                    eventsListener.changePage("allGames", utente);
+                }
+            }
+        };
+        f1.addWindowListener(exitListener);
+        f1.setLocationRelativeTo(null);
 
     }
 }
