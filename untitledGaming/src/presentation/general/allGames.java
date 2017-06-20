@@ -205,6 +205,12 @@ public class allGames {
                 btnGioca.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 btnGioca.setBounds(743, 236, 142, 30);
                 frmUntitledGaming.getContentPane().add(btnGioca);
+                btnGioca.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        frmUntitledGaming.setVisible(false);
+                        eventsListener.changePage(titolo1, utente);
+                    }
+                });
 
                 // Button recensioni
                 JButton button_2 = new JButton("Recensioni");

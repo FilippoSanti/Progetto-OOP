@@ -315,9 +315,13 @@ public class eventsListener {
 
             case "userList" :
                 new usersList(utente, 0);
+                break;
 
             case "approveComment" :
                 new approveComment(utente, null);
+                break;
+
+
         }
     }
 
