@@ -13,7 +13,7 @@ public class ThreadsController extends Thread {
     Tuple headSnakePos;
     int esperienza;
     int sizeSnake = 3;
-    long speed = 50;
+    long speed = 60;
     public static int directionSnake;
     Utente utente;
 
@@ -75,6 +75,10 @@ public class ThreadsController extends Thread {
         boolean eatingFood = posCritique.getX() == foodPosition.y && posCritique.getY() == foodPosition.x;
         if (eatingFood) {
             esperienza += 10;
+
+            // The speed increases every time you eat something
+            speed-= 1;
+
             System.out.println("Yummy!");
             sizeSnake = sizeSnake + 1;
             foodPosition = getValAleaNotInSnake();
