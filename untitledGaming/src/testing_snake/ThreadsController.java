@@ -1,10 +1,14 @@
 package testing_snake;
 
+import business.implementation.DBManager;
 import business.model.Utente;
+import controller.eventsListener;
 
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static oracle.jrockit.jfr.events.Bits.intValue;
 
 
 // Controls all the game logic..most important class in this project.
@@ -13,7 +17,7 @@ public class ThreadsController extends Thread {
     Tuple headSnakePos;
     int esperienza;
     int sizeSnake = 3;
-    long speed = 60;
+    long speed = 80;
     public static int directionSnake;
     Utente utente;
 
@@ -78,8 +82,6 @@ public class ThreadsController extends Thread {
 
             // The speed increases every time you eat something
             speed-= 1;
-
-            System.out.println("Yummy!");
             sizeSnake = sizeSnake + 1;
             foodPosition = getValAleaNotInSnake();
 
@@ -89,14 +91,44 @@ public class ThreadsController extends Thread {
 
     //Stops The Game
     private void stopTheGame() throws SQLException {
-        System.out.println("COLLISION! \n");
         controller.eventsListener.addXP(utente, esperienza);
-        JOptionPane.showMessageDialog(null, "I punti xp guadagnati sono stati aggiunti al profilo, " +
-                "chiudi la finestra per terminare la sessione di gioco");
+        eventsListener.checkLivello(eventsListener.getGameProfile(utente.getUserId()));
+        JOptionPane.showMessageDialog(null, "Punti xp guadagnati nella sessione: " + esperienza + "." +
+                " Chiudi il gioco per terminare");
+
+        try {
+
+            // Achievement 1
+            if (esperienza >= 100 ) {
+                if (!eventsListener.AchievementFoundOnProfile(9, utente.getUserId())) {
+                    JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Inarrestabile !");
+                    eventsListener.insertAchievementToProfile(utente.getUserId(), 9);
+                }
+            }
+
+            // Achievement 2
+            if (sizeSnake >= 30 ) {
+                if (!eventsListener.AchievementFoundOnProfile(10, utente.getUserId())) {
+                    JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Serpentone !");
+                    eventsListener.insertAchievementToProfile(utente.getUserId(), 10);
+                }
+            }
+
+            // Achievement 3
+            if (sizeSnake == 3 && esperienza == 0 ) {
+                if (!eventsListener.AchievementFoundOnProfile(11, utente.getUserId())) {
+                    JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Digiuno !");
+                    eventsListener.insertAchievementToProfile(utente.getUserId(), 11);
+                }
+            }
+
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
         while (true) {
             pauser();
         }
-
     }
 
     //Put food in a position and displays it
@@ -183,9 +215,5 @@ public class ThreadsController extends Thread {
                 cmpt--;
             }
         }
-    }
-
-    public int getXP () {
-        return this.esperienza;
     }
 }

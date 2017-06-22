@@ -18,6 +18,7 @@ public class startSnake {
     private void init() {
 
         //Creating the window with all its awesome snaky features
+
         Window f1 = new Window(utente);
 
         //Setting up the window settings
@@ -26,6 +27,7 @@ public class startSnake {
         f1.setVisible(true);
         f1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
+        Window finalF = f1;
         WindowListener exitListener = new WindowAdapter() {
 
             @Override
@@ -35,13 +37,14 @@ public class startSnake {
                         "Conferma Uscita", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (confirm == 0) {
-                    f1.setVisible(false);
+                    finalF.setVisible(false);
                     eventsListener.changePage("allGames", utente);
                 }
             }
         };
         f1.addWindowListener(exitListener);
         f1.setLocationRelativeTo(null);
+
 
     }
 }

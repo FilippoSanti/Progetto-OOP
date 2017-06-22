@@ -9,16 +9,18 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 
-class Window extends JFrame{
+class Window extends JFrame {
+
 	private static final long serialVersionUID = -2542001418764869760L;
 	public static ArrayList<ArrayList<DataOfSquare>> Grid;
 	public static int width = 20;
 	public static int height = 20;
 	Utente utente;
 
-	public Window(Utente u){
+	public Window(Utente u) {
 
 		this.utente = u;
+
 		// Creates the arraylist that'll contain the threads
 		Grid = new ArrayList<ArrayList<DataOfSquare>>();
 		ArrayList<DataOfSquare> data;
@@ -52,6 +54,8 @@ class Window extends JFrame{
 
 		// Links the window to the keyboardlistenner.
 		this.addKeyListener((KeyListener) new KeyboardListener());
+
+
 
 		//To do : handle multiplayers .. The above works, test it and see what happens
 		
