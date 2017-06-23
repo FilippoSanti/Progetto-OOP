@@ -40,11 +40,11 @@ public class review extends starEdit {
         frmUntitledGaming.setLocationRelativeTo(null);
         frmUntitledGaming.getContentPane().setLayout(null);
 
-        JLabel lblValutaQuestoGioco = new JLabel("Valutazione");
+        JLabel lblValutaQuestoGioco = new JLabel("Valutazione:");
         lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);
-        lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.CENTER);
         lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 30));
-        lblValutaQuestoGioco.setBounds(10, 63, 401, 52);
+        lblValutaQuestoGioco.setBounds(10, 63, 924, 52);
         frmUntitledGaming.getContentPane().add(lblValutaQuestoGioco);
 
         JLabel lblScriviUnCommento = new JLabel("Scrivi Commento:");

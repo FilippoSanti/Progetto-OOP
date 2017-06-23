@@ -3,11 +3,15 @@ package presentation.general;
 import business.model.Utente;
 import controller.eventsListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class timelineView {
@@ -70,8 +74,14 @@ public class timelineView {
         frmUntitledGaming.getContentPane().add(lblPuntiXpGuadagnati);
 
         JPanel panel = new JPanel();
-        panel.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
-        panel.setBackground(Color.CYAN);
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalgamesLogo.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+        panel.add(picLabel);
         panel.setBounds(311, 178, 90, 90);
         frmUntitledGaming.getContentPane().add(panel);
 
