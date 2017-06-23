@@ -347,34 +347,14 @@ public class DBManager {
         return text;
     }
 
-    /**
-     * Scale an image
-     *
-     * @param imageString image to scale
-     * @param imageType type of image
-     * @param dWidth width of destination image
-     * @param dHeight height of destination image
-     * @param fWidth x-factor for transformation / scaling
-     * @param fHeight y-factor for transformation / scaling
-     * @return scaled image
-     */
-    public static BufferedImage scaleImage(String imageString, int imageType, int dWidth, int dHeight, double fWidth, double fHeight) {
+    // Resize an image
+    public static BufferedImage resizeImg(BufferedImage originalImage, int type, int width, int height){
+        BufferedImage resizedImage = new BufferedImage(width, height, type);
+        Graphics2D g = resizedImage.createGraphics();
+        g.drawImage(originalImage, 0, 0, width, width, null);
+        g.dispose();
 
-        BufferedImage img = null;
-        BufferedImage dbi = null;
-
-        try {
-            img = ImageIO.read(new File(imageString));
-        } catch (IOException e) {
-        }
-
-        if(img != null) {
-            dbi = new BufferedImage(dWidth, dHeight, imageType);
-            Graphics2D g = dbi.createGraphics();
-            AffineTransform at = AffineTransform.getScaleInstance(fWidth, fHeight);
-            g.drawRenderedImage(img, at);
-        }
-        return dbi;
+        return resizedImage;
     }
 
     /* Returns the format of an image if successful, null otherwise*/

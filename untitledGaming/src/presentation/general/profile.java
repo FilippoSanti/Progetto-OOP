@@ -244,6 +244,7 @@ public class profile {
                 int retVal = jfc.showOpenDialog(frmUntitledGaming);
                 if (retVal == JFileChooser.APPROVE_OPTION) {
                     File selectedfile = jfc.getSelectedFile();
+                    String tempFileExt = null;
 
                     try {
                         imgTypePassed[0] = DBManager.getImageType(selectedfile);
@@ -251,9 +252,29 @@ public class profile {
                         e1.printStackTrace();
                     }
 
+                    // Save the image type to resize it later
+                    if (imgTypePassed[0].equals("JPEG")) {
+                        tempFileExt = "jpg";
+                    } else if (imgTypePassed[0].equals("png")) {
+                        tempFileExt = "png";
+                    } else if (imgTypePassed[0].equals("gif")) {
+                        tempFileExt = "gif";
+                    }
+
                     // Check the file type again to avoid errors
                     if (!imgTypePassed[0].equals("png") && !imgTypePassed[0].equals("JPEG")) {
                         throw new BusinessException("Tipo di file errato");
+                    }
+
+                    // Resize the image before storing it
+                    try {
+                        BufferedImage originalImage = ImageIO.read(selectedfile);
+                        int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+                        BufferedImage buffimg = business.implementation.DBManager.resizeImg(originalImage, type, 175, 170);
+                        ImageIO.write(buffimg, tempFileExt, selectedfile);
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
                     }
 
                     // Store the image into the DB
@@ -289,12 +310,11 @@ public class profile {
                 String ext = null;
                 try {
                     ext = DBManager.getImageType(imgFile);
-                    System.out.println(ext);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                // Check the file type to give it a real extension
+                // Check the file type to give it a 'real' extension
                 if (ext.equals("JPEG")) {
                     ext = ".jpg";
                 } else if (ext.equals("png")) {
