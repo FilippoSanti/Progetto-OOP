@@ -45,7 +45,7 @@ public class approveComment {
 
         JButton btnApprovaCommento = new JButton("Approva Recensione");
         btnApprovaCommento.setToolTipText("Approva Recensione");
-        btnApprovaCommento.setForeground(new Color(50, 205, 50));
+        btnApprovaCommento.setForeground(new Color(24, 160, 10));
         btnApprovaCommento.setBackground(new Color(152, 251, 152));
         btnApprovaCommento.setFont(new Font("MV Boli", Font.ITALIC, 18));
         btnApprovaCommento.setBounds(124, 545, 260, 46);
@@ -68,7 +68,7 @@ public class approveComment {
 
         JButton btnEliminaCommento = new JButton("Elimina Recensione");
         btnEliminaCommento.setToolTipText("Elimina Recensione");
-        btnEliminaCommento.setForeground(new Color(255, 47, 13));
+        btnEliminaCommento.setForeground(new Color(155, 17, 0));
         btnEliminaCommento.setFont(new Font("MV Boli", Font.ITALIC, 18));
         btnEliminaCommento.setBackground(new Color(240, 142, 126));
         btnEliminaCommento.setBounds(560, 545, 260, 46);

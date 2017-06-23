@@ -243,7 +243,7 @@ public class usersList {
         }
         JButton btnPromuovi = new JButton("Promuovi");
         btnPromuovi.setBackground(new Color(143, 251, 143));
-        btnPromuovi.setForeground(new Color(26, 205, 11));
+        btnPromuovi.setForeground(new Color(24, 160, 10));
         btnPromuovi.setToolTipText("Promuovi");
         btnPromuovi.setFont(new Font("MV Boli", Font.ITALIC, 17));
         btnPromuovi.setBounds(573, 114, 142, 30);
@@ -266,7 +266,7 @@ public class usersList {
 
         JButton button_1 = new JButton("Promuovi");
         button_1.setToolTipText("Promuovi");
-        button_1.setForeground(new Color(26, 205, 11));
+        button_1.setForeground(new Color(24, 160, 10));
         button_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
         button_1.setBackground(new Color(143, 251, 143));
         button_1.setBounds(573, 237, 142, 30);
@@ -289,7 +289,7 @@ public class usersList {
 
         JButton button_2 = new JButton("Promuovi");
         button_2.setToolTipText("Promuovi");
-        button_2.setForeground(new Color(26, 205, 11));
+        button_2.setForeground(new Color(24, 160, 10));
         button_2.setFont(new Font("MV Boli", Font.ITALIC, 17));
         button_2.setBackground(new Color(143, 251, 143));
         button_2.setBounds(573, 352, 142, 30);
@@ -313,7 +313,7 @@ public class usersList {
 
         JButton button_3 = new JButton("Promuovi");
         button_3.setToolTipText("Promuovi");
-        button_3.setForeground(new Color(26, 205, 11));
+        button_3.setForeground(new Color(24, 160, 10));
         button_3.setFont(new Font("MV Boli", Font.ITALIC, 17));
         button_3.setBackground(new Color(143, 251, 143));
         button_3.setBounds(573, 470, 142, 30);
@@ -337,7 +337,7 @@ public class usersList {
 
         JButton btnDclassa = new JButton("Declassa");
         btnDclassa.setBackground(new Color(240, 142, 126));
-        btnDclassa.setForeground(new Color(255, 47, 13));
+        btnDclassa.setForeground(new Color(155, 17, 0));
         btnDclassa.setToolTipText("Declassa");
         btnDclassa.setFont(new Font("MV Boli", Font.ITALIC, 17));
         btnDclassa.setBounds(743, 113, 142, 30);
@@ -360,7 +360,7 @@ public class usersList {
 
         JButton button_5 = new JButton("Declassa");
         button_5.setToolTipText("Declassa");
-        button_5.setForeground(new Color(255, 47, 13));
+        button_5.setForeground(new Color(155, 17, 0));
         button_5.setFont(new Font("MV Boli", Font.ITALIC, 17));
         button_5.setBackground(new Color(240, 142, 126));
         button_5.setBounds(743, 235, 142, 30);
@@ -383,7 +383,7 @@ public class usersList {
 
         JButton button_6 = new JButton("Declassa");
         button_6.setToolTipText("Declassa");
-        button_6.setForeground(new Color(255, 47, 13));
+        button_6.setForeground(new Color(155, 17, 0));
         button_6.setFont(new Font("MV Boli", Font.ITALIC, 17));
         button_6.setBackground(new Color(240, 142, 126));
         button_6.setBounds(743, 351, 142, 30);
@@ -406,7 +406,7 @@ public class usersList {
 
         JButton button_7 = new JButton("Declassa");
         button_7.setToolTipText("Declassa");
-        button_7.setForeground(new Color(255, 47, 13));
+        button_7.setForeground(new Color(155, 17, 0));
         button_7.setFont(new Font("MV Boli", Font.ITALIC, 17));
         button_7.setBackground(new Color(240, 142, 126));
         button_7.setBounds(743, 469, 142, 30);
