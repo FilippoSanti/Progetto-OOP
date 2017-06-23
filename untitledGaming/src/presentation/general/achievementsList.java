@@ -331,12 +331,8 @@ public class achievementsList {
         // Achievement 4
         try {
 
-            if (row + 2 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
-                // Show an empty label
-                JPanel panel_1 = new JPanel();
-                JLabel lblNewLabel = new JLabel("Empty");
-                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                lblNewLabel.setLabelFor(panel_1);
+            if (row + 3 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+                System.out.println("testing");
             } else {
 
                 JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));

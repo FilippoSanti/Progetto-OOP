@@ -40,7 +40,7 @@ public class review extends starEdit {
         frmUntitledGaming.setLocationRelativeTo(null);
         frmUntitledGaming.getContentPane().setLayout(null);
 
-        JLabel lblValutaQuestoGioco = new JLabel("Valuta");
+        JLabel lblValutaQuestoGioco = new JLabel("Valutazione");
         lblValutaQuestoGioco.setForeground(SystemColor.textInactiveText);
         lblValutaQuestoGioco.setHorizontalAlignment(SwingConstants.RIGHT);
         lblValutaQuestoGioco.setFont(new Font("Georgia", Font.ITALIC, 30));
@@ -65,11 +65,11 @@ public class review extends starEdit {
 
             public void focusLost(FocusEvent e) {
                 if (dtrpnLasciaQuIl.getText().isEmpty())
-                    dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento");
+                    dtrpnLasciaQuIl.setText("   Lascia qui il tuo commento");
             }
         });
 
-        dtrpnLasciaQuIl.setText("   Lascia qu\u00EC il Tuo Commento");
+        dtrpnLasciaQuIl.setText("   Lascia qui il tuo commento");
         dtrpnLasciaQuIl.setFont(new Font("Oregano", Font.PLAIN, 25));
         dtrpnLasciaQuIl.setBackground(new Color(220, 220, 220));
         dtrpnLasciaQuIl.setBounds(124, 313, 696, 223);
@@ -128,13 +128,6 @@ public class review extends starEdit {
                 }
             }
         });
-
-        JLabel lblnomeGioco = new JLabel("-Nome Gioco-");
-        lblnomeGioco.setHorizontalAlignment(SwingConstants.LEFT);
-        lblnomeGioco.setForeground(SystemColor.textInactiveText);
-        lblnomeGioco.setFont(new Font("Georgia", Font.ITALIC, 30));
-        lblnomeGioco.setBounds(421, 63, 489, 52);
-        frmUntitledGaming.getContentPane().add(lblnomeGioco);
 
         JButton button = new JButton("");
         button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));

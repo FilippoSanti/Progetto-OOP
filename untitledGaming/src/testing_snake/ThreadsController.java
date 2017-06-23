@@ -122,6 +122,10 @@ public class ThreadsController extends Thread {
                 }
             }
 
+            // Update the timeline
+            eventsListener.updateTimeline(utente.getUserId(),
+                    DBManager.getCurrentData(), esperienza, 6);
+
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
