@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Giu 21, 2017 alle 14:54
--- Versione del server: 10.1.22-MariaDB
--- Versione PHP: 7.1.4
+-- Host: localhost
+-- Creato il: Giu 23, 2017 alle 13:33
+-- Versione del server: 5.7.18
+-- Versione PHP: 7.0.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -47,7 +45,10 @@ INSERT INTO `achievement` (`achievement_id`, `nome`, `descrizione`, `gioco_id`) 
 (5, 'Professionista', 'Hai guadagnato 1000 esperienza in una sola sessione', 1),
 (6, 'Flipper', 'Hai guadagnato 500 esperienza nell ultima sessione', 1),
 (7, 'Giocatore d azzardo', 'Hai girato 20 volte nella stessa sessione senza comprare crediti', 2),
-(8, 'Giorno fortunato', 'Hai vinto piu di 1500 crediti in una sessione', 2);
+(8, 'Giorno fortunato', 'Hai vinto piu di 1500 crediti in una sessione', 2),
+(9, 'Inarrestabile', 'Ottieni 500 punti xp durante una sola sessione', 6),
+(10, 'Serpentone', 'Raggiungi una lunghezza del serpente pari a 30', 6),
+(11, 'Digiuno', 'Sei riuscito a perdere senza aver mangiato nulla. Bravissimo.', 6);
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,10 @@ INSERT INTO `achievement_ottenuti` (`achievement_ottenuti_id`, `user_id`, `achie
 (27, 4, 7),
 (28, 4, 8),
 (29, 4, 7),
-(30, 4, 7);
+(30, 4, 7),
+(31, 2, 11),
+(33, 3, 1),
+(34, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -116,15 +120,15 @@ CREATE TABLE `game_profile` (
 
 INSERT INTO `game_profile` (`game_profile_id`, `user_id`, `livello`, `punti_esperienza`) VALUES
 (1, 1, 1, 0),
-(4, 3, 1, 0),
+(4, 3, 3, 400),
 (5, 4, 1, 4725),
 (6, 5, 7, 1530),
 (7, 6, 8, 2010),
 (8, 7, 1, 0),
 (9, 8, 9, 2945),
 (10, 1, 1, 0),
-(11, 2, 9, 3750),
-(12, 3, 1, 0),
+(11, 2, 9, 4290),
+(12, 3, 3, 400),
 (13, 4, 1, 4725),
 (14, 5, 1, 0),
 (15, 6, 1, 0),
@@ -155,7 +159,8 @@ INSERT INTO `gioco` (`gioco_id`, `nome`) VALUES
 (2, 'SlotMachineGUI'),
 (3, 'Gioco3'),
 (4, 'Gioco4'),
-(5, 'ShitOnCoin');
+(5, 'ShitOnCoin'),
+(6, 'Snake');
 
 -- --------------------------------------------------------
 
@@ -208,7 +213,7 @@ CREATE TABLE `timeline` (
 INSERT INTO `timeline` (`timeline_id`, `user_id`, `gioco_id`, `data_ultima_sessione`, `esperienza_guadagnata`) VALUES
 (1, 1, 1, '1111-11-11', 0),
 (2, 2, 2, '2017-06-20', 450),
-(3, 3, 1, '1111-11-11', 0),
+(3, 3, 1, '2017-06-22', 60),
 (4, 4, 2, '2017-06-20', 0),
 (5, 5, 1, '1111-11-11', 0),
 (6, 6, 1, '1111-11-11', 0),
@@ -318,12 +323,12 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `achievement`
 --
 ALTER TABLE `achievement`
-  MODIFY `achievement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `achievement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT per la tabella `achievement_ottenuti`
 --
 ALTER TABLE `achievement_ottenuti`
-  MODIFY `achievement_ottenuti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `achievement_ottenuti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT per la tabella `game_profile`
 --
@@ -333,7 +338,7 @@ ALTER TABLE `game_profile`
 -- AUTO_INCREMENT per la tabella `gioco`
 --
 ALTER TABLE `gioco`
-  MODIFY `gioco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `gioco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT per la tabella `recensione`
 --
@@ -358,7 +363,6 @@ ALTER TABLE `utente`
 --
 ALTER TABLE `achievement`
   ADD CONSTRAINT `achievement_ibfk_1` FOREIGN KEY (`gioco_id`) REFERENCES `gioco` (`gioco_id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
