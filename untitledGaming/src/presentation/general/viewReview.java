@@ -39,13 +39,13 @@ public class viewReview extends starView {
         frmUntitledGaming.getContentPane().setLayout(null);
         frmUntitledGaming.setLocationRelativeTo(null);
 
-        JLabel lblLaTuaRecensione = new JLabel("La Tua Recensione :");
+        JLabel lblLaTuaRecensione = new JLabel("Recensione :");
         lblLaTuaRecensione.setHorizontalAlignment(SwingConstants.CENTER);
         lblLaTuaRecensione.setFont(new Font("Vivaldi", Font.BOLD, 40));
         lblLaTuaRecensione.setBounds(0, 50, 944, 61);
         frmUntitledGaming.getContentPane().add(lblLaTuaRecensione);
 
-        JLabel lblScriviUnCommento = new JLabel("Il Tuo Commento :");
+        JLabel lblScriviUnCommento = new JLabel("Commento :");
         lblScriviUnCommento.setHorizontalAlignment(SwingConstants.LEFT);
         lblScriviUnCommento.setForeground(SystemColor.textInactiveText);
         lblScriviUnCommento.setFont(new Font("Georgia", Font.ITALIC, 25));

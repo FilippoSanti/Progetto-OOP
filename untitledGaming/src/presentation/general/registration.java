@@ -88,7 +88,7 @@ public class registration {
                     if (txtNickname.getText().equals("Username ") || txtNome.getText().equals("Nome ") ||
                             txtCognome.getText().equals("Cognome ") || txtEmil.getText().equals("e-mail ") ||
                             txtDate.getText().equals("Data di Nascita ") || passText.equals("Password ")) {
-                        throw new BusinessException("The fields cannot be empty");
+                        throw new BusinessException("Assicurati di riempire tutti i campi!");
                     }
 
                     // Check for the dd/MM/yyyy format (with slashes) and replace the characters
@@ -98,17 +98,17 @@ public class registration {
 
                     // Check again if the date format is valid (dd-MM-yyyy)
                     if (!dateText.matches("\\d{2}-\\d{2}-\\d{4}")) {
-                        throw new BusinessException("The date format is not valid");
+                        throw new BusinessException("Il formato della data non è valido (formati accettati: gg-mm-yyyy oppure gg/mm/yyy)");
                     }
 
                     // Check if the password is at least 6 characters
                     if (passText.length() < 6) {
-                        throw new BusinessException("The password must be at least 6 characters long");
+                        throw new BusinessException("La password deve contenere almeno 6 caratteri");
                     }
 
                     // Validate the email field
                     if (!business.implementation.DBManager.isValidEmailAddress(txtEmil.getText())) {
-                        throw new BusinessException("Enter a valid email");
+                        throw new BusinessException("Inserisci un indirizzo email valido");
                     }
 
                     frmUntitledGaming.dispose();
@@ -192,7 +192,7 @@ public class registration {
         txtEmil.setColumns(10);
 
         txtDate = new JTextField();
-        txtDate.setToolTipText("Date format dd/MM/yyyy");
+        txtDate.setToolTipText("Formato data dd/mm/yyyy");
 
         //listen for focus
         txtDate.addFocusListener(new FocusListener() {
@@ -241,7 +241,7 @@ public class registration {
         });
 		
 		passwordField.setBackground(new Color(255, 255, 255));
-		passwordField.setToolTipText("The password must be at least 6 characters long");
+		passwordField.setToolTipText("La password deve contenere almeno 6 caratteri");
 		
 		passwordField.setFont(new Font("Georgia", Font.ITALIC, 20));
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -252,7 +252,7 @@ public class registration {
 
         button = new JButton("");
         button.setIcon(new ImageIcon(getClass().getResource("imgs/back_icon.png")));
-        button.setToolTipText("Go back");
+        button.setToolTipText("Torna indietro");
         button.setBounds(10, 11, 45, 45);
 
         button.addActionListener(new ActionListener() {
