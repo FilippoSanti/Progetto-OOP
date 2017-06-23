@@ -129,7 +129,7 @@ public class achievementsList {
             JOptionPane.showMessageDialog(null, "Nessun achievement sbloccato");
         }
 
-        /** Achievement 1 */
+        // Achievement 1
         try {
             JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
             String achievementDesc = String.valueOf(table.getValueAt(row, 1));
@@ -139,7 +139,14 @@ public class achievementsList {
 
             // Achievement icon
             JPanel panel = new JPanel();
-            panel.setBackground(Color.YELLOW);
+            BufferedImage myPicture = null;
+            try {
+                myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalIconOfAchievements.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+            panel.add(picLabel);
             panel.setBounds(88, 89, 90, 90);
             frmUntitledGaming.getContentPane().add(panel);
 
@@ -206,7 +213,7 @@ public class achievementsList {
                 JPanel panel_1 = new JPanel();
                 BufferedImage myPicture = null;
                 try {
-                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/Thu'um_Master_(Achievement).png"));
+                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalIconOfAchievements.png"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -273,7 +280,14 @@ public class achievementsList {
 
                 // Achievement icon
                 JPanel panel_2 = new JPanel();
-                panel_2.setBackground(Color.GREEN);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalIconOfAchievements.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_2.add(picLabel);
                 panel_2.setBounds(88, 327, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_2);
 
@@ -332,10 +346,17 @@ public class achievementsList {
                 String gameID = String.valueOf(table.getValueAt(row + 3, 2));
 
                 // Achievement icon
-                JPanel panel_2 = new JPanel();
-                panel_2.setBackground(Color.BLACK);
-                panel_2.setBounds(88, 446, 90, 90);;
-                frmUntitledGaming.getContentPane().add(panel_2);
+                JPanel panel_3 = new JPanel();
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalIconOfAchievements.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_3.add(picLabel);
+                panel_3.setBounds(88, 446, 90, 90);;
+                frmUntitledGaming.getContentPane().add(panel_3);
 
                 // Description
                 JLabel label = new JLabel("Descrizione:");
@@ -357,16 +378,16 @@ public class achievementsList {
                 frmUntitledGaming.getContentPane().add(label_3);
 
                 // Text description
-                JTextArea txtrDescrizioneAchievementsDa = new JTextArea();
-                txtrDescrizioneAchievementsDa.setWrapStyleWord(true);
-                txtrDescrizioneAchievementsDa.setFont(new Font("MV Boli", txtrDescrizioneAchievementsDa.getFont().getStyle(), 14));
-                txtrDescrizioneAchievementsDa.setText(achievementDesc);
-                txtrDescrizioneAchievementsDa.setBackground(UIManager.getColor("Button.background"));
-                txtrDescrizioneAchievementsDa.setEditable(false);
-                txtrDescrizioneAchievementsDa.setLineWrap(true);
-                txtrDescrizioneAchievementsDa.setRows(2);
-                txtrDescrizioneAchievementsDa.setBounds(354, 344, 537, 56);
-                frmUntitledGaming.getContentPane().add(txtrDescrizioneAchievementsDa);
+                JTextArea txtrDescrizioneAchievementsDa_1 = new JTextArea();
+                txtrDescrizioneAchievementsDa_1.setWrapStyleWord(true);
+                txtrDescrizioneAchievementsDa_1.setFont(new Font("MV Boli", txtrDescrizioneAchievementsDa_1.getFont().getStyle(), 14));
+                txtrDescrizioneAchievementsDa_1.setText(achievementDesc);
+                txtrDescrizioneAchievementsDa_1.setBackground(UIManager.getColor("Button.background"));
+                txtrDescrizioneAchievementsDa_1.setEditable(false);
+                txtrDescrizioneAchievementsDa_1.setLineWrap(true);
+                txtrDescrizioneAchievementsDa_1.setRows(2);
+                txtrDescrizioneAchievementsDa_1.setBounds(354, 344, 537, 56);
+                frmUntitledGaming.getContentPane().add(txtrDescrizioneAchievementsDa_1);
             }
 
         } catch (SQLException e) {

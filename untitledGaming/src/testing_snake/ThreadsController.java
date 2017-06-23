@@ -17,7 +17,6 @@ public class ThreadsController extends Thread {
     Tuple headSnakePos;
     int esperienza;
     int sizeSnake = 3;
-    long speed = 80;
     public static int directionSnake;
     Utente utente;
 

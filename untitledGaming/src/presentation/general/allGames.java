@@ -3,10 +3,14 @@ package presentation.general;
 import business.model.Utente;
 import controller.eventsListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class allGames {
@@ -118,7 +122,14 @@ public class allGames {
             
             // Game logo
             JPanel panel = new JPanel();
-            panel.setBackground(Color.YELLOW);
+            BufferedImage myPicture = null;
+            try {
+                myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalgamesLogo.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+            panel.add(picLabel);
             panel.setBounds(65, 83, 90, 90);
             frmUntitledGaming.getContentPane().add(panel);
 
@@ -184,7 +195,14 @@ public class allGames {
 
                 // Game logo
                 JPanel panel_1 = new JPanel();
-                panel_1.setBackground(Color.BLUE);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalgamesLogo.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_1.add(picLabel);
                 panel_1.setBounds(65, 203, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_1);
 
@@ -250,7 +268,14 @@ public class allGames {
 
                 // Game logo
                 JPanel panel_2 = new JPanel();
-                panel_2.setBackground(Color.GREEN);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalgamesLogo.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_2.add(picLabel);
                 panel_2.setBounds(65, 321, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_2);
 
@@ -310,7 +335,14 @@ public class allGames {
 
                 // Game logo
                 JPanel panel_3 = new JPanel();
-                panel_3.setBackground(Color.RED);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/general/imgs/generalgamesLogo.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_3.add(picLabel);
                 panel_3.setBounds(65, 440, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_3);
 
