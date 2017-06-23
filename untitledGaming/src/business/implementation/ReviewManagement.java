@@ -22,7 +22,7 @@ public class ReviewManagement {
         String insertTableSQL = null;
 
         if (!approved) {
-           insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
+            insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
                     "(?, ?, ?, ?, false)";
         } else {
             insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
@@ -66,11 +66,11 @@ public class ReviewManagement {
     /* Get a review from a user id and game review*/
     public Review getReview(int user_id, int game_id) throws SQLException {
 
-        int     reviewId  = 0;
-        double  vote      = 0;
+        int reviewId = 0;
+        double vote = 0;
         boolean approvata = false;
-        String  text      = "";
-        int     game_text = 0;
+        String text = "";
+        int game_text = 0;
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -142,7 +142,7 @@ public class ReviewManagement {
     }
 
     /* Get every review in the db */
-    public TableModel getAllReviews () throws SQLException {
+    public TableModel getAllReviews() throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -154,7 +154,7 @@ public class ReviewManagement {
                         "       voto, \n" +
                         "       gioco_id \n" +
                         "FROM   recensione \n"
-                        );
+        );
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
@@ -200,7 +200,7 @@ public class ReviewManagement {
         return false;
     }
 
-    /* delete a review */
+    /* Delete a review */
     public boolean deleteReview(Review review) throws SQLException {
 
         Connection dbConnection = business.implementation.DBManager.Connect();
@@ -240,17 +240,13 @@ public class ReviewManagement {
     /* Find a review on a profile */
     public boolean reviewFoundOnProfile(int user_id, int game_id) throws SQLException {
 
-
         for (int i = 0; i < eventsListener.getAllReviews().getRowCount(); i++) {
-            if (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 0)).equals(String.valueOf(user_id))&&
-            (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 3)).equals(String.valueOf(game_id)))){
-
+            if (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 0)).equals(String.valueOf(user_id)) &&
+                    (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 3)).equals(String.valueOf(game_id)))) {
                 return true;
             }
         }
-
         return false;
-
     }
 
     /* Get a game id from name (used for reviews) */
@@ -263,7 +259,6 @@ public class ReviewManagement {
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement("SELECT gioco_id FROM gioco WHERE nome = ?");
-
         stmt.setString(1, gameName);
 
         ResultSet rs = stmt.executeQuery();
@@ -276,7 +271,7 @@ public class ReviewManagement {
     }
 
     /* Get the list of APPROVED reviews for a specific game */
-    public TableModel getReviewsByID (int gameID) throws SQLException {
+    public TableModel getReviewsByID(int gameID) throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();

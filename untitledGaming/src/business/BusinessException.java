@@ -2,7 +2,6 @@ package business;
 
 import javax.swing.JOptionPane;
 
-
 public class BusinessException extends RuntimeException {
 
     public BusinessException() {

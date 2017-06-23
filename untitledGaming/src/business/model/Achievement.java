@@ -1,15 +1,11 @@
 package business.model;
 
-/**
- * Created by Davide on 07/06/2017.
- */
 public class Achievement {
-    int achievement_id;
+    int achievement_id, gioco_id;
     String nome, descrizione;
-    int gioco_id;
 
-    public Achievement(int achievement_id, String nome, String descrizione, int gioco_id)
-    {
+    public Achievement(int achievement_id, String nome, String descrizione, int gioco_id) {
+
         this.achievement_id = achievement_id;
         this.descrizione = descrizione;
         this.gioco_id = gioco_id;

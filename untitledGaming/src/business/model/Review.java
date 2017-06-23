@@ -2,13 +2,12 @@ package business.model;
 
 public class Review {
 
-    int reviewId, user_id;
-    String text;
+    int reviewId, user_id, game_id;
     double vote;
     boolean approvata;
-    int game_id;
+    String text;
 
-    public Review (int reviewId, int user_id, String text, double vote, boolean approvata, int game) {
+    public Review(int reviewId, int user_id, String text, double vote, boolean approvata, int game) {
 
         this.reviewId = reviewId;
         this.user_id = user_id;
@@ -33,7 +32,9 @@ public class Review {
         return text;
     }
 
-    public int getGame_id() { return game_id; }
+    public int getGame_id() {
+        return game_id;
+    }
 
     public void setReviewId(int reviewId) {
         this.reviewId = reviewId;
@@ -43,7 +44,9 @@ public class Review {
         this.text = text;
     }
 
-    public void setGame_id(int gam) { this.game_id = gam; }
+    public void setGame_id(int gam) {
+        this.game_id = gam;
+    }
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;

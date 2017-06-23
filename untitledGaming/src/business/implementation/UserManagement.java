@@ -12,6 +12,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -23,7 +24,7 @@ public class UserManagement {
         // Convert the date string to a  java.sql.Date format
         java.sql.Date date = null;
         try {
-            date = DBManager.stringToDate(dateString);
+            date = Utils.stringToDate(dateString);
         } catch (ParseException e) {
             throw new BusinessException("Date format not valid");
         }
@@ -69,8 +70,8 @@ public class UserManagement {
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
                0 for SQL statements that return nothing
              */
-            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))
-                    && (addTimeline(eventsListener.getUserID(user), 1, date, 0))) {
+            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(UserManagement.getUserID(user))
+                    && (addTimeline(UserManagement.getUserID(user), 1, date, 0))) {
 
                 return true;
             }
@@ -168,7 +169,7 @@ public class UserManagement {
         java.sql.Date DataFinale = null;
 
         try {
-            DataFinale = DBManager.stringToDate(textDate);
+            DataFinale = Utils.stringToDate(textDate);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -318,7 +319,7 @@ public class UserManagement {
 
         // If the password is not empty, we update it into the DB
         if (!password.isEmpty()) {
-            business.implementation.DBManager.updatePassword(utente.getUserId(), password);
+            business.implementation.UserManagement.updatePassword(utente.getUserId(), password);
         }
 
         // Check if the other fields are equal to the old ones or empty
@@ -694,7 +695,7 @@ public class UserManagement {
         java.sql.Date DataFinale = null;
         try {
 
-            DataFinale = DBManager.stringToDate(textDate);
+            DataFinale = Utils.stringToDate(textDate);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -908,5 +909,301 @@ public class UserManagement {
         dbConnection.close();
 
         return tm;
+    }
+
+    /* Get the user type */
+    public static String getUserType(int user_id) throws SQLException {
+
+        String userType = null;
+
+        // DB Connection
+        Connection connection = DBManager.Connect();
+
+        // Prepare and execute the query
+        PreparedStatement st = connection.prepareStatement("select tipo from utente where user_id = ?");
+        st.setInt(1, user_id);
+        ResultSet rs = st.executeQuery();
+
+        if (rs.next()) {
+            userType = rs.getString("tipo");
+        }
+
+        return userType;
+    }
+
+    /* Update the password of a user */
+    public static boolean updatePassword(int userID, String password) throws SQLException {
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Password hashing
+        password = DBManager.hashPassword(password);
+
+        // Declare the statement
+        PreparedStatement preparedStatement = null;
+
+        String insertTableSQL = "UPDATE utente SET utente.password = ? WHERE user_id = ?";
+
+        // Insert the values into the DB
+        try {
+            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, userID);
+
+            // Insert SQL statement
+            /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
+               0 for SQL statements that return nothing
+             */
+            if (preparedStatement.executeUpdate() != 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+    /* Store a user image into the db */
+    public static boolean setImg (int userID, File imgfile) {
+        try {
+
+            // Open the connection
+            Connection con  = business.implementation.DBManager.Connect();
+            Statement  st   = con.createStatement();
+
+            FileInputStream fin  = new FileInputStream(imgfile);
+
+            // Prepare the query
+            PreparedStatement pre =
+                    con.prepareStatement("UPDATE utente\n" +
+                            "SET immagine_profilo = ?\n" +
+                            "WHERE utente.user_id = ?");
+
+            pre.setInt   (2,userID);
+
+            // Store the image into the db
+            pre.setBinaryStream(1,(InputStream)fin,(int)imgfile.length());
+            pre.executeUpdate();
+            System.out.println("Successfully inserted the file into the database!");
+
+            // Close the connection
+            pre.close();
+            con.close();
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+
+    /* Get the user profile image */
+    public static boolean getImg(int userID, String filePathName) {
+        try {
+
+            File selectedfile;
+            // Open the connection
+            Connection con = DBManager.Connect();
+
+            // Execute the query and get the ResultSet
+            PreparedStatement stmt = con.prepareStatement(
+                    "SELECT `immagine_profilo` FROM `utente` WHERE user_id = ?");
+
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+
+            int i = 0;
+            while (rs.next()) {
+                InputStream in = rs.getBinaryStream(1);
+                OutputStream f = new FileOutputStream(new File(filePathName));
+                i++;
+                int c = 0;
+                while ((c = in.read()) > -1) {
+                    f.write(c);
+                }
+                f.close();
+                in.close();
+
+                return true;
+            }
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    /* Check if the profile pic of an user exists (true) */
+    public static boolean checkImage(int userID) throws SQLException {
+
+        // DB Connection
+        Connection connection = DBManager.Connect();
+
+        int resultInt = 0;
+
+        // Prepare and execute the query
+        PreparedStatement st = null;
+
+        st = connection.prepareStatement("select immagine_profilo from utente WHERE user_id = ?");
+
+        st.setInt(1, userID);
+        ResultSet rs = st.executeQuery();
+
+        try {
+            if (rs.next()) {
+                resultInt = rs.getInt("immagine_profilo");
+            }
+
+        } catch (SQLException e) {
+            return true;
+        }
+
+        if (resultInt == 0) return false;
+        return true;
+    }
+
+    /* Get a user id from a username */
+    public static int getUserID(String user) throws SQLException {
+
+        // User id that will be returned
+        int userID = 0;
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT user_id FROM utente WHERE username = ?");
+        stmt.setString(1, user);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            userID = rs.getInt(1);
+        }
+        return userID;
+    }
+
+    public static String getUserTipo(String user) throws SQLException {
+
+        // User id that will be returned
+        String tipo = "";
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT tipo FROM utente WHERE username = ?");
+        stmt.setString(1, user);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            tipo = rs.getString(1);
+        }
+
+        return tipo;
+    }
+
+    public static String getUsername(int user_id) throws SQLException {
+        String username = "";
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT username FROM utente WHERE user_id = ?");
+        stmt.setInt(1, user_id);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            username = rs.getString(1);
+        }
+
+        return username;
+    }
+
+    public static String getGameFromId(int game_id) throws SQLException {
+        String game = "";
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT nome FROM gioco WHERE gioco_id = ?");
+        stmt.setInt(1, game_id);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            game = rs.getString(1);
+        }
+
+        return game;
+    }
+
+    /* User authentication */
+    public static boolean userAuth(String username, String password) throws SQLException {
+
+        // Get the user_id given the username
+        int userID = getUserID(username);
+
+        // DB Connection
+        Connection conn = business.implementation.DBManager.Connect();
+
+        try {
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM utente WHERE user_id = ?");
+            pst.setInt(1, userID);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String hashedPass = rs.getString("password");
+
+                //Check if the provided password and the hashed one are equal
+                if (business.implementation.DBManager.checkPassword(password, hashedPass))
+                    return true;
+                else return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
+    /* Get the game list */
+    public static ArrayList<String> getGame() throws SQLException {
+
+        // DB Connection
+        Connection dbConnection = business.implementation.DBManager.Connect();
+
+        // List of strings that will be returned later
+        ArrayList gameList = new ArrayList<String>();
+
+        // Execute the query and get the ResultSet
+        PreparedStatement stmt = dbConnection.prepareStatement(
+                "SELECT `nome` FROM `gioco`");
+        ResultSet rs = stmt.executeQuery();
+
+        // Fetch data from the result set
+        int columnCount = rs.getMetaData().getColumnCount();
+
+        while (rs.next()) {
+            for (int i = 0; i < columnCount; i++) {
+                gameList.add(rs.getString(i + 1));
+            }
+        }
+        return gameList;
     }
 }

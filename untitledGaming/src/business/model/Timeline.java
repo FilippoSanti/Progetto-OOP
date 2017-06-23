@@ -58,6 +58,4 @@ public class Timeline {
     public void setGioco_id(int gioco_id) {
         this.gioco_id = gioco_id;
     }
-
-
 }

@@ -1,19 +1,11 @@
 package business.model;
 
-/**
- * Created by Davide on 04/06/2017.
- */
 public class gameProfile {
 
-    int gameProfileId;
-    int userId;
-    int livello;
-    int esperienza;
+    int gameProfileId, userId, livello, esperienza;
 
+    public gameProfile(int gameProfileId, int userId, int livello, int esperienza) {
 
-
-    public gameProfile(int gameProfileId, int userId, int livello, int esperienza)
-    {
         this.gameProfileId = gameProfileId;
         this.userId = userId;
         this.livello = livello;
@@ -23,9 +15,10 @@ public class gameProfile {
     public int getEsperienza() {
         return esperienza;
     }
-     public int getGameProfileId() {
-         return gameProfileId;
-     }
+
+    public int getGameProfileId() {
+        return gameProfileId;
+    }
 
     public int getLivello() {
         return livello;

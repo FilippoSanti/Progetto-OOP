@@ -4,98 +4,13 @@ import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.*;
 import presentation.general.*;
-import testing_snake.startSnake;
+import presentation.general.snake.view.startSnake;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class eventsListener {
-
-    /* Get a user id from a username */
-    public static int getUserID(String user) throws SQLException {
-
-        // User id that will be returned
-        int userID = 0;
-
-        // DB Connection
-        Connection dbConnection = business.implementation.DBManager.Connect();
-
-        // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT user_id FROM utente WHERE username = ?");
-        stmt.setString(1, user);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            userID = rs.getInt(1);
-        }
-
-        return userID;
-    }
-
-    public static String getUserTipo(String user) throws SQLException {
-
-        // User id that will be returned
-        String tipo = "";
-
-        // DB Connection
-        Connection dbConnection = business.implementation.DBManager.Connect();
-
-        // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT tipo FROM utente WHERE username = ?");
-        stmt.setString(1, user);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            tipo = rs.getString(1);
-        }
-
-        return tipo;
-    }
-
-    public static String getUsername (int user_id) throws SQLException{
-       String username = "";
-
-        // DB Connection
-        Connection dbConnection = business.implementation.DBManager.Connect();
-
-        // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT username FROM utente WHERE user_id = ?");
-        stmt.setInt(1, user_id);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            username = rs.getString(1);
-        }
-
-        return username;
-    }
-
-    public static String getGameFromId (int game_id) throws SQLException {
-        String game = "";
-
-        // DB Connection
-        Connection dbConnection = business.implementation.DBManager.Connect();
-
-        // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT nome FROM gioco WHERE gioco_id = ?");
-        stmt.setInt(1, game_id);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            game = rs.getString(1);
-        }
-
-        return game;
-    }
 
     public static void newUser(String username, String password, String nome, String cognome, String email, String dateString, int img_value, String tipo) throws SQLException {
 
@@ -106,8 +21,7 @@ public class eventsListener {
         }
     }
 
-    public static boolean setToNull (int userId) throws SQLException
-    {
+    public static boolean setToNull(int userId) throws SQLException {
         return new business.implementation.UserManagement().setToNull(userId);
     }
 
@@ -125,15 +39,13 @@ public class eventsListener {
         if (new ReviewManagement().newReview(utente, review, giocoId, vote, approved)) {
             JOptionPane.showMessageDialog(null, "Review aggiunta correttamente. In attesa di approvazione");
         }
-
     }
 
     public static Timeline getTimeline(int userId) throws SQLException {
         return new business.implementation.UserManagement().getTimeline(userId);
     }
 
-    public static boolean addTimeline (int user_id, int gioco_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException
-    {
+    public static boolean addTimeline(int user_id, int gioco_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
         return new UserManagement().addTimeline(user_id, gioco_id, dataUltima, esperienzaGuadagnata);
     }
 
@@ -173,62 +85,8 @@ public class eventsListener {
         return new business.implementation.UserManagement().getGameProfile(user_id);
     }
 
-    /* User authentication */
-    public static boolean userAuth(String username, String password) throws SQLException {
-
-        // Get the user_id given the username
-        int userID = getUserID(username);
-
-        // DB Connection
-        Connection conn = business.implementation.DBManager.Connect();
-
-        try {
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM utente WHERE user_id = ?");
-            pst.setInt(1, userID);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-                String hashedPass = rs.getString("password");
-
-                //Check if the provided password and the hashed one are equal
-                if (business.implementation.DBManager.checkPassword(password, hashedPass))
-                    return true;
-                else return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return false;
-    }
-
-    /* Get the game list */
-    public static ArrayList<String> getGame() throws SQLException {
-
-        // DB Connection
-        Connection dbConnection = business.implementation.DBManager.Connect();
-
-        // List of strings that will be returned later
-        ArrayList gameList = new ArrayList<String>();
-
-        // Execute the query and get the ResultSet
-        PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT `nome` FROM `gioco`");
-        ResultSet rs = stmt.executeQuery();
-
-        // Fetch data from the result set
-        int columnCount = rs.getMetaData().getColumnCount();
-
-        while (rs.next()) {
-            for (int i = 0; i < columnCount; i++) {
-                gameList.add(rs.getString(i + 1));
-            }
-        }
-        return gameList;
-    }
-
-    public static boolean updateTimeline (int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata, int gioco_id) throws SQLException {
-    return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata, gioco_id);
+    public static boolean updateTimeline(int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata, int gioco_id) throws SQLException {
+        return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata, gioco_id);
     }
 
     public static int tossTheCoin(Utente utente) throws SQLException {
@@ -239,114 +97,28 @@ public class eventsListener {
         return new business.implementation.UserManagement().ShitOnCoin(utente);
     }
 
-    public static void checkAchievement (gameProfile gameProfile) throws SQLException{
+    public static void checkAchievement(gameProfile gameProfile) throws SQLException {
         new business.implementation.UserManagement().checkAchievement(gameProfile);
     }
 
     public static boolean AchievementFoundOnProfile(int achievement_id, int user_id) throws SQLException {
-          return new business.implementation.UserManagement().AchievementFoundOnProfile(achievement_id, user_id);
+        return new business.implementation.UserManagement().AchievementFoundOnProfile(achievement_id, user_id);
     }
 
-    public static TableModel getAllReviews () throws SQLException {
-        return new business.implementation.ReviewManagement().getAllReviews ();
+    public static TableModel getAllReviews() throws SQLException {
+        return new business.implementation.ReviewManagement().getAllReviews();
     }
 
     public static boolean reviewFoundOnProfile(int user_id, int game_id) throws SQLException {
         return new business.implementation.ReviewManagement().reviewFoundOnProfile(user_id, game_id);
     }
 
-    /* Change the current JFrame */
-    public static void changePage(String page, Utente utente){
-        switch (page) {
-            case "startPage":
-                new startPage();
-                break;
 
-            case "registration":
-                new registration();
-                break;
-
-            case "logged":
-                new logged(utente);
-                break;
-
-            case "profile":
-                new profile(utente);
-                break;
-
-            case "editData":
-                new editData(utente);
-                break;
-
-            case "tossTheCoin":
-                new tossTheCoin(utente);
-                break;
-
-            case "ShitOnCoin":
-                new ShitOnCoin(utente);
-                break;
-
-            case "evalutateReview" :
-                new evalutateReview(utente, 0);
-                break;
-
-            case "achievementsList":
-                new achievementsList(utente, 0);
-                break;
-
-            case "allGames" :
-                new allGames(utente, 0);
-                break;
-
-            case "reviewList" :
-                new reviewList(utente,0, 0);
-                break;
-
-            case "viewRievew" :
-                new viewReview(utente, 0, 0, 0);
-                break;
-
-            case "review" :
-                new review(utente, 0);
-                break;
-
-            case "timelineView":
-                new timelineView (utente);
-                break;
-
-            case "userList" :
-                new usersList(utente, 0);
-                break;
-
-            case "approveComment" :
-                new approveComment(utente, null);
-                break;
-
-            case "Snake" :
-                new startSnake(utente);
-                break;
-
-            case "SlotMachineGUI" :
-                try {
-                    if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() < 15 ) {
-                        JOptionPane.showMessageDialog(null, "Aggiunti 100 crediti");
-                        new SlotMachineGUI(utente, eventsListener.getGameProfile(utente.getUserId()).getEsperienza()+ 100, 100, 15, 25, 5, 7, 7, 7);
-                    } else {
-                        new SlotMachineGUI(utente, eventsListener.getGameProfile(utente.getUserId()).getEsperienza(), 100, 15, 25, 5, 7, 7, 7);
-                    }
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-        }
-    }
-
-    public static boolean insertAchievementToProfile (int user_id, int achievement_id) throws SQLException
-    {
+    public static boolean insertAchievementToProfile(int user_id, int achievement_id) throws SQLException {
         return new business.implementation.UserManagement().insertAchievementToProfile(user_id, achievement_id);
     }
 
-    public static boolean deleteReview (Review review) throws SQLException {
+    public static boolean deleteReview(Review review) throws SQLException {
         return new business.implementation.ReviewManagement().deleteReview(review);
     }
 
@@ -358,19 +130,19 @@ public class eventsListener {
         return new business.implementation.UserManagement().setToModerator(username);
     }
 
-    public static boolean setToUser (String username) throws SQLException {
+    public static boolean setToUser(String username) throws SQLException {
         return new business.implementation.UserManagement().setToUser(username);
     }
 
-    public static boolean setToAdministrator (String username) throws SQLException {
+    public static boolean setToAdministrator(String username) throws SQLException {
         return new business.implementation.UserManagement().setToAdministrator(username);
     }
 
-    public static TableModel getGameNameByID (int gameId) throws SQLException {
+    public static TableModel getGameNameByID(int gameId) throws SQLException {
         return new business.implementation.UserManagement().getGameNameByID(gameId);
     }
 
-    public static TableModel getUsers () throws SQLException {
+    public static TableModel getUsers() throws SQLException {
         return new business.implementation.UserManagement().getUsers();
     }
 
@@ -378,9 +150,93 @@ public class eventsListener {
         return new business.implementation.ReviewManagement().getGameIDFromName(gameName);
     }
 
-    public static TableModel getReviewsByID (int gameID) throws SQLException {
+    public static TableModel getReviewsByID(int gameID) throws SQLException {
         return new business.implementation.ReviewManagement().getReviewsByID(gameID);
     }
 
+    /* Change the current JFrame page */
+    public static void changePage(String page, Utente utente) {
+        switch (page) {
+            case "startPage":
+                new presentation.startPage();
+                break;
 
+            case "registration":
+                new presentation.registration();
+                break;
+
+            case "logged":
+                new presentation.logged(utente);
+                break;
+
+            case "profile":
+                new presentation.profile(utente);
+                break;
+
+            case "editData":
+                new presentation.editData(utente);
+                break;
+
+            case "tossTheCoin":
+                new presentation.tossTheCoin(utente);
+                break;
+
+            case "ShitOnCoin":
+                new presentation.ShitOnCoin(utente);
+                break;
+
+            case "evalutateReview":
+                new presentation.evalutateReview(utente, 0);
+                break;
+
+            case "achievementsList":
+                new presentation.achievementsList(utente, 0);
+                break;
+
+            case "allGames":
+                new presentation.allGames(utente, 0);
+                break;
+
+            case "reviewList":
+                new presentation.reviewList(utente, 0, 0);
+                break;
+
+            case "viewRievew":
+                new presentation.viewReview(utente, 0, 0, 0);
+                break;
+
+            case "review":
+                new presentation.review(utente, 0);
+                break;
+
+            case "timelineView":
+                new presentation.timelineView(utente);
+                break;
+
+            case "userList":
+                new presentation.usersList(utente, 0);
+                break;
+
+            case "approveComment":
+                new presentation.approveComment(utente, null);
+                break;
+
+            case "Snake":
+                new startSnake(utente);
+                break;
+
+            case "SlotMachineGUI":
+                try {
+                    if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() < 15) {
+                        JOptionPane.showMessageDialog(null, "Aggiunti 100 crediti");
+                        new presentation.SlotMachineGUI(utente, eventsListener.getGameProfile(utente.getUserId()).getEsperienza() + 100, 100, 15, 25, 5, 7, 7, 7);
+                    } else {
+                        new presentation.SlotMachineGUI(utente, eventsListener.getGameProfile(utente.getUserId()).getEsperienza(), 100, 15, 25, 5, 7, 7, 7);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+    }
 }

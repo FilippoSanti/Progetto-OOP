@@ -1,25 +1,13 @@
 package business.model;
 
-
 import java.sql.Date;
 
-/**
- * Created by Davide on 04/06/2017.
- */
 public class Utente {
-
-    String username;
-    String nome;
-    String cognome;
     int userId;
-    String password;
-    String email;
-    String tipo;
+    String username, nome, cognome, password, email, tipo;
     Date data;
 
-
-    public Utente ()
-    {
+    public Utente() {
         this.username = "";
         this.nome = "";
         this.cognome = "";
@@ -30,9 +18,7 @@ public class Utente {
         this.data = null;
     }
 
-
-    public Utente (int userId, String username, String nome, String cognome, String password, String email, String tipo, Date data)
-    {
+    public Utente(int userId, String username, String nome, String cognome, String password, String email, String tipo, Date data) {
 
         this.username = username;
         this.nome = nome;
@@ -43,8 +29,6 @@ public class Utente {
         this.tipo = tipo;
         this.data = data;
     }
-
-
 
     public String getTipo() {
         return tipo;
@@ -86,7 +70,9 @@ public class Utente {
         this.username = user;
     }
 
-    public int getUserId() {return userId; }
+    public int getUserId() {
+        return userId;
+    }
 
     public String getPassword() {
         return password;
@@ -99,8 +85,4 @@ public class Utente {
     public Date getData() {
         return data;
     }
-
-
-
-
 }
