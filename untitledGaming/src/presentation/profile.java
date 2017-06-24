@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.SQLException;
 
 
@@ -305,6 +306,7 @@ public class profile {
 
                 // Image path
                 String imgPath = imgDir + imgName;
+                File propicDir = new File(imgPath);
 
                 eventsListener.getImg(utente.getUserId(), imgPath);
 
@@ -325,9 +327,9 @@ public class profile {
                     ext = ".gif";
                 }
 
-                // Save the img + its extesion
+                // Save the img + its extension
                 imgPath += ext;
-               eventsListener.getImg(utente.getUserId(), imgPath);
+                eventsListener.getImg(utente.getUserId(), imgPath);
 
                 // Show the image in the JPanel
                 BufferedImage myPicture = null;
@@ -346,7 +348,14 @@ public class profile {
                 panel.setBounds(94, 105, 175, 175);
                 frmUntitledGaming.getContentPane().add(panel);
 
-                business.implementation.Utils.deleteFilesForPathByPrefix(imgDir, imgName);
+                // Delete the files
+                File directory = new File(imgDir);
+                for(File f: directory.listFiles())
+                    if(f.getName().startsWith("propi"))
+                        f.delete();
+
+                System.out.println(propicDir.getAbsolutePath());
+                propicDir.delete();
 
             } else {
 
