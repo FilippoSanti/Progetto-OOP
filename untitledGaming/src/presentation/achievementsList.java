@@ -206,7 +206,7 @@ public class achievementsList {
                 // Get the game id from the Table Model
                 String gameID = String.valueOf(table.getValueAt(row + 1, 2));
 
-                System.out.println(gameID);
+
 
                 // Achievement icon
                 JPanel panel_1 = new JPanel();
@@ -318,7 +318,8 @@ public class achievementsList {
                 txtrDescrizioneAchievementsDa.setEditable(false);
                 txtrDescrizioneAchievementsDa.setLineWrap(true);
                 txtrDescrizioneAchievementsDa.setRows(2);
-                txtrDescrizioneAchievementsDa.setBounds(354, 463, 537, 56);
+                txtrDescrizioneAchievementsDa.setBounds(354, 344, 537, 56);
+
                 frmUntitledGaming.getContentPane().add(txtrDescrizioneAchievementsDa);
 
             }
@@ -331,7 +332,7 @@ public class achievementsList {
         try {
 
             if (row + 3 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
-                System.out.println("testing");
+
             } else {
 
                 JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
