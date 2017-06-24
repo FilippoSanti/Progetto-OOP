@@ -191,6 +191,15 @@ public class profile {
         btnNewButton.setFont(new Font("MV Boli", Font.ITALIC, 18));
 
         btnNewButton.setBounds(137, 576, 289, 37);
+
+        try {
+            if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() == 0 ) {
+                btnNewButton.setEnabled(false);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         frmUntitledGaming.getContentPane().add(btnNewButton);
 
         btnNewButton.addActionListener(new ActionListener() {
