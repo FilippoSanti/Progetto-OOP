@@ -1,4 +1,4 @@
-package presentation.general.snake.view;
+package presentation.snake.view;
 
 import business.model.Utente;
 import controller.eventsListener;

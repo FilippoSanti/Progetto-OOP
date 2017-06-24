@@ -1,6 +1,5 @@
-package presentation.general.snake.controller;
+package presentation.snake.controller;
 
-import presentation.general.snake.controller.ThreadsController;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
