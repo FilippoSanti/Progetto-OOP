@@ -912,7 +912,7 @@ public class UserManagement {
     }
 
     /* Get the user type */
-    public static String getUserType(int user_id) throws SQLException {
+    public String getUserType(int user_id) throws SQLException {
 
         String userType = null;
 
@@ -932,7 +932,7 @@ public class UserManagement {
     }
 
     /* Update the password of a user */
-    public static boolean updatePassword(int userID, String password) throws SQLException {
+    public boolean updatePassword(int userID, String password) throws SQLException {
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -974,7 +974,7 @@ public class UserManagement {
     }
 
     /* Store a user image into the db */
-    public static boolean setImg (int userID, File imgfile) {
+    public boolean setImg (int userID, File imgfile) {
         try {
 
             // Open the connection
@@ -1010,7 +1010,7 @@ public class UserManagement {
     }
 
     /* Get the user profile image */
-    public static boolean getImg(int userID, String filePathName) {
+    public boolean getImg(int userID, String filePathName) {
         try {
 
             File selectedfile;
@@ -1045,7 +1045,7 @@ public class UserManagement {
     }
 
     /* Check if the profile pic of an user exists (true) */
-    public static boolean checkImage(int userID) throws SQLException {
+    public boolean checkImage(int userID) throws SQLException {
 
         // DB Connection
         Connection connection = DBManager.Connect();
@@ -1074,7 +1074,7 @@ public class UserManagement {
     }
 
     /* Get a user id from a username */
-    public static int getUserID(String user) throws SQLException {
+    public int getUserID(String user) throws SQLException {
 
         // User id that will be returned
         int userID = 0;
@@ -1094,7 +1094,7 @@ public class UserManagement {
         return userID;
     }
 
-    public static String getUserTipo(String user) throws SQLException {
+    public String getUserTipo(String user) throws SQLException {
 
         // User id that will be returned
         String tipo = "";
@@ -1115,7 +1115,7 @@ public class UserManagement {
         return tipo;
     }
 
-    public static String getUsername(int user_id) throws SQLException {
+    public String getUsername(int user_id) throws SQLException {
         String username = "";
 
         // DB Connection
@@ -1134,7 +1134,7 @@ public class UserManagement {
         return username;
     }
 
-    public static String getGameFromId(int game_id) throws SQLException {
+    public String getGameFromId(int game_id) throws SQLException {
         String game = "";
 
         // DB Connection
@@ -1154,10 +1154,10 @@ public class UserManagement {
     }
 
     /* User authentication */
-    public static boolean userAuth(String username, String password) throws SQLException {
+    public boolean userAuth(String username, String password) throws SQLException {
 
         // Get the user_id given the username
-        int userID = getUserID(username);
+        int userID = eventsListener.getUserID(username);
 
         // DB Connection
         Connection conn = business.implementation.DBManager.Connect();
@@ -1183,7 +1183,7 @@ public class UserManagement {
     }
 
     /* Get the game list */
-    public static ArrayList<String> getGame() throws SQLException {
+    public ArrayList<String> getGame() throws SQLException {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();

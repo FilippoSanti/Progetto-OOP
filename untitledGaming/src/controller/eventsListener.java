@@ -3,12 +3,13 @@ package controller;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.*;
-import presentation.general.*;
-import presentation.general.snake.view.startSnake;
+
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
+import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class eventsListener {
 
@@ -142,6 +143,50 @@ public class eventsListener {
         return new business.implementation.UserManagement().getGameNameByID(gameId);
     }
 
+    public static String getUserType(int user_id) throws SQLException {
+        return new business.implementation.UserManagement().getUserType(user_id);
+    }
+
+    public static boolean updatePassword(int userID, String password) throws SQLException {
+        return new business.implementation.UserManagement().updatePassword(userID, password);
+    }
+
+    public static boolean setImg (int userID, File imgfile) {
+        return new business.implementation.UserManagement().setImg(userID, imgfile);
+    }
+
+    public static boolean getImg(int userID, String filePathName) {
+        return new business.implementation.UserManagement().getImg(userID, filePathName);
+    }
+
+    public static boolean checkImage(int userID) throws SQLException {
+        return new business.implementation.UserManagement().checkImage(userID);
+    }
+
+    public static int getUserID(String user) throws SQLException {
+        return new business.implementation.UserManagement().getUserID(user);
+    }
+
+    public static String getUserTipo(String user) throws SQLException {
+        return new business.implementation.UserManagement().getUserTipo(user);
+    }
+
+    public static String getUsername(int user_id) throws SQLException {
+        return new business.implementation.UserManagement().getUsername(user_id);
+    }
+
+    public static String getGameFromId(int game_id) throws SQLException {
+        return new business.implementation.UserManagement().getGameFromId(game_id);
+    }
+
+    public static boolean userAuth(String username, String password) throws SQLException {
+        return new business.implementation.UserManagement().userAuth(username, password);
+    }
+
+    public static ArrayList<String> getGame() throws SQLException {
+        return new business.implementation.UserManagement().getGame();
+    }
+
     public static TableModel getUsers() throws SQLException {
         return new business.implementation.UserManagement().getUsers();
     }
@@ -222,7 +267,7 @@ public class eventsListener {
                 break;
 
             case "Snake":
-                new startSnake(utente);
+                new presentation.snake.view.startSnake(utente);
                 break;
 
             case "SlotMachineGUI":
