@@ -123,6 +123,7 @@ public class SlotMachineGUI {
         frmFrame.setTitle("Warner Slots");
         frmFrame.setResizable(false);
         frmFrame.setVisible(true);
+        frmFrame.setLocationRelativeTo(null);
 
         pnlReels = new JPanel();
         pnlReels.setBorder(BorderFactory.createEtchedBorder());

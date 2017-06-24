@@ -109,8 +109,8 @@ public class review extends starEdit {
 
                 // Check if the user is a moderator, if so, automatically approve the review
                 try {
-                    if (business.implementation.UserManagement.getUserType(utente.getUserId()).equals("moderator") ||
-                            business.implementation.UserManagement.getUserType(utente.getUserId()).equals("administrator")) {
+                    if (eventsListener.getUserType(utente.getUserId()).equals("moderator") ||
+                            eventsListener.getUserType(utente.getUserId()).equals("administrator")) {
                         int vote = lb.getLevel();
                         controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, true);
                         new reviewList(utente, 0, gioco_id);

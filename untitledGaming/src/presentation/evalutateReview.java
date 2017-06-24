@@ -1,6 +1,6 @@
 package presentation;
 
-import business.implementation.UserManagement;
+import controller.eventsListener;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -139,8 +139,8 @@ public class evalutateReview extends starView {
                     ex.printStackTrace();
                 }
 
-                gioco1 = UserManagement.getGameFromId(gameId1);
-                String username1 = UserManagement.getUsername(userId1);
+                gioco1 = eventsListener.getGameFromId(gameId1);
+                String username1 = eventsListener.getUsername(userId1);
                 label = new JLabel(username1);
                 label.setHorizontalAlignment(SwingConstants.CENTER);
                 label.setForeground(Color.DARK_GRAY);
@@ -214,8 +214,8 @@ public class evalutateReview extends starView {
                     ex.printStackTrace();
                 }
 
-                gioco2 = UserManagement.getGameFromId(gameId2);
-                String username2 = UserManagement.getUsername(userId2);
+                gioco2 = eventsListener.getGameFromId(gameId2);
+                String username2 = eventsListener.getUsername(userId2);
 
                 label_1 = new JLabel(username2);
                 label_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -289,8 +289,8 @@ public class evalutateReview extends starView {
                     ex.printStackTrace();
                 }
 
-                gioco3 = UserManagement.getGameFromId(gameId3);
-                String username3 = UserManagement.getUsername(userId3);
+                gioco3 = eventsListener.getGameFromId(gameId3);
+                String username3 = eventsListener.getUsername(userId3);
 
                 // Username label
                 label_2 = new JLabel(username3);
@@ -366,8 +366,8 @@ public class evalutateReview extends starView {
                     ex.printStackTrace();
                 }
 
-                gioco4 = UserManagement.getGameFromId(gameId4);
-                String username4 = UserManagement.getUsername(userId4);
+                gioco4 = eventsListener.getGameFromId(gameId4);
+                String username4 = eventsListener.getUsername(userId4);
 
                 label_3 = new JLabel(username4);
                 label_3.setHorizontalAlignment(SwingConstants.CENTER);

@@ -70,8 +70,8 @@ public class UserManagement {
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
                0 for SQL statements that return nothing
              */
-            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(UserManagement.getUserID(user))
-                    && (addTimeline(UserManagement.getUserID(user), 1, date, 0))) {
+            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))
+                    && (addTimeline(eventsListener.getUserID(user), 1, date, 0))) {
 
                 return true;
             }
@@ -319,7 +319,7 @@ public class UserManagement {
 
         // If the password is not empty, we update it into the DB
         if (!password.isEmpty()) {
-            business.implementation.UserManagement.updatePassword(utente.getUserId(), password);
+            eventsListener.updatePassword(utente.getUserId(), password);
         }
 
         // Check if the other fields are equal to the old ones or empty

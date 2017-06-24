@@ -1,6 +1,6 @@
 package presentation;
 
-import business.implementation.UserManagement;
+import controller.eventsListener;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -161,7 +161,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label = new JLabel(UserManagement.getUsername(b));
+                label = new JLabel(eventsListener.getUsername(b));
 
                 // Star Rating
                 JPanel panel_4 = new JPanel();
@@ -229,7 +229,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label_1 = new JLabel(UserManagement.getUsername(b));
+                label_1 = new JLabel(eventsListener.getUsername(b));
 
                 // Star Rating
                 JPanel panel_5 = new JPanel();
@@ -294,7 +294,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label_2 = new JLabel(UserManagement.getUsername(b));
+                label_2 = new JLabel(eventsListener.getUsername(b));
 
                 // Star Rating
                 JPanel panel_6 = new JPanel();
@@ -360,7 +360,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label_3 = new JLabel(UserManagement.getUsername(b));
+                label_3 = new JLabel(eventsListener.getUsername(b));
 
                 // Attenzione a modificare perchè le List,ImageIcon e ip sotto ereditano le dichiarazioni fatte nella prima starRating
                 JPanel panel_7 = new JPanel();

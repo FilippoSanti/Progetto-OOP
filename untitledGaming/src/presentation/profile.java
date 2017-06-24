@@ -280,7 +280,7 @@ public class profile {
                     }
 
                     // Store the image into the DB
-                    if (business.implementation.UserManagement.setImg(utente.getUserId(), selectedfile)) {
+                    if (eventsListener.setImg(utente.getUserId(), selectedfile)) {
                         JOptionPane.showMessageDialog(frmUntitledGaming, "Operazione riuscita");
                         frmUntitledGaming.dispose();
                         controller.eventsListener.changePage("profile", utente);
@@ -294,7 +294,7 @@ public class profile {
 
         try {
 
-            if (UserManagement.checkImage(utente.getUserId())) {
+            if (eventsListener.checkImage(utente.getUserId())) {
 
                 // Declare the panel
                 Panel panel = new Panel();
@@ -306,7 +306,7 @@ public class profile {
                 // Image path
                 String imgPath = imgDir + imgName;
 
-                business.implementation.UserManagement.getImg(utente.getUserId(), imgPath);
+                eventsListener.getImg(utente.getUserId(), imgPath);
 
                 File imgFile = new File(imgPath);
                 String ext = null;
@@ -327,7 +327,7 @@ public class profile {
 
                 // Save the img + its extesion
                 imgPath += ext;
-                business.implementation.UserManagement.getImg(utente.getUserId(), imgPath);
+               eventsListener.getImg(utente.getUserId(), imgPath);
 
                 // Show the image in the JPanel
                 BufferedImage myPicture = null;

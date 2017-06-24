@@ -1,6 +1,6 @@
 package presentation;
 
-import business.implementation.UserManagement;
+import controller.eventsListener;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -234,10 +234,10 @@ public class usersList {
         String tipo4 = "";
 
         try {
-            tipo1 = UserManagement.getUserTipo(username1);
-            tipo2 = UserManagement.getUserTipo(username2);
-            tipo3 = UserManagement.getUserTipo(username3);
-            tipo4 = UserManagement.getUserTipo(username4);
+            tipo1 = eventsListener.getUserTipo(username1);
+            tipo2 = eventsListener.getUserTipo(username2);
+            tipo3 = eventsListener.getUserTipo(username3);
+            tipo4 = eventsListener.getUserTipo(username4);
 
         } catch (SQLException e) {
             e.printStackTrace();

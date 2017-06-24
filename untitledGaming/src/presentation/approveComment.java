@@ -1,6 +1,6 @@
 package presentation;
 
-import business.implementation.UserManagement;
+import controller.eventsListener;
 import business.model.Review;
 import business.model.Utente;
 import controller.eventsListener;
@@ -93,7 +93,7 @@ public class approveComment {
 
         JLabel lblusername = null;
         try {
-            lblusername = new JLabel(UserManagement.getUsername(review.getUser_id()));
+            lblusername = new JLabel(eventsListener.getUsername(review.getUser_id()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

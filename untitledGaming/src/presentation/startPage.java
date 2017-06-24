@@ -1,7 +1,7 @@
 package presentation;
 
 import business.BusinessException;
-import business.implementation.UserManagement;
+import controller.eventsListener;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -81,7 +81,7 @@ public class startPage {
                     String passText = new String(passwordField.getPassword());
 
                     // Check if the login was successful
-                    if (UserManagement.userAuth(txtUsername.getText(), passText)) {
+                    if (eventsListener.userAuth(txtUsername.getText(), passText)) {
                         Utente utente = eventsListener.getUtente(txtUsername.getText());
                         eventsListener.changePage("logged", utente);
                         frmUntitledGaming.dispose();

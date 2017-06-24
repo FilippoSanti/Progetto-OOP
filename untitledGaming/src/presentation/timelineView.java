@@ -92,7 +92,7 @@ public class timelineView {
         // Get the game id
         JLabel lblNewLabel = null;
         try {
-            lblNewLabel = new JLabel(UserManagement.getGameFromId(eventsListener.getTimeline(utente.getUserId()).getGioco_id()));
+            lblNewLabel = new JLabel(eventsListener.getGameFromId(eventsListener.getTimeline(utente.getUserId()).getGioco_id()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
