@@ -90,13 +90,9 @@ public class eventsListener {
         return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata, gioco_id);
     }
 
-    public static int tossTheCoin(Utente utente) throws SQLException {
-        return new business.implementation.UserManagement().tossTheCoin(utente);
-    }
 
-    public static int ShitOnCoin(Utente utente) throws SQLException {
-        return new business.implementation.UserManagement().ShitOnCoin(utente);
-    }
+
+
 
     public static void checkAchievement(gameProfile gameProfile) throws SQLException {
         new business.implementation.UserManagement().checkAchievement(gameProfile);
@@ -222,13 +218,7 @@ public class eventsListener {
                 new presentation.editData(utente);
                 break;
 
-            case "tossTheCoin":
-                new presentation.tossTheCoin(utente);
-                break;
 
-            case "ShitOnCoin":
-                new presentation.ShitOnCoin(utente);
-                break;
 
             case "evalutateReview":
                 new presentation.evalutateReview(utente, 0);
