@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 
-
 import static controller.eventsListener.newUser;
 import static controller.eventsListener.changePage;
 
@@ -113,7 +112,7 @@ public class registration {
                     }
 
                     frmUntitledGaming.dispose();
-                    newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
+                    controller.eventsListener.newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
                             txtEmil.getText(), dateText, img_value, "user");
                     changePage("startPage", null);
 

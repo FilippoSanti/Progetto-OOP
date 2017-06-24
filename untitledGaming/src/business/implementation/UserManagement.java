@@ -29,18 +29,6 @@ public class UserManagement {
             throw new BusinessException("Date format not valid");
         }
 
-        // Check if one of the fields is empty
-        if (user.isEmpty() || password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || dateString.isEmpty())
-            return false;
-
-        // Check if the username is already registered
-        if (business.implementation.DBManager.checkUsername(user))
-            return false;
-
-        // Check if the email is already registered
-        if (business.implementation.DBManager.checkEmail(email))
-            return false;
-
         PreparedStatement preparedStatement = null;
 
         // DB Connection

@@ -363,7 +363,6 @@ public class profile {
                     if(f.getName().startsWith("propi"))
                         f.delete();
 
-                System.out.println(propicDir.getAbsolutePath());
                 propicDir.delete();
 
             } else {

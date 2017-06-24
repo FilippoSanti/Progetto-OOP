@@ -96,8 +96,9 @@ public class logged {
         });
 
         JButton btnListaUtenti = new JButton("Lista Utenti");
-        if (utente.getTipo().equals("user")) btnListaUtenti.setEnabled(false);
+        if (utente.getTipo().equals("user") || utente.getTipo().equals("moderator")) btnListaUtenti.setEnabled(false);
         else btnListaUtenti.setEnabled(true);
+
         btnListaUtenti.setToolTipText("Lista Utenti");
         btnListaUtenti.setFont(new Font("MV Boli", Font.ITALIC, 21));
         btnListaUtenti.setBounds(123, 454, 250, 65);
