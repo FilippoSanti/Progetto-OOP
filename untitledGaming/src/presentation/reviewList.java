@@ -4,11 +4,15 @@ import controller.eventsListener;
 import business.model.Utente;
 import controller.eventsListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -146,7 +150,7 @@ public class reviewList extends starView {
             JOptionPane.showMessageDialog(null, "Nessuna recensione disponibile");
         }
 
-        /** First Review **/
+        //First Review
         JLabel label = null;
         try {
             if (!(row >= eventsListener.getReviewsByID(game).getRowCount())) {
@@ -191,7 +195,14 @@ public class reviewList extends starView {
                 frmUntitledGaming.getContentPane().add(btnRecensione);
 
                 JPanel panel_back = new JPanel();
-                panel_back.setBackground(Color.YELLOW);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/imgs//generalUsersLogo.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_back.add(picLabel);
                 panel_back.setBounds(66, 88, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_back);
 
@@ -258,7 +269,14 @@ public class reviewList extends starView {
                 frmUntitledGaming.getContentPane().add(btnGioca);
 
                 JPanel panel_1 = new JPanel();
-                panel_1.setBackground(Color.BLUE);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/imgs//generalUsersLogo.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_1.add(picLabel);
                 panel_1.setBounds(66, 208, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_1);
 
@@ -324,7 +342,14 @@ public class reviewList extends starView {
                 frmUntitledGaming.getContentPane().add(btnGioca_1);
 
                 JPanel panel_2 = new JPanel();
-                panel_2.setBackground(Color.GREEN);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/imgs//generalUsersLogo.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_2.add(picLabel);
                 panel_2.setBounds(66, 326, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_2);
 
@@ -389,7 +414,14 @@ public class reviewList extends starView {
                 frmUntitledGaming.getContentPane().add(btnGioca_2);
 
                 JPanel panel_3 = new JPanel();
-                panel_3.setBackground(Color.RED);
+                BufferedImage myPicture = null;
+                try {
+                    myPicture = ImageIO.read(new File("./src/presentation/imgs//generalUsersLogo.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                panel_3.add(picLabel);
                 panel_3.setBounds(66, 445, 90, 90);
                 frmUntitledGaming.getContentPane().add(panel_3);
 
