@@ -1,0 +1,5 @@
+credenziali per accedere come administrator:
+
+username:   admin
+password:   000000
+
