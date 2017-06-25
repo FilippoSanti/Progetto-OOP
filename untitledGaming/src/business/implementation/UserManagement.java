@@ -20,7 +20,7 @@ public class UserManagement {
 
     /* Insert the user data into the DB */
     public boolean newUser(String user, String password, String nome, String cognome, String email, String dateString, int img_value, String tipo) throws SQLException {
-        System.out.println(user);
+
         // Convert the date string to a  java.sql.Date format
         java.sql.Date date = null;
         try {
@@ -44,7 +44,6 @@ public class UserManagement {
         // Insert the values into the DB
         try {
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
-
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, nome);
@@ -172,7 +171,6 @@ public class UserManagement {
         }
 
         return new Utente(userId, username, nome, cognome, password, email, tipo, DataFinale);
-
     }
 
     /* Update the timeline informations */
@@ -232,19 +230,14 @@ public class UserManagement {
                 "             ?, \n" +
                 "             ?) ";
 
-
         PreparedStatement preparedStatement = null;
 
-
         try {
-
             preparedStatement = dbConnection.prepareStatement(addtimeline);
-
             preparedStatement.setInt(1, user_id);
             preparedStatement.setInt(2, gioco_id);
             preparedStatement.setDate(3, dataUltima);
             preparedStatement.setInt(4, esperienzaGuadagnata);
-
 
             // Insert SQL statement
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
@@ -267,7 +260,6 @@ public class UserManagement {
             }
         }
         return false;
-
     }
 
     /* Get the user profile stats */

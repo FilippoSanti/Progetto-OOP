@@ -104,7 +104,7 @@ public class ThreadsController extends Thread {
         try {
 
             // Achievement 1
-            if (esperienza >= 100) {
+            if (esperienza >= 500) {
                 if (!eventsListener.AchievementFoundOnProfile(9, utente.getUserId())) {
                     JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Inarrestabile !");
                     eventsListener.insertAchievementToProfile(utente.getUserId(), 9);

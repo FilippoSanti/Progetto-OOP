@@ -18,7 +18,6 @@ public class ReviewManagement {
 
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
-
         String insertTableSQL = null;
 
         if (!approved) {
@@ -28,7 +27,6 @@ public class ReviewManagement {
             insertTableSQL = "INSERT INTO recensione" + "(user_id, testo_recensione, voto, gioco_id, approvata) VALUES" +
                     "(?, ?, ?, ?, true)";
         }
-
         PreparedStatement preparedStatement = null;
 
         // Insert the values into the DB
@@ -47,15 +45,12 @@ public class ReviewManagement {
             if (preparedStatement.executeUpdate() != 0) {
                 return true;
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
             }
-
             if (dbConnection != null) {
                 dbConnection.close();
             }
@@ -167,7 +162,6 @@ public class ReviewManagement {
     public boolean approveReview(Review review) throws SQLException {
 
         Connection dbConnection = business.implementation.DBManager.Connect();
-
         String approveReview = "UPDATE `recensione` SET `approvata` = '1' WHERE `recensione`.`recensione_id`= ?";
         PreparedStatement preparedStatement = null;
 

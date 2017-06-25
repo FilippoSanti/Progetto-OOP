@@ -38,7 +38,11 @@ public class eventsListener {
 
     public static void newReview(Utente utente, String review, int giocoId, double vote, boolean approved) throws SQLException {
         if (new ReviewManagement().newReview(utente, review, giocoId, vote, approved)) {
-            JOptionPane.showMessageDialog(null, "Review aggiunta correttamente. In attesa di approvazione");
+            if (approved) {
+                JOptionPane.showMessageDialog(null, "Review aggiunta correttamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Review aggiunta correttamente. In attesa di approvazione");
+            }
         }
     }
 
@@ -89,10 +93,6 @@ public class eventsListener {
     public static boolean updateTimeline(int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata, int gioco_id) throws SQLException {
         return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata, gioco_id);
     }
-
-
-
-
 
     public static void checkAchievement(gameProfile gameProfile) throws SQLException {
         new business.implementation.UserManagement().checkAchievement(gameProfile);
@@ -217,8 +217,6 @@ public class eventsListener {
             case "editData":
                 new presentation.editData(utente);
                 break;
-
-
 
             case "evalutateReview":
                 new presentation.evalutateReview(utente, 0);

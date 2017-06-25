@@ -2,9 +2,6 @@ package business.model;
 
 import java.util.Date;
 
-/**
- * Created by Davide on 07/06/2017.
- */
 public class Timeline {
 
     int timeline_id;
