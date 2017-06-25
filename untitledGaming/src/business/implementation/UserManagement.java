@@ -58,7 +58,7 @@ public class UserManagement {
                0 for SQL statements that return nothing
              */
             if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))
-                    && (addTimeline(eventsListener.getUserID(user), 1, date, 0))) {
+                    && (addTimeline(eventsListener.getUserID(user), 2, date, 0))) {
 
                 return true;
             }
@@ -426,12 +426,12 @@ public class UserManagement {
     }
 
     /* Adds a level to a user */
-    public boolean addLivello(gameProfile gameProfile) throws SQLException {
+    public boolean addLivello(gameProfile gameProfile, int livello) throws SQLException {
         // DB Connection
         Connection dbConnection = business.implementation.DBManager.Connect();
 
         // Query
-        String addLVL = "UPDATE game_profile SET `livello` = game_profile.livello + ? "
+        String addLVL = "UPDATE game_profile SET `livello` =  ? "
                 + "WHERE `user_id` = ?";
 
         PreparedStatement preparedStatement = null;
@@ -440,7 +440,7 @@ public class UserManagement {
         try {
             preparedStatement = dbConnection.prepareStatement(addLVL);
 
-            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, livello);
             preparedStatement.setInt(2, gameProfile.getUserId());
 
             // Insert SQL statement
@@ -581,29 +581,29 @@ public class UserManagement {
     }
     /* Determine the user level from the exp points */
     public void checkLivello(gameProfile gameProfile) throws SQLException {
-        if (gameProfile.getEsperienza() >= 100 && gameProfile.getLivello() == 1) {
-            addLivello(gameProfile);
+        if (gameProfile.getEsperienza() >= 100 && gameProfile.getEsperienza()<250) {
+            addLivello(gameProfile,2);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 2");
-        } else if (gameProfile.getEsperienza() >= 250 && gameProfile.getLivello() == 2) {
-            addLivello(gameProfile);
+        } else if (gameProfile.getEsperienza() >= 250 && gameProfile.getEsperienza()<450) {
+            addLivello(gameProfile,3);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 3");
-        } else if (gameProfile.getEsperienza() >= 450 && gameProfile.getLivello() == 3) {
-            addLivello(gameProfile);
+        } else if (gameProfile.getEsperienza() >= 450 && gameProfile.getEsperienza()<700) {
+            addLivello(gameProfile,4);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 4");
-        } else if (gameProfile.getEsperienza() >= 700 && gameProfile.getLivello() == 4) {
-            addLivello(gameProfile);
+        } else if (gameProfile.getEsperienza() >= 700 && gameProfile.getEsperienza()<1100) {
+            addLivello(gameProfile,5);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 5");
-        } else if (gameProfile.getEsperienza() >= 1100 && gameProfile.getLivello() == 5) {
-            addLivello(gameProfile);
+        } else if (gameProfile.getEsperienza() >= 1100 && gameProfile.getEsperienza()<1500) {
+            addLivello(gameProfile,6);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 6");
-        } else if (gameProfile.getEsperienza() >= 1500 && gameProfile.getLivello() == 6) {
-            addLivello(gameProfile);
+        } else if (gameProfile.getEsperienza() >= 1500 && gameProfile.getEsperienza()<2000) {
+            addLivello(gameProfile,7);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 7");
-        } else if (gameProfile.getEsperienza() >= 2000 && gameProfile.getLivello() == 7) {
-            addLivello(gameProfile);
+        } else if (gameProfile.getEsperienza() >= 2000 && gameProfile.getEsperienza()<2800) {
+            addLivello(gameProfile,8);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 8");
-        } else if (gameProfile.getEsperienza() >= 2800 && gameProfile.getLivello() == 8) {
-            addLivello(gameProfile);
+        } else if (gameProfile.getEsperienza() >= 2800) {
+            addLivello(gameProfile,9);
             JOptionPane.showMessageDialog(null, "Congratulazioni, hai raggiunto il livello 9");
         }
     }

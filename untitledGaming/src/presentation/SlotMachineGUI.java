@@ -105,6 +105,7 @@ public class SlotMachineGUI {
                         }
 
                         eventsListener.addXP(utente, credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
+                        eventsListener.checkLivello(eventsListener.getGameProfile(utente.getUserId()));
 
                     } catch (SQLException e1) {
                         e1.printStackTrace();

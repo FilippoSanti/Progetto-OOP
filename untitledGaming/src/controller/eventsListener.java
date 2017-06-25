@@ -74,8 +74,8 @@ public class eventsListener {
         return new business.implementation.UserManagement().addXp(utente, xP);
     }
 
-    public static boolean addLivello(gameProfile gameProfile) throws SQLException {
-        return new business.implementation.UserManagement().addLivello(gameProfile);
+    public static boolean addLivello(gameProfile gameProfile, int livello) throws SQLException {
+        return new business.implementation.UserManagement().addLivello(gameProfile, livello);
     }
 
     public static void checkLivello(gameProfile gameProfile) throws SQLException {
