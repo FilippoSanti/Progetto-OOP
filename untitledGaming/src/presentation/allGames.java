@@ -295,6 +295,13 @@ public class allGames {
                 btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 btnGioca_1.setBounds(743, 351, 142, 30);
                 frmUntitledGaming.getContentPane().add(btnGioca_1);
+                btnGioca_1.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        frmUntitledGaming.setVisible(false);
+                        eventsListener.changePage(titolo1, utente);
+                    }
+                });
+
 
                 // Button recensioni
                 JButton button_1 = new JButton("Recensioni");
@@ -361,6 +368,13 @@ public class allGames {
                 btnGioca_1.setFont(new Font("MV Boli", Font.ITALIC, 17));
                 btnGioca_1.setBounds(743, 470, 142, 30);
                 frmUntitledGaming.getContentPane().add(btnGioca_1);
+                btnGioca_1.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        frmUntitledGaming.setVisible(false);
+                        eventsListener.changePage(titolo1, utente);
+                    }
+                });
+
 
                 // Button recensioni
                 JButton button_1 = new JButton("Recensioni");

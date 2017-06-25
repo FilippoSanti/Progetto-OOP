@@ -796,7 +796,7 @@ public class UserManagement {
 
         // Execute the query and get the ResultSet
         PreparedStatement stmt = dbConnection.prepareStatement(
-                "SELECT * FROM `gioco` ORDER BY `gioco`.`gioco_id` ASC");
+                "SELECT * FROM `gioco` ORDER BY `gioco`.`gioco_id` DESC");
 
         ResultSet rs = stmt.executeQuery();
         TableModel tm = DbUtils.resultSetToTableModel(rs);
