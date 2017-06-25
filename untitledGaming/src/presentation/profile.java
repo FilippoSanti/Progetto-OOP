@@ -257,6 +257,7 @@ public class profile {
                 if (retVal == JFileChooser.APPROVE_OPTION) {
                     File selectedfile = jfc.getSelectedFile();
                     String tempFileExt = null;
+                    File tempFile = null;
 
                     try {
                         imgTypePassed[0] = Utils.getImageType(selectedfile);
@@ -280,18 +281,24 @@ public class profile {
 
                     // Resize the image before storing it
                     try {
+                        tempFile = new File("./src/presentation/imgs/resized.png");
+
                         BufferedImage originalImage = ImageIO.read(selectedfile);
                         int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
                         BufferedImage buffimg = business.implementation.Utils.resizeImg(originalImage, type, 175, 170);
-                        ImageIO.write(buffimg, tempFileExt, selectedfile);
+                        ImageIO.write(buffimg, tempFileExt, tempFile);
 
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
 
                     // Store the image into the DB
-                    if (eventsListener.setImg(utente.getUserId(), selectedfile)) {
+                    if (eventsListener.setImg(utente.getUserId(), tempFile)) {
                         JOptionPane.showMessageDialog(frmUntitledGaming, "Operazione riuscita");
+
+                        //Delete the resized image
+                        tempFile.delete();
+
                         frmUntitledGaming.dispose();
                         controller.eventsListener.changePage("profile", utente);
 
