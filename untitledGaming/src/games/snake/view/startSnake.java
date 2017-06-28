@@ -1,4 +1,4 @@
-package presentation.snake.view;
+package games.snake.view;
 
 import business.model.Utente;
 

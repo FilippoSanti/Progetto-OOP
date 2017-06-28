@@ -1,4 +1,4 @@
-package presentation.snake.model;
+package games.snake.model;
 
 public class Tuple {
     public int x;

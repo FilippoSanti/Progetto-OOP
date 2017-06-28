@@ -1,9 +1,9 @@
-package presentation.snake.view;
+package games.snake.view;
 
 import business.model.Utente;
-import presentation.snake.controller.KeyboardListener;
-import presentation.snake.controller.ThreadsController;
-import presentation.snake.model.Tuple;
+import games.snake.controller.KeyboardListener;
+import games.snake.controller.ThreadsController;
+import games.snake.model.Tuple;
 
 import java.awt.GridLayout;
 import java.awt.event.KeyListener;

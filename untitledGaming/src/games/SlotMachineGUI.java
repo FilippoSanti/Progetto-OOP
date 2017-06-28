@@ -1,9 +1,7 @@
-package presentation;
+package games;
 
 import business.implementation.*;
-import business.implementation.Utils.Utilities;
 import business.model.Utente;
-import business.model.gameProfile;
 
 
 import java.awt.*;

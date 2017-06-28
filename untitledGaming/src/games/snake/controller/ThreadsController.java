@@ -1,18 +1,14 @@
-package presentation.snake.controller;
+package games.snake.controller;
 
 import business.implementation.AchievementsManager;
-import business.implementation.DBManager;
 import business.implementation.TimelineManagement;
 import business.implementation.UserManagement;
-import business.implementation.Utils.Utilities;
 import business.model.Utente;
 
-import presentation.snake.model.Tuple;
-import presentation.snake.view.DataOfSquare;
+import games.snake.model.Tuple;
+import games.snake.view.DataOfSquare;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.Window;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -35,7 +31,7 @@ public class ThreadsController extends Thread {
         this.utente = u;
         //Get all the threads
 
-        Squares = presentation.snake.view.Window.Grid;
+        Squares = games.snake.view.Window.Grid;
 
         headSnakePos = new Tuple(positionDepart.x, positionDepart.y);
         directionSnake = 1;
@@ -44,7 +40,7 @@ public class ThreadsController extends Thread {
         Tuple headPos = new Tuple(headSnakePos.getX(), headSnakePos.getY());
         positions.add(headPos);
 
-        foodPosition = new Tuple(presentation.snake.view.Window.height - 1, presentation.snake.view.Window.width - 1);
+        foodPosition = new Tuple(games.snake.view.Window.height - 1, games.snake.view.Window.width - 1);
         spawnFood(foodPosition);
 
     }

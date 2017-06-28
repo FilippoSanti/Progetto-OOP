@@ -1,4 +1,4 @@
-package presentation.snake.controller;
+package games.snake.controller;
 
 
 import java.awt.event.KeyAdapter;

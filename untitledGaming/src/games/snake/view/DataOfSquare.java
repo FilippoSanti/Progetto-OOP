@@ -1,4 +1,4 @@
-package presentation.snake.view;
+package games.snake.view;
 
 import java.util.ArrayList;
 import java.awt.Color;

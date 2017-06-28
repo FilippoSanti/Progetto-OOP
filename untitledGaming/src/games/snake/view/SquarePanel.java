@@ -1,4 +1,4 @@
-package presentation.snake.view;
+package games.snake.view;
 
 import java.awt.Color;
 import javax.swing.JPanel;

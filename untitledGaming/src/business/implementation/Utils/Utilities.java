@@ -3,6 +3,7 @@ package business.implementation.Utils;
 import business.BusinessException;
 import business.implementation.UserManagement;
 import business.model.Utente;
+import games.SlotMachineGUI;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
@@ -177,16 +178,16 @@ public class Utilities {
                 break;
 
             case "Snake":
-                new presentation.snake.view.startSnake(utente);
+                new games.snake.view.startSnake(utente);
                 break;
 
             case "SlotMachineGUI":
                 try {
                     if (new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() < 15) {
                         JOptionPane.showMessageDialog(null, "Aggiunti 100 crediti");
-                        new presentation.SlotMachineGUI(utente, new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() + 100, 100, 15, 25, 5, 7, 7, 7);
+                        new SlotMachineGUI(utente, new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() + 100, 100, 15, 25, 5, 7, 7, 7);
                     } else {
-                        new presentation.SlotMachineGUI(utente, new UserManagement().getGameProfile(utente.getUserId()).getEsperienza(), 100, 15, 25, 5, 7, 7, 7);
+                        new SlotMachineGUI(utente, new UserManagement().getGameProfile(utente.getUserId()).getEsperienza(), 100, 15, 25, 5, 7, 7, 7);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
