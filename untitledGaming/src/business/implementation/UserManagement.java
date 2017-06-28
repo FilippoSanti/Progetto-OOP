@@ -3,7 +3,6 @@ package business.implementation;
 import business.BusinessException;
 import business.implementation.Interfaces.UserManagementInterface;
 import business.model.*;
-import controller.eventsListener;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.*;

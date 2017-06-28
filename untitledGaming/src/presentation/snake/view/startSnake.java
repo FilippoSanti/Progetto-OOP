@@ -1,7 +1,6 @@
 package presentation.snake.view;
 
 import business.model.Utente;
-import controller.eventsListener;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;

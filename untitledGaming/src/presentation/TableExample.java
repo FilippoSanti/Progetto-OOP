@@ -1,7 +1,6 @@
 package presentation;
 
 import business.implementation.ReviewManagement;
-import controller.eventsListener;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;

@@ -4,7 +4,6 @@ import business.implementation.AchievementsManager;
 import business.implementation.UserManagement;
 import business.model.Achievement;
 import business.model.Utente;
-import controller.eventsListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

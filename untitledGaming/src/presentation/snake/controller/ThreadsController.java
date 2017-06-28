@@ -6,7 +6,6 @@ import business.implementation.TimelineManagement;
 import business.implementation.UserManagement;
 import business.implementation.Utils.Utilities;
 import business.model.Utente;
-import controller.eventsListener;
 
 import presentation.snake.model.Tuple;
 import presentation.snake.view.DataOfSquare;

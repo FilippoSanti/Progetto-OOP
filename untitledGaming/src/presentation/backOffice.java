@@ -3,6 +3,8 @@ package presentation;
 import business.model.Utente;
 
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.*;
 
@@ -62,6 +64,19 @@ public class backOffice {
 		txtaddgame = new JTextField();
 		txtaddgame.setHorizontalAlignment(SwingConstants.CENTER);
 		txtaddgame.setToolTipText("inserisci qu\u00EC il nome del gioco da inserire");
+
+		//Listen for focus
+		txtaddgame.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				txtaddgame.setText("");
+			}
+
+			public void focusLost(FocusEvent e) {
+				if (txtaddgame.getText().isEmpty())
+					txtaddgame.setText("- Nome Gioco da  Inserire -");
+			}
+		});
+
 		txtaddgame.setText("- Nome Gioco da  Inserire -");
 		txtaddgame.setForeground(Color.DARK_GRAY);
 		txtaddgame.setFont(new Font("Oregano", Font.PLAIN, 25));

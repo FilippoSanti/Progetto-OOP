@@ -1,9 +1,7 @@
 package presentation;
 
 import business.implementation.UserManagement;
-import controller.eventsListener;
 import business.model.Utente;
-import controller.eventsListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

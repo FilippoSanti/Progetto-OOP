@@ -2,9 +2,7 @@ package presentation;
 
 import business.BusinessException;
 import business.implementation.UserManagement;
-import controller.eventsListener;
 import business.model.Utente;
-import controller.eventsListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +43,7 @@ public class startPage {
         frmUntitledGaming.getContentPane().add(lblNewLabel);
 
         txtUsername = new JTextField();
-        txtUsername.setToolTipText("E-mail");
+        txtUsername.setToolTipText("Username");
 
         //Listen for focus
         txtUsername.addFocusListener(new FocusListener() {
@@ -55,11 +53,11 @@ public class startPage {
 
             public void focusLost(FocusEvent e) {
                 if (txtUsername.getText().isEmpty())
-                    txtUsername.setText("E-mail");
+                    txtUsername.setText("Username");
             }
         });
 
-        txtUsername.setText("E-mail");
+        txtUsername.setText("Username");
         txtUsername.setFont(new Font("Georgia", Font.ITALIC, 20));
         txtUsername.setForeground(Color.GRAY);
         txtUsername.setHorizontalAlignment(SwingConstants.CENTER);

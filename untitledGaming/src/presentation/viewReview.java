@@ -3,7 +3,6 @@ package presentation;
 import business.implementation.ReviewManagement;
 import business.model.Review;
 import business.model.Utente;
-import controller.eventsListener;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,7 +2,6 @@ package business.implementation;
 
 import business.implementation.Interfaces.AchievementsManagerInterface;
 import business.model.gameProfile;
-import controller.eventsListener;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.*;

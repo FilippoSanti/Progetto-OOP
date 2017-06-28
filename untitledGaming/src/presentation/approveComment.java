@@ -2,10 +2,8 @@ package presentation;
 
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
-import controller.eventsListener;
 import business.model.Review;
 import business.model.Utente;
-import controller.eventsListener;
 
 import java.awt.*;
 

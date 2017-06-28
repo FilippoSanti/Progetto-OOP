@@ -3,7 +3,6 @@ package business.implementation;
 import business.implementation.Interfaces.ReviewInterface;
 import business.model.Review;
 import business.model.Utente;
-import controller.eventsListener;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.table.TableModel;
