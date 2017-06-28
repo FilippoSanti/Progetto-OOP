@@ -2,6 +2,7 @@ package presentation;
 
 import business.BusinessException;
 import business.implementation.DBManager;
+import business.implementation.UserManagement;
 import business.implementation.Utils.Utilities;
 import business.model.Utente;
 import controller.eventsListener;
@@ -88,7 +89,7 @@ public class editData {
 
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                eventsListener.changePage("profile", utente);
+                business.implementation.Utils.Utilities.changePage("profile", utente);
 
             }
         });
@@ -307,12 +308,12 @@ public class editData {
                     }
 
                     frmUntitledGaming.dispose();
-                    if (eventsListener.setUtente(eventsListener.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), dateText, textField_3.getText(), passText, textField_4.getText())) {
+                    if (new UserManagement().setUtente(new UserManagement().getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), dateText, textField_3.getText(), passText, textField_4.getText())) {
                         Utente utenteModificato = new Utente();
                         try {
                             utenteModificato = new Utente(utente.getUserId(), textField_4.getText(), textField.getText(), textField_1.getText(), passText,
                                     textField_3.getText(), utente.getTipo(), business.implementation.Utils.Utilities.stringToDate(dateText));
-                            eventsListener.changePage("profile", utenteModificato);
+                            business.implementation.Utils.Utilities.changePage("profile", utenteModificato);
 
                         } catch (ParseException e1) {
                             e1.printStackTrace();

@@ -61,7 +61,7 @@ public class logged {
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                controller.eventsListener.changePage("profile", utente);
+                business.implementation.Utils.Utilities.changePage("profile", utente);
             }
         });
 
@@ -78,7 +78,7 @@ public class logged {
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("evalutateReview", utente);
+                business.implementation.Utils.Utilities.changePage("evalutateReview", utente);
             }
         });
 
@@ -91,7 +91,7 @@ public class logged {
         btnLogOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("startPage", utente);
+                business.implementation.Utils.Utilities.changePage("startPage", utente);
             }
         });
 
@@ -107,7 +107,7 @@ public class logged {
         btnListaUtenti.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                controller.eventsListener.changePage("userList", utente);
+                business.implementation.Utils.Utilities.changePage("userList", utente);
             }
         });
 
@@ -120,7 +120,7 @@ public class logged {
         btnGiocaOra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                controller.eventsListener.changePage("allGames", utente);
+                business.implementation.Utils.Utilities.changePage("allGames", utente);
             }
         });
     }

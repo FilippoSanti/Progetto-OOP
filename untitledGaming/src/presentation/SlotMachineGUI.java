@@ -1,10 +1,10 @@
 package presentation;
 
-import business.implementation.DBManager;
+import business.implementation.*;
 import business.implementation.Utils.Utilities;
 import business.model.Utente;
 import business.model.gameProfile;
-import controller.eventsListener;
+
 
 import java.awt.*;
 import javax.swing.*;
@@ -84,34 +84,34 @@ public class SlotMachineGUI {
 
                     try {
                         if (DBManager.checkTimeline(utente.getUserId())) {
-                            eventsListener.updateTimeline(utente.getUserId(),
-                                    business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza(), 2);
+                            new TimelineManagement().updateTimeline(utente.getUserId(),
+                                    business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza(), 2);
                         } else {
-                            eventsListener.addUserToTimeline(utente.getUserId(), 1, business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
+                            new UserManagement().addUserToTimeline(utente.getUserId(), 1, business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza());
                         }
 
-                        if (credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza() > 1500) {
-                            if (!eventsListener.AchievementFoundOnProfile(8, utente.getUserId())) {
-                                eventsListener.insertAchievementToProfile(utente.getUserId(), 8);
+                        if (credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() > 1500) {
+                            if (!new AchievementsManager().AchievementFoundOnProfile(8, utente.getUserId())) {
+                                new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 8);
                                 JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giorno Fortunato !");
                             }
                         }
 
-                        if (eventsListener.getGameProfile(utente.getUserId()).getEsperienza() - credits > 290) {
-                            if (!eventsListener.AchievementFoundOnProfile(7, utente.getUserId())) {
+                        if (new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() - credits > 290) {
+                            if (!new AchievementsManager().AchievementFoundOnProfile(7, utente.getUserId())) {
                                 JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giocatore d' azzardo !");
-                                eventsListener.insertAchievementToProfile(utente.getUserId(), 7);
+                                new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 7);
                             }
                         }
 
-                        eventsListener.addXP(utente, credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
-                        eventsListener.checkLivello(eventsListener.getGameProfile(utente.getUserId()));
+                        new business.implementation.UserManagement().addXp(utente, credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza());
+                        new UserManagement().checkLivello(new UserManagement().getGameProfile(utente.getUserId()));
 
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                     frmFrame.setVisible(false);
-                    eventsListener.changePage("allGames", utente);
+                    business.implementation.Utils.Utilities.changePage("allGames", utente);
 
 
                 }

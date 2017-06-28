@@ -1,5 +1,7 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.UserManagement;
 import business.model.Achievement;
 import business.model.Utente;
 import controller.eventsListener;
@@ -59,7 +61,7 @@ public class achievementsList {
         back_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("profile", utente);
+                business.implementation.Utils.Utilities.changePage("profile", utente);
 
             }
         });
@@ -74,7 +76,7 @@ public class achievementsList {
         // Get the end of the list
         int fineLista = 0;
         try {
-            fineLista = eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount();
+            fineLista = new AchievementsManager().getUserAchievementsList(utente.getUserId()).getRowCount();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,7 +93,7 @@ public class achievementsList {
         frmUntitledGaming.getContentPane().add(lblListaGiochi);
 
         try {
-            if (row + 4 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+            if (row + 4 >= new AchievementsManager().getUserAchievementsList(utente.getUserId()).getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
         } catch (SQLException e) {
@@ -131,7 +133,7 @@ public class achievementsList {
 
         // Achievement 1
         try {
-            JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+            JTable table = new JTable(new AchievementsManager().getUserAchievementsList(utente.getUserId()));
             String achievementDesc = String.valueOf(table.getValueAt(row, 1));
 
             // Get the game id from th Table Model
@@ -160,7 +162,7 @@ public class achievementsList {
 
             //Game name
             int id_user = Integer.parseInt(gameID);
-            JTable achTable = new JTable(eventsListener.getGameNameByID(id_user));
+            JTable achTable = new JTable(new UserManagement().getGameNameByID(id_user));
             String achNameString = String.valueOf(achTable.getValueAt(0, 0));
 
             JLabel lbltitoloGioco = new JLabel(achNameString);
@@ -190,7 +192,7 @@ public class achievementsList {
         // Achievement 2
         try {
 
-            if (row + 1 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+            if (row + 1 >= new AchievementsManager().getUserAchievementsList(utente.getUserId()).getRowCount()) {
 
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
@@ -200,7 +202,7 @@ public class achievementsList {
 
             } else {
 
-                JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+                JTable table = new JTable(new AchievementsManager().getUserAchievementsList(utente.getUserId()));
                 String achievementDesc = String.valueOf(table.getValueAt(row + 1, 1));
 
                 // Get the game id from the Table Model
@@ -232,7 +234,7 @@ public class achievementsList {
 
                 //Game name
                 int id_game = Integer.parseInt(gameID);
-                JTable achTable = new JTable(eventsListener.getGameNameByID(id_game));
+                JTable achTable = new JTable(new UserManagement().getGameNameByID(id_game));
                 String achNameString = String.valueOf(achTable.getValueAt(0, 0));
 
                 JLabel label_3 = new JLabel(achNameString);
@@ -263,7 +265,7 @@ public class achievementsList {
         // Achievement 3
         try {
 
-            if (row + 2 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+            if (row + 2 >= new AchievementsManager().getUserAchievementsList(utente.getUserId()).getRowCount()) {
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
                 JLabel lblNewLabel = new JLabel("Empty");
@@ -271,7 +273,7 @@ public class achievementsList {
                 lblNewLabel.setLabelFor(panel_1);
             } else {
 
-                JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+                JTable table = new JTable(new AchievementsManager().getUserAchievementsList(utente.getUserId()));
                 String achievementDesc = String.valueOf(table.getValueAt(row + 2, 1));
 
                 // Get the game id from the Table Model
@@ -299,7 +301,7 @@ public class achievementsList {
                 frmUntitledGaming.getContentPane().add(label);
 
                 int id_game = Integer.parseInt(gameID);
-                JTable achTable = new JTable(eventsListener.getGameNameByID(id_game));
+                JTable achTable = new JTable(new UserManagement().getGameNameByID(id_game));
                 String achNameString = String.valueOf(achTable.getValueAt(0, 0));
                 JLabel label_3 = new JLabel(achNameString);
 
@@ -331,11 +333,11 @@ public class achievementsList {
         // Achievement 4
         try {
 
-            if (row + 3 >= eventsListener.getUserAchievementsList(utente.getUserId()).getRowCount()) {
+            if (row + 3 >= new AchievementsManager().getUserAchievementsList(utente.getUserId()).getRowCount()) {
 
             } else {
 
-                JTable table = new JTable(eventsListener.getUserAchievementsList(utente.getUserId()));
+                JTable table = new JTable(new AchievementsManager().getUserAchievementsList(utente.getUserId()));
                 String achievementDesc = String.valueOf(table.getValueAt(row + 3, 1));
 
                 // Get the game id from the Table Model
@@ -364,7 +366,7 @@ public class achievementsList {
                 frmUntitledGaming.getContentPane().add(label);
 
                 int id_game = Integer.parseInt(gameID);
-                JTable achTable = new JTable(eventsListener.getGameNameByID(id_game));
+                JTable achTable = new JTable(new UserManagement().getGameNameByID(id_game));
                 String achNameString = String.valueOf(achTable.getValueAt(0, 0));
                 JLabel label_3 = new JLabel(achNameString);
 

@@ -1,6 +1,9 @@
 package presentation.snake.controller;
 
+import business.implementation.AchievementsManager;
 import business.implementation.DBManager;
+import business.implementation.TimelineManagement;
+import business.implementation.UserManagement;
 import business.implementation.Utils.Utilities;
 import business.model.Utente;
 import controller.eventsListener;
@@ -96,8 +99,8 @@ public class ThreadsController extends Thread {
 
     //Stops The Game
     private void stopTheGame() throws SQLException {
-        controller.eventsListener.addXP(utente, esperienza);
-        eventsListener.checkLivello(eventsListener.getGameProfile(utente.getUserId()));
+        new business.implementation.UserManagement().addXp(utente, esperienza);
+        new UserManagement().checkLivello(new UserManagement().getGameProfile(utente.getUserId()));
         JOptionPane.showMessageDialog(null, "Punti xp guadagnati nella sessione: " + esperienza + "." +
                 " Chiudi il gioco per terminare");
 
@@ -105,30 +108,30 @@ public class ThreadsController extends Thread {
 
             // Achievement 1
             if (esperienza >= 500) {
-                if (!eventsListener.AchievementFoundOnProfile(9, utente.getUserId())) {
+                if (!new AchievementsManager().AchievementFoundOnProfile(9, utente.getUserId())) {
                     JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Inarrestabile !");
-                    eventsListener.insertAchievementToProfile(utente.getUserId(), 9);
+                    new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 9);
                 }
             }
 
             // Achievement 2
             if (sizeSnake >= 30) {
-                if (!eventsListener.AchievementFoundOnProfile(10, utente.getUserId())) {
+                if (!new AchievementsManager().AchievementFoundOnProfile(10, utente.getUserId())) {
                     JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Serpentone !");
-                    eventsListener.insertAchievementToProfile(utente.getUserId(), 10);
+                    new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 10);
                 }
             }
 
             // Achievement 3
             if (sizeSnake == 3 && esperienza == 0) {
-                if (!eventsListener.AchievementFoundOnProfile(11, utente.getUserId())) {
+                if (!new AchievementsManager().AchievementFoundOnProfile(11, utente.getUserId())) {
                     JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Digiuno !");
-                    eventsListener.insertAchievementToProfile(utente.getUserId(), 11);
+                    new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 11);
                 }
             }
 
             // Update the timeline
-            eventsListener.updateTimeline(utente.getUserId(),
+            new TimelineManagement().updateTimeline(utente.getUserId(),
                     business.implementation.Utils.Utilities.getCurrentData(), esperienza, 6);
 
         } catch (SQLException e1) {

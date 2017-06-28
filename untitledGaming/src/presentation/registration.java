@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 
-import static controller.eventsListener.newUser;
-import static controller.eventsListener.changePage;
 
 
 public class registration {
@@ -112,9 +110,14 @@ public class registration {
                     }
 
                     frmUntitledGaming.dispose();
-                    controller.eventsListener.newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
+
+                     boolean result = new business.implementation.UserManagement().newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
                             txtEmil.getText(), dateText, img_value, "user");
-                    changePage("startPage", null);
+                     if (result) {
+                         JOptionPane.showMessageDialog(null, "Registrazione avvenuta correttamente");
+                     } else  JOptionPane.showMessageDialog(null, "Errore interno");
+
+                    business.implementation.Utils.Utilities.changePage("startPage", null);
 
                 } catch (SQLException e1) {
                     e1.printStackTrace();
@@ -261,7 +264,7 @@ public class registration {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                changePage("startPage", null);
+                business.implementation.Utils.Utilities.changePage("startPage", null);
             }
         });
 

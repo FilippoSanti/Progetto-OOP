@@ -1,5 +1,6 @@
 package presentation;
 
+import business.implementation.UserManagement;
 import controller.eventsListener;
 import business.model.Utente;
 import controller.eventsListener;
@@ -49,7 +50,7 @@ public class usersList {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("logged", utente);
+                business.implementation.Utils.Utilities.changePage("logged", utente);
 
             }
         });
@@ -57,7 +58,7 @@ public class usersList {
 
         JLabel lblListaGiochi = null;
         try {
-            int fineLista = eventsListener.getUsers().getRowCount();
+            int fineLista = new UserManagement().getUsers().getRowCount();
             int inizioLista = row + 4;
             if ((row + 4) >= fineLista)
                 inizioLista = fineLista;
@@ -77,7 +78,7 @@ public class usersList {
         String username1 = "";
         try {
 
-            username1 = String.valueOf(eventsListener.getUsers().getValueAt(row, 1));
+            username1 = String.valueOf(new UserManagement().getUsers().getValueAt(row, 1));
             JPanel panel = new JPanel();
 
             JLabel lblNewLabel = new JLabel(username1);
@@ -106,7 +107,7 @@ public class usersList {
             String tipo1 = "";
 
             try {
-                tipo1 = eventsListener.getUserTipo(username1);
+                tipo1 = new UserManagement().getUserTipo(username1);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -126,7 +127,7 @@ public class usersList {
             btnPromuovi.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        eventsListener.setToModerator(finalUsername);
+                        new UserManagement().setToModerator(finalUsername);
                         frmUntitledGaming.setVisible(false);
                         new usersList(utente, row);
                     } catch (SQLException e1) {
@@ -149,7 +150,7 @@ public class usersList {
             btnDclassa.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        eventsListener.setToUser(finalUsername);
+                        new UserManagement().setToUser(finalUsername);
                         frmUntitledGaming.setVisible(false);
                         new usersList(utente, row);
                     } catch (SQLException e1) {
@@ -167,11 +168,11 @@ public class usersList {
         String username2 = "";
         try {
             JLabel lbltitolo = null;
-            if (row + 1 >= eventsListener.getUsers().getRowCount()) {
+            if (row + 1 >= new UserManagement().getUsers().getRowCount()) {
                 lbltitolo = new JLabel("vuoto");
             } else {
 
-                username2 = String.valueOf(eventsListener.getUsers().getValueAt(row + 1, 1));
+                username2 = String.valueOf(new UserManagement().getUsers().getValueAt(row + 1, 1));
                 lbltitolo = new JLabel(username2);
                 JPanel panel_1 = new JPanel();
 
@@ -197,7 +198,7 @@ public class usersList {
                 String tipo2 = "";
 
                 try {
-                    tipo2 = eventsListener.getUserTipo(username2);
+                    tipo2 = new UserManagement().getUserTipo(username2);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -217,7 +218,7 @@ public class usersList {
                 button_1.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            eventsListener.setToModerator(finalUsername2);
+                            new UserManagement().setToModerator(finalUsername2);
                             frmUntitledGaming.setVisible(false);
                             new usersList(utente, row);
                         } catch (SQLException e1) {
@@ -240,7 +241,7 @@ public class usersList {
                 button_5.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            eventsListener.setToUser(finalUsername2);
+                            new UserManagement().setToUser(finalUsername2);
                             frmUntitledGaming.setVisible(false);
                             new usersList(utente, row);
                         } catch (SQLException e1) {
@@ -261,12 +262,12 @@ public class usersList {
         String username3 = "";
         try {
             JLabel lbltitolo_1 = null;
-            if (row + 2 >= eventsListener.getUsers().getRowCount()) {
+            if (row + 2 >= new UserManagement().getUsers().getRowCount()) {
                 lbltitolo_1 = new JLabel("vuoto");
             } else {
 
                 JPanel panel_2 = new JPanel();
-                username3 = String.valueOf(String.valueOf(eventsListener.getUsers().getValueAt(row + 2, 1)));
+                username3 = String.valueOf(String.valueOf(new UserManagement().getUsers().getValueAt(row + 2, 1)));
                 lbltitolo_1 = new JLabel(username3);
                 lbltitolo_1.setLabelFor(panel_2);
                 lbltitolo_1.setFont(new Font("Georgia", Font.ITALIC, 21));
@@ -291,7 +292,7 @@ public class usersList {
                 String tipo3 = "";
                 try {
 
-                    tipo3 = eventsListener.getUserTipo(username3);
+                    tipo3 = new UserManagement().getUserTipo(username3);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -312,7 +313,7 @@ public class usersList {
                 button_2.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            eventsListener.setToModerator(finalUsername3);
+                            new UserManagement().setToModerator(finalUsername3);
                             frmUntitledGaming.setVisible(false);
                             new usersList(utente, row);
                         } catch (SQLException e1) {
@@ -335,7 +336,7 @@ public class usersList {
                 button_6.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            eventsListener.setToUser(finalUsername3);
+                            new UserManagement().setToUser(finalUsername3);
                             frmUntitledGaming.setVisible(false);
                             new usersList(utente, row);
                         } catch (SQLException e1) {
@@ -356,12 +357,12 @@ public class usersList {
         try {
 
             JLabel lbltitolo_2 = null;
-            if (row + 3 >= eventsListener.getUsers().getRowCount()) {
+            if (row + 3 >= new UserManagement().getUsers().getRowCount()) {
                 lbltitolo_2 = new JLabel("vuoto");
             } else {
 
                 JPanel panel_3 = new JPanel();
-                username4 = String.valueOf(String.valueOf(eventsListener.getUsers().getValueAt(row + 3, 1)));
+                username4 = String.valueOf(String.valueOf(new UserManagement().getUsers().getValueAt(row + 3, 1)));
                 lbltitolo_2 = new JLabel(username4);
                 lbltitolo_2.setLabelFor(panel_3);
                 lbltitolo_2.setFont(new Font("Georgia", Font.ITALIC, 21));
@@ -383,7 +384,7 @@ public class usersList {
                 // Buttons
                 String tipo4 = "";
                 try {
-                    tipo4 = eventsListener.getUserTipo(username4);
+                    tipo4 = new UserManagement().getUserTipo(username4);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -404,7 +405,7 @@ public class usersList {
                 button_3.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            eventsListener.setToModerator(finalUsername4);
+                            new UserManagement().setToModerator(finalUsername4);
                             frmUntitledGaming.setVisible(false);
                             new usersList(utente, row);
                         } catch (SQLException e1) {
@@ -428,7 +429,7 @@ public class usersList {
                 button_7.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            eventsListener.setToUser(finalUsername4);
+                            new UserManagement().setToUser(finalUsername4);
                             frmUntitledGaming.setVisible(false);
                             new usersList(utente, row);
                         } catch (SQLException e1) {
@@ -451,7 +452,7 @@ public class usersList {
         frmUntitledGaming.getContentPane().add(btnSuccessiva);
 
         try {
-            if (row + 4 >= eventsListener.getUsers().getRowCount()) {
+            if (row + 4 >= new UserManagement().getUsers().getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
         } catch (SQLException e) {

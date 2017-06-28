@@ -1,5 +1,7 @@
 package presentation;
 
+import business.implementation.ReviewManagement;
+import business.implementation.UserManagement;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -109,10 +111,10 @@ public class review extends starEdit {
 
                 // Check if the user is a moderator, if so, automatically approve the review
                 try {
-                    if (eventsListener.getUserType(utente.getUserId()).equals("moderator") ||
-                            eventsListener.getUserType(utente.getUserId()).equals("administrator")) {
+                    if (new UserManagement().getUserType(utente.getUserId()).equals("moderator") ||
+                            new UserManagement().getUserType(utente.getUserId()).equals("administrator")) {
                         int vote = lb.getLevel();
-                        controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, true);
+                        new ReviewManagement().newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, true);
                         new reviewList(utente, 0, gioco_id);
                     }
                 } catch (SQLException e1) {
@@ -121,7 +123,7 @@ public class review extends starEdit {
 
                 try {
                     int vote = lb.getLevel();
-                    controller.eventsListener.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, false);
+                    new ReviewManagement().newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, false);
                     new reviewList(utente, 0, gioco_id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
@@ -155,7 +157,7 @@ public class review extends starEdit {
         btnTornaAllaHome.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                eventsListener.changePage("logged", utente);
+                business.implementation.Utils.Utilities.changePage("logged", utente);
 
             }
         });

@@ -1,10 +1,13 @@
 package business.implementation.Utils;
 
 import business.BusinessException;
+import business.implementation.UserManagement;
+import business.model.Utente;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,6 +16,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -111,5 +115,83 @@ public class Utilities {
             e.printStackTrace();
         }
         return success;
+    }
+
+    /* Change the current JFrame page */
+    public static void changePage(String page, Utente utente) {
+        switch (page) {
+            case "startPage":
+                new presentation.startPage();
+                break;
+
+            case "registration":
+                new presentation.registration();
+                break;
+
+            case "logged":
+                new presentation.logged(utente);
+                break;
+
+            case "profile":
+                new presentation.profile(utente);
+                break;
+
+            case "editData":
+                new presentation.editData(utente);
+                break;
+
+            case "evalutateReview":
+                new presentation.evalutateReview(utente, 0);
+                break;
+
+            case "achievementsList":
+                new presentation.achievementsList(utente, 0);
+                break;
+
+            case "allGames":
+                new presentation.allGames(utente, 0);
+                break;
+
+            case "reviewList":
+                new presentation.reviewList(utente, 0, 0);
+                break;
+
+            case "viewRievew":
+                new presentation.viewReview(utente, 0, 0, 0);
+                break;
+
+            case "review":
+                new presentation.review(utente, 0);
+                break;
+
+            case "timelineView":
+                new presentation.timelineView(utente);
+                break;
+
+            case "userList":
+                new presentation.usersList(utente, 0);
+                break;
+
+            case "approveComment":
+                new presentation.approveComment(utente, null);
+                break;
+
+            case "Snake":
+                new presentation.snake.view.startSnake(utente);
+                break;
+
+            case "SlotMachineGUI":
+                try {
+                    if (new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() < 15) {
+                        JOptionPane.showMessageDialog(null, "Aggiunti 100 crediti");
+                        new presentation.SlotMachineGUI(utente, new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() + 100, 100, 15, 25, 5, 7, 7, 7);
+                    } else {
+                        new presentation.SlotMachineGUI(utente, new UserManagement().getGameProfile(utente.getUserId()).getEsperienza(), 100, 15, 25, 5, 7, 7, 7);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 }

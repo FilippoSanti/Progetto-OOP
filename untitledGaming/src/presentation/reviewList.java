@@ -1,8 +1,9 @@
 package presentation;
 
-import controller.eventsListener;
+import business.implementation.ReviewManagement;
+import business.implementation.UserManagement;
 import business.model.Utente;
-import controller.eventsListener;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -54,7 +55,7 @@ public class reviewList extends starView {
 
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (eventsListener.reviewFoundOnProfile(utente.getUserId(), game)) {
+                    if (new ReviewManagement().reviewFoundOnProfile(utente.getUserId(), game)) {
                         frmUntitledGaming.setVisible(false);
                         new viewReview(utente, 0, utente.getUserId(), game);
                     } else {
@@ -78,13 +79,13 @@ public class reviewList extends starView {
 
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                eventsListener.changePage("allGames", utente);
+                business.implementation.Utils.Utilities.changePage("allGames", utente);
             }
         });
 
         int fineLista = 0;
         try {
-            fineLista = eventsListener.getReviewsByID(game).getRowCount();
+            fineLista = new ReviewManagement().getReviewsByID(game).getRowCount();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,7 +110,7 @@ public class reviewList extends starView {
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
         try {
-            if (row + 4 >= eventsListener.getReviewsByID(game).getRowCount()) {
+            if (row + 4 >= new ReviewManagement().getReviewsByID(game).getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
 
@@ -153,10 +154,10 @@ public class reviewList extends starView {
         //First Review
         JLabel label = null;
         try {
-            if (!(row >= eventsListener.getReviewsByID(game).getRowCount())) {
+            if (!(row >= new ReviewManagement().getReviewsByID(game).getRowCount())) {
 
-                JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row, 1));
+                JTable table = new JTable(new ReviewManagement().getReviewsByID(game));
+                String a = String.valueOf(new ReviewManagement().getReviewsByID(game).getValueAt(row, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row, 3).toString());
                 System.out.println(voteInt);
@@ -165,7 +166,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label = new JLabel(eventsListener.getUsername(b));
+                label = new JLabel(new UserManagement().getUsername(b));
 
                 // Star Rating
                 JPanel panel_4 = new JPanel();
@@ -229,10 +230,10 @@ public class reviewList extends starView {
         /** Review 2 **/
         JLabel label_1 = null;
         try {
-            if (!(row + 1 >= eventsListener.getReviewsByID(game).getRowCount())) {
+            if (!(row + 1 >= new ReviewManagement().getReviewsByID(game).getRowCount())) {
 
-                JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 1, 1));
+                JTable table = new JTable(new ReviewManagement().getReviewsByID(game));
+                String a = String.valueOf(new ReviewManagement().getReviewsByID(game).getValueAt(row + 1, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row + 1, 3).toString());
 
@@ -240,7 +241,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label_1 = new JLabel(eventsListener.getUsername(b));
+                label_1 = new JLabel(new UserManagement().getUsername(b));
 
                 // Star Rating
                 JPanel panel_5 = new JPanel();
@@ -301,10 +302,10 @@ public class reviewList extends starView {
         /** Review 3 **/
         JLabel label_2 = null;
         try {
-            if (!(row + 2 >= eventsListener.getReviewsByID(game).getRowCount())) {
+            if (!(row + 2 >= new ReviewManagement().getReviewsByID(game).getRowCount())) {
 
-                JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 2, 1));
+                JTable table = new JTable(new ReviewManagement().getReviewsByID(game));
+                String a = String.valueOf(new ReviewManagement().getReviewsByID(game).getValueAt(row + 2, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row + 2, 3).toString());
 
@@ -312,7 +313,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label_2 = new JLabel(eventsListener.getUsername(b));
+                label_2 = new JLabel(new UserManagement().getUsername(b));
 
                 // Star Rating
                 JPanel panel_6 = new JPanel();
@@ -374,10 +375,10 @@ public class reviewList extends starView {
         /** Review 4 **/
         JLabel label_3 = null;
         try {
-            if (row + 3 >= eventsListener.getReviewsByID(game).getRowCount()) {
+            if (row + 3 >= new ReviewManagement().getReviewsByID(game).getRowCount()) {
 
-                JTable table = new JTable(eventsListener.getReviewsByID(game));
-                String a = String.valueOf(eventsListener.getReviewsByID(game).getValueAt(row + 3, 1));
+                JTable table = new JTable(new ReviewManagement().getReviewsByID(game));
+                String a = String.valueOf(new ReviewManagement().getReviewsByID(game).getValueAt(row + 3, 1));
 
                 int voteInt = Integer.parseInt(table.getValueAt(row + 3, 3).toString());
 
@@ -385,7 +386,7 @@ public class reviewList extends starView {
                 int b = Integer.parseInt(a);
 
                 // Create a new label
-                label_3 = new JLabel(eventsListener.getUsername(b));
+                label_3 = new JLabel(new UserManagement().getUsername(b));
 
                 // Attenzione a modificare perchè le List,ImageIcon e ip sotto ereditano le dichiarazioni fatte nella prima starRating
                 JPanel panel_7 = new JPanel();

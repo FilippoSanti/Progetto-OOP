@@ -1,5 +1,7 @@
 package presentation;
 
+import business.implementation.ReviewManagement;
+import business.implementation.UserManagement;
 import controller.eventsListener;
 import business.model.Review;
 import business.model.Utente;
@@ -54,11 +56,11 @@ public class approveComment {
 
                 frmUntitledGaming.setVisible(false);
                 try {
-                    eventsListener.approveReview(review);
+                    new ReviewManagement().approveReview(review);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
-                eventsListener.changePage("evalutateReview", utente);
+                business.implementation.Utils.Utilities.changePage("evalutateReview", utente);
 
             }
         });
@@ -76,11 +78,11 @@ public class approveComment {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
                 try {
-                    eventsListener.deleteReview(review);
+                    new ReviewManagement().deleteReview(review);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
-                eventsListener.changePage("evalutateReview", utente);
+                business.implementation.Utils.Utilities.changePage("evalutateReview", utente);
             }
         });
 
@@ -93,7 +95,7 @@ public class approveComment {
 
         JLabel lblusername = null;
         try {
-            lblusername = new JLabel(eventsListener.getUsername(review.getUser_id()));
+            lblusername = new JLabel(new UserManagement().getUsername(review.getUser_id()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -121,7 +123,7 @@ public class approveComment {
 
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                eventsListener.changePage("evalutateReview", utente);
+                business.implementation.Utils.Utilities.changePage("evalutateReview", utente);
 
             }
         });

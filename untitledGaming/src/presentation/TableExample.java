@@ -1,5 +1,6 @@
 package presentation;
 
+import business.implementation.ReviewManagement;
 import controller.eventsListener;
 
 import javax.swing.JFrame;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 public class TableExample extends JFrame {
     public TableExample() throws SQLException {
 
-        JTable table = new JTable(eventsListener.getPendingReviews());
+        JTable table = new JTable(new ReviewManagement().getPendingReviews());
 
         //Add the table to the frame
         this.add(new JScrollPane(table));

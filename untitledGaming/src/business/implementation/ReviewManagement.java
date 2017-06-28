@@ -235,9 +235,9 @@ public class ReviewManagement implements ReviewInterface {
     /* Find a review on a profile */
     public boolean reviewFoundOnProfile(int user_id, int game_id) throws SQLException {
 
-        for (int i = 0; i < eventsListener.getAllReviews().getRowCount(); i++) {
-            if (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 0)).equals(String.valueOf(user_id)) &&
-                    (String.valueOf(eventsListener.getAllReviews().getValueAt(i, 3)).equals(String.valueOf(game_id)))) {
+        for (int i = 0; i < new ReviewManagement().getAllReviews().getRowCount(); i++) {
+            if (String.valueOf(new ReviewManagement().getAllReviews().getValueAt(i, 0)).equals(String.valueOf(user_id)) &&
+                    (String.valueOf(new ReviewManagement().getAllReviews().getValueAt(i, 3)).equals(String.valueOf(game_id)))) {
                 return true;
             }
         }

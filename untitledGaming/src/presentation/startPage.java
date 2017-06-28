@@ -1,6 +1,7 @@
 package presentation;
 
 import business.BusinessException;
+import business.implementation.UserManagement;
 import controller.eventsListener;
 import business.model.Utente;
 import controller.eventsListener;
@@ -81,9 +82,9 @@ public class startPage {
                     String passText = new String(passwordField.getPassword());
 
                     // Check if the login was successful
-                    if (eventsListener.userAuth(txtUsername.getText(), passText)) {
-                        Utente utente = eventsListener.getUtente(txtUsername.getText());
-                        eventsListener.changePage("logged", utente);
+                    if (new UserManagement().userAuth(txtUsername.getText(), passText)) {
+                        Utente utente = new UserManagement().getUtente(txtUsername.getText());
+                        business.implementation.Utils.Utilities.changePage("logged", utente);
                         frmUntitledGaming.dispose();
                     } else JOptionPane.showMessageDialog(frmUntitledGaming, "Username o password errati");
                 } catch (SQLException e1) {
@@ -103,7 +104,7 @@ public class startPage {
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                eventsListener.changePage("registration", null);
+                business.implementation.Utils.Utilities.changePage("registration", null);
             }
         });
 

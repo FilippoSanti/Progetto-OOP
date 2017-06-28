@@ -40,7 +40,7 @@ public class startSnake {
                         JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (confirm == 0) {
                     finalF.setVisible(false);
-                    eventsListener.changePage("allGames", utente);
+                    business.implementation.Utils.Utilities.changePage("allGames", utente);
                 }
             }
         };

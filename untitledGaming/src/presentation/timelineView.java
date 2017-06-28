@@ -1,5 +1,6 @@
 package presentation;
 
+import business.implementation.TimelineManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
 import controller.eventsListener;
@@ -45,7 +46,7 @@ public class timelineView {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
-                eventsListener.changePage("profile", utente);
+                business.implementation.Utils.Utilities.changePage("profile", utente);
 
             }
         });
@@ -92,7 +93,7 @@ public class timelineView {
         // Get the game id
         JLabel lblNewLabel = null;
         try {
-            lblNewLabel = new JLabel(eventsListener.getGameFromId(eventsListener.getTimeline(utente.getUserId()).getGioco_id()));
+            lblNewLabel = new JLabel(new UserManagement().getGameFromId(new TimelineManagement().getTimeline(utente.getUserId()).getGioco_id()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -104,7 +105,7 @@ public class timelineView {
         // Get the game's last play session
         JLabel lblInserireQui = null;
         try {
-            lblInserireQui = new JLabel(eventsListener.getTimeline(utente.getUserId()).getData_ultima_sessione().toString());
+            lblInserireQui = new JLabel(new TimelineManagement().getTimeline(utente.getUserId()).getData_ultima_sessione().toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -116,7 +117,7 @@ public class timelineView {
         // Get the earned xp
         JLabel lblInserireQui_1 = null;
         try {
-            lblInserireQui_1 = new JLabel(Integer.toString(eventsListener.getTimeline(utente.getUserId()).getEsperienza_guadagnata()));
+            lblInserireQui_1 = new JLabel(Integer.toString(new TimelineManagement().getTimeline(utente.getUserId()).getEsperienza_guadagnata()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

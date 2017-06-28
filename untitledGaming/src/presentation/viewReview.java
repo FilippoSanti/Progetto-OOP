@@ -1,5 +1,6 @@
 package presentation;
 
+import business.implementation.ReviewManagement;
 import business.model.Review;
 import business.model.Utente;
 import controller.eventsListener;
@@ -80,7 +81,7 @@ public class viewReview extends starView {
         Review rev = null;
 
         try {
-            rev = eventsListener.getReview(userId, gameID);
+            rev = new ReviewManagement().getReview(userId, gameID);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package presentation;
 
+import business.implementation.ReviewManagement;
+import business.implementation.UserManagement;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -48,14 +50,14 @@ public class allGames {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.dispose();
-                controller.eventsListener.changePage("logged", utente);
+                business.implementation.Utils.Utilities.changePage("logged", utente);
 
             }
         });
 
         int fineLista = 0;
         try {
-            fineLista = eventsListener.getGames().getRowCount();
+            fineLista = new UserManagement().getGames().getRowCount();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,7 +81,7 @@ public class allGames {
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
         try {
-            if (row + 4 >= eventsListener.getGames().getRowCount()) {
+            if (row + 4 >= new UserManagement().getGames().getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
         } catch (SQLException e) {
@@ -117,9 +119,9 @@ public class allGames {
         // Game 1
         try {
 
-            JTable table = new JTable(eventsListener.getGames());
+            JTable table = new JTable(new UserManagement().getGames());
             String titolo = String.valueOf(table.getValueAt(row, 1));
-            int gameID = controller.eventsListener.getGameIDFromName(titolo);
+            int gameID = new ReviewManagement().getGameIDFromName(titolo);
 
             // Game logo
             JPanel panel = new JPanel();
@@ -155,7 +157,7 @@ public class allGames {
             btnGioca0.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     frmUntitledGaming.setVisible(false);
-                    eventsListener.changePage(titolo, utente);
+                    business.implementation.Utils.Utilities.changePage(titolo, utente);
                 }
             });
 
@@ -180,7 +182,7 @@ public class allGames {
 
         // Game 2
         try {
-            if (row + 1 >= eventsListener.getGames().getRowCount()) {
+            if (row + 1 >= new UserManagement().getGames().getRowCount()) {
 
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
@@ -189,9 +191,9 @@ public class allGames {
                 lblNewLabel.setLabelFor(panel_1);
 
             } else {
-                JTable table = new JTable(eventsListener.getGames());
+                JTable table = new JTable(new UserManagement().getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 1, 1));
-                int gameID = controller.eventsListener.getGameIDFromName(titolo1);
+                int gameID = new ReviewManagement().getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_1 = new JPanel();
@@ -226,7 +228,7 @@ public class allGames {
                 btnGioca.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         frmUntitledGaming.setVisible(false);
-                        eventsListener.changePage(titolo1, utente);
+                        business.implementation.Utils.Utilities.changePage(titolo1, utente);
                     }
                 });
 
@@ -253,7 +255,7 @@ public class allGames {
         // Game 3
         try {
 
-            if (row + 2 >= eventsListener.getGames().getRowCount()) {
+            if (row + 2 >= new UserManagement().getGames().getRowCount()) {
 
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
@@ -262,9 +264,9 @@ public class allGames {
                 lblNewLabel.setLabelFor(panel_1);
 
             } else {
-                JTable table = new JTable(eventsListener.getGames());
+                JTable table = new JTable(new UserManagement().getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 2, 1));
-                int gameID = controller.eventsListener.getGameIDFromName(titolo1);
+                int gameID = new ReviewManagement().getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_2 = new JPanel();
@@ -298,7 +300,7 @@ public class allGames {
                 btnGioca_1.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         frmUntitledGaming.setVisible(false);
-                        eventsListener.changePage(titolo1, utente);
+                        business.implementation.Utils.Utilities.changePage(titolo1, utente);
                     }
                 });
 
@@ -326,7 +328,7 @@ public class allGames {
         // Game 4
         try {
 
-            if (row + 3 >= eventsListener.getGames().getRowCount()) {
+            if (row + 3 >= new UserManagement().getGames().getRowCount()) {
 
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
@@ -335,9 +337,9 @@ public class allGames {
                 lblNewLabel.setLabelFor(panel_1);
 
             } else {
-                JTable table = new JTable(eventsListener.getGames());
+                JTable table = new JTable(new UserManagement().getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 3, 1));
-                int gameID = controller.eventsListener.getGameIDFromName(titolo1);
+                int gameID = new ReviewManagement().getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_3 = new JPanel();
@@ -371,7 +373,7 @@ public class allGames {
                 btnGioca_1.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         frmUntitledGaming.setVisible(false);
-                        eventsListener.changePage(titolo1, utente);
+                        business.implementation.Utils.Utilities.changePage(titolo1, utente);
                     }
                 });
 

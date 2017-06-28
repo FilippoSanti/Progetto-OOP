@@ -57,8 +57,8 @@ public class UserManagement implements UserManagementInterface {
             /* executeUpdate returns either the row count for SQL Data Manipulation Language (DML) statements or
                0 for SQL statements that return nothing
              */
-            if (preparedStatement.executeUpdate() != 0 && eventsListener.setToNull(eventsListener.getUserID(user))
-                    && (addUserToTimeline(eventsListener.getUserID(user), 2, date, 0))) {
+            if (preparedStatement.executeUpdate() != 0 && new UserManagement().setToNull(new UserManagement().getUserID(user))
+                    && (addUserToTimeline(new UserManagement().getUserID(user), 2, date, 0))) {
 
                 return true;
             }
@@ -258,7 +258,7 @@ public class UserManagement implements UserManagementInterface {
 
         // If the password is not empty, we update it into the DB
         if (!password.isEmpty()) {
-            eventsListener.updatePassword(utente.getUserId(), password);
+            new UserManagement().updatePassword(utente.getUserId(), password);
         }
 
         // Check if the other fields are equal to the old ones or empty
@@ -863,7 +863,7 @@ public class UserManagement implements UserManagementInterface {
     public boolean userAuth(String username, String password) throws SQLException {
 
         // Get the user_id given the username
-        int userID = eventsListener.getUserID(username);
+        int userID = new UserManagement().getUserID(username);
 
         // DB Connection
         Connection conn = business.implementation.DBManager.Connect();
