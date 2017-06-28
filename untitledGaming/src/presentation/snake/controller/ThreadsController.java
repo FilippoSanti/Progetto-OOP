@@ -1,7 +1,7 @@
 package presentation.snake.controller;
 
 import business.implementation.DBManager;
-import business.implementation.Utils;
+import business.implementation.Utils.Utilities;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -129,7 +129,7 @@ public class ThreadsController extends Thread {
 
             // Update the timeline
             eventsListener.updateTimeline(utente.getUserId(),
-                    Utils.getCurrentData(), esperienza, 6);
+                    business.implementation.Utils.Utilities.getCurrentData(), esperienza, 6);
 
         } catch (SQLException e1) {
             e1.printStackTrace();

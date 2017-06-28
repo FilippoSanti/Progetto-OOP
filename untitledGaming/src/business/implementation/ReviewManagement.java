@@ -1,5 +1,6 @@
 package business.implementation;
 
+import business.implementation.Interfaces.ReviewInterface;
 import business.model.Review;
 import business.model.Utente;
 import controller.eventsListener;
@@ -11,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ReviewManagement {
+public class ReviewManagement implements ReviewInterface {
 
     /* Adds a new review */
     public boolean newReview(Utente utente, String text, int giocoId, double vote, boolean approved) throws SQLException {

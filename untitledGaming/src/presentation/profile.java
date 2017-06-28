@@ -3,7 +3,7 @@ package presentation;
 import business.BusinessException;
 import business.implementation.DBManager;
 import business.implementation.UserManagement;
-import business.implementation.Utils;
+import business.implementation.Utils.Utilities;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -95,7 +95,7 @@ public class profile {
         String dateString = utente.getData().toString();
         String reverse = new StringBuffer(dateString).reverse().toString();
 
-        String dataFinale = Utils.formatSqlDateString(utente.getData().toString());
+        String dataFinale = business.implementation.Utils.Utilities.formatSqlDateString(utente.getData().toString());
 
         JLabel lblNewLabel_6 = new JLabel(dataFinale);
         lblNewLabel_6.setForeground(Color.DARK_GRAY);
@@ -260,7 +260,7 @@ public class profile {
                     File tempFile = null;
 
                     try {
-                        imgTypePassed[0] = Utils.getImageType(selectedfile);
+                        imgTypePassed[0] = business.implementation.Utils.Utilities.getImageType(selectedfile);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -285,7 +285,7 @@ public class profile {
 
                         BufferedImage originalImage = ImageIO.read(selectedfile);
                         int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
-                        BufferedImage buffimg = business.implementation.Utils.resizeImg(originalImage, type, 175, 170);
+                        BufferedImage buffimg = business.implementation.Utils.Utilities.resizeImg(originalImage, type, 175, 170);
                         ImageIO.write(buffimg, tempFileExt, tempFile);
 
                     } catch (IOException e1) {
@@ -329,7 +329,7 @@ public class profile {
                 File imgFile = new File(imgPath);
                 String ext = null;
                 try {
-                    ext = Utils.getImageType(imgFile);
+                    ext = business.implementation.Utils.Utilities.getImageType(imgFile);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

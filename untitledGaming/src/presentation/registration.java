@@ -107,7 +107,7 @@ public class registration {
                     }
 
                     // Validate the email field
-                    if (!business.implementation.Utils.isValidEmailAddress(txtEmil.getText())) {
+                    if (!business.implementation.Utils.Utilities.isValidEmailAddress(txtEmil.getText())) {
                         throw new BusinessException("Inserisci un indirizzo email valido");
                     }
 

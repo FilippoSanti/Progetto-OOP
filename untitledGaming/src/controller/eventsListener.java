@@ -47,11 +47,11 @@ public class eventsListener {
     }
 
     public static Timeline getTimeline(int userId) throws SQLException {
-        return new business.implementation.UserManagement().getTimeline(userId);
+        return new business.implementation.TimelineManagement().getTimeline(userId);
     }
 
-    public static boolean addTimeline(int user_id, int gioco_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
-        return new UserManagement().addTimeline(user_id, gioco_id, dataUltima, esperienzaGuadagnata);
+    public static boolean addUserToTimeline(int user_id, int gioco_id, java.sql.Date dataUltima, int esperienzaGuadagnata) throws SQLException {
+        return new business.implementation.UserManagement().addUserToTimeline(user_id, gioco_id, dataUltima, esperienzaGuadagnata);
     }
 
     public static Review getReview(int user_id, int game_id) throws SQLException {
@@ -91,15 +91,15 @@ public class eventsListener {
     }
 
     public static boolean updateTimeline(int user_id, java.sql.Date dataUltima, int esperienzaGuadagnata, int gioco_id) throws SQLException {
-        return new business.implementation.UserManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata, gioco_id);
+        return new business.implementation.TimelineManagement().updateTimeline(user_id, dataUltima, esperienzaGuadagnata, gioco_id);
     }
 
     public static void checkAchievement(gameProfile gameProfile) throws SQLException {
-        new business.implementation.UserManagement().checkAchievement(gameProfile);
+        new business.implementation.AchievementsManager().checkAchievement(gameProfile);
     }
 
     public static boolean AchievementFoundOnProfile(int achievement_id, int user_id) throws SQLException {
-        return new business.implementation.UserManagement().AchievementFoundOnProfile(achievement_id, user_id);
+        return new business.implementation.AchievementsManager().AchievementFoundOnProfile(achievement_id, user_id);
     }
 
     public static TableModel getAllReviews() throws SQLException {
@@ -112,7 +112,7 @@ public class eventsListener {
 
 
     public static boolean insertAchievementToProfile(int user_id, int achievement_id) throws SQLException {
-        return new business.implementation.UserManagement().insertAchievementToProfile(user_id, achievement_id);
+        return new business.implementation.AchievementsManager().insertAchievementToProfile(user_id, achievement_id);
     }
 
     public static boolean deleteReview(Review review) throws SQLException {
@@ -120,7 +120,7 @@ public class eventsListener {
     }
 
     public static TableModel getUserAchievementsList(int userId) throws SQLException {
-        return new business.implementation.UserManagement().getUserAchievementsList(userId);
+        return new business.implementation.AchievementsManager().getUserAchievementsList(userId);
     }
 
     public static boolean setToModerator(String username) throws SQLException {

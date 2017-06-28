@@ -1,6 +1,7 @@
 package business.implementation;
 
 import business.BusinessException;
+import business.implementation.Utils.BCrypt;
 
 import java.sql.*;
 
@@ -48,7 +49,7 @@ public class DBManager {
      */
     public static String hashPassword(String password_plaintext) {
         String salt = BCrypt.gensalt(12);
-        String hashed_password = BCrypt.hashpw(password_plaintext, salt);
+        String hashed_password = business.implementation.Utils.BCrypt.hashpw(password_plaintext, salt);
 
         return (hashed_password);
     }
@@ -69,7 +70,7 @@ public class DBManager {
         if (null == stored_hash || !stored_hash.startsWith("$2a$"))
             throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
 
-        password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
+        password_verified = business.implementation.Utils.BCrypt.checkpw(password_plaintext, stored_hash);
 
         return (password_verified);
     }

@@ -1,7 +1,7 @@
 package presentation;
 
 import business.implementation.DBManager;
-import business.implementation.Utils;
+import business.implementation.Utils.Utilities;
 import business.model.Utente;
 import business.model.gameProfile;
 import controller.eventsListener;
@@ -85,9 +85,9 @@ public class SlotMachineGUI {
                     try {
                         if (DBManager.checkTimeline(utente.getUserId())) {
                             eventsListener.updateTimeline(utente.getUserId(),
-                                    Utils.getCurrentData(), credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza(), 2);
+                                    business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza(), 2);
                         } else {
-                            eventsListener.addTimeline(utente.getUserId(), 1, Utils.getCurrentData(), credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
+                            eventsListener.addUserToTimeline(utente.getUserId(), 1, business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza());
                         }
 
                         if (credits + (intValue(funds) * 100 / 5) - eventsListener.getGameProfile(utente.getUserId()).getEsperienza() > 1500) {

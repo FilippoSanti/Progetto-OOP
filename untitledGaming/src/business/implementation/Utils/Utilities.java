@@ -1,4 +1,4 @@
-package business.implementation;
+package business.implementation.Utils;
 
 import business.BusinessException;
 
@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 
-public class Utils {
+public class Utilities {
 
     /* Convert a string to a java.sql.date format */
     public static java.sql.Date stringToDate(String dateString) throws ParseException {

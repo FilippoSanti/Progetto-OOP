@@ -2,7 +2,7 @@ package presentation;
 
 import business.BusinessException;
 import business.implementation.DBManager;
-import business.implementation.Utils;
+import business.implementation.Utils.Utilities;
 import business.model.Utente;
 import controller.eventsListener;
 
@@ -154,7 +154,7 @@ public class editData {
             }
         });
 
-        String dataFinale = Utils.formatSqlDateString(utente.getData().toString());
+        String dataFinale = business.implementation.Utils.Utilities.formatSqlDateString(utente.getData().toString());
 
         textField_2.setText(dataFinale);
         textField_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -260,7 +260,7 @@ public class editData {
                     String userText = utente.getUsername();
                     String nameText = utente.getNome();
                     String cognome = utente.getCognome();
-                    String dateText = business.implementation.Utils.dateToString(utente.getData());
+                    String dateText = business.implementation.Utils.Utilities.dateToString(utente.getData());
 
                     // Don't update the DB if the fields are the same
                     if (textField.getText().equals(nameText) && textField_1.getText().equals(cognome)
@@ -295,7 +295,7 @@ public class editData {
 
                     // Validate the email field
                     if (!textField_3.getText().equals(utente.getUsername()))
-                        if (!business.implementation.Utils.isValidEmailAddress(textField_3.getText())) {
+                        if (!business.implementation.Utils.Utilities.isValidEmailAddress(textField_3.getText())) {
                             throw new BusinessException("Inserisci un indirizzo e-mail valido");
                         }
 
@@ -311,7 +311,7 @@ public class editData {
                         Utente utenteModificato = new Utente();
                         try {
                             utenteModificato = new Utente(utente.getUserId(), textField_4.getText(), textField.getText(), textField_1.getText(), passText,
-                                    textField_3.getText(), utente.getTipo(), Utils.stringToDate(dateText));
+                                    textField_3.getText(), utente.getTipo(), business.implementation.Utils.Utilities.stringToDate(dateText));
                             eventsListener.changePage("profile", utenteModificato);
 
                         } catch (ParseException e1) {
