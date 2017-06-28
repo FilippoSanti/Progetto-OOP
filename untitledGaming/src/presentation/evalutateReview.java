@@ -1,5 +1,9 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
@@ -28,6 +32,9 @@ public class evalutateReview extends starView {
 
     private void initialize() {
 
+        ReviewInterface ri = new ReviewManagement();
+
+        UserManagementInterface um = new UserManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Valuta Recensioni");
@@ -53,7 +60,7 @@ public class evalutateReview extends starView {
 
         JLabel lblListaGiochi = null;
         try {
-            int fineLista = new ReviewManagement().getPendingReviews().getRowCount();
+            int fineLista = ri.getPendingReviews().getRowCount();
             int inizioLista = row + 4;
             if (fineLista == 0) {
                 JOptionPane.showMessageDialog(null, "Nessuna review da valutare");
@@ -79,7 +86,7 @@ public class evalutateReview extends starView {
 
 
         try {
-            if (row + 4 >= new ReviewManagement().getPendingReviews().getRowCount()) {
+            if (row + 4 >= ri.getPendingReviews().getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
 
@@ -127,21 +134,21 @@ public class evalutateReview extends starView {
         JLabel label = null;
 
         try {
-            if (row >= new ReviewManagement().getPendingReviews().getRowCount()) {
+            if (row >= ri.getPendingReviews().getRowCount()) {
                 label = new JLabel("vuoto");
             } else {
 
-                userId1 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row, 0)));
-                gameId1 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row, 3)));
+                userId1 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row, 0)));
+                gameId1 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row, 3)));
 
                 try {
-                    vote = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row, 2)));
+                    vote = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row, 2)));
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
-                gioco1 = new UserManagement().getGameFromId(gameId1);
-                String username1 = new UserManagement().getUsername(userId1);
+                gioco1 = um.getGameFromId(gameId1);
+                String username1 = um.getUsername(userId1);
                 label = new JLabel(username1);
                 label.setHorizontalAlignment(SwingConstants.CENTER);
                 label.setForeground(Color.DARK_GRAY);
@@ -183,7 +190,7 @@ public class evalutateReview extends starView {
 
                         frmUntitledGaming.setVisible(false);
                         try {
-                            new approveComment(utente, new ReviewManagement().getReview(finalUserId, finalGameId));
+                            new approveComment(utente, ri.getReview(finalUserId, finalGameId));
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }
@@ -203,20 +210,20 @@ public class evalutateReview extends starView {
 
         JLabel label_1 = null;
         try {
-            if (row + 1 >= new ReviewManagement().getPendingReviews().getRowCount()) {
+            if (row + 1 >= ri.getPendingReviews().getRowCount()) {
                 label_1 = new JLabel("vuoto");
             } else {
-                userId2 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 1, 0)));
-                gameId2 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 1, 3)));
+                userId2 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 1, 0)));
+                gameId2 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 1, 3)));
 
                 try {
-                    vote = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 1, 2)));
+                    vote = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 1, 2)));
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
-                gioco2 = new UserManagement().getGameFromId(gameId2);
-                String username2 = new UserManagement().getUsername(userId2);
+                gioco2 = um.getGameFromId(gameId2);
+                String username2 = um.getUsername(userId2);
 
                 label_1 = new JLabel(username2);
                 label_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -258,7 +265,7 @@ public class evalutateReview extends starView {
 
                         frmUntitledGaming.setVisible(false);
                         try {
-                            new approveComment(utente, new ReviewManagement().getReview(finalUserId2, finalGameId2));
+                            new approveComment(utente, ri.getReview(finalUserId2, finalGameId2));
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }
@@ -278,20 +285,20 @@ public class evalutateReview extends starView {
         JLabel label_2 = null;
 
         try {
-            if (row + 2 >= new ReviewManagement().getPendingReviews().getRowCount()) {
+            if (row + 2 >= ri.getPendingReviews().getRowCount()) {
                 label_2 = new JLabel("vuoto");
             } else {
-                userId3 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 2, 0)));
-                gameId3 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 2, 3)));
+                userId3 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 2, 0)));
+                gameId3 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 2, 3)));
 
                 try {
-                    vote = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 2, 2)));
+                    vote = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 2, 2)));
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
-                gioco3 = new UserManagement().getGameFromId(gameId3);
-                String username3 = new UserManagement().getUsername(userId3);
+                gioco3 = um.getGameFromId(gameId3);
+                String username3 = um.getUsername(userId3);
 
                 // Username label
                 label_2 = new JLabel(username3);
@@ -336,7 +343,7 @@ public class evalutateReview extends starView {
 
                         frmUntitledGaming.setVisible(false);
                         try {
-                            new approveComment(utente, new ReviewManagement().getReview(finalUserId3, finalGameId3));
+                            new approveComment(utente, ri.getReview(finalUserId3, finalGameId3));
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }
@@ -355,20 +362,20 @@ public class evalutateReview extends starView {
         JLabel label_3 = null;
 
         try {
-            if (row + 3 >= new ReviewManagement().getPendingReviews().getRowCount()) {
+            if (row + 3 >= ri.getPendingReviews().getRowCount()) {
                 label_3 = new JLabel("vuoto");
             } else {
-                userId4 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 3, 0)));
-                gameId4 = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 3, 3)));
+                userId4 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 3, 0)));
+                gameId4 = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 3, 3)));
 
                 try {
-                    vote = Integer.parseInt(String.valueOf(new ReviewManagement().getPendingReviews().getValueAt(row + 3, 2)));
+                    vote = Integer.parseInt(String.valueOf(ri.getPendingReviews().getValueAt(row + 3, 2)));
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
 
-                gioco4 = new UserManagement().getGameFromId(gameId4);
-                String username4 = new UserManagement().getUsername(userId4);
+                gioco4 = um.getGameFromId(gameId4);
+                String username4 = um.getUsername(userId4);
 
                 label_3 = new JLabel(username4);
                 label_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -411,7 +418,7 @@ public class evalutateReview extends starView {
 
                         frmUntitledGaming.setVisible(false);
                         try {
-                            new approveComment(utente, new ReviewManagement().getReview(finalUserId4, finalGameId4));
+                            new approveComment(utente, ri.getReview(finalUserId4, finalGameId4));
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }

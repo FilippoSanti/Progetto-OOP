@@ -1,7 +1,10 @@
 package presentation;
 
 import business.BusinessException;
+import business.implementation.AchievementsManager;
 import business.implementation.DBManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.UserManagementInterface;
 import business.implementation.UserManagement;
 import business.implementation.Utils.Utilities;
 import business.model.Utente;
@@ -60,6 +63,7 @@ public class editData {
      * Initialize the contents of the frame.
      */
     private void initialize() {
+        UserManagementInterface um = new UserManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Modifica Dati");
@@ -307,7 +311,7 @@ public class editData {
                     }
 
                     frmUntitledGaming.dispose();
-                    if (new UserManagement().setUtente(new UserManagement().getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), dateText, textField_3.getText(), passText, textField_4.getText())) {
+                    if (um.setUtente(um.getUtente(utente.getUsername()), textField.getText(), textField_1.getText(), dateText, textField_3.getText(), passText, textField_4.getText())) {
                         Utente utenteModificato = new Utente();
                         try {
                             utenteModificato = new Utente(utente.getUserId(), textField_4.getText(), textField.getText(), textField_1.getText(), passText,

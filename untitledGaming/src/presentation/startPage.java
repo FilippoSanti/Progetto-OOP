@@ -1,6 +1,11 @@
 package presentation;
 
 import business.BusinessException;
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
+import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
 
@@ -27,6 +32,8 @@ public class startPage {
     /* Initialize the contents of the frame */
     private void initialize() {
 
+
+        UserManagementInterface um = new UserManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("Untitled Gaming");
@@ -80,8 +87,8 @@ public class startPage {
                     String passText = new String(passwordField.getPassword());
 
                     // Check if the login was successful
-                    if (new UserManagement().userAuth(txtUsername.getText(), passText)) {
-                        Utente utente = new UserManagement().getUtente(txtUsername.getText());
+                    if (um.userAuth(txtUsername.getText(), passText)) {
+                        Utente utente = um.getUtente(txtUsername.getText());
                         business.implementation.Utils.Utilities.changePage("logged", utente);
                         frmUntitledGaming.dispose();
                     } else JOptionPane.showMessageDialog(frmUntitledGaming, "Username o password errati");

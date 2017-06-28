@@ -1,6 +1,13 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.TimelineManagementInterface;
+import business.implementation.Interfaces.UserManagementInterface;
 import business.implementation.ReviewManagement;
+import business.implementation.TimelineManagement;
+import business.implementation.UserManagement;
 import business.model.Review;
 import business.model.Utente;
 
@@ -30,6 +37,9 @@ public class viewReview extends starView {
 
     /* Initialize the contents of the frame */
     private void initialize() {
+
+        ReviewInterface ri = new ReviewManagement();
+
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Visualizza Recensione");
@@ -80,7 +90,7 @@ public class viewReview extends starView {
         Review rev = null;
 
         try {
-            rev = new ReviewManagement().getReview(userId, gameID);
+            rev = ri.getReview(userId, gameID);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,9 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
@@ -32,6 +36,9 @@ public class review extends starEdit {
     /* Initialize the contents of the frame */
     private void initialize() {
 
+        ReviewInterface ri = new ReviewManagement();
+
+        UserManagementInterface um = new UserManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Scrivi Recensione");
@@ -110,10 +117,10 @@ public class review extends starEdit {
 
                 // Check if the user is a moderator, if so, automatically approve the review
                 try {
-                    if (new UserManagement().getUserType(utente.getUserId()).equals("moderator") ||
-                            new UserManagement().getUserType(utente.getUserId()).equals("administrator")) {
+                    if (um.getUserType(utente.getUserId()).equals("moderator") ||
+                            um.getUserType(utente.getUserId()).equals("administrator")) {
                         int vote = lb.getLevel();
-                        new ReviewManagement().newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, true);
+                        ri.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, true);
                         new reviewList(utente, 0, gioco_id);
                     }
                 } catch (SQLException e1) {
@@ -122,7 +129,7 @@ public class review extends starEdit {
 
                 try {
                     int vote = lb.getLevel();
-                    new ReviewManagement().newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, false);
+                    ri.newReview(utente, dtrpnLasciaQuIl.getText(), gioco_id, vote + 1, false);
                     new reviewList(utente, 0, gioco_id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();

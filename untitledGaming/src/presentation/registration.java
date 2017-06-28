@@ -1,6 +1,12 @@
 package presentation;
 
 import business.BusinessException;
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
+import business.implementation.ReviewManagement;
+import business.implementation.UserManagement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +34,9 @@ public class registration {
 
     /* Initialize the contents of the frame */
     private void initialize() {
+
+
+        UserManagementInterface um = new UserManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
@@ -111,7 +120,7 @@ public class registration {
 
                     frmUntitledGaming.dispose();
 
-                     boolean result = new business.implementation.UserManagement().newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
+                     boolean result = um.newUser(txtNickname.getText(), passText, txtNome.getText(), txtCognome.getText(),
                             txtEmil.getText(), dateText, img_value, "user");
                      if (result) {
                          JOptionPane.showMessageDialog(null, "Registrazione avvenuta correttamente");

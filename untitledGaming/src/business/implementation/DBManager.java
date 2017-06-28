@@ -13,7 +13,7 @@ public class DBManager {
         // DB Config
         String dbAddress = "jdbc:mysql://localhost:3306/untitled_gaming";
         String dbUser = "root";
-        String dbPassword = "Provatest123!";
+        String dbPassword = "";
         Connection dbConnection = null;
 
         // Check if JDBC driver exists

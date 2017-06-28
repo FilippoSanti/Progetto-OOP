@@ -1,5 +1,11 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.TimelineManagementInterface;
+import business.implementation.Interfaces.UserManagementInterface;
+import business.implementation.ReviewManagement;
 import business.implementation.TimelineManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
@@ -28,6 +34,10 @@ public class timelineView {
 
     /* Initialize the contents of the frame */
     private void initialize() {
+
+
+        UserManagementInterface um = new UserManagement();
+        TimelineManagementInterface ti = new TimelineManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Cronologia di Gioco");
@@ -92,7 +102,7 @@ public class timelineView {
         // Get the game id
         JLabel lblNewLabel = null;
         try {
-            lblNewLabel = new JLabel(new UserManagement().getGameFromId(new TimelineManagement().getTimeline(utente.getUserId()).getGioco_id()));
+            lblNewLabel = new JLabel(um.getGameFromId(ti.getTimeline(utente.getUserId()).getGioco_id()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -104,7 +114,7 @@ public class timelineView {
         // Get the game's last play session
         JLabel lblInserireQui = null;
         try {
-            lblInserireQui = new JLabel(new TimelineManagement().getTimeline(utente.getUserId()).getData_ultima_sessione().toString());
+            lblInserireQui = new JLabel(ti.getTimeline(utente.getUserId()).getData_ultima_sessione().toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -116,7 +126,7 @@ public class timelineView {
         // Get the earned xp
         JLabel lblInserireQui_1 = null;
         try {
-            lblInserireQui_1 = new JLabel(Integer.toString(new TimelineManagement().getTimeline(utente.getUserId()).getEsperienza_guadagnata()));
+            lblInserireQui_1 = new JLabel(Integer.toString(ti.getTimeline(utente.getUserId()).getEsperienza_guadagnata()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

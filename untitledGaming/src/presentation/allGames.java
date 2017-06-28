@@ -1,5 +1,9 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
@@ -29,6 +33,9 @@ public class allGames {
 
     /* Initialize the contents of the frame */
     private void initialize() {
+
+        ReviewInterface ri = new ReviewManagement();
+        UserManagementInterface um = new UserManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);
@@ -56,7 +63,7 @@ public class allGames {
 
         int fineLista = 0;
         try {
-            fineLista = new UserManagement().getGames().getRowCount();
+            fineLista = um.getGames().getRowCount();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,7 +87,7 @@ public class allGames {
         btnSuccessiva.setBounds(830, 581, 45, 45);
 
         try {
-            if (row + 4 >= new UserManagement().getGames().getRowCount()) {
+            if (row + 4 >= um.getGames().getRowCount()) {
                 btnSuccessiva.setEnabled(false);
             }
         } catch (SQLException e) {
@@ -118,9 +125,9 @@ public class allGames {
         // Game 1
         try {
 
-            JTable table = new JTable(new UserManagement().getGames());
+            JTable table = new JTable(um.getGames());
             String titolo = String.valueOf(table.getValueAt(row, 1));
-            int gameID = new ReviewManagement().getGameIDFromName(titolo);
+            int gameID = ri.getGameIDFromName(titolo);
 
             // Game logo
             JPanel panel = new JPanel();
@@ -181,7 +188,7 @@ public class allGames {
 
         // Game 2
         try {
-            if (row + 1 >= new UserManagement().getGames().getRowCount()) {
+            if (row + 1 >= um.getGames().getRowCount()) {
 
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
@@ -190,9 +197,9 @@ public class allGames {
                 lblNewLabel.setLabelFor(panel_1);
 
             } else {
-                JTable table = new JTable(new UserManagement().getGames());
+                JTable table = new JTable(um.getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 1, 1));
-                int gameID = new ReviewManagement().getGameIDFromName(titolo1);
+                int gameID = ri.getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_1 = new JPanel();
@@ -254,7 +261,7 @@ public class allGames {
         // Game 3
         try {
 
-            if (row + 2 >= new UserManagement().getGames().getRowCount()) {
+            if (row + 2 >= um.getGames().getRowCount()) {
 
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
@@ -263,9 +270,9 @@ public class allGames {
                 lblNewLabel.setLabelFor(panel_1);
 
             } else {
-                JTable table = new JTable(new UserManagement().getGames());
+                JTable table = new JTable(um.getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 2, 1));
-                int gameID = new ReviewManagement().getGameIDFromName(titolo1);
+                int gameID = ri.getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_2 = new JPanel();
@@ -327,7 +334,7 @@ public class allGames {
         // Game 4
         try {
 
-            if (row + 3 >= new UserManagement().getGames().getRowCount()) {
+            if (row + 3 >= um.getGames().getRowCount()) {
 
                 // Show an empty label
                 JPanel panel_1 = new JPanel();
@@ -336,9 +343,9 @@ public class allGames {
                 lblNewLabel.setLabelFor(panel_1);
 
             } else {
-                JTable table = new JTable(new UserManagement().getGames());
+                JTable table = new JTable(um.getGames());
                 String titolo1 = String.valueOf(table.getValueAt(row + 3, 1));
-                int gameID = new ReviewManagement().getGameIDFromName(titolo1);
+                int gameID = ri.getGameIDFromName(titolo1);
 
                 // Game logo
                 JPanel panel_3 = new JPanel();

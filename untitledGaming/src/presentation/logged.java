@@ -1,5 +1,11 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
+import business.implementation.ReviewManagement;
+import business.implementation.UserManagement;
 import business.model.Utente;
 
 import javax.swing.*;
@@ -20,6 +26,8 @@ public class logged {
 
     /* Initialize the contents of the frame*/
     private void initialize() {
+
+
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setVisible(true);

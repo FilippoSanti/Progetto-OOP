@@ -3,6 +3,10 @@ package presentation;
 import business.BusinessException;
 import business.implementation.AchievementsManager;
 import business.implementation.DBManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
+import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.implementation.Utils.Utilities;
 import business.model.Utente;
@@ -36,6 +40,10 @@ public class profile {
 
     /* Initialize the contents of the frame */
     private void initialize() {
+
+
+        AchievementsManagerInterface am = new AchievementsManager();
+        UserManagementInterface um = new UserManagement();
 
         // File chooser settings
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -129,46 +137,46 @@ public class profile {
 
         int exp = 0;
         try {
-            exp = new UserManagement().getGameProfile(utente.getUserId()).getEsperienza();
+            exp = um.getGameProfile(utente.getUserId()).getEsperienza();
 
             JProgressBar progressBar = new JProgressBar();
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 1) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 1) {
                 progressBar.setMinimum(0);
                 progressBar.setMaximum(100);
             }
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 2) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 2) {
                 progressBar.setMinimum(100);
                 progressBar.setMaximum(250);
             }
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 3) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 3) {
                 progressBar.setMinimum(250);
                 progressBar.setMaximum(450);
             }
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 4) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 4) {
                 progressBar.setMinimum(450);
                 progressBar.setMaximum(700);
             }
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 5) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 5) {
                 progressBar.setMinimum(700);
                 progressBar.setMaximum(1100);
             }
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 6) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 6) {
                 progressBar.setMinimum(1100);
                 progressBar.setMaximum(1500);
             }
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 7) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 7) {
                 progressBar.setMinimum(1500);
                 progressBar.setMaximum(2000);
             }
 
-            if (new UserManagement().getGameProfile(utente.getUserId()).getLivello() == 8) {
+            if (um.getGameProfile(utente.getUserId()).getLivello() == 8) {
                 progressBar.setMinimum(2000);
                 progressBar.setMaximum(2800);
             }
@@ -193,7 +201,7 @@ public class profile {
         btnNewButton.setBounds(137, 576, 289, 37);
 
         try {
-            if (new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() == 0 ) {
+            if (um.getGameProfile(utente.getUserId()).getEsperienza() == 0 ) {
                 btnNewButton.setEnabled(false);
             }
         } catch (SQLException e) {
@@ -211,7 +219,7 @@ public class profile {
         });
 
         try {
-            int livello = new UserManagement().getGameProfile(utente.getUserId()).getLivello();
+            int livello = um.getGameProfile(utente.getUserId()).getLivello();
             String stringalv = Integer.toString(livello);
             JLabel lblNewLabel_12 = new JLabel(stringalv);
             lblNewLabel_12.setForeground(Color.DARK_GRAY);
@@ -229,7 +237,7 @@ public class profile {
             panel_2.setBorder(new LineBorder(Color.BLACK));
 
             int achievement = 0;
-            achievement = new AchievementsManager().getUserAchievementsList(utente.getUserId()).getRowCount();
+            achievement = am.getUserAchievementsList(utente.getUserId()).getRowCount();
             String b = String.valueOf(achievement);
 
             JLabel jlabel = new JLabel(b);
@@ -293,7 +301,7 @@ public class profile {
                     }
 
                     // Store the image into the DB
-                    if (new UserManagement().setImg(utente.getUserId(), tempFile)) {
+                    if (um.setImg(utente.getUserId(), tempFile)) {
                         JOptionPane.showMessageDialog(frmUntitledGaming, "Operazione riuscita");
 
                         //Delete the resized image
@@ -311,7 +319,7 @@ public class profile {
 
         try {
 
-            if (new UserManagement().checkImage(utente.getUserId())) {
+            if (um.checkImage(utente.getUserId())) {
 
                 // Declare the panel
                 Panel panel = new Panel();
@@ -324,7 +332,7 @@ public class profile {
                 String imgPath = imgDir + imgName;
                 File propicDir = new File(imgPath);
 
-                new UserManagement().getImg(utente.getUserId(), imgPath);
+                um.getImg(utente.getUserId(), imgPath);
 
                 File imgFile = new File(imgPath);
                 String ext = null;
@@ -345,7 +353,7 @@ public class profile {
 
                 // Save the img + its extension
                 imgPath += ext;
-                new UserManagement().getImg(utente.getUserId(), imgPath);
+                um.getImg(utente.getUserId(), imgPath);
 
                 // Show the image in the JPanel
                 BufferedImage myPicture = null;
@@ -402,7 +410,7 @@ public class profile {
         });
 
         try {
-            int xp = new UserManagement().getGameProfile(utente.getUserId()).getEsperienza();
+            int xp = um.getGameProfile(utente.getUserId()).getEsperienza();
             String stringaxp = Integer.toString(xp);
 
             JLabel label = new JLabel(stringaxp);

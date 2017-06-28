@@ -1,5 +1,9 @@
 package presentation;
 
+import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
+import business.implementation.Interfaces.ReviewInterface;
+import business.implementation.Interfaces.UserManagementInterface;
 import business.implementation.ReviewManagement;
 import business.implementation.UserManagement;
 import business.model.Review;
@@ -32,6 +36,9 @@ public class approveComment {
 
     /* Initialize the contents of the frame */
     private void initialize() {
+        ReviewInterface ri = new ReviewManagement();
+
+        UserManagementInterface um = new UserManagement();
         frmUntitledGaming = new JFrame();
         frmUntitledGaming.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/presentation/imgs/UG_silver_logo.png"));
         frmUntitledGaming.setTitle("   Untitled Gaming  -  Leggi Commento");
@@ -54,7 +61,7 @@ public class approveComment {
 
                 frmUntitledGaming.setVisible(false);
                 try {
-                    new ReviewManagement().approveReview(review);
+                    ri.approveReview(review);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -76,7 +83,7 @@ public class approveComment {
             public void actionPerformed(ActionEvent e) {
                 frmUntitledGaming.setVisible(false);
                 try {
-                    new ReviewManagement().deleteReview(review);
+                    ri.deleteReview(review);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -93,7 +100,7 @@ public class approveComment {
 
         JLabel lblusername = null;
         try {
-            lblusername = new JLabel(new UserManagement().getUsername(review.getUser_id()));
+            lblusername = new JLabel(um.getUsername(review.getUser_id()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
