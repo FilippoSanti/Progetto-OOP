@@ -3,7 +3,7 @@ package business.implementation.Utils;
 import business.BusinessException;
 import business.implementation.UserManagement;
 import business.model.Utente;
-import games.SlotMachineGUI;
+import games.SlotMachine.SlotMachineGUI;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;

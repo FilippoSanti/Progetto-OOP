@@ -1,6 +1,7 @@
 package business.implementation;
 
 import business.BusinessException;
+import business.implementation.Interfaces.Game;
 import business.implementation.Interfaces.UserManagementInterface;
 import business.model.*;
 import net.proteanit.sql.DbUtils;
@@ -341,8 +342,13 @@ public class UserManagement implements UserManagementInterface {
 
     }
 
-    /* Add xp to a user */
+    @Override
     public boolean addXp(Utente utente, int xP) throws SQLException {
+        return false;
+    }
+
+    /* Add xp to a user */
+    public boolean addXp(Utente utente, Game game) throws SQLException {
 
         Connection dbConnection = business.implementation.DBManager.Connect();
 
@@ -356,7 +362,7 @@ public class UserManagement implements UserManagementInterface {
         try {
             preparedStatement = dbConnection.prepareStatement(addXP);
 
-            preparedStatement.setInt(1, xP);
+            preparedStatement.setInt(1, game.getXP());
             preparedStatement.setInt(2, utente.getUserId());
 
             // Insert SQL statement

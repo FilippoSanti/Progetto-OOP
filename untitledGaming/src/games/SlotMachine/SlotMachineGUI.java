@@ -1,7 +1,9 @@
-package games;
+package games.SlotMachine;
 
 import business.implementation.*;
+import business.implementation.Interfaces.Game;
 import business.model.Utente;
+import games.GamesInterfaces.Snake;
 
 
 import java.awt.*;
@@ -102,7 +104,10 @@ public class SlotMachineGUI {
                             }
                         }
 
-                        new business.implementation.UserManagement().addXp(utente, credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza());
+                        Game snake = new Snake();
+                        snake.setXP(credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza());
+
+                        new business.implementation.UserManagement().addXp(utente, snake);
                         new UserManagement().checkLivello(new UserManagement().getGameProfile(utente.getUserId()));
 
                     } catch (SQLException e1) {

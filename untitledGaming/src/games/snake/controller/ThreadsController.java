@@ -1,10 +1,12 @@
 package games.snake.controller;
 
 import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.Game;
 import business.implementation.TimelineManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
 
+import games.GamesInterfaces.Snake;
 import games.snake.model.Tuple;
 import games.snake.view.DataOfSquare;
 
@@ -94,7 +96,12 @@ public class ThreadsController extends Thread {
 
     //Stops The Game
     private void stopTheGame() throws SQLException {
-        new business.implementation.UserManagement().addXp(utente, esperienza);
+
+        // Create a new instance of snake
+        Game snake = new Snake();
+        snake.setXP(esperienza);
+
+        new business.implementation.UserManagement().addXp(utente, snake);
         new UserManagement().checkLivello(new UserManagement().getGameProfile(utente.getUserId()));
         JOptionPane.showMessageDialog(null, "Punti xp guadagnati nella sessione: " + esperienza + "." +
                 " Chiudi il gioco per terminare");
