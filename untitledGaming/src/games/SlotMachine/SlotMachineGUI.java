@@ -1,7 +1,7 @@
 package games.SlotMachine;
 
 import business.implementation.*;
-import business.implementation.Interfaces.Game;
+import business.implementation.Interfaces.*;
 import business.model.Utente;
 import games.GamesInterfaces.Snake;
 
@@ -19,6 +19,11 @@ import javax.swing.border.*;
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
 public class SlotMachineGUI {
+
+    AchievementsManagerInterface am = new AchievementsManager();
+    UserManagementInterface um = new UserManagement();
+
+    TimelineManagementInterface ti = new TimelineManagement();
 
     private JButton btnCash, btnSpin;
     private JCheckBox cbAlwaysWin, cbSuperJackpot, cbTrollface;
@@ -84,31 +89,31 @@ public class SlotMachineGUI {
 
                     try {
                         if (DBManager.checkTimeline(utente.getUserId())) {
-                            new TimelineManagement().updateTimeline(utente.getUserId(),
-                                    business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza(), 2);
+                            ti.updateTimeline(utente.getUserId(),
+                                    business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - um.getGameProfile(utente.getUserId()).getEsperienza(), 2);
                         } else {
-                            new UserManagement().addUserToTimeline(utente.getUserId(), 1, business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza());
+                            um.addUserToTimeline(utente.getUserId(), 1, business.implementation.Utils.Utilities.getCurrentData(), credits + (intValue(funds) * 100 / 5) - um.getGameProfile(utente.getUserId()).getEsperienza());
                         }
 
-                        if (credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() > 1500) {
-                            if (!new AchievementsManager().AchievementFoundOnProfile(8, utente.getUserId())) {
-                                new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 8);
+                        if (credits + (intValue(funds) * 100 / 5) - um.getGameProfile(utente.getUserId()).getEsperienza() > 1500) {
+                            if (!am.AchievementFoundOnProfile(8, utente.getUserId())) {
+                                am.insertAchievementToProfile(utente.getUserId(), 8);
                                 JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giorno Fortunato !");
                             }
                         }
 
-                        if (new UserManagement().getGameProfile(utente.getUserId()).getEsperienza() - credits > 290) {
-                            if (!new AchievementsManager().AchievementFoundOnProfile(7, utente.getUserId())) {
+                        if (um.getGameProfile(utente.getUserId()).getEsperienza() - credits > 290) {
+                            if (!am.AchievementFoundOnProfile(7, utente.getUserId())) {
                                 JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Giocatore d' azzardo !");
-                                new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 7);
+                                am.insertAchievementToProfile(utente.getUserId(), 7);
                             }
                         }
 
                         Game snake = new Snake();
-                        snake.setXP(credits + (intValue(funds) * 100 / 5) - new UserManagement().getGameProfile(utente.getUserId()).getEsperienza());
+                        snake.setXP(credits + (intValue(funds) * 100 / 5) - um.getGameProfile(utente.getUserId()).getEsperienza());
 
                         new business.implementation.UserManagement().addXp(utente, snake);
-                        new UserManagement().checkLivello(new UserManagement().getGameProfile(utente.getUserId()));
+                        um.checkLivello(um.getGameProfile(utente.getUserId()));
 
                     } catch (SQLException e1) {
                         e1.printStackTrace();

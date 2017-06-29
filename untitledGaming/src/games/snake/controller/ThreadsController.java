@@ -1,7 +1,10 @@
 package games.snake.controller;
 
 import business.implementation.AchievementsManager;
+import business.implementation.Interfaces.AchievementsManagerInterface;
 import business.implementation.Interfaces.Game;
+import business.implementation.Interfaces.TimelineManagementInterface;
+import business.implementation.Interfaces.UserManagementInterface;
 import business.implementation.TimelineManagement;
 import business.implementation.UserManagement;
 import business.model.Utente;
@@ -17,6 +20,10 @@ import java.util.ArrayList;
 
 // Controls all the game logic..most important class in this project.
 public class ThreadsController extends Thread {
+    AchievementsManagerInterface am = new AchievementsManager();
+    UserManagementInterface um = new UserManagement();
+
+    TimelineManagementInterface ti = new TimelineManagement();
     ArrayList<ArrayList<DataOfSquare>> Squares = new ArrayList<ArrayList<DataOfSquare>>();
     Tuple headSnakePos;
     int esperienza;
@@ -102,7 +109,7 @@ public class ThreadsController extends Thread {
         snake.setXP(esperienza);
 
         new business.implementation.UserManagement().addXp(utente, snake);
-        new UserManagement().checkLivello(new UserManagement().getGameProfile(utente.getUserId()));
+        um.checkLivello(um.getGameProfile(utente.getUserId()));
         JOptionPane.showMessageDialog(null, "Punti xp guadagnati nella sessione: " + esperienza + "." +
                 " Chiudi il gioco per terminare");
 
@@ -110,30 +117,30 @@ public class ThreadsController extends Thread {
 
             // Achievement 1
             if (esperienza >= 500) {
-                if (!new AchievementsManager().AchievementFoundOnProfile(9, utente.getUserId())) {
+                if (!am.AchievementFoundOnProfile(9, utente.getUserId())) {
                     JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Inarrestabile !");
-                    new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 9);
+                    am.insertAchievementToProfile(utente.getUserId(), 9);
                 }
             }
 
             // Achievement 2
             if (sizeSnake >= 30) {
-                if (!new AchievementsManager().AchievementFoundOnProfile(10, utente.getUserId())) {
+                if (!am.AchievementFoundOnProfile(10, utente.getUserId())) {
                     JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Serpentone !");
-                    new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 10);
+                    am.insertAchievementToProfile(utente.getUserId(), 10);
                 }
             }
 
             // Achievement 3
             if (sizeSnake == 3 && esperienza == 0) {
-                if (!new AchievementsManager().AchievementFoundOnProfile(11, utente.getUserId())) {
+                if (!am.AchievementFoundOnProfile(11, utente.getUserId())) {
                     JOptionPane.showMessageDialog(null, "Hai sbloccato l achievement : Digiuno !");
-                    new AchievementsManager().insertAchievementToProfile(utente.getUserId(), 11);
+                    am.insertAchievementToProfile(utente.getUserId(), 11);
                 }
             }
 
             // Update the timeline
-            new TimelineManagement().updateTimeline(utente.getUserId(),
+            ti.updateTimeline(utente.getUserId(),
                     business.implementation.Utils.Utilities.getCurrentData(), esperienza, 6);
 
         } catch (SQLException e1) {
