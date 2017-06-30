@@ -1,8 +1,11 @@
 business
 business.implementation
+business.implementation.Interfaces
+business.implementation.Utils
 business.model
-controller
+games.GamesInterfaces
+games.SlotMachine
+games.snake.controller
+games.snake.model
+games.snake.view
 presentation
-presentation.snake.controller
-presentation.snake.model
-presentation.snake.view
